@@ -59,7 +59,7 @@ p{
     display: none;
 
 }
-.icon .cancel-btn{
+.icon.cancel-btn{
     position: absolute;
     right: 30px;
     top: 20px;
@@ -71,7 +71,7 @@ p{
 
 }
 .cancel-btn{
-    
+
 }
 
 
@@ -95,6 +95,7 @@ p{
         transition: all 0.3s ease;
     }
     .navbar .menu-list .active{
+        
         left: 0%;
     }
     .navbar .menu-list li{

@@ -17,11 +17,11 @@
       <nav class="navbar">
         <div class="content">
           <div class="logo"><a href="#">Genshin</a></div>
-          <ul class="menu-list">
-            <div class="icon cancel-btn">
-              <i class="fas fa-times">
-                <img src="images/close (1).png" alt="">
-              </i>
+          <ul class="menu-list" id="menu-lst">
+            <div class="icon cancel-btn " id="cnl-btn">
+              
+                <img id="cnl" src="images/close (1).png" alt="">
+              
             </div>
             <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>
@@ -29,10 +29,10 @@
             <li><a href="#">Features</a></li>
             <li><a href="#">Contact</a></li>
           </ul>
-          <div class="icon menu-btn">
-            <i class="fas fa-bars">
-              <img src="images/menu.png" alt="">
-            </i>
+          <div class="icon menu-btn" id="menu-but">
+            
+              <img id="men" src="images/menu.png" alt="">
+           
           </div>
         </div>
       </nav>
@@ -74,18 +74,19 @@
 
 
   <script>
-    const menu = document.querySelector(".menu-list");
-    const menuBtn = document.querySelector(".menu-btn");
-    const cancelBtn = document.querySelector(".cancel-btn");
+    const menu = document.getElementById("menu-lst");
+    const menuBtn = document.getElementById("menu-but");
+    const cancelBtn = document.getElementById("cnl-btn");
 
     menuBtn.onclick = ()=>{
       menu.classList.add("active");
-
     } 
-    menuBtn.onclick = ()=>{
+    cancelBtn.onclick = ()=>{
       menu.classList.remove("active");
 
     }
+
+    
 
 
   </script>
