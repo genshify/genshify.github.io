@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+a{
+    text-decoration: none;
+}
+p{
+    font-size: 30px;
+}
+.content{
+  max-width: 1250px;
+  margin: auto;
+  padding: 0px 30px;
+}
+.navbar{
+    position: fixed;
+    z-index: 5;
+    width: 100%;
+    padding: 10px 0;
+    background: #1b1b1b;
+    
+}
+.navbar .content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar .logo a{
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    text-decoration: none;
+}
+.navbar .menu-list{
+    display: inline-flex;
+  }
+.menu-list li{
+    list-style: none;
+}
+.menu-list li a{
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.menu-list li a:hover{
+    color: cyan;
+}
+.navbar .icon img{
+    width: 15px;
+}
+.icon{
+    cursor: pointer;
+    display: none;
+
+}
+.icon .cancel-btn{
+    position: absolute;
+    right: 30px;
+    top: 20px;
+}
+.menu-list{
+
+}
+.menu-btn{
+
+}
+.cancel-btn{
+    
+}
+
+
+@media (max-width : 868px) {
+
+    .icon{
+        display: block;
+    }
+
+    .navbar .menu-list{
+        position: fixed;
+        top: 0;
+        left: -100%;
+        height: 100vh;
+        width: 100%;
+        max-width: 400px;
+        background: #222;
+        display: block;
+        padding: 40px 0;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    .navbar .menu-list .active{
+        left: 0%;
+    }
+    .navbar .menu-list li{
+        margin-top: 45px;
+    }
+    .navbar .menu-list li a{
+        font-size: 23px;
+    }
+}
