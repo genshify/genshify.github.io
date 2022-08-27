@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family:sans-serif
+  font-family:sans-serif;
 }
 
 a {
@@ -15,11 +15,13 @@ a:hover {
 }
 
 .logo {
-  font-size: 24px;
-  /*text-transform: uppercase;*/
-  letter-spacing: 2px;
   margin-left: 40px;
   
+}
+.logo img{
+  height: 70px;
+  margin-top: 4px;
+
 }
 
 nav {
@@ -27,7 +29,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   background: #23232e;
-  height: 8vh;
+  height: 12vh;
   position: fixed;
   width: 100%;
 }
@@ -67,10 +69,10 @@ main {
     overflow-x: hidden;
   }
   .logo{
-    margin-right: 200px;
+    margin-left: 10px;
   }
   nav{
-    justify-content: space-around;
+    justify-content: space-between;
   }
   .nav-list {
     position: absolute;
