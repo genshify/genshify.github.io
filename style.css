@@ -153,7 +153,7 @@ nav {
   .home .col-1 h1{
     font-size: 50px;
     
-    line-height: 80px;
+    line-height: normal;
   }
   .home .col-2 img{
     width: 350px;
