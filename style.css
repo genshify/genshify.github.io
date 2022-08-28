@@ -65,12 +65,46 @@ nav {
   margin: 8px;
   transition: 0.3s;
 }
+.container{
+  padding-left: 6%;
+  padding-right: 6%;
+  
+}
+.row{
 
-
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  
+}
+.col-1{
+  
+}
+.col-2{
+  
+}
 .home{
   background-color: white;
-  height: 100vh;
 }
+
+.home .col-1{
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+.home .col-1 h1{
+  font-size: 80px;
+  margin: 10px 0 30px;
+  line-height: 80px;
+}
+.home .col-2 img{
+  width: 40rem;
+
+}
+
+
+
 
 @media (max-width: 999px) {
   body {
