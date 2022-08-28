@@ -139,9 +139,25 @@ nav {
   }
   .row{
     flex-direction: column-reverse;
+    
+  }
+  .col-1{
+    margin-right: 80px;
+    position: relative;
+    margin-top: 40px;
+  }
+  .col-2{
+    
+
+  }
+  .home .col-1 h1{
+    font-size: 50px;
+    
+    line-height: 80px;
   }
   .home .col-2 img{
     width: 350px;
+    
   }
 }
 
