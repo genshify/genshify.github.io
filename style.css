@@ -4,51 +4,53 @@
   font-family:sans-serif;
 }
 
-a {
-  color: #fff;
+nav a {
+  color: #003d11;
   text-decoration: none;
   transition: 0.3s;
 }
 
-a:hover {
+nav a:hover {
   opacity: 0.7;
 }
 
-.logo {
-  margin-left: 40px;
-  
-}
 .logo img{
-  height: 70px;
-  margin-top: 4px;
-
+  margin-left: 40px;
+  height: 50px;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background: #23232e;
-  height: 12vh;
+  align-items:center;
+  background: transparent;
+  height: 70px;
   position: fixed;
   width: 100%;
-}
-
-main {
-  background: url("bg.jpg") no-repeat center center;
-  background-size: cover;
-  height: 100vh;
 }
 
 .nav-list {
   list-style: none;
   display: flex;
   margin-right: 40px;
+  
 }
 
 .nav-list li {
-  letter-spacing: 3px;
-  margin-left: 32px;
+  letter-spacing: 2px;
+  margin-left: 50px;
+  font-weight: bold;
+  justify-content: center;
+}
+
+.nav-list .log-in{
+  color: #004b15;
+  padding: 10px 25px;
+  background: transparent;
+  border: 1px solid #003d11;
+  border-radius: 20px;
+  outline: none;
+  cursor: pointer;
 }
 
 .mobile-menu {
@@ -59,9 +61,15 @@ main {
 .mobile-menu div {
   width: 32px;
   height: 2px;
-  background: #fff;
+  background: black;
   margin: 8px;
   transition: 0.3s;
+}
+
+
+.home{
+  background-color: white;
+  height: 100vh;
 }
 
 @media (max-width: 999px) {
@@ -73,6 +81,7 @@ main {
   }
   nav{
     justify-content: space-between;
+    align-items: center;
   }
   .nav-list {
     position: absolute;
@@ -80,7 +89,7 @@ main {
     right: 0;
     width: 50vw;
     height: 92vh;
-    background: #23232e;
+    background: transparent;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
@@ -94,6 +103,8 @@ main {
   }
   .mobile-menu {
     display: block;
+    margin-right: 20px;
+    margin-top: 10px;
   }
 }
 
