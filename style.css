@@ -3,7 +3,7 @@
   padding: 0;
   font-family:sans-serif;
 }
-
+/*-------nav-------*/
 nav a {
   color: #003d11;
   text-decoration: none;
@@ -27,7 +27,7 @@ nav {
   height: 70px;
   position: fixed;
   width: 100%;
-  z-index: 5;
+  z-index: 100;
 }
 
 .nav-list {
@@ -71,6 +71,7 @@ nav {
   padding-right: 6%;
   
 }
+/*-------home page-------*/
 .home.row{
 
   padding-top: 5rem;
@@ -104,11 +105,110 @@ nav {
 .home .col-1{
   width: 450px;
 }
+.nav-list.active {
+  transform: translateX(0);
+}
+.event{
+  
+}
+.event h1{
+margin-top: 100px;
+font-size: 45px;
+}
+.event-content{
+  margin-top: 100px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+
+}
+
+/*------card's style-----*/
+
+.card{
+  width: 350px;
+  height: 200px;
+  background: #000;
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all .25s ease;
+  backface-visibility: hidden;
+
+}
+.card:hover ::after{
+  height: 280px;
+}
+.card:hover .con-text p{
+  margin-bottom: 0px;
+  opacity: 1;
+}
+.card:hover img{
+  transform: scale(1.25);
+}
+.card::after{
+  width: 100%;
+  content: '';
+  left: 0px;
+  bottom: 0px;
+  height: 150px;
+  position: absolute;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%),rgba(0,0,0,1) 100%;
+  z-index: 20;
+  transition: all .25s ease;
+}
+.card img{
+  height: 100%;
+  z-index: 10;
+  transition: all .25s ease;
+}
+.card .con-text{
+  z-index: 30;
+  position: absolute;
+  bottom: 0px;
+  color: #fff;
+  padding: 20px;
+  padding-bottom: 30px;
+}
+.card .con-text p{
+  font-size: .8rem;
+  opacity: 0;
+  margin-bottom: -170px;
+  transition: all .25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+.card .con-text p button{
+  padding: 7px 17px;
+  border-radius: 12px;
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  margin-top: 10px;
+  margin-left: auto;
+  cursor: pointer;
+  transition: all .25s ease;
+  font-size: .75rem;
+  outline: none;
+}
+.card .con-text p button:hover{
+  background: #fff;
+  color: #000;
+}
 
 
 @media (max-width: 768px) {
   body {
     overflow-x: hidden;
+    
+  /*-------nav-------*/
+
   }
   .logo{
     margin-left: 10px;
@@ -141,18 +241,16 @@ nav {
     margin-right: 20px;
     margin-top: 10px;
   }
+  
+  /*-------home page-------*/
   .home.row{
     flex-direction: column-reverse;
     
   }
   .home .col-1{
     margin-right: 80px;
-    
     margin-top: 40px;
     width: 265px;
-  }
-  .col-2{
-    
   }
   .home .col-1 h1{
     font-size: 50px;
@@ -161,11 +259,22 @@ nav {
   .home .col-2 img{
     width: 350px;
   }
+  /*------card------*/
+  .event h1{
+    text-align: center;
+  }
+  .event-content{
+    flex-direction: column-reverse;
+    align-items: center;
+    
+  }
+  .card{
+    margin-bottom: 75px;
+  }
 }
 
-.nav-list.active {
-  transform: translateX(0);
-}
+
+
 
 @keyframes navLinkFade {
   from {
