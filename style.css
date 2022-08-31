@@ -71,7 +71,7 @@ nav {
   padding-right: 6%;
   
 }
-.row{
+.home.row{
 
   padding-top: 5rem;
   padding-bottom: 5rem;
@@ -80,13 +80,13 @@ nav {
   align-items: center;
   
 }
-.col-1{
+.home .col-1{
   position: relative;
   color: #164021;
   
   
 }
-.col-2{
+.home .col-2{
   position: relative;
 }
 .home{
@@ -104,6 +104,7 @@ nav {
 .home .col-1{
   width: 450px;
 }
+
 
 @media (max-width: 768px) {
   body {
@@ -140,14 +141,15 @@ nav {
     margin-right: 20px;
     margin-top: 10px;
   }
-  .row{
+  .home.row{
     flex-direction: column-reverse;
     
   }
-  .col-1{
+  .home .col-1{
     margin-right: 80px;
-    position: relative;
+    
     margin-top: 40px;
+    width: 265px;
   }
   .col-2{
     
@@ -156,12 +158,8 @@ nav {
     font-size: 50px;
     line-height: normal;
   }
-  .home .col-1{
-    width: 275px;
-  }
   .home .col-2 img{
     width: 350px;
-    
   }
 }
 
