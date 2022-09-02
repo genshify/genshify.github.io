@@ -1,8 +1,9 @@
 * {
   margin: 0;
   padding: 0;
-  font-family:sans-serif;
+  font-family: sans-serif;
 }
+
 /*-------nav-------*/
 nav a {
   color: #003d11;
@@ -14,7 +15,7 @@ nav a:hover {
   opacity: 0.7;
 }
 
-.logo img{
+.logo img {
   margin-left: 40px;
   height: 50px;
 }
@@ -22,7 +23,7 @@ nav a:hover {
 nav {
   display: flex;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
   background: transparent;
   height: 70px;
   position: fixed;
@@ -34,7 +35,7 @@ nav {
   list-style: none;
   display: flex;
   margin-right: 40px;
-  
+
 }
 
 .nav-list li {
@@ -44,7 +45,7 @@ nav {
   justify-content: center;
 }
 
-.nav-list .log-in{
+.nav-list .log-in {
   color: #004b15;
   padding: 10px 25px;
   background: transparent;
@@ -66,56 +67,65 @@ nav {
   margin: 8px;
   transition: 0.3s;
 }
-.container{
+
+.container {
   padding-left: 6%;
   padding-right: 6%;
-  
+
 }
+
 /*-------home page-------*/
-.home.row{
+.home.row {
 
   padding-top: 5rem;
   padding-bottom: 5rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  
+
 }
-.home .col-1{
+
+.home .col-1 {
   position: relative;
   color: #164021;
-  
-  
+
+
 }
-.home .col-2{
+
+.home .col-2 {
   position: relative;
 }
-.home{
+
+.home {
   background-color: white;
 }
 
-.home .col-1 h1{
+.home .col-1 h1 {
   font-size: 80px;
   margin: 10px 0 30px;
   line-height: 100px;
 }
-.home .col-2 img{
+
+.home .col-2 img {
   width: 560px;
 }
-.home .col-1{
+
+.home .col-1 {
   width: 450px;
 }
+
 .nav-list.active {
   transform: translateX(0);
 }
-.event{
-  
+
+.event {}
+
+.event h1 {
+  margin-top: 100px;
+  font-size: 45px;
 }
-.event h1{
-margin-top: 100px;
-font-size: 45px;
-}
-.event-content{
+
+.event-content {
   margin-top: 100px;
   margin-bottom: 100px;
   display: flex;
@@ -126,8 +136,8 @@ font-size: 45px;
 
 /*------card's style-----*/
 
-.card{
-  width: 350px;
+.card {
+  width: auto;
   height: 200px;
   background: #000;
   border-radius: 30px;
@@ -140,33 +150,39 @@ font-size: 45px;
   backface-visibility: hidden;
 
 }
-.card:hover ::after{
+
+.card:hover ::after {
   height: 280px;
 }
-.card:hover .con-text p{
+
+.card:hover .con-text p {
   margin-bottom: 0px;
   opacity: 1;
 }
-.card:hover img{
+
+.card:hover img {
   transform: scale(1.25);
 }
-.card::after{
+
+.card::after {
   width: 100%;
   content: '';
   left: 0px;
   bottom: 0px;
   height: 150px;
   position: absolute;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 0%),rgba(0,0,0,1) 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%), rgba(0, 0, 0, 1) 100%;
   z-index: 20;
   transition: all .25s ease;
 }
-.card img{
+
+.card img {
   height: 100%;
   z-index: 10;
   transition: all .25s ease;
 }
-.card .con-text{
+
+.card .con-text {
   z-index: 30;
   position: absolute;
   bottom: 0px;
@@ -174,7 +190,8 @@ font-size: 45px;
   padding: 20px;
   padding-bottom: 30px;
 }
-.card .con-text p{
+
+.card .con-text p {
   font-size: .8rem;
   opacity: 0;
   margin-bottom: -170px;
@@ -184,7 +201,8 @@ font-size: 45px;
   justify-content: flex-end;
   flex-direction: column;
 }
-.card .con-text p button{
+
+.card .con-text p button {
   padding: 7px 17px;
   border-radius: 12px;
   background: transparent;
@@ -197,7 +215,8 @@ font-size: 45px;
   font-size: .75rem;
   outline: none;
 }
-.card .con-text p button:hover{
+
+.card .con-text p button:hover {
   background: #fff;
   color: #000;
 }
@@ -206,17 +225,20 @@ font-size: 45px;
 @media (max-width: 768px) {
   body {
     overflow-x: hidden;
-    
-  /*-------nav-------*/
+
+    /*-------nav-------*/
 
   }
-  .logo{
+
+  .logo {
     margin-left: 10px;
   }
-  nav{
+
+  nav {
     justify-content: space-between;
     align-items: center;
   }
+
   .nav-list {
     position: absolute;
     top: 8vh;
@@ -230,57 +252,64 @@ font-size: 45px;
     transform: translateX(100%);
     transition: transform 0.3s ease-in;
     margin: auto;
-    
+
   }
+
   .nav-list li {
     margin-left: 0;
     opacity: 0;
   }
+
   .mobile-menu {
     display: block;
     margin-right: 20px;
     margin-top: 10px;
   }
-  
+
   /*-------home page-------*/
-  .home.row{
+  .home.row {
     flex-direction: column-reverse;
-    
+
   }
-  .home .col-1{
-    margin-right: 80px;
+
+  .home .col-1 {
+    margin-left: -80px;
     margin-top: 40px;
     width: 265px;
   }
-  .home .col-1 h1{
+
+  .home .col-1 h1 {
     font-size: 50px;
     line-height: normal;
   }
-  .home .col-2 img{
+
+  .home .col-2 img {
     width: 350px;
   }
+
   /*------card------*/
-  .event h1{
-    text-align: center;
+  .event h1 {
+    margin-left: 20px;
   }
-  .event-content{
+
+  .event-content {
     flex-direction: column-reverse;
     align-items: center;
-    
+
   }
-  .card{
+
+  .card {
     margin-bottom: 75px;
+    max-height: 60vh;
   }
 }
-
-
-
 
 @keyframes navLinkFade {
   from {
     opacity: 0;
     transform: translateX(50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
