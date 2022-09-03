@@ -5,7 +5,7 @@
   scroll-behavior: smooth;
 }
 
-/*-------nav-------*/
+/**-------nav-------**/
 nav a {
   color: #003d11;
   text-decoration: none;
@@ -56,6 +56,10 @@ nav {
   cursor: pointer;
 }
 
+.nav-list.active {
+  transform: translateX(0);
+}
+
 .mobile-menu {
   display: none;
   cursor: pointer;
@@ -75,7 +79,7 @@ nav {
 
 }
 
-/*-------home page-------*/
+/**-------home page-------**/
 .home.row {
 
   padding-top: 5rem;
@@ -114,11 +118,9 @@ nav {
   width: 450px;
 }
 
-.nav-list.active {
-  transform: translateX(0);
-}
 
 
+/**----------event--------**/
 .event h1 {
   margin-top: 100px;
   font-size: 45px;
@@ -126,16 +128,16 @@ nav {
 
 .event-content {
   margin-top: 100px;
-  margin-bottom: 100px;
-  
 }
-.row{
+
+.row {
   display: flex;
   justify-content: center;
   justify-content: space-between;
 
 }
-.row-2{
+
+.row-2 {
   margin-top: 50px;
   display: flex;
   justify-content: center;
@@ -143,7 +145,7 @@ nav {
 
 }
 
-/*------card's style-----*/
+/**------card's style-----**/
 
 .card {
   width: 350px;
@@ -230,12 +232,35 @@ nav {
   color: #000;
 }
 
+.bgnrs-advice {
+  width: 100%;
+  height: 50px;
+  margin-top: 100px;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.mobile-menu.active .line1 {
+  transform: rotate(-45deg) translate(-8px, 8px);
+}
+
+.mobile-menu.active .line2 {
+  opacity: 0;
+}
+
+.mobile-menu.active .line3 {
+  transform: rotate(45deg) translate(-5px, -7px);
+}
+
 
 @media (max-width: 768px) {
   body {
     overflow-x: hidden;
 
-    /*-------nav-------*/
+    /**-------nav-------**/
 
   }
 
@@ -275,7 +300,7 @@ nav {
     margin-top: 10px;
   }
 
-  /*-------home page-------*/
+  /**-------home page-------**/
   .home.row {
     flex-direction: column-reverse;
 
@@ -300,19 +325,22 @@ nav {
     width: 350px;
   }
 
-  /*------card------*/
+  /**------card------**/
 
-  
+
   .event h1 {
     margin-left: 20px;
     font-size: 35px;
   }
+
   .row {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+
   }
+
   .row-2 {
     margin-top: 10px;
     display: flex;
@@ -321,11 +349,15 @@ nav {
     align-items: center;
   }
 
-  
+
   .card {
     margin-bottom: 40px;
     width: 310px;
     height: 155px;
+  }
+
+  .bgnrs-advice {
+    margin-top: 40px;
   }
 }
 
@@ -341,16 +373,4 @@ nav {
     opacity: 1;
     transform: translateX(0);
   }
-}
-
-.mobile-menu.active .line1 {
-  transform: rotate(-45deg) translate(-8px, 8px);
-}
-
-.mobile-menu.active .line2 {
-  opacity: 0;
-}
-
-.mobile-menu.active .line3 {
-  transform: rotate(45deg) translate(-5px, -7px);
 }
