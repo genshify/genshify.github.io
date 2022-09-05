@@ -109,10 +109,10 @@
 
 .content {
   width: 100%;
-  height:;
+  height: ;
   padding-bottom: 200px;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to right, #f8f0f8 0%, #ffb8dc 100%);
+  background: linear-gradient(to right, #fae9fa 0%, #fccbe4 100%);
   color: #701227;
 
 }
@@ -153,9 +153,11 @@
   font-size: 25px;
   color: #4d2c5c;
 }
-.col-1 p{
+
+.col-1 p {
   line-height: 23px;
 }
+
 .col-2 {
   position: relative;
   width: 40%;
@@ -197,6 +199,10 @@
   }*/
 
   /**--------------CONTENT----------------**/
+  .content {
+    background: linear-gradient(to right, #fff0ff 0%, #fcd5e9 100%);
+  }
+
   .content h2 {
     font-size: 30px;
   }
@@ -214,7 +220,8 @@
   .col-1 {
     width: 100%;
   }
-  .col-1 p{
+
+  .col-1 p {
     line-height: normal;
   }
 
