@@ -38,7 +38,6 @@
 
 /**----------------HOME Contents-----------------**/
 .btn {
-
   color: #fbfcfb;
   padding: 10px 25px;
   background: transparent;
@@ -46,7 +45,6 @@
   border-radius: 20px;
   outline: none;
   cursor: pointer;
-
 }
 
 
@@ -271,10 +269,24 @@ footer ul {
 @media (max-width: 768px) {
 
   /**---------------HOME Page--------------**/
-
+  .logo{
+    width: 75px;
+  }
+  .btn {
+    color: #fbfcfb;
+    padding: 8px 18px;
+    background: transparent;
+    border: 1px solid #fff;
+    border-radius: 20px;
+  }
+  
+  
   .home .head h1 {
     font-size: 35px;
     line-height: normal;
+  }
+  .home {
+    height: 600px;
   }
 
   /**----------------SIDEBar------------------**/
