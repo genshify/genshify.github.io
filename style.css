@@ -150,87 +150,18 @@ nav {
 .card {
   width: 350px;
   height: 180px;
-  background: #000;
   border-radius: 3px;
   overflow: hidden;
-  position: relative;
   display: flex;
   align-items: center;
   cursor: pointer;
-  transition: all .25s ease;
-  backface-visibility: hidden;
 
 }
-
-.card:hover ::after {
-  height: 280px;
-}
-
-.card:hover .con-text p {
-  margin-bottom: 0px;
-  opacity: 1;
-}
-
-.card:hover img {
-  transform: scale(1.25);
-}
-
-.card::after {
-  width: 100%;
-  content: '';
-  left: 0px;
-  bottom: 0px;
-  height: 150px;
-  position: absolute;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%), rgba(0, 0, 0, 1) 100%;
-  z-index: 20;
-  transition: all .25s ease;
-}
-
 .card img {
   height: 100%;
-  z-index: 10;
-  transition: all .25s ease;
+  
 }
 
-.card .con-text {
-  z-index: 30;
-  position: absolute;
-  bottom: 0px;
-  color: rgb(0, 0, 0);
-  padding: 20px;
-  padding-bottom: 30px;
-}
-
-.card .con-text p {
-  font-size: .8rem;
-  opacity: 0;
-  margin-bottom: -170px;
-  transition: all .25s ease;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-direction: column;
-}
-
-.card .con-text p button {
-  padding: 7px 17px;
-  border-radius: 12px;
-  background: transparent;
-  border: 2px solid #fff;
-  color: #fff;
-  margin-top: 10px;
-  margin-left: auto;
-  cursor: pointer;
-  transition: all .25s ease;
-  font-size: .75rem;
-  outline: none;
-}
-
-.card .con-text p button:hover {
-  background: #fff;
-  color: #000;
-}
 
 .bgnrs-advice {
   width: 100%;
@@ -258,7 +189,7 @@ nav {
 
 @media (max-width: 768px) {
   body {
-    overflow-x: hidden;
+    overflow-x: scroll;
 
     /**-------nav-------**/
 
@@ -306,7 +237,7 @@ nav {
   }
 
   .home .col-1 {
-    margin-left:-10%;
+    margin-left: -10%;
     margin-top: 40px;
     width: 300px;
   }
@@ -327,9 +258,9 @@ nav {
   /**------card------**/
 
 
-  .event h1 {
+  .event h2 {
     margin-left: 20px;
-    font-size: 35px;
+    font-size: 30px;
   }
 
   .row {
