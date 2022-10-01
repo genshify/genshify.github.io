@@ -283,7 +283,7 @@ footer ul {
   
   
   .home .head h1 {
-    font-size: 35px;
+    font-size: 45px;
     line-height: normal;
   }
 
@@ -292,8 +292,9 @@ footer ul {
     display: none;
   }
 
-  /*.side-bar{
+  /* .side-bar{
     width: 30px;
+    display: block;
   }
   .menu{
     width: 20px;
@@ -305,7 +306,7 @@ footer ul {
   .social-links img,
   .useful-links img{
     width: 20px;
-  }*/
+  } */
 
   /**--------------MAIN Content----------------**/
 
