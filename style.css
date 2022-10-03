@@ -8,7 +8,7 @@
 }
 
 /**-------nav-------**/
-/* nav a {
+nav a {
   color: #003d11;
   text-decoration: none;
   transition: 0.3s;
@@ -28,7 +28,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   background: white;
-  height: 70px;
+  height: 8;
   position: fixed;
   width: 100%;
   z-index: 100;
@@ -62,18 +62,20 @@ nav {
   transform: translateX(0);
 }
 
-.mobile-menu {
+.nav-mobile-menu {
   display: none;
   cursor: pointer;
 }
 
-.mobile-menu div {
+.nav-mobile-menu div {
   width: 32px;
   height: 2px;
   background: black;
   margin: 8px;
   transition: 0.3s;
-} */
+}
+
+
 
 
 
@@ -176,15 +178,15 @@ nav {
   color: #701227;
 }
 
-.mobile-menu.active .line1 {
+.nav-mobile-menu.active .line1 {
   transform: rotate(-45deg) translate(-8px, 8px);
 }
 
-.mobile-menu.active .line2 {
+.nav-mobile-menu.active .line2 {
   opacity: 0;
 }
 
-.mobile-menu.active .line3 {
+.nav-mobile-menu.active .line3 {
   transform: rotate(45deg) translate(-5px, -7px);
 }
 
@@ -210,7 +212,7 @@ nav {
     position: absolute;
     top: 8vh;
     right: 0;
-    width: 50vw;
+    width: 100vw;
     height: 92vh;
     background: white;
     flex-direction: column;
@@ -227,7 +229,7 @@ nav {
     opacity: 0;
   }
 
-  .mobile-menu {
+  .nav-mobile-menu {
     display: block;
     margin-right: 20px;
     margin-top: 10px;
