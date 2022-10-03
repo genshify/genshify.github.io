@@ -8,7 +8,7 @@
 }
 
 /**-------nav-------**/
-nav a {
+/* nav a {
   color: #003d11;
   text-decoration: none;
   transition: 0.3s;
@@ -27,7 +27,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: transparent;
+  background: white;
   height: 70px;
   position: fixed;
   width: 100%;
@@ -73,7 +73,9 @@ nav {
   background: black;
   margin: 8px;
   transition: 0.3s;
-}
+} */
+
+
 
 .container {
   padding-left: 6%;
