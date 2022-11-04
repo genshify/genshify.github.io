@@ -85,7 +85,7 @@ nav {
 
 }
 
-/**-------home page-------**/
+/**-----------------HOME Page-----------------**/
 .home.row {
 
   padding-top: 5rem;
@@ -103,7 +103,15 @@ nav {
 .home .col-2 {
   position: relative;
 }
-
+.login{
+  color: #fbfcfb;
+  padding: 10px 25px;
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  outline: none;
+  cursor: pointer;
+}
 .home {
   background-color: white;
 }
@@ -124,7 +132,7 @@ nav {
 
 
 
-/**----------event--------**/
+/**----------------------EVENT-------------------------**/
 .event h2 {
   margin-top: 100px;
   font-size: 45px;
@@ -221,6 +229,7 @@ nav {
     transform: translateX(100%);
     transition: transform 0.3s ease-in;
     margin: auto;
+    
 
   }
 
@@ -238,17 +247,19 @@ nav {
   /**-------home page-------**/
   .home.row {
     flex-direction: column-reverse;
+    align-items:unset;
   }
 
   .home .col-1 {
-    margin-left: -10%;
+    width: 250px;
     margin-top: 40px;
-    width: 300px;
+    margin-left: 6%;
   }
 
   .home .col-1 h1 {
-    font-size: 50px;
+    font-size: 40px;
     line-height: normal;
+    margin-right: 20px;
   }
 
   .home .col-2 {
@@ -256,7 +267,7 @@ nav {
   }
 
   .home .col-2 img {
-    width: 350px;
+    width: 90vw;
   }
 
   /**------card------**/
