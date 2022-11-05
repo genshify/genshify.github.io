@@ -1,156 +1,62 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Genshin</title>
-  <link rel="stylesheet" href="./css/style.css" />
-  
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Genshify</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <header>
-    <nav>
-      <a class="logo" href="#home"><img src="images/Genshify_logo_for_Dark.png" alt=""></a>
-      <div class="nav-mobile-menu">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
+   <!-------------------nav---------------------->
+   <nav>
+      <div class="nav-center">
+         <div class="nav-header">
+            <img src="images/logo/Genshify_logo_for_Light.png" alt="">
+            <button class="nav-toggle">
+               <i class="fa-solid fa-bars"></i>
+            </button>
+         </div>
+         <ul class="links">
+            <li>
+               <a href="index.html">Home</a>
+            </li>
+            <li>
+               <a href="#">About</a>
+            </li>
+            <li>
+               <a href="#">Project</a>
+            </li>
+            <li>
+               <a href="#">Contact</a>
+            </li>
+         </ul>
       </div>
-
-      <ul class="nav-list">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#event">Events</a></li>
-        <li><a href="#">Character</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a class="log-in">log in</a></li>
-      </ul>
-    </nav>
+   </nav>
+   <!-----------------nav end--------------------->
 
 
+   <!------------------main----------------------->
 
-  </header>
-
-  <div class="container">
-    <div class="home row" id="home">
-      <div class="col-1">
-        <small>Welcome to </small>
-        <h1>The Land Of Wisdom</h1>
-        <button class="login">Log In</button>
+   <main>
+      <div class="home">
+         <div class="col-1">
+            <img class="home-img" src="images/chars/nahida.png" alt="">
+         </div>
+         <div class="col-2">
+            <p class="welcome"> welcome to </p>
+            <h1 class="main-text"> the <br> Land of wisdom</h1>
+            <button class="w-btn">take a tour </button>
+         </div>
       </div>
-      <div class="col-2">
-        <img src="images/Tighnari.png" alt="">
-      </div>
-    </div>
+   </main>
 
-    <div class="event" id="event">
-      <h2>Events</h2>
-      <div class="event-content">
-        <div class="row">
-
-
-          <div class="col-1">
-            <div class="card">
-              <img src="images/event/tighnari-wish.jpg" alt="">
-              <div class="con-text">
-                <h3>
-                  Tighnari Wish
-                </h3>
-                <p>
-                  5-star Dendro Archer, Best Dendro DPS
-
-                  <button>
-                    See more
-                  </button>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-2">
-            <div class="card">
-              <img src="images/event/zhonglie-wish.png" alt="">
-              <div class="con-text">
-                <h3>
-                  Zhonglie Wish
-                </h3>
-                <p>
-                  5-Star Geo Polearm user, Best Shielder
-                  <button>
-                    See more
-                  </button>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-3">
-            <div class="card">
-              <img src="images/event/weapon_wish.jpg" alt="">
-              <div class="con-text">
-                <h3>
-                  Weapon Wish
-                </h3>
-                <p>
-                  Signature Weapons of Zhonglie and Tighnari
-                  <button>
-                    See more
-                  </button>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row-2">
-          <div class="col-1">
-            <div class="card">
-              <img src="images/event/Graven_Innocence.jpg" alt="">
-              <div class="con-text">
-                <h3>
-                  Graven Innocence
-                </h3>
-                <p>
-                  5-star Dendro Archer, Currently Best Dendro DPS
-
-                  <button>
-                    See more
-                  </button>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-2">
-            <div class="card">
-              <img src="images/event/lost_riches_event.png" alt="">
-              <div class="con-text">
-                <h3>
-                  Lost Riches
-                </h3>
-                <p>
-                  5-Star Geo Polearm user, Best Shielder
-                  <button>
-                    See more
-                  </button>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="bgnrs-advice">
-      <p>If you are a beginner in Genshin <a href="beginner's.html">click here</a></p>
-    </div>
-
-  </div>
-
-
-  <script src="js/mobile-navbar.js"></script>
+   <script src="js/app.js"></script>
 </body>
 
 </html>
