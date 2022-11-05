@@ -7,11 +7,15 @@
   box-sizing: border-box;
 }
 
+.home{
+  width: 100vw;
+  height: 100vh;
+}
+
 /* -------------------nav------------------ */
 nav {
   background-color: #edfdf1;
   box-shadow: 4px 0px 4px 0px gray;
-  position: fixed;
   width: 100vw;
 }
 
@@ -28,20 +32,12 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  z-index: 10;
 }
 
 .nav-header img {
   width: 5.5rem;
 }
 
-/* .nav-header button {
-  width: 40px;
-  height: 40px;
-  font-size: 30px;
-  border: none;
-  color: #53ca4c;
-} */
 
 .nav-toggle {
   transition: ease 0.3s;
@@ -74,25 +70,27 @@ nav {
 /* -------------------nav end----------------------- */
 
 /* -----------------content------------------------ */
-main {
-  width: 100%;
-  padding: 20px 6% 0px 6%;
-
-
-}
 
 /* --------------------home--------------------- */
 
-.home {
-  height: 100vh;
+.row-1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 20px 6% 0px 6%;
 
 }
 
 .col-1 {}
 
+/* .col-2::before{
+  content: url(pngtree-green-plant-leaf-vine-element-material-png-image_4279718-transformed\ \(1\).png);
+  width: 10px;
+    height: 57%;
+    position: absolute;
+    left: -40px;
+    top: 8px;
+} */
 .home-img {
   height: 85vh;
 }
@@ -176,6 +174,19 @@ main {
 
   /* -------------------home---------------- */
 
-  
+
+  .row-1{
+    flex-direction: column;
+  }
+  .home-img{
+    /* width: 80vw; */
+    height: 55vh;
+  }
+  .col-2{
+    width: 90%;
+  }
+  .main-text{
+    font-size: 30px;
+  }
 
 }
