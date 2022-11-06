@@ -58,6 +58,8 @@ nav {
 
 .links li a {
   text-decoration: none;
+  display:block;
+
   font-size: 17px;
   color: #292e1a;
   letter-spacing: 3px;
@@ -160,6 +162,7 @@ main {
 .sec-imgs img {
   width: 500px;
   margin-top: 50px;
+  border-radius: 20px;
 }
 
 /* ----------------------section 2 banner end------------------- */
@@ -176,12 +179,13 @@ main {
 /*-------------------sec 4 tips-----------------  */
 
 .tips-img-div {
-  background-image: url(yae+raid-l.jpg);
+  background-image: url(yae+raid-l-min.jpg);
   width: 500px;
   height: 250px;
   background-size: cover;
   background-position: center;
   margin-top: 50px;
+  border-radius: 20px;
 }
 
 /*-------------------sec 4 tips end-------------  */
@@ -189,6 +193,9 @@ main {
 
 /*----------------------footer-------------------*/
 
+footer{
+  margin-top: 50px;
+}
 footer .container {
   line-height: 1.5;
   max-width: 1170px;
@@ -380,6 +387,15 @@ footer ul {
   }
 
   /* --------------------sec 1 end--------------------- */
+
+  .sec-head{
+    font-size: 12px;
+  }
+
+  .underline{
+    width: 140px;
+  }
+
   .sec-imgs img {
     width: 90%;
     margin-top: 30px;
@@ -388,7 +404,7 @@ footer ul {
 
   .tips-img-div {
     width: 90%;
-    height: 35vw;
+    height: 37.5vw;
     margin-top: 30px;
   }
 
