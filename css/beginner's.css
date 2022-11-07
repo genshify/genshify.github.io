@@ -7,6 +7,26 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
+a{
+  text-decoration: none;
+}
+
+.top{
+  background-color: #4d2c5c;
+  color: #ffffff;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  z-index: 10;
+  position: fixed;
+  bottom: 10vh;
+  right: 7vw;
+}
 
 /**---------------HOME Page--------------**/
 .home {
