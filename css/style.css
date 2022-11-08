@@ -183,7 +183,7 @@ main {
 .sec-imgs img {
   width: 500px;
   margin-top: 50px;
-  border-radius: 20px;
+  border-radius: 15px;
 }
 
 /* ----------------------section 2 banner end------------------- */
@@ -206,7 +206,7 @@ main {
   background-size: cover;
   background-position: center;
   margin-top: 50px;
-  border-radius: 20px;
+  border-radius: 15px;
 
   display: flex;
   align-items: flex-end;
@@ -227,7 +227,7 @@ main {
 }
 
 .image-title{
-  margin-left: 20px;
+  margin-left: 15px;
   font-weight: lighter;
   letter-spacing: 2px;
 }
