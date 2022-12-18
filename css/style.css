@@ -235,6 +235,32 @@ main {
 
 /*-------------------sec 5 calc-------------  */
 
+.uidInputDiv{
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+.uidInputDiv input{
+  border-radius: 5px;
+  width: 250px;
+  height: 30px;
+  border-style: solid;
+  border-color: #8ab392;
+  font-size: 20px;
+}
+.uidBtn{
+  height: 30px;
+  width: 30px;
+  color: #037b37;
+  background-color: transparent;
+  border-color: #8ab392;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+
 .charDetailsDiv {
   display: flex;
   align-items: center;
