@@ -2270,6 +2270,8 @@ const charJson = [{
 
 // ? Damage calculator
 
+let onceDisplayed = false
+
 class DmgCalc {
 
    constructor(uid) {
@@ -2293,7 +2295,6 @@ class DmgCalc {
       playerChars.forEach(element => {
          charIds.push(element.avatarId)
       });
-      console.log(charIds);
       return charIds
    }
 
@@ -2309,6 +2310,8 @@ class DmgCalc {
 
    // *display player chars
    displayData = (charDetails) => {
+      // clear window
+      charDetailsDiv.innerHTML = ''
       charDetails.forEach(char => {
          let img_name = char.IconName
          let url = `https://enka.network/ui/${img_name}.png`
@@ -2323,28 +2326,24 @@ class DmgCalc {
          imgEl.setAttribute('class', 'charIcon')
          imgEl.src = url
          charDiv.appendChild(imgEl)
-         console.log(char);
+         onceDisplayed = true
       });
 
    }
 
 }
 
-// making a object
 
 
+uidBtn.addEventListener('click', async () => {
+   let uid = uidInput.value
 
-const callFn = async (player) => {
+   // making a object
+   const player = new DmgCalc(uid)
+
    let data = await player.getData()
    let characterIds = await player.getCharData(data)
-   let charDetails = await player.findChars(characterIds)
+   let charDetails = player.findChars(characterIds)
    player.displayData(charDetails)
-}
-
-
-
-uidBtn.addEventListener('click', () => {
-   let uid = uidInput.value
-   const player = new DmgCalc(uid)
-   callFn(player)
+   // callFn(player)
 })
