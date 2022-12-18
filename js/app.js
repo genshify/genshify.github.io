@@ -5,6 +5,8 @@ const showLinks = document.querySelector(".show-links")
 const navToggle = document.querySelector(".nav-toggle")
 
 const charDetailsDiv = document.querySelector('#charDetailsDiv')
+const uidInput = document.querySelector('#uidInput')
+const uidBtn = document.querySelector('#uidBtn')
 
 navToggle.addEventListener("click", () => {
    console.log(links.classList)
@@ -2308,20 +2310,20 @@ class DmgCalc {
    // *display player chars
    displayData = (charDetails) => {
       charDetails.forEach(char => {
-         // let img_name = char.IconName
-         // let url = `https://enka.network/ui/${img_name}.png`
+         let img_name = char.IconName
+         let url = `https://enka.network/ui/${img_name}.png`
 
-         // // ? making a Div to store char details
-         // let charDiv = document.createElement('div')
-         // charDiv.setAttribute('class', 'charDiv')
-         // charDetailsDiv.appendChild(charDiv)
+         // ? making a Div to store char details
+         let charDiv = document.createElement('div')
+         charDiv.setAttribute('class', 'charDiv')
+         charDetailsDiv.appendChild(charDiv)
 
-         // // ? making a img tag to store image in charDiv
-         // let imgEl = document.createElement('img')
-         // imgEl.setAttribute('class', 'charIcon')
-         // imgEl.src = url
-         // charDiv.appendChild(imgEl)
-         // console.log(char);
+         // ? making a img tag to store image in charDiv
+         let imgEl = document.createElement('img')
+         imgEl.setAttribute('class', 'charIcon')
+         imgEl.src = url
+         charDiv.appendChild(imgEl)
+         console.log(char);
       });
 
    }
@@ -2329,16 +2331,20 @@ class DmgCalc {
 }
 
 // making a object
-const player = new DmgCalc(840889067)
 
 
-const callFn = async () => {
+
+const callFn = async (player) => {
    let data = await player.getData()
    let characterIds = await player.getCharData(data)
    let charDetails = await player.findChars(characterIds)
    player.displayData(charDetails)
 }
-callFn()
 
 
-// console.log('hi',charJson[0]);
+
+uidBtn.addEventListener('click', () => {
+   let uid = uidInput.value
+   const player = new DmgCalc(uid)
+   callFn(player)
+})

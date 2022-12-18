@@ -239,7 +239,7 @@ main {
   display: flex;
   align-self: center;
   justify-content: center;
-  margin: 20px;
+  margin: 30px;
 }
 
 .uidInputDiv input{
@@ -274,7 +274,9 @@ main {
   background-color: #8ab392;
   margin: 20px;
   border-radius: 20px;
+  padding: 10px;
 }
+
 
 .charIcon{
   height: 100px;
