@@ -47,18 +47,20 @@
    <!-----------------nav end--------------------->
 
    <main>
-      <a href="#nav"><div class="top">^</div></a>
+      <a href="#nav">
+         <div class="top">^</div>
+      </a>
 
       <!------------------ section 1----------------------->
       <div class="section-1" id="home">
          <div class="row-1">
             <div class="col-1">
-               <img class="home-img" src="images/chars/nahida.png" alt="">
+               <img class="home-img" src="images/chars/nahida (1).webp" alt="">
             </div>
             <div class="col-2">
                <p class="welcome"> welcome to </p>
                <h1 class="main-text"> the <br> Land of wisdom</h1>
-               <a href = "#banner"><button class="w-btn">take a tour </button></a>
+               <a href="#banner"><button class="w-btn">take a tour </button></a>
             </div>
          </div>
       </div>
@@ -104,17 +106,63 @@
          </div>
          <div class="sec-imgs">
             <!-- <img class="sec-image" src="css/yae+raid-l.jpg" alt=""> -->
-            <a href="beginner's.html"><div class="tips-img-div">
-               <div class="image-title-div">
-                  <h3 class="image-title" >Tips for Beginners</h3>
+            <a href="beginner's.html">
+               <div class="tips-img-div">
+                  <div class="image-title-div">
+                     <h3 class="image-title">Tips for Beginners</h3>
+                  </div>
                </div>
-            </div></a>
+            </a>
+         </div>
+
+      </div>
+
+
+      <!-------------------- sec 4 tips end ------------------------>
+
+      <div id="dmgCalculator" class="section dmgCalculator">
+
+         <div class="sec-head">
+            <h2>Damage Calculator</h2>
+            <div class="underline event-underline "></div>
+         </div>
+         <div class="uidInputDiv">
+            <input type="number">
+            <button id="uidBtn" class="uidBtn" >submit</button>
+         </div>
+
+         <div id="charDetailsDiv" class="charDetailsDiv">
+
+            <div class="charDiv">
+               <img src="UI_AvatarIcon_Kazuha.png" alt="" class="charIcon">
+            </div>
+            <div class="charDiv">
+               <img src="UI_AvatarIcon_Kazuha.png" alt="" class="charIcon">
+            </div>
+            <div class="charDiv">
+               <img src="UI_AvatarIcon_Kazuha.png" alt="" class="charIcon">
+            </div>
+            <div class="charDiv">
+               <img src="UI_AvatarIcon_Kazuha.png" alt="" class="charIcon">
+            </div>
+            <div class="charDiv">
+               <img src="UI_AvatarIcon_Kazuha.png" alt="" class="charIcon">
+            </div>
+            <div class="charDiv">
+               <img src="UI_AvatarIcon_Kazuha.png" alt="" class="charIcon">
+            </div>
+            <div class="charDiv">
+               <img src="UI_AvatarIcon_Kazuha.png" alt="" class="charIcon">
+            </div>
+            <div class="charDiv">
+               <img src="UI_AvatarIcon_Kazuha.png" alt="" class="charIcon">
             </div>
 
          </div>
+
       </div>
 
-      <!-------------------- sec 4 tips end ------------------------>
+
    </main>
 
    <!---------------------------footer--------------------------->
@@ -172,7 +220,8 @@
 
 
 
-   <script src="js/app.js"></script>
+   <script type="module" src="js/app.js"></script>
+   <script type="module" src="js/chars.js"></script>
 </body>
 
 </html>

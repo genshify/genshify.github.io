@@ -233,6 +233,28 @@ main {
 }
 /*-------------------sec 4 tips end-------------  */
 
+/*-------------------sec 5 calc-------------  */
+
+.charDetailsDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.charDiv{
+  width: 300px;
+  height: 200px;
+  background-color: #8ab392;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.charIcon{
+  height: 100px;
+}
+
+/*-------------------sec 5 calc end-------------  */
 
 /*----------------------footer-------------------*/
 
