@@ -244,7 +244,7 @@ main {
 
 .uidInputDiv input{
   border-radius: 5px;
-  width: 225px;
+  width: 250px;
   height: 30px;
   border-style: solid;
   border-color: #8ab392;
@@ -269,18 +269,51 @@ main {
 }
 
 .charDiv{
-  width: 300px;
+  width: 350px;
   height: 200px;
   background-color: #8ab392;
   margin: 20px;
   border-radius: 20px;
   padding: 10px;
+  font-size: 15px;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
 }
-
 
 .charIcon{
   height: 100px;
 }
+
+.charDivRow1{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100px;
+  
+}
+
+.charStatsInfo{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.charStatsInfoCol1{
+  margin-left: 15px;
+}
+.charDivRow2{
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.talentImg{
+  width: 35px;
+}
+
 
 /*-------------------sec 5 calc end-------------  */
 
@@ -518,5 +551,20 @@ footer ul {
     margin-left: 15px;
     letter-spacing: 1px;
   }
+
+  /* --------------------sec calc --------------------- */
+  .uidInputDiv input{
+    width: 200px;
+    font-size: 15px;
+  }
+  .charDiv{
+    width: 300px;
+    margin: 10px;
+    font-size: 13px;
+  }
+  .charIcon{
+    height: 100px;
+  }
+  /* --------------------sec calc end--------------------- */
 
 }
