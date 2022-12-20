@@ -57,19 +57,6 @@ class DmgCalc {
       return charIds
    }
 
-   // *find player's chars from charJson by id
-   // findChars = (characterData) => {
-   //    let characterIds = characterData.avatarId
-
-   //    // storing char details from charJson
-   //    let data = []
-   //    characterData.forEach(element => {
-   //       data.push(charJson[0][element.avatarId])
-   //    });
-   //    console.log(data);
-   //    return data
-   // }
-
    // *display player chars
    displayData = (fetchedCharData) => {
       // clear window
@@ -124,6 +111,5 @@ uidBtn.addEventListener('click', async () => {
 
    let fetchedData = await player.getData()
    let fetchedCharData = await player.filterCharData(fetchedData)
-   // let charDetails = player.findChars(fetchedCharData)
    player.displayData(fetchedCharData)
 })
