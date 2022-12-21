@@ -53,7 +53,7 @@ class DmgCalc {
       playerChars.forEach(element => {
          charIds.push(element)
       });
-      console.log(charIds);
+      // console.log(charIds);
       return charIds
    }
 
@@ -64,6 +64,19 @@ class DmgCalc {
       let charCards = fetchedCharData.map(item => {
          let currentCharId = item.avatarId
          let fightProp = item.fightPropMap
+
+         // storing skill icon id's for each chars
+         let skillsIds = Object.keys(item.skillLevelMap)
+         console.log(skillsIds);
+         // storing skillIconNames
+         let skillIconName = []
+
+         // getting each skillId's icon names
+         skillsIds.forEach(SkillsId => {
+            skillIconName.push(charJson[0][currentCharId].Skills[SkillsId])
+         });
+
+         console.log(item.skillLevelMap[skillsIds[1]]);
          return `<div class="charDiv">
          <div class="charDivRow1">
             <img class="charIcon" src="https://enka.network/ui/${charJson[0][currentCharId].IconName}.png">
@@ -83,9 +96,15 @@ class DmgCalc {
             </div>
          </div>
          <div class="charDivRow2">
-            <p class="talentP" ><img class="talentImg" src="https://enka.network/ui/Skill_A_03.png" alt="">10</p>
-            <p class="talentP"><img class="talentImg" src="https://enka.network/ui/Skill_S_Hutao_01.png" alt="">10</p>
-            <p class="talentP"><img class="talentImg" src="https://enka.network/ui/Skill_E_Hutao_01.png" alt="">9</p>
+            <p class="talentP" >
+               <img class="talentImg" src="https://enka.network/ui/${skillIconName[0]}.png" alt="">
+            ${item.skillLevelMap[skillsIds[0]]}</p>
+            <p class="talentP">
+               <img class="talentImg" src="https://enka.network/ui/${skillIconName[1]}.png" alt="">
+            ${item.skillLevelMap[skillsIds[1]]}</p>
+            <p class="talentP">
+               <img class="talentImg" src="https://enka.network/ui/${skillIconName[2]}.png" alt="">
+            ${item.skillLevelMap[skillsIds[2]]}</p>
          </div>
          <div class="charDivRow3">
             <p>Avrg Dmg : 60000</p>
@@ -104,9 +123,9 @@ class DmgCalc {
 uidBtn.addEventListener('click', async () => {
    let uid = uidInput.value
 
-   // making a object
    // myUid = 840889067
    // Hu-Tao = 10000046
+   // making a object
    const player = new DmgCalc(uid)
 
    let fetchedData = await player.getData()
