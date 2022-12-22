@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,200&display=swap');
 
+:root{
+  --mediumGreen : #8ab392;
+  --lightGreen : #edfdf1;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -15,7 +20,7 @@ a {
 }
 
 .top{
-  background-color: #8ab392;
+  background-color: var(--mediumGreen);
   color: #ffffff;
   font-size: 40px;
   display: flex;
@@ -33,7 +38,7 @@ a {
 
 /* -------------------nav------------------ */
 nav {
-  background-color: #edfdf1;
+  background-color: var(--lightGreen);;
   box-shadow: 4px 0px 4px 0px gray;
   width: 100%;
 }
@@ -132,7 +137,7 @@ main {
 .w-btn {
   font-size: 15px;
   padding: 7px 14px 7px 14px;
-  background-color: #edfdf1;
+  background-color: var(--lightGreen);;
   border-style: solid;
   /* border: none; */
   border-color: rgb(163, 163, 163);
@@ -142,7 +147,7 @@ main {
 }
 
 .w-btn:hover {
-  background-color: #8ab392;
+  background-color: var(--mediumGreen);;
   color: white;
 }
 
@@ -153,7 +158,7 @@ main {
 .section {
   width: 100%;
   margin-top: 50px;
-  background-color: #edfdf1;
+  background-color: var(--lightGreen);;
   padding: 4%;
   border-radius: 20px;
 
@@ -168,7 +173,7 @@ main {
 .underline {
   width: 180px;
   height: .3rem;
-  background-color: #8ab392;
+  background-color: var(--mediumGreen);;
   border-radius: 20px;
 }
 
@@ -218,7 +223,7 @@ main {
   width: 100%;
   height: 20%;
   border-radius: 0px 0px 15px 15px;
-  background-color: #8ab392;
+  background-color: var(--mediumGreen);;
   color: #ffff;
   display: flex;
   align-items: center;
@@ -247,7 +252,7 @@ main {
   width: 250px;
   height: 30px;
   border-style: solid;
-  border-color: #8ab392;
+  border-color: var(--mediumGreen);;
   font-size: 20px;
 }
 .uidBtn{
@@ -255,7 +260,7 @@ main {
   width: 30px;
   color: #037b37;
   background-color: transparent;
-  border-color: #8ab392;
+  border-color: var(--mediumGreen);;
   border-style: solid;
   border-radius: 5px;
 }
@@ -271,7 +276,7 @@ main {
 .charDiv{
   width: 350px;
   height: 230px;
-  background-color: #8ab392;
+  background-color: var(--mediumGreen);;
   margin: 20px;
   border-radius: 20px;
   padding: 10px;
@@ -485,7 +490,7 @@ footer ul {
   }
 
   .links li:hover {
-    background-color: #8ab392;
+    background-color: var(--mediumGreen);;
   }
 
   .links li:hover :only-child {
