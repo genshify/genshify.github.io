@@ -57,6 +57,56 @@ class DmgCalc {
       return charIds
    }
 
+   // *return char's element dmg will return
+   returnElementDmg = (charVision, fightProp) => {
+      let charElement = {
+         name: '',
+         dmg: ''
+      }
+      let physicDmg = fightProp[30]
+      if (charVision == "Ice") {
+         charElement.name = 'Cryo'
+         charElement.dmg = fightProp[46]
+
+      } else if (charVision == "Wind") {
+         charElement.name = 'Animo'
+         charElement.dmg = fightProp[44]
+
+      } else if (charVision == "Electric") {
+         charElement.name = 'Electro'
+         charElement.dmg = fightProp[41]
+
+      } else if (charVision == "Fire") {
+         charElement.name = 'Pyro'
+         charElement.dmg = fightProp[40]
+
+      } else if (charVision == "Water") {
+         charElement.name = 'Hydro'
+         charElement.dmg = fightProp[42]
+
+      } else if (charVision == "Grass") {
+         charElement.name = 'Dendro'
+         charElement.dmg = fightProp[45]
+
+      } else if (charVision == "Rock") {
+         charElement.name = 'Geo'
+         charElement.dmg = fightProp[43]
+
+      }
+
+      // ?checking char is physical  or not
+      if (physicDmg > charElement.dmg) {
+         charElement.name = 'Physical'
+         charElement.dmg = physicDmg
+      }
+      
+      charElement.dmg = Math.floor(charElement.dmg * 100)
+
+      return charElement
+
+   }
+
+
    // *display player chars
    displayData = (fetchedCharData) => {
       // clear window
@@ -64,14 +114,15 @@ class DmgCalc {
       let charCards = fetchedCharData.map(item => {
          let currentCharId = item.avatarId
          let fightProp = item.fightPropMap
-
-         // storing skill icon id's for each chars
+         //? store current char's element
+         let charElement = charJson[0][currentCharId].Element
+         let elementDetails = this.returnElementDmg(charElement, fightProp)
+         //? storing skill icon id's for each chars
          let skillsIds = Object.keys(item.skillLevelMap)
-         console.log(skillsIds);
-         // storing skillIconNames
+         //? storing skillIconNames
          let skillIconName = []
 
-         // getting each skillId's icon names
+         //? getting each skillId's icon names
          skillsIds.forEach(SkillsId => {
             skillIconName.push(charJson[0][currentCharId].Skills[SkillsId])
          });
@@ -88,10 +139,10 @@ class DmgCalc {
                   <p>Em : ${ Math.floor(fightProp[28])}</p>
                </div>
                <div class="charStatsInfoCol2">
-                  <p>Cr Rate : ${ Math.floor(fightProp[20] * 100)}</p>
-                  <p>Cr Dmg : ${ Math.floor(fightProp[22] * 100)}</p>
-                  <p>Er : ${ Math.floor(fightProp[23] * 100)}</p>
-                  <p>Elmt bns: ${ Math.floor(fightProp[2000])}</p>
+                  <p>Cr Rate : ${ Math.floor(fightProp[20] * 100)}%</p>
+                  <p>Cr Dmg : ${ Math.floor(fightProp[22] * 100)}%</p>
+                  <p>Er : ${ Math.floor(fightProp[23] * 100)}%</p>
+                  <p>${elementDetails.name} %: ${elementDetails.dmg}%</p>
                </div>
             </div>
          </div>
@@ -113,6 +164,8 @@ class DmgCalc {
          console.log(charJson[0][currentCharId]);
          // charJson[0][currentCharId].IconName
          // Math.floor(fightProp[2000])
+         // lumine : 10000007
+         // Aither : 10000005
       })
       charCards = charCards.join('')
       charDetailsDiv.innerHTML = charCards
