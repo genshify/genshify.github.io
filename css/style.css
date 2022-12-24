@@ -275,7 +275,7 @@ main {
 
 .charDiv{
   width: 350px;
-  height: 230px;
+  height: 250px;
   background-color: var(--mediumGreen);;
   margin: 20px;
   border-radius: 20px;
@@ -287,8 +287,22 @@ main {
   flex-direction: column;
 }
 
+.charCardCol1{
+  width: 100px;
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
 .charIcon{
   height: 100px;
+}
+.charCardCol2{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 230px;
+  margin-left: 15px;
 }
 
 .charDivRow1{
@@ -296,30 +310,34 @@ main {
   align-items: center;
   justify-content: space-around;
   height: 100px;
-  
 }
 
-.charStatsInfo{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
 
 .charStatsInfoCol1{
-  margin-left: 15px;
   width: 75px;
 }
 .charDivRow2{
   height: 35px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  position: relative;
+
 }
 .talentImg{
   width: 35px;
 }
+/* .charConstl{
 
+}
+.conslCircle{
+  position: relative;
+
+}
+.conslCircle img{
+  position: absolute;
+} */
 
 /*-------------------sec 5 calc end-------------  */
 
