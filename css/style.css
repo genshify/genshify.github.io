@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,200&display=swap');
 
-:root{
-  --mediumGreen : #8ab392;
-  --lightGreen : #edfdf1;
+:root {
+  --mediumGreen: #8ab392;
+  --lightGreen: #edfdf1;
 }
 
 * {
@@ -19,14 +19,14 @@ a {
   text-decoration: none;
 }
 
-.top{
+.top {
   background-color: var(--mediumGreen);
   color: #ffffff;
   font-size: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   border-radius: 10px;
   width: 50px;
   height: 50px;
@@ -38,7 +38,8 @@ a {
 
 /* -------------------nav------------------ */
 nav {
-  background-color: var(--lightGreen);;
+  background-color: var(--lightGreen);
+  ;
   box-shadow: 4px 0px 4px 0px gray;
   width: 100%;
 }
@@ -137,7 +138,8 @@ main {
 .w-btn {
   font-size: 15px;
   padding: 7px 14px 7px 14px;
-  background-color: var(--lightGreen);;
+  background-color: var(--lightGreen);
+  ;
   border-style: solid;
   /* border: none; */
   border-color: rgb(163, 163, 163);
@@ -147,7 +149,8 @@ main {
 }
 
 .w-btn:hover {
-  background-color: var(--mediumGreen);;
+  background-color: var(--mediumGreen);
+  ;
   color: white;
 }
 
@@ -158,7 +161,8 @@ main {
 .section {
   width: 100%;
   margin-top: 50px;
-  background-color: var(--lightGreen);;
+  background-color: var(--lightGreen);
+  ;
   padding: 4%;
   border-radius: 20px;
 
@@ -173,7 +177,8 @@ main {
 .underline {
   width: 180px;
   height: .3rem;
-  background-color: var(--mediumGreen);;
+  background-color: var(--mediumGreen);
+  ;
   border-radius: 20px;
 }
 
@@ -223,44 +228,49 @@ main {
   width: 100%;
   height: 20%;
   border-radius: 0px 0px 15px 15px;
-  background-color: var(--mediumGreen);;
+  background-color: var(--mediumGreen);
+  ;
   color: #ffff;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  
+
 }
 
-.image-title{
+.image-title {
   margin-left: 15px;
   font-weight: lighter;
   letter-spacing: 2px;
 }
+
 /*-------------------sec 4 tips end-------------  */
 
 /*-------------------sec 5 calc-------------  */
 
-.uidInputDiv{
+.uidInputDiv {
   display: flex;
   align-self: center;
   justify-content: center;
   margin: 30px;
 }
 
-.uidInputDiv input{
+.uidInputDiv input {
   border-radius: 5px;
   width: 250px;
   height: 30px;
   border-style: solid;
-  border-color: var(--mediumGreen);;
+  border-color: var(--mediumGreen);
+  ;
   font-size: 20px;
 }
-.uidBtn{
+
+.uidBtn {
   height: 30px;
   width: 30px;
   color: #037b37;
   background-color: transparent;
-  border-color: var(--mediumGreen);;
+  border-color: var(--mediumGreen);
+  ;
   border-style: solid;
   border-radius: 5px;
 }
@@ -273,9 +283,9 @@ main {
   flex-wrap: wrap;
 }
 
-.charDiv{
+.charDiv {
   width: 400px;
-  height: 350px;
+  height: 450px;
   background-color: var(--mediumGreen);;
   margin: 20px;
   border-radius: 20px;
@@ -287,17 +297,17 @@ main {
   flex-direction: column;
 }
 
-.charCardCol1{
-  width: 100px;
-  display:flex;
+.charCardCol1 {
+  width: 130px;
+  display: flex;
   align-items: center;
   justify-content: space-around;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  text-align: center;
 }
-.charIcon{
-  height: 100px;
-}
-.charCardCol2{
+
+.charCardCol2 {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -305,30 +315,40 @@ main {
   margin-left: 15px;
 }
 
-.charDivRow1{
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+.charIcon {
   height: 100px;
 }
 
-
-.charStatsInfoCol1{
-  width: 75px;
+.weaponImg {
+  width: 60px;
 }
-.charDivRow2{
-  height: 35px;
-  margin-top: 10px;
+
+.charDivRow1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 150px;
+}
+
+.charDivRow2 {
+  height: 60px;
+  margin-top: 5px;
   display: flex;
   align-items: center;
   justify-content: space-around;
   position: relative;
 
 }
-.talentImg{
+
+.charStatsInfoCol1 {
+  width: 75px;
+}
+
+.talentImg {
   width: 35px;
 }
-.charConstl{
+
+.charConstl {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -336,18 +356,20 @@ main {
 
 /*? giving a frame to constellation of chars */
 
-.conslCircle{
+.conslCircle {
   position: relative;
   top: 0;
   left: 0;
 }
-.constlImg1{
+
+.constlImg1 {
   position: relative;
   top: 0;
   left: 0;
   width: 50px;
 }
-.constlImg2{
+
+.constlImg2 {
   position: absolute;
   top: 8px;
   left: 5px;
@@ -355,7 +377,8 @@ main {
   bottom: 5px;
   width: 40px;
 }
-.lockIcon{
+
+.lockIcon {
   position: absolute;
   top: 13px;
   left: 14px;
@@ -532,7 +555,8 @@ footer ul {
   }
 
   .links li:hover {
-    background-color: var(--mediumGreen);;
+    background-color: var(--mediumGreen);
+    ;
   }
 
   .links li:hover :only-child {
@@ -592,42 +616,55 @@ footer ul {
     height: 37.5vw;
     margin-top: 30px;
   }
-  .image-title-div{
+
+  .image-title-div {
     font-size: 10px;
   }
-  .image-title{
+
+  .image-title {
     margin-left: 15px;
     letter-spacing: 1px;
   }
 
   /* --------------------sec calc --------------------- */
-  .uidInputDiv input{
+  .uidInputDiv input {
     width: 200px;
     font-size: 15px;
   }
-  .charDiv{
+
+  .charDiv {
     width: 300px;
-    height: 300px;
+    height: 370px;
     margin: 10px;
     font-size: 12px;
   }
-  .charIcon{
+
+  .charIcon {
     height: 85px;
   }
-  .charDivRow2{
+.charCardCol2{
+  height: 150px;
+}
+  .charDivRow2 {
     margin-top: 0px;
+    margin-bottom: 10px;
+
   }
-  .constlImg1{
+
+  .constlImg1 {
     width: 40px;
   }
-  .constlImg2{
+
+  .constlImg2 {
     width: 30px;
   }
-  .lockIcon{
+
+  .lockIcon {
     top: 10px;
     left: 11px;
     font-size: 20px;
   }
+
   /* --------------------sec calc end--------------------- */
 
 }

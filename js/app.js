@@ -2,6 +2,9 @@
 import charJson from './json/chars.json'assert {
    type: 'json'
 }
+import nameJson from './json/loc.json'assert {
+   type: 'json'
+}
 
 // selectors
 const links = document.querySelector(".links")
@@ -112,132 +115,99 @@ class DmgCalc {
       // clear window
       charDetailsDiv.innerHTML = ''
       let charCards = fetchedCharData.map(item => {
-         let currentCharId = item.avatarId
+
+         let id = item.avatarId
          let fightProp = item.fightPropMap
-         //? store current char's element
-         let charElement = charJson[0][currentCharId].Element
-         let elementDetails = this.returnElementDmg(charElement, fightProp)
-         //? storing skill icon id's for each chars
-         let skillsIds = Object.keys(item.skillLevelMap)
-         //? storing skillIconNames
-         let skillIconName = []
+         let element = charJson[0][id].Element
+         let elementDetails = this.returnElementDmg(element,fightProp)
+         let nameId = charJson[0][id].NameTextMapHash
+         let wepData = item.equipList[item.equipList.length - 1]
+         let skillIds = Object.keys(item.skillLevelMap)
+         let skillIconNames = []
+         let contslIconNames = charJson[0][id].Consts
 
          //? getting each skillId's icon names
-         skillsIds.forEach(SkillsId => {
-            skillIconName.push(charJson[0][currentCharId].Skills[SkillsId])
+         skillIds.forEach(SkillsId => {
+            skillIconNames.push(charJson[0][id].Skills[SkillsId])
          });
+         // console.log(nameJson);
 
-         console.log(item.skillLevelMap[skillsIds[1]]);
-         return `<div class="charDiv">
-         <div class="charDivRow1">
-            <div class="charCardCol1 charIconName">
-               <img class="charIcon" src="https://enka.network/ui/${charJson[0][currentCharId].IconName}.png">
-               <p class="charName">Hu Tao</p>
-               <p class="charLvl">90/90</p>
-            </div>
-            <div class="charStatsInfo charCardCol2">
-               <div class="charStatsInfoCol1">
-                  <p>HP : ${ Math.floor(fightProp[2000])}</p>
-                  <p>ATK : ${ Math.floor(fightProp[2001])}</p>
-                  <p>def : ${ Math.floor(fightProp[2002])}</p>
-                  <p>Em : ${ Math.floor(fightProp[28])}</p>
+            return `<div class="charDiv">
+            <div class="charDivRow1">
+               <div class="charCardCol1 charIconName">
+                  <img class="charIcon" src="https://enka.network/ui/${charJson[0][id].IconName}.png">
+                  <p class="charName">${nameJson[0][nameId]}</p>
+                  <p class="charLvl">${item.propMap[4001].val}/90</p>
                </div>
-               <div class="charStatsInfoCol2">
-                  <p>Cr Rate : ${ Math.floor(fightProp[20] * 100)}%</p>
-                  <p>Cr Dmg : ${ Math.floor(fightProp[22] * 100)}%</p>
-                  <p>Er : ${ Math.floor(fightProp[23] * 100)}%</p>
-                  <p>${elementDetails.name}%: ${elementDetails.dmg}%</p>
-               </div>
-            </div>
-         </div>
-         <div class="charDivRow2">
-            <div class="charWeapon charCardCol1">
-               <p class="talentP weaponP"><img class="talentImg weaponImg"
-                     src="https://enka.network/ui/UI_EquipIcon_Pole_Blackrock.png" alt="">90/90</p>
-               <p class="weaponName">Blackcliff </p>
-            </div>
-            <div class="charCardCol2">
-               <p class="talentP"><img class="talentImg" src="https://enka.network/ui/${skillIconName[0]}.png" alt="">
-               ${item.skillLevelMap[skillsIds[0]]}</p>
-               <p class="talentP"><img class="talentImg" src="https://enka.network/ui/${skillIconName[1]}.png"
-                     alt="">${item.skillLevelMap[skillsIds[1]]}</p>
-               <p class="talentP"><img class="talentImg" src="https://enka.network/ui/${skillIconName[2]}.png"
-                     alt="">${item.skillLevelMap[skillsIds[2]]}</p>
-            </div>
-         </div>
-         <div class="charDivRow3">
-            <div class="charConstl">
-               <div class="conslCircle" >
-               <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
-               <img class="constlImg2" src="https://enka.network/ui/UI_Talent_S_Hutao_03.png" alt="">
-               <i class=" lockIcon fas fa-lock"></i>
-               </div>
-               <div class="conslCircle" >
-               <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
-               <img class="constlImg2" src="https://enka.network/ui/UI_Talent_S_Hutao_01.png" alt="">
-               <i class=" lockIcon fas fa-lock"></i>
-               </div>
-               <div class="conslCircle" >
-               <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
-               <img class="constlImg2" src="https://enka.network/ui/UI_Talent_U_Hutao_01.png" alt="">
-               <i class=" lockIcon fas fa-lock"></i>
-               </div>
-               <div class="conslCircle" >
-               <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
-               <img class="constlImg2" src="https://enka.network/ui/UI_Talent_S_Hutao_02.png" alt="">
-               <i class=" lockIcon fas fa-lock"></i>
-               </div>
-               <div class="conslCircle" >
-               <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
-               <img class="constlImg2" src="https://enka.network/ui/UI_Talent_U_Hutao_02.png" alt="">
-               <i class=" lockIcon fas fa-lock"></i>
-               </div>
-               <div class="conslCircle" >
-               <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
-               <img class="constlImg2" src="https://enka.network/ui/UI_Talent_S_Hutao_04.png" alt="">
-               <i class=" lockIcon fas fa-lock"></i>
+               <div class="charStatsInfo charCardCol2">
+                  <div class="charStatsInfoCol1">
+                     <p>HP : ${ Math.floor(fightProp[2000])}</p>
+                     <p>ATK : ${ Math.floor(fightProp[2001])}</p>
+                     <p>def : ${ Math.floor(fightProp[2002])}</p>
+                     <p>Em : ${ Math.floor(fightProp[28])}</p>
+                  </div>
+                  <div class="charStatsInfoCol2">
+                     <p>Cr Rate : ${ Math.floor(fightProp[20] * 100)}%</p>
+                     <p>Cr Dmg : ${ Math.floor(fightProp[22] * 100)}%</p>
+                     <p>Er : ${ Math.floor(fightProp[23] * 100)}%</p>
+                     <p>${elementDetails.name}%: ${elementDetails.dmg}%</p>
+                  </div>
                </div>
             </div>
-         </div>
-         <div class="charDivRow4">
-            <p>Avrg Dmg : 60000</p>
-         </div>
-      </div>`
+            <div class="charDivRow2">
+               <div class="charWeapon charCardCol1">
+                  <p class="weaponP"><img class=" weaponImg"
+                        src="https://enka.network/ui/${wepData.flat.icon}.png" alt="">90/90</p>
+                  <p class="weaponName">${nameJson[0][wepData.flat.nameTextMapHash]} </p>
+               </div>
+               <div class="charCardCol2">
+                  <p class="talentP"><img class="talentImg" src="https://enka.network/ui/${skillIconNames[0]}.png" alt="">
+                  ${item.skillLevelMap[skillIds[0]]}</p>
+                  <p class="talentP"><img class="talentImg" src="https://enka.network/ui/${skillIconNames[1]}.png"
+                        alt="">${item.skillLevelMap[skillIds[1]]}</p>
+                  <p class="talentP"><img class="talentImg" src="https://enka.network/ui/${skillIconNames[2]}.png"
+                        alt="">${item.skillLevelMap[skillIds[2]]}</p>
+               </div>
+            </div>
+            <div class="charDivRow3">
+               <div class="charConstl">
+                  <div class="conslCircle" >
+                  <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
+                  <img class="constlImg2" src="https://enka.network/ui/${contslIconNames[0]}.png" alt="">
+                  <i class=" lockIcon fas fa-lock"></i>
+                  </div>
+                  <div class="conslCircle" >
+                  <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
+                  <img class="constlImg2" src="https://enka.network/ui/${contslIconNames[1]}.png" alt="">
+                  <i class=" lockIcon fas fa-lock"></i>
+                  </div>
+                  <div class="conslCircle" >
+                  <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
+                  <img class="constlImg2" src="https://enka.network/ui/${contslIconNames[2]}.png" alt="">
+                  <i class=" lockIcon fas fa-lock"></i>
+                  </div>
+                  <div class="conslCircle" >
+                  <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
+                  <img class="constlImg2" src="https://enka.network/ui/${contslIconNames[3]}.png" alt="">
+                  <i class=" lockIcon fas fa-lock"></i>
+                  </div>
+                  <div class="conslCircle" >
+                  <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
+                  <img class="constlImg2" src="https://enka.network/ui/${contslIconNames[4]}.png" alt="">
+                  <i class=" lockIcon fas fa-lock"></i>
+                  </div>
+                  <div class="conslCircle" >
+                  <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
+                  <img class="constlImg2" src="https://enka.network/ui/${contslIconNames[5]}.png" alt="">
+                  <i class=" lockIcon fas fa-lock"></i>
+                  </div>
+               </div>
+            </div>
+            <div class="charDivRow4">
+               <p>Avrg Dmg : 60000</p>
+            </div>
+         </div>`
 
-
-         //    `<div class="charDiv">
-         //    <div class="charDivRow1">
-         //       <img class="charIcon" src="https://enka.network/ui/${charJson[0][currentCharId].IconName}.png">
-         //       <div class="charStatsInfo">
-         //          <div class="charStatsInfoCol1">
-         //             <p>HP : ${ Math.floor(fightProp[2000])}</p>
-         //             <p>ATK : ${ Math.floor(fightProp[2001])}</p>
-         //             <p>def : ${ Math.floor(fightProp[2002])}</p>
-         //             <p>Em : ${ Math.floor(fightProp[28])}</p>
-         //          </div>
-         //          <div class="charStatsInfoCol2">
-         //             <p>Cr Rate : ${ Math.floor(fightProp[20] * 100)}%</p>
-         //             <p>Cr Dmg : ${ Math.floor(fightProp[22] * 100)}%</p>
-         //             <p>Er : ${ Math.floor(fightProp[23] * 100)}%</p>
-         //             <p>${elementDetails.name} %: ${elementDetails.dmg}%</p>
-         //          </div>
-         //       </div>
-         //    </div>
-         //    <div class="charDivRow2">
-         //       <p class="talentP" >
-         //          <img class="talentImg" src="https://enka.network/ui/${skillIconName[0]}.png" alt="">
-         //       ${item.skillLevelMap[skillsIds[0]]}</p>
-         //       <p class="talentP">
-         //          <img class="talentImg" src="https://enka.network/ui/${skillIconName[1]}.png" alt="">
-         //       ${item.skillLevelMap[skillsIds[1]]}</p>
-         //       <p class="talentP">
-         //          <img class="talentImg" src="https://enka.network/ui/${skillIconName[2]}.png" alt="">
-         //       ${item.skillLevelMap[skillsIds[2]]}</p>
-         //    </div>
-         //    <div class="charDivRow3">
-         //       <p>Avrg Dmg : 60000</p>
-         //    </div>
-         // </div>`
          console.log(charJson[0][currentCharId]);
          // charJson[0][currentCharId].IconName
          // Math.floor(fightProp[2000])
