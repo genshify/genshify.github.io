@@ -274,8 +274,8 @@ main {
 }
 
 .charDiv{
-  width: 350px;
-  height: 250px;
+  width: 400px;
+  height: 350px;
   background-color: var(--mediumGreen);;
   margin: 20px;
   border-radius: 20px;
@@ -318,7 +318,7 @@ main {
 }
 .charDivRow2{
   height: 35px;
-  margin-top: 20px;
+  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -328,16 +328,40 @@ main {
 .talentImg{
   width: 35px;
 }
-/* .charConstl{
-
+.charConstl{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
+
+/*? giving a frame to constellation of chars */
+
 .conslCircle{
   position: relative;
-
+  top: 0;
+  left: 0;
 }
-.conslCircle img{
+.constlImg1{
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 50px;
+}
+.constlImg2{
   position: absolute;
-} */
+  top: 8px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  width: 40px;
+}
+.lockIcon{
+  position: absolute;
+  top: 13px;
+  left: 14px;
+  font-size: 25px;
+  color: white;
+}
 
 /*-------------------sec 5 calc end-------------  */
 
@@ -583,12 +607,26 @@ footer ul {
   }
   .charDiv{
     width: 300px;
-    height: 180px;
+    height: 300px;
     margin: 10px;
     font-size: 12px;
   }
   .charIcon{
     height: 85px;
+  }
+  .charDivRow2{
+    margin-top: 0px;
+  }
+  .constlImg1{
+    width: 40px;
+  }
+  .constlImg2{
+    width: 30px;
+  }
+  .lockIcon{
+    top: 10px;
+    left: 11px;
+    font-size: 20px;
   }
   /* --------------------sec calc end--------------------- */
 
