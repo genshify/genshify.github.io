@@ -88,7 +88,7 @@ class DmgCalc {
       } else if (charVision == "Fire") {
          charElement.name = 'Pyro'
          charElement.dmg = fightProp[40]
-         charElement.color = '#af2c12'
+         charElement.color = '#7c1f0d'
 
       } else if (charVision == "Water") {
          charElement.name = 'Hydro'
