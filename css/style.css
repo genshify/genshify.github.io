@@ -286,7 +286,13 @@ main {
 .charDiv {
   width: 400px;
   height: 450px;
-  background-color: var(--mediumGreen);;
+  /* background-color: #af2c12; py */
+  /* background-color: #370761; elct */
+  /* background-color: #0082b9 ; cryo */
+  /* background-color: #039da0; animo   */
+  /* background-color: #278a2d; dend*/
+  /* background-color:#1552c5; hyd */
+  /* background-color:#97830f; geo */
   margin: 20px;
   border-radius: 20px;
   padding: 10px;
@@ -295,6 +301,12 @@ main {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+}
+.cardDarkColor{
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 5px;
+  /* margin: 5px; */
 }
 
 .charCardCol1 {
@@ -634,7 +646,7 @@ footer ul {
 
   .charDiv {
     width: 300px;
-    height: 370px;
+    height: 390px;
     margin: 10px;
     font-size: 12px;
   }
@@ -643,9 +655,10 @@ footer ul {
     height: 85px;
   }
 .charCardCol2{
-  height: 150px;
+  height: 90px;
 }
   .charDivRow2 {
+    height: 100px;
     margin-top: 0px;
     margin-bottom: 10px;
 
