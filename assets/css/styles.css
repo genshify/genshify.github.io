@@ -292,4 +292,30 @@ img {
 }
 .events__container article img {
   border-radius: 15px;
+}
+
+.tips__container {
+  background-color: var(--lightGreen);
+  border-radius: 20px;
+  padding: 1.5rem;
+}
+.tips__container .tips__card {
+  margin: 0;
+  padding: 0;
+}
+.tips__container .tips__card .tips__img {
+  border-radius: 15px 15px 0px 0px;
+}
+.tips__container .tips__card .tips__title {
+  background-color: var(--mediumGreen);
+  color: white;
+  width: 100%;
+  height: 20%;
+  display: flex;
+  font-size: 14px;
+  padding: 0.4rem;
+  justify-content: flex-start;
+  align-items: center;
+  right: 0;
+  border-radius: 0px 0px 15px 15px;
 }/*# sourceMappingURL=styles.css.map */
