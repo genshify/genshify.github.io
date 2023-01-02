@@ -1,7 +1,8 @@
 .footer{
     background-color: #24262b;
     color: white;
-    padding-bottom: 2rem;
+    padding-top: 2rem;
+    padding-bottom:2rem;
 
     &__container{
         row-gap: 2rem;
@@ -11,11 +12,25 @@
     &__title{
         color: white;
         font-size: var(--h2-font-size);
-        margin-bottom: var(--mb-0-75);
+    }
+    &__title{
+        position: relative;
+        &::before{
+            content: "";
+            position: absolute;
+            bottom: -.3rem;
+            width: 20%;
+            height: 2px;
+            background-color: var(--mediumGreen);
+        }
+        margin-bottom: var(--mb-1-5);
     }
     &__logo{
         width: 100px;
         display: inline-block;
+    }
+    &__description{
+        color: rgb(187, 187, 187) ;
     }
     &__description,
     &__link{
@@ -30,9 +45,11 @@
     }
     &__social{
         display: flex;
-        column-gap: 2rem;
+        align-items:center;
+        justify-content: center;
 
         &-link{
+            margin-right: .5rem;
             font-size: 1.5rem;
             color: white;
         }
