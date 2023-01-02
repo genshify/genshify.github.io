@@ -91,7 +91,6 @@ img {
   height: auto;
 }
 
-/*=============== REUSABLE CSS CLASSES ===============*/
 .section {
   padding: 4.5rem 0 1rem;
 }
@@ -99,21 +98,11 @@ img {
   font-size: var(--h2-font-size);
   color: var(--title-color);
   text-align: center;
-  margin-bottom: var(--mb-1);
+  margin-bottom: var(--mb-2);
+  display: flex;
+  justify-content: center;
 }
 
-.svg__color {
-  fill: var(--first-color);
-}
-.svg__blob {
-  fill: var(--first-color-light);
-}
-.svg__img {
-  width: 300px;
-  justify-self: center;
-}
-
-/*=============== LAYOUT ===============*/
 .container {
   max-width: 968px;
   margin-left: var(--mb-1-5);
@@ -181,7 +170,7 @@ img {
   font-size: 1.5rem;
   cursor: pointer;
   position: absolute;
-  top: 1rem;
+  top: 1.2rem;
   right: 1.5rem;
 }
 
@@ -206,7 +195,7 @@ img {
 
 /* Change background header */
 .scroll-header {
-  box-shadow: 0 1px 4px rgba(1, 31, 8, 0.1);
+  box-shadow: 0 1px 4px rgba(1, 31, 8, 0.2);
 }
 
 /*=============== HOME ===============*/
@@ -334,11 +323,15 @@ img {
 }
 .calculator__container .input__box {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  row-gap: 1rem;
+  flex-wrap: wrap;
   column-gap: 0.25rem;
 }
 .calculator__container .input__box input {
+  padding: 1rem 1rem;
   color: var(--darkGreen);
-  padding: 0.1rem 0.5rem;
   font-size: 1rem;
   border: 1px solid var(--mediumGreen);
   outline: none;
@@ -365,7 +358,7 @@ img {
 .footer {
   background-color: #24262b;
   color: white;
-  padding-top: 2rem;
+  padding-top: 2.5rem;
   padding-bottom: 2rem;
 }
 .footer__container {
@@ -458,4 +451,151 @@ img {
 }
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--text-color-light);
+}
+
+/* For small devices */
+@media screen and (max-width: 360px) {
+  .section {
+    padding: 3.5rem 0 1rem;
+  }
+  .home__img {
+    width: 230px;
+  }
+  .about__img {
+    width: 250px;
+  }
+}
+@media screen and (max-width: 360px) and (max-width: 390px) {
+  .input__box button {
+    width: 100%;
+    margin: 0 0.8rem;
+  }
+}
+/* For medium devices */
+@media screen and (min-width: 576px) {
+  .section__title-center {
+    text-align: initial;
+  }
+  .home__container,
+.about__container,
+.banner__container,
+.events__container .tips__container,
+.footer__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .home__img {
+    order: 1;
+  }
+  .home__container,
+.about__container {
+    align-items: center;
+  }
+  .about__data .section__title-center {
+    display: block;
+  }
+  .about__data,
+.banner__data {
+    text-align: initial;
+  }
+  .about__img {
+    order: -1;
+  }
+}
+@media screen and (min-width: 767px) {
+  body {
+    margin: 0;
+  }
+  .home__img {
+    width: 300px;
+  }
+  .section {
+    padding: 6rem 0 2rem;
+  }
+  .nav {
+    height: calc(var(--header-height) + 1.5rem);
+  }
+  .nav__list {
+    flex-direction: row;
+    column-gap: 2.5rem;
+  }
+  .nav__toggle, .nav__close {
+    display: none;
+  }
+  .nav__menu {
+    margin-left: auto;
+  }
+  .home__container {
+    padding: 8rem 0 2rem;
+  }
+}
+/* For large devices */
+@media screen and (min-width: 968px) {
+  .container {
+    margin-left: var(--mb-2);
+    margin-right: var(--mb-2);
+  }
+  .button__header {
+    display: block;
+  }
+  .home {
+    position: relative;
+  }
+  .home__img {
+    position: absolute;
+    margin-top: 6rem;
+    right: 8rem;
+    align-items: center;
+    width: 320px;
+  }
+  .about__container,
+.security__container,
+.app__container,
+.contact__container {
+    column-gap: 6rem;
+  }
+  .services__container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .contact__container {
+    grid-template-columns: 3fr 1.5fr 1.25fr;
+  }
+  .footer__container {
+    display: flex;
+    justify-content: center;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 3rem;
+  }
+  .footer__social {
+    align-items: flex-start;
+  }
+  .footer__social-link {
+    font-size: 1.45rem;
+  }
+  .footer__title {
+    font-size: 1rem;
+  }
+  .input__box input {
+    width: 100%;
+  }
+  .input__box button {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .home__img {
+    width: 360px;
+  }
+  .home__description {
+    padding-right: 5rem;
+  }
+  .footer__container {
+    column-gap: 3rem;
+  }
+  .scrollup {
+    right: 2rem;
+  }
 }/*# sourceMappingURL=styles.css.map */

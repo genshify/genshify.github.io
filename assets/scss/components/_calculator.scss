@@ -15,16 +15,21 @@
         }
         .input__box{
             display: flex;
+            flex-direction: row;
+            justify-content: center;
+            row-gap:1rem;
+            flex-wrap: wrap;
             column-gap: .25rem;
             input{
+                padding:1rem 1rem;
                 color: var(--darkGreen);
-                padding: .1rem .5rem;
                 font-size: 1rem;
                 border: 1px solid var(--mediumGreen);
                 outline: none;
                 border-radius: 10px;
             }
             button{
+                
                 border-radius: 10px;
                 border: none;
                 border: 1px solid var(--mediumGreen);
