@@ -283,4 +283,13 @@ img {
 }
 .banner__container article img {
   border-radius: 15px;
+}
+
+.events__container {
+  background-color: var(--lightGreen);
+  border-radius: 20px;
+  padding: 1.5rem;
+}
+.events__container article img {
+  border-radius: 15px;
 }/*# sourceMappingURL=styles.css.map */
