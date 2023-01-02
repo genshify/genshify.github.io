@@ -337,6 +337,7 @@ img {
   column-gap: 0.25rem;
 }
 .calculator__container .input__box input {
+  color: var(--darkGreen);
   padding: 0.1rem 0.5rem;
   font-size: 1rem;
   border: 1px solid var(--mediumGreen);
@@ -364,6 +365,7 @@ img {
 .footer {
   background-color: #24262b;
   color: white;
+  padding-top: 2rem;
   padding-bottom: 2rem;
 }
 .footer__container {
@@ -372,11 +374,25 @@ img {
 .footer__logo, .footer__title {
   color: white;
   font-size: var(--h2-font-size);
-  margin-bottom: var(--mb-0-75);
+}
+.footer__title {
+  position: relative;
+  margin-bottom: var(--mb-1-5);
+}
+.footer__title::before {
+  content: "";
+  position: absolute;
+  bottom: -0.3rem;
+  width: 20%;
+  height: 2px;
+  background-color: var(--mediumGreen);
 }
 .footer__logo {
   width: 100px;
   display: inline-block;
+}
+.footer__description {
+  color: rgb(187, 187, 187);
 }
 .footer__description, .footer__link {
   font-size: var(--medium-font-size);
@@ -390,9 +406,11 @@ img {
 }
 .footer__social {
   display: flex;
-  column-gap: 2rem;
+  align-items: center;
+  justify-content: center;
 }
 .footer__social-link {
+  margin-right: 0.5rem;
   font-size: 1.5rem;
   color: white;
 }
