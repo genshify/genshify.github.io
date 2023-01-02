@@ -1,0 +1,13 @@
+.events{
+   
+    &__container{
+        background-color: var(--lightGreen);
+        border-radius: 20px;
+        padding:1.5rem;
+        article{
+            img{
+                border-radius: 15px;
+            }
+        }
+    }
+}
