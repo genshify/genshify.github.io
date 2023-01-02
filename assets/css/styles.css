@@ -318,4 +318,39 @@ img {
   align-items: center;
   right: 0;
   border-radius: 0px 0px 15px 15px;
+}
+
+.calculator__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--lightGreen);
+  border-radius: 20px;
+  padding: 1.5rem;
+}
+.calculator__container article img {
+  border-radius: 15px;
+}
+.calculator__container .input__box {
+  display: flex;
+  column-gap: 0.25rem;
+}
+.calculator__container .input__box input {
+  padding: 0.1rem 0.5rem;
+  font-size: 1rem;
+  border: 1px solid var(--mediumGreen);
+  outline: none;
+}
+.calculator__container .input__box button {
+  color: var(--mediumGreen);
+}
+.calculator__container .input__box button i {
+  color: var(--darkGreen);
+}
+.calculator__container .cardDarkColor {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  padding: 0.7rem 1.2rem;
+  text-align: center;
 }/*# sourceMappingURL=styles.css.map */
