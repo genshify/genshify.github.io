@@ -1,0 +1,13 @@
+/*=============== ABOUT ===============*/
+.about{
+    &__container{
+        gap: 2rem;
+    }
+    &__data{
+        text-align: center;
+    }
+    &__img{
+        width: 300px;
+        justify-self: center;
+    }
+}

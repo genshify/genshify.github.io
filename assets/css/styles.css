@@ -262,4 +262,16 @@ img {
 }
 .button__icon {
   font-size: 1.5rem;
+}
+
+/*=============== ABOUT ===============*/
+.about__container {
+  gap: 2rem;
+}
+.about__data {
+  text-align: center;
+}
+.about__img {
+  width: 300px;
+  justify-self: center;
 }/*# sourceMappingURL=styles.css.map */
