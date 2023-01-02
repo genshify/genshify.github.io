@@ -21,8 +21,13 @@
                 font-size: 1rem;
                 border: 1px solid var(--mediumGreen);
                 outline: none;
+                border-radius: 10px;
             }
             button{
+                border-radius: 10px;
+                border: none;
+                border: 1px solid var(--mediumGreen);
+                outline: none;
                 color: var(--mediumGreen);
                 i{
                     color: var(--darkGreen);
@@ -31,6 +36,7 @@
         }
         .cardDarkColor{
             background-color: rgba(0, 0, 0, 0.15);
+            font-weight: 550;
             border-radius: 10px;
             padding:.7rem 1.2rem;
             text-align: center;
