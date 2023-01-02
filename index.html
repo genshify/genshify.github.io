@@ -1,282 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="title" content="Genshify" />
+    <link
+      rel="icon"
+      href="images/logo/Genshify_logo_for_Dark.png"
+      type="image/x-icon"
+    />
+    <meta name="description" content="Genshin impact guide " />
+    <meta name="keywords" content="Genshify,Genshin Impact," />
+    <meta name="robots" content="index, follow" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="language" content="English" />
+    <!-- remix icon cdn  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
 
-<head>
-   <link rel="stylesheet" href="css/style.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-   <meta name="google-site-verification" content="S5HpQgkLXA8FVNUj5F1OdRCZscKcNm5z3H7QXmCvhmw" />
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Genshify</title>
-   <meta name="title" content="Genshify">
-   <link rel="icon" href="images/logo/Genshify_logo_for_Dark.png" type="image/x-icon" />
-   <meta name="description" content="Genshin impact guide ">
-   <meta name="keywords" content="Genshify,Genshin Impact,">
-   <meta name="robots" content="index, follow">
-   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-   <meta name="language" content="English">
+    <!-- box icon cdn -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-</head>
+    <!-- styles -->
+    <link rel="stylesheet" href="./assets/css/styles.css" />
 
-<body>
-   <!-------------------nav---------------------->
+    <!-- javascript -->
+    <script src="./assets/main/main.js" defer></script>
 
-   <nav id="nav">
-      <div class="nav-center">
-         <div class="nav-header">
-            <img src="images/logo/Genshify_logo_for_Light.png" alt="">
-            <button class="nav-toggle">
-               <i class="fa-solid fa-bars"></i>
-            </button>
-         </div>
-         <ul class="links">
-            <li>
-               <a href="#home">Home</a>
+    <title>Genshify</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header" id="header">
+      <nav class="nav container">
+        <a href="#" class="nav__logo">
+          <img src="./assets/images/logo/Genshify_logo_for_Light.png" alt="">
+        </a>
+
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="#home" class="nav__link active-link">Home</a>
             </li>
-            <li>
-               <a href="#banner">Banner</a>
+            <li class="nav__item">
+              <a href="#about" class="nav__link active-link">About</a>
             </li>
-            <li>
-               <a href="#event">Event</a>
+            <li class="nav__item">
+              <a href="#banner" class="nav__link">Banner</a>
             </li>
-            <li>
-               <a href="#tips">Tips</a>
+            <li class="nav__item">
+              <a href="#events" class="nav__link">Events</a>
             </li>
-            <li>
-               <a href="#footer">About</a>
+            <li class="nav__item">
+              <a href="#tips" class="nav__link">Tips</a>
             </li>
-         </ul>
-      </div>
-   </nav>
-   <!-----------------nav end--------------------->
-
-   <main>
-      <a href="#nav">
-         <div class="top">^</div>
-      </a>
-
-      <!------------------ section 1----------------------->
-      <div class="section-1" id="home">
-         <div class="row-1">
-            <div class="col-1">
-               <img class="home-img" src="images/chars/nahida (1).webp" alt="">
+            <div class="nav__close" id="nav-close">
+              <i class="ri-close-line"></i>
             </div>
-            <div class="col-2">
-               <p class="welcome"> welcome to </p>
-               <h1 class="main-text"> the <br> Land of wisdom</h1>
-               <a href="#banner"><button class="w-btn">take a tour </button></a>
-            </div>
-         </div>
-      </div>
-      <!------------------ end sec 1----------------------->
+            
+          </ul>
+        </div>
+        <div class="nav__buttons">
+          <!-- <i class="ri-sun-fill"></i> -->
+          <div class="nav__toggle" id="nav-toggle">
+            <i class="ri-menu-line"></i>
+          </div>
+        </div>
 
-      <!-------------------- sec 2 banner ------------------------>
-
-      <div class=" section banner" id="banner">
-         <div class="sec-head">
-            <h2>Current Banner</h2>
-            <div class="underline "></div>
-         </div>
-         <div class="sec-imgs">
-            <img class="sec-image" src="images/banners/nahida-banner.jpg" alt="">
-            <img class="sec-image" src="images/banners/yoimiya-banner.jpg" alt="">
-            <img class="sec-image" src="images/banners/nahida-w-banner.jpg" alt="">
-
-         </div>
-      </div>
-      <!-------------------- sec 2 banner end ------------------------>
-
-      <!-------------------- sec 3 event ------------------------>
-
-      <div class=" section event" id="event">
-         <div class="sec-head">
-            <h2>Current Event</h2>
-            <div class="underline event-underline "></div>
-         </div>
-         <div class="sec-imgs">
-            <img class="sec-image" src="images/event/adv.trail.jpg" alt="">
-
-         </div>
-      </div>
-
-      <!-------------------- sec 3 event  end------------------------>
-
-      <!-------------------- sec 4 tips ------------------------>
-
-      <div class=" section tips" id="tips">
-         <div class="sec-head">
-            <h2>Tips and Tricks</h2>
-            <div class="underline tips-underline "></div>
-         </div>
-         <div class="sec-imgs">
-            <!-- <img class="sec-image" src="css/yae+raid-l.jpg" alt=""> -->
-            <a href="beginner's.html">
-               <div class="tips-img-div">
-                  <div class="image-title-div">
-                     <h3 class="image-title">Tips for Beginners</h3>
-                  </div>
-               </div>
-            </a>
-         </div>
-
-      </div>
-
-
-      <!-------------------- sec 4 tips end ------------------------>
-
-      <div id="dmgCalculator" class="section dmgCalculator">
-
-         <div class="sec-head">
-            <h2>Damage Calculator</h2>
-            <div class="underline event-underline "></div>
-         </div>
-         <div class="uidInputDiv">
-            <input placeholder="Enter your Uid" id="uidInput" type="text">
-            <button id="uidBtn" class="uidBtn">
-               <i class="fa fa-paper-plane" aria-hidden="true"></i>
-            </button>
-         </div>
-         <div id="charDetailsDiv" class="charDetailsDiv">
-            <!--! divs comes here -->
-            <p class="cardDarkColor">it will shows you the average damage of your chars</p>
-            <!-- <div class="charDiv">
-               <div class="charDivRow1">
-                  <div class="charCardCol1 charIconName ">
-                     <img class="charIcon" src="https://enka.network/ui/UI_AvatarIcon_Hutao.png">
-                     <p class="charName ">Hu Tao</p>
-                     <p class="charLvl">90/90</p>
-                  </div>
-                  <div class="charStatsInfo charCardCol2 cardDarkColor">
-                     <div class="charStatsInfoCol1 ">
-                        <p>HP : 1600</p>
-                        <p>ATK : 1800</p>
-                        <p>def : 150</p>
-                        <p>Em : 110</p>
-                     </div>
-                     <div class="charStatsInfoCol2">
-                        <p>Cr Rate : 160%</p>
-                        <p>Cr Dmg : 50%</p>
-                        <p>Er : 150%</p>
-                        <p>Pyro%: 11000</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="charDivRow2">
-                  <div class="charWeapon charCardCol1 cardDarkColor">
-                     <p class=" weaponP"><img class="weaponImg"
-                           src="https://enka.network/ui/UI_EquipIcon_Pole_Blackrock.png" alt="">90/90</p>
-                     <p class="weaponName">Blackcliff </p>
-                  </div>
-                  <div class="charCardCol2 cardDarkColor">
-                     <p class="talentP"><img class="talentImg" src="https://enka.network/ui/Skill_A_03.png" alt="">10
-                     </p>
-                     <p class="talentP"><img class="talentImg" src="https://enka.network/ui/Skill_S_Hutao_01.png"
-                           alt="">10</p>
-                     <p class="talentP"><img class="talentImg" src="https://enka.network/ui/Skill_E_Hutao_01.png"
-                           alt="">9</p>
-                  </div>
-               </div>
-               <div class="charDivRow3">
-                  <div class="charConstl cardDarkColor">
-                     <div class="conslCircle" >
-                     <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
-                     <img class="constlImg2" src="https://enka.network/ui/UI_Talent_S_Hutao_03.png" alt="">
-                     <i class=" lockIcon fas fa-lock"></i>
-                     </div>
-                     <div class="conslCircle" >
-                     <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
-                     <img class="constlImg2" src="https://enka.network/ui/UI_Talent_S_Hutao_01.png" alt="">
-                     <i class=" lockIcon fas fa-lock"></i>
-                     </div>
-                     <div class="conslCircle" >
-                     <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
-                     <img class="constlImg2" src="https://enka.network/ui/UI_Talent_U_Hutao_01.png" alt="">
-                     <i class=" lockIcon fas fa-lock"></i>
-                     </div>
-                     <div class="conslCircle" >
-                     <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
-                     <img class="constlImg2" src="https://enka.network/ui/UI_Talent_S_Hutao_02.png" alt="">
-                     <i class=" lockIcon fas fa-lock"></i>
-                     </div>
-                     <div class="conslCircle" >
-                     <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
-                     <img class="constlImg2" src="https://enka.network/ui/UI_Talent_U_Hutao_02.png" alt="">
-                     <i class=" lockIcon fas fa-lock"></i>
-                     </div>
-                     <div class="conslCircle" >
-                     <img class="constlImg1" src="images/frames/constlFrame2.png" alt="">
-                     <img class="constlImg2" src="https://enka.network/ui/UI_Talent_S_Hutao_04.png" alt="">
-                     <i class=" lockIcon fas fa-lock"></i>
-                     </div>
-                  </div>
-               </div>
-               <div class="charDivRow4 cardDarkColor">
-                  <p>Avrg Dmg : 60000</p>
-               </div>
-            </div> -->
-         </div>
-      </div>
-
-   </main>
-
-   <!---------------------------footer--------------------------->
-
-   <footer class="footer">
-      <div class="container">
-         <div class="row">
-
-            <div class="footer-col">
-               <h4>All Pages</h4>
-               <ul>
-                  <li><a href="#home">Return Home</a></li>
-                  <li><a href="#banner">Banner</a></li>
-                  <li><a href="#event">Event</a></li>
-                  <li><a href="#tips">tips</a></li>
-               </ul>
-            </div>
-
-            <div class="footer-col">
-               <h4>Other Games</h4>
-               <ul>
-                  <li><a href="https://discord.gg/9JAkUhMKjc">PUBG</a></li>
-                  <li><a href="https://discord.gg/9JAkUhMKjc">Valorant</a></li>
-                  <li><a href="https://discord.gg/9JAkUhMKjc">Apex Legends</a></li>
-                  <li><a href="https://discord.gg/9JAkUhMKjc">Genshin Impact</a></li>
-                  <li><a href="https://discord.gg/9JAkUhMKjc">Tower of Fantacy</a></li>
-               </ul>
-            </div>
-
-            <div class="footer-col">
-               <h4>contributors</h4>
-               <ul>
-                  <li><a href="https://instagram.com/z_y_r_o__?igshid=YmMyMTA2M2Y=">nishaj 0</a></li>
-                  <li><a href="https://instagram.com/anasp_xr?igshid=YmMyMTA2M2Y=">anas Xr</a></li>
-                  <li><a href="https://instagram.com/basil_pkt?igshid=YmMyMTA2M2Y=">basil pulikuth</a></li>
-               </ul>
-            </div>
-
-            <div class="footer-col">
-               <h4>follow us</h4>
-               <div class="social-links">
-                  <a href="#"><i class="fab fa-whatsapp"></i></a>
-                  <a href="#"><i class="fab fa-twitter"></i></a>
-                  <a href="#"><i class="fab fa-instagram"></i></a>
-                  <a href="https://discord.gg/9JAkUhMKjc"><i class="fab fa-discord"></i></a>
-               </div>
-            </div>
-
-         </div>
-      </div>
-   </footer>
-
-   <!---------------------------footer end--------------------------->
-
-
-
-   <script type="module" src="js/app.js"></script>
-</body>
-
+       
+      </nav>
+    </header>
+  </body>
 </html>
