@@ -355,6 +355,123 @@ img {
   text-align: center;
 }
 
+/*=============== Char Cards ===============*/
+
+#charDiv {
+  width: 400px;
+  height: 450px;
+  /* background-color: #7c1f0d; py */
+  /* background-color: #370761; elct */
+  /* background-color: #0082b9 ; cryo */
+  /* background-color: #039da0; animo   */
+  /* background-color: #278a2d; dend*/
+  /* background-color:#1552c5; hyd */
+  /* background-color:#97830f; geo */
+  margin: 20px;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 15px;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.cardDarkColor{
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 5px;
+  /* margin: 5px; */
+}
+
+.charCardCol1 {
+  width: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  text-align: center;
+}
+
+.charCardCol2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 230px;
+  margin-left: 15px;
+}
+
+.charIcon {
+  height: 100px;
+}
+
+.weaponImg {
+  width: 60px;
+}
+
+.charDivRow1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 150px;
+}
+
+.charDivRow2 {
+  height: 60px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+
+}
+
+.charStatsInfoCol1 {
+  width: 75px;
+}
+
+.talentImg {
+  width: 35px;
+}
+
+.charConstl {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/*? giving a frame to constellation of chars */
+
+.conslCircle {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.constlImg1 {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 50px;
+}
+
+.constlImg2 {
+  position: absolute;
+  top: 8px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  width: 40px;
+}
+
+.lockIcon {
+  position: absolute;
+  top: 13px;
+  left: 14px;
+  font-size: 25px;
+  color: white;
+}
+
 .footer {
   background-color: #24262b;
   color: white;
