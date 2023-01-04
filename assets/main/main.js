@@ -16,7 +16,7 @@ if (navClose) {
 // Remove menu on mobile
 
 const navLinks = document.querySelectorAll('.nav__link')
-console.log(navLinks)
+// console.log(navLinks)
 navLinks.forEach((navLink) => {
     navLink.addEventListener('click', () => {
         navMenu.classList.remove('show-menu')
@@ -58,15 +58,12 @@ window.addEventListener('scroll', scrollUp);
 // calculator 
 
 // character json file
-import charJson from './json/chars.json'assert {
+import charJson from '../jsons/chars.json'assert {
     type: 'json'
  }
- import nameJson from './json/loc.json'assert {
+ import nameJson from '../jsons/loc.json'assert {
     type: 'json'
  }
-
- 
- 
 
 // ? Damage calculator
 
