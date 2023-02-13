@@ -30,7 +30,7 @@ function scrollHeader() {
 }
 window.addEventListener('scroll', scrollHeader)
 
-// !------------------------------------------------------------
+
 const sections = document.querySelectorAll('section')
 
 function scrollActive() {
@@ -59,6 +59,12 @@ function scrollUp() {
 }
 window.addEventListener('scroll', scrollUp);
 
+// let data = await fetch(`https://enka.network/api/uid/618285856`)
+// let json = await data.json()
+// console.log(json);
+// // let da = https://enka.network/api/uid/618285856
+// // console.log(data);
+
 // !------------------------------------------------------------
 
 // calculator 
@@ -85,7 +91,7 @@ class DmgCalc {
 
    // * get data by player id
    getData = async () => {
-      let data = await fetch(`https://enka.network/u/${this.uid}/__data.json`)
+      let data = await fetch(`https://enka.network/api/uid/${this.uid}`)
       let json = await data.json()
       console.log(json);
       this.playerData = json
@@ -308,3 +314,5 @@ uidBtn.addEventListener('click', async () => {
    let fetchedCharData = await player.filterCharData(fetchedData)
    player.displayData(fetchedCharData)
 })
+
+// !------------------------------------------------------------
