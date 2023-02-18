@@ -309,19 +309,22 @@ img {
   border-radius: 0px 0px 15px 15px;
 }
 
-.calculator__container {
+/*=============== Char Container ===============*/
+
+
+.char__container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   background-color: var(--lightGreen);
   border-radius: 20px;
   padding: 1.5rem;
 }
-.calculator__container article img {
+.char__container article img {
   border-radius: 15px;
 }
-.calculator__container .input__box {
+.char__container .input__box {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -329,7 +332,7 @@ img {
   flex-wrap: wrap;
   column-gap: 0.25rem;
 }
-.calculator__container .input__box input {
+.char__container .input__box input {
   padding: 1rem 1rem;
   color: var(--darkGreen);
   font-size: 1rem;
@@ -337,17 +340,17 @@ img {
   outline: none;
   border-radius: 10px;
 }
-.calculator__container .input__box button {
+.char__container .input__box button {
   border-radius: 10px;
   border: none;
   border: 1px solid var(--mediumGreen);
   outline: none;
   color: var(--mediumGreen);
 }
-.calculator__container .input__box button i {
+.char__container .input__box button i {
   color: var(--darkGreen);
 }
-.calculator__container .cardDarkColor {
+.char__container .cardDarkColor {
   background-color: rgba(0, 0, 0, 0.15);
   font-weight: 550;
   border-radius: 10px;
@@ -356,6 +359,15 @@ img {
 }
 
 /*=============== Char Cards ===============*/
+
+#chars--container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  color: #fff;
+}
 
 #charDiv {
   width: 400px;
@@ -367,13 +379,13 @@ img {
   /* background-color: #278a2d; dend*/
   /* background-color:#1552c5; hyd */
   /* background-color:#97830f; geo */
-  margin: 20px;
+  /* margin: 20px; */
   border-radius: 20px;
   padding: 10px;
+  margin: 10000px 0;
   font-size: 15px;
-  color: white;
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   flex-direction: column;
 }
 .cardDarkColor{

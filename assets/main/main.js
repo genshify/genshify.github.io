@@ -67,7 +67,7 @@ window.addEventListener('scroll', scrollUp);
 
 // !------------------------------------------------------------
 
-// calculator 
+// char 
 
 // character json file
 import charJson from '../jsons/chars.json'assert {
@@ -77,9 +77,9 @@ import charJson from '../jsons/chars.json'assert {
     type: 'json'
  }
 
-// ? Damage calculator
+// ? Damage char
 
-const chars = document.querySelector('#chars')
+const chars = document.querySelector('#chars--container')
 const uidInput = document.querySelector('#uidInput')
 const uidBtn = document.querySelector('#uidBtn')
 
@@ -91,7 +91,8 @@ class DmgCalc {
 
    // * get data by player id
    getData = async () => {
-      let data = await fetch(`https://enka.network/api/uid/${this.uid}`)
+      // let data = await fetch(`https://enka.network/api/uid/${this.uid}`)
+      let data = await fetch(`https://enka.network/api/uid/${840889067}`)
       let json = await data.json()
       console.log(json);
       this.playerData = json
@@ -223,14 +224,14 @@ class DmgCalc {
                </div>
                <div class="charStatsInfo charCardCol2 cardDarkColor">
                   <div class="charStatsInfoCol1">
-                     <p>HP : ${ Math.floor(fightProp[2000])}</p>
-                     <p>ATK : ${ Math.floor(fightProp[2001])}</p>
-                     <p>def : ${ Math.floor(fightProp[2002])}</p>
+                     <p>Hp : ${ Math.floor(fightProp[2000])}</p>
+                     <p>Atk : ${ Math.floor(fightProp[2001])}</p>
+                     <p>Def : ${ Math.floor(fightProp[2002])}</p>
                      <p>Em : ${ Math.floor(fightProp[28])}</p>
                   </div>
                   <div class="charStatsInfoCol2">
-                     <p>Cr Rate : ${ Math.floor(fightProp[20] * 100)}%</p>
-                     <p>Cr Dmg : ${ Math.floor(fightProp[22] * 100)}%</p>
+                     <p>Cr : ${ Math.floor(fightProp[20] * 100)}%</p>
+                     <p>Cd : ${ Math.floor(fightProp[22] * 100)}%</p>
                      <p>Er : ${ Math.floor(fightProp[23] * 100)}%</p>
                      <p>${elementDetails.name}%: ${elementDetails.dmg}%</p>
                   </div>
@@ -284,9 +285,6 @@ class DmgCalc {
                   <i class="constl6 lockIcon fas fa-lock"></i>
                   </div>
                </div>
-            </div>
-            <div class="charDivRow4">
-               <p>Avrg Dmg : 60000</p>
             </div>
          </div>`
 
