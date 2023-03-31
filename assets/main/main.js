@@ -77,6 +77,16 @@ import charJson from '../jsons/chars.json'assert {
     type: 'json'
  }
 
+//  fetch("../jsons/chars.json")
+// .then(response =>  response.json())
+// .then(data => charJson = data);
+
+//  fetch("../jsons/loc.json")
+// .then(response => {
+//    return response.json();
+// })
+// .then(data => nameJson = data);
+
 // ? Damage char
 
 const chars = document.querySelector('#chars--container')
