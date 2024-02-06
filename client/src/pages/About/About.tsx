@@ -1,4 +1,4 @@
-import nahida from "../../assets/images/nahida-max.webp"
+import nahida from "../../assets/images/chars/nahida-max.webp"
 export default function About() {
   return (
     <div className="about__container grid">

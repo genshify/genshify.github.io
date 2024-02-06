@@ -1,38 +1,45 @@
 import "./Navbar.css";
+import { Link } from "react-router-dom";
+import logo from "../../assets/images/logo/Genshify_logo_for_Light.png";
 export default function navbar() {
     return (
-      <div>
+      <div className="header">
         <nav className="nav container">
           <a href="#" className="nav__logo">
-            <img src="./assets/images/logo/Genshify_logo_for_Light.png" alt="" />
+            <img src={logo} alt="GENSHIFY" />
           </a>
   
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item">
-                <a href="#home" className="nav__link active-link">
+              <Link to="" className="nav__link ">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav__item">
-                <a href="#about" className="nav__link ">
+                <Link to="about" className="nav__link ">
                   About
-                </a>
+                </Link>
               </li>
               <li className="nav__item">
-                <a href="#banner" className="nav__link">
+              <Link to="Banner" className="nav__link ">
                   Banner
-                </a>
+                </Link>
               </li>
               <li className="nav__item">
-                <a href="#events" className="nav__link">
+              <Link to="Events" className="nav__link ">
                   Events
-                </a>
+                </Link>
               </li>
               <li className="nav__item">
-                <a href="#tips" className="nav__link">
+              <Link to="Tips" className="nav__link ">
                   Tips
-                </a>
+                </Link>
+              </li>
+              <li className="nav__item">
+              <Link to="showcase" className="nav__link ">
+                  Showcase
+                </Link>
               </li>
               <div className="nav__close" id="nav-close">
                 <i className="ri-close-line"></i>

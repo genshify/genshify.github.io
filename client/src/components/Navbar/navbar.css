@@ -1,3 +1,12 @@
+.header {
+  width: 100%;
+  background-color: var(--lightGreen);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+  transition: 0.5s;
+}
 .nav {
   height: var(--header-height);
   display: flex;
@@ -7,8 +16,8 @@
 @media screen and (max-width: 767px) {
   .nav__menu {
     position: fixed;
-    background-color: var(--lightGreen);
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+    background-color: #c7ffd3;
+    box-shadow: 0 5px 8px rgba(223, 79, 79, 0.2);
     padding: 3.5rem 0;
     width: 100%;
     top: -100%;
@@ -20,6 +29,7 @@
     z-index: var(--z-fixed);
   }
 }
+
 .nav__list {
   display: flex;
   align-items: center;

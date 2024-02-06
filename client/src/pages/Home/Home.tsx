@@ -1,5 +1,5 @@
 import "./home.css";
-import nahida from "../../assets/images/nahida-max.webp"
+import nahida from "../../assets/images/chars/nahida-max.webp"
 export default function home() {
   return (
     <div className="home">
