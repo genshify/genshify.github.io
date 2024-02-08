@@ -175,3 +175,15 @@
   .char__search{
     padding: 1rem;
   }
+
+  .char_cards_container{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+  }
+
+  .char_cards{
+    width: 300px;
+    margin: 10px;
+  }

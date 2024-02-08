@@ -1,5 +1,6 @@
 import "./showcase.css";
-
+import { testDetails } from "./test";
+import { test2 } from "./test2";
 
 
 export default function Showcase() {
@@ -32,6 +33,29 @@ export default function Showcase() {
         <p className="cardDarkColor">It will shows your character</p>
         <div id="chars--container"></div>
       </div>
+      <div>
+      {test2 && (
+        <div>
+
+        
+          <h1>{test2.player.username}'s Characters</h1>
+          <div className="char_cards_container">
+            {test2.characters.map((character, index) => (
+              <div className="char_cards" key={index}>
+                <h2>{character.name}</h2>
+                <img src={`https://enka.network/ui/${character.assets.icon}.png`} alt={character.name} />
+                <p>{character.element}</p>
+                <p>Level : {character.maxLevel}</p>
+                <h4>stats:</h4>
+                <p>hp:{Math.round(character.stats.maxHp.value)}</p>
+                <p>atk:{Math.round(character.stats.atk.value)}</p>
+                <p>def:{Math.round(character.stats.def.value)}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
     </div>
   );
 }
