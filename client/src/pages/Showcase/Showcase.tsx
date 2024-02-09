@@ -1,11 +1,12 @@
 import { useState } from "react";
 import "./showcase.css";
-import char from  "../../assets/jsons/characters.json" 
-import loc from "../../assets/jsons/loc.json" 
+import char from "../../assets/jsons/characters.json";
+import loc from "../../assets/jsons/loc.json";
 import { test2 } from "./test2";
 
 export default function Showcase() {
-
+  const charData: any = char;
+  const locData: any = loc;
   const [playerDetails, setPlayerDetails] = useState<any>(null);
   const searchPlayer = async () => {
     const uid = (document.getElementById("uidInput") as HTMLInputElement).value;
@@ -13,16 +14,19 @@ export default function Showcase() {
 
     // ? gets the character details from enka api
     try {
-      const res = await fetch(`https://enka.network/api/uid/${uid}`,)
-    const data = await res.json();
-    setPlayerDetails(data);
+      const res = await fetch(`https://enka.network/api/uid/${uid}`);
+      const data = await res.json();
+      setPlayerDetails(data);
     } catch (error) {
       console.log(error);
-      
     }
-    
   };
-  
+  const calculateStat = (baseStat: any, stat: any, statPerc: any) => {
+    if (statPerc === undefined) statPerc = 0;
+    if (stat === undefined) stat = 0;
+    if (baseStat === undefined) baseStat = 0;
+    return Math.round(baseStat * (1 + statPerc) + stat);
+  };
 
   return (
     <div className="char container section" id="char">
@@ -39,23 +43,47 @@ export default function Showcase() {
         <div id="chars--container"></div>
       </div>
       <div>
-        {playerDetails && (
+        {test2 && (
           <div>
-            <h1>{playerDetails.playerInfo.nickname}'s Characters</h1>
+            <h1>{test2.playerInfo.nickname}'s Characters</h1>
             <div className="char_cards_container">
               {test2.avatarInfoList.map((character, index) => (
                 <div className="char_cards" key={index}>
-                  <h2>{loc.en[char[character.avatarId].NameTextMapHash]}</h2>
-                  {/* <img
-                    // src={`https://enka.network/ui/${character.assets.icon}.png`}
+                  <h2>
+                    {locData.en[charData[character.avatarId].NameTextMapHash]}
+                  </h2>
+                  <img
+                    src={`https://enka.network/ui/${
+                      charData[character.avatarId].SideIconName
+                    }.png`}
                     alt={character.avatarId.toString()}
-                  /> */}
-                  <p>{character.avatarId}</p>
-                  <p>Level : {character.level}</p>
+                  />
+                  <p>Level : {character.propMap[4001].val}</p>
                   <h4>stats:</h4>
-                  <p>hp:{Math.round(character.fightPropMap[2]*character.fightPropMap[1])}</p>
-                  {/* <p>atk:{Math.round(character.stats.atk.value)}</p>
-                  <p>def:{Math.round(character.stats.def.value)}</p> */}
+                  <p>
+                    hp:
+                    {calculateStat(
+                      character.fightPropMap[2],
+                      character.fightPropMap[1],
+                      character.fightPropMap[3]
+                    )}
+                  </p>
+                  <p>
+                    atk:
+                    {calculateStat(
+                      character.fightPropMap[5],
+                      character.fightPropMap[4],
+                      character.fightPropMap[6]
+                    )}
+                  </p>
+                  <p>
+                    def:
+                    {calculateStat(
+                      character.fightPropMap[8],
+                      character.fightPropMap[7],
+                      character.fightPropMap[6]
+                    )}
+                  </p>
                 </div>
               ))}
             </div>
