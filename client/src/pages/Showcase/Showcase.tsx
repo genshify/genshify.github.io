@@ -27,7 +27,6 @@ export default function Showcase() {
     } catch (error) {
       console.log(error);
     }
-    console.log(playerDetails);
   };
   const calculateStat = (baseStat: any, stat: any, statPerc: any) => {
     if (statPerc === undefined) statPerc = 0;
@@ -61,13 +60,13 @@ export default function Showcase() {
         <div id="chars--container"></div>
       </div>
       <div>
-        {test2 && (
+        {playerDetails && (
           <div>
-            <h1>{test2.player.username}'s Characters</h1>
+            <h1>{playerDetails.player.username}'s Characters</h1>
             <div className="char_cards_container">
-              {test2.characters.map((character: character, index: number) => (
+              {playerDetails.characters.map((character: character, index: number) => (
                 <div
-                  className={`char_cards char_cards_${character.element}`}
+                  className={`char_cards bg_${character.element}`}
                   key={index}
                   onClick={() => showCharacterDetails(index)}
                 >
@@ -93,31 +92,31 @@ export default function Showcase() {
       </div>
 
       <section id="charDetails">
-        {!showChar && (
-          <div className="char__container grid">
+        {showChar && (
+          <div className={`char__container grid  bg_${playerDetails.characters[charIndex].element}`}>
             <div className="char__data">
               <h2 className="section__title">Character Details</h2>
               <div className="char__info">
                 <div>
                   <h3>Character Name</h3>
-                  <p>{test2.characters[charIndex].name}</p>
+                  <p>{playerDetails.characters[charIndex].name}</p>
                 </div>
               </div>
             </div>
             <div className="char__img">
               <img
-                src={`https://enka.network/ui/${test2.characters[charIndex].assets.icon}.png`}
-                alt={test2.characters[charIndex].name}
+                src={`https://enka.network/ui/${playerDetails.characters[charIndex].assets.icon}.png`}
+                alt={playerDetails.characters[charIndex].name}
               />
                <img
-                src={`https://enka.network/ui/${test2.characters[charIndex].equipment.weapon.assets.icon}.png`}
-                alt={test2.characters[charIndex].name}
+                src={`https://enka.network/ui/${playerDetails.characters[charIndex].equipment.weapon.assets.icon}.png`}
+                alt={playerDetails.characters[charIndex].name}
               />
             </div>
             
             <div className="char_details_stats">
-              <p>{test2.characters[charIndex].element}</p>
-              <p>{test2.characters[charIndex].equipment.weapon.name}</p>
+              <p>{playerDetails.characters[charIndex].element}</p>
+              <p>{playerDetails.characters[charIndex].equipment.weapon.name}</p>
 
 
             </div>
