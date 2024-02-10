@@ -4,8 +4,11 @@ import char from "../../assets/jsons/characters.json";
 import loc from "../../assets/jsons/loc.json";
 import { test2 } from "./test2";
 import { calculateAllStats } from "../../utils/calculations";
+import { Wrapper } from "../../enka";
+import { character } from "../../assets/interfaces/charInterface";
 
 export default function Showcase() {
+  const [showChar, setShowChar] = useState<boolean>(false);
   const [charIndex, setCharIndex] = useState<number>(0);
   const charData: any = char;
   const locData: any = loc;
@@ -13,16 +16,18 @@ export default function Showcase() {
 
   const searchPlayer = async () => {
     const uid = (document.getElementById("uidInput") as HTMLInputElement).value;
-    console.log(uid);
-
     // ? gets the character details from enka api
+
+    const { genshin } = new Wrapper();
     try {
-      const res = await fetch(`https://enka.network/api/uid/${uid}`);
-      const data = await res.json();
-      setPlayerDetails(data);
+      genshin
+        .getPlayer(uid)
+        .then((player) => setPlayerDetails(player))
+        .catch((err) => console.log(err));
     } catch (error) {
       console.log(error);
     }
+    console.log(playerDetails);
   };
   const calculateStat = (baseStat: any, stat: any, statPerc: any) => {
     if (statPerc === undefined) statPerc = 0;
@@ -34,6 +39,9 @@ export default function Showcase() {
   const showCharacterDetails = (id: number) => {
     // ? scrolls to the character details section
     setCharIndex(id);
+    setShowChar(true);
+    console.log(test2.characters[charIndex].name);
+    console.log(id);
     const element: any = document.getElementById("charDetails");
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
@@ -49,60 +57,34 @@ export default function Showcase() {
             <p>Search</p>
           </button>
         </div>
-        <p
-          className="cardDarkColor"
-          onClick={() => console.log(calculateAllStats(5))}
-        >
-          It will shows your character
-        </p>
+        <p className="cardDarkColor">It will shows your character</p>
         <div id="chars--container"></div>
       </div>
       <div>
         {test2 && (
           <div>
-            <h1>{test2.playerInfo.nickname}'s Characters</h1>
+            <h1>{test2.player.username}'s Characters</h1>
             <div className="char_cards_container">
-              {test2.avatarInfoList.map((character, index) => (
+              {test2.characters.map((character: character, index: number) => (
                 <div
-                  className="char_cards"
+                  className={`char_cards char_cards_${character.element}`}
                   key={index}
                   onClick={() => showCharacterDetails(index)}
                 >
-                  <h2>
-                    {locData.en[charData[character.avatarId].NameTextMapHash]}
-                  </h2>
-                  <img
-                    src={`https://enka.network/ui/${
-                      charData[character.avatarId].SideIconName
-                    }.png`}
-                    alt={character.avatarId.toString()}
-                  />
-                  <p>Level : {character.propMap[4001].val}</p>
-                  <h4>stats:</h4>
-                  <p>
-                    hp:
-                    {calculateStat(
-                      character.fightPropMap[2],
-                      character.fightPropMap[1],
-                      character.fightPropMap[3]
-                    )}
-                  </p>
-                  <p>
-                    atk:
-                    {calculateStat(
-                      character.fightPropMap[5],
-                      character.fightPropMap[4],
-                      character.fightPropMap[6]
-                    )}
-                  </p>
-                  <p>
-                    def:
-                    {calculateStat(
-                      character.fightPropMap[8],
-                      character.fightPropMap[7],
-                      character.fightPropMap[6]
-                    )}
-                  </p>
+                  <h2>{character.name}</h2>
+                  <div className="char_card_stats_container">
+                    <img
+                      src={`https://enka.network/ui/${character.assets.sideIcon}.png`}
+                      alt={character.name}
+                    />
+                    <div className="char_card_stats">
+                      <p>{character.element}</p>
+                      <p>Level : {character.maxLevel}</p>
+                      <p>hp:{Math.round(character.stats.maxHp.value)}</p>
+                      <p>atk:{Math.round(character.stats.atk.value)}</p>
+                      <p>def:{Math.round(character.stats.def.value)}</p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -111,29 +93,33 @@ export default function Showcase() {
       </div>
 
       <section id="charDetails">
-        {charIndex && (
+        {!showChar && (
           <div className="char__container grid">
             <div className="char__data">
               <h2 className="section__title">Character Details</h2>
               <div className="char__info">
                 <div>
                   <h3>Character Name</h3>
-                  <p>
-                    {
-                      locData.en[
-                        charData[test2.avatarInfoList[charIndex].avatarId]
-                          .NameTextMapHash
-                      ]
-                    }
-                  </p>
+                  <p>{test2.characters[charIndex].name}</p>
                 </div>
               </div>
             </div>
             <div className="char__img">
-              {/* <img
-                src={`https://enka.network/ui/${charData[charIndex].SideIconName}.png`}
-                alt={charData[charIndex].NameTextMapHash}
-              /> */}
+              <img
+                src={`https://enka.network/ui/${test2.characters[charIndex].assets.icon}.png`}
+                alt={test2.characters[charIndex].name}
+              />
+               <img
+                src={`https://enka.network/ui/${test2.characters[charIndex].equipment.weapon.assets.icon}.png`}
+                alt={test2.characters[charIndex].name}
+              />
+            </div>
+            
+            <div className="char_details_stats">
+              <p>{test2.characters[charIndex].element}</p>
+              <p>{test2.characters[charIndex].equipment.weapon.name}</p>
+
+
             </div>
           </div>
         )}

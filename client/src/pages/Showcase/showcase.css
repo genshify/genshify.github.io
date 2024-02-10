@@ -184,6 +184,42 @@
   }
 
   .char_cards{
+    padding: 1rem;
+    border-radius: 60px;
     width: 300px;
     margin: 10px;
+    background: var(--lightGreen);
   }
+  .char_cards_Pyro{
+    background: rgb(237, 143, 143);
+  }
+  .char_cards_Hydro{
+    background: rgb(135, 164, 233);
+  }
+  .char_cards_Cryo{
+    background: rgb(193, 246, 243);
+  }
+  .char_cards_Electro{
+    background: rgb(228, 116, 185);
+  }
+  .char_cards_Anemo{
+    background: rgb(193, 246, 203);
+  }
+  .char_cards_Geo{
+    background: rgb(246, 245, 172);
+  }
+  .char_cards_Dendro{
+    background: rgb(86, 255, 89);
+  }
+
+
+  .char_card_stats{
+    display: flex;
+    flex-direction: column;
+    align-self: self-end;
+  }
+  
+  .char_card_stats_container{
+    display: flex;
+  }
+  

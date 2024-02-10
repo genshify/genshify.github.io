@@ -1,6 +1,6 @@
 import { AssetFinderOptions, WrapperOptions } from "../../types";
 import { PackageError, AssetFinderError } from "../../errors";
-import { RequestHandler, CacheHandler } from "../../handlers";
+import { RequestHandler} from "../../handlers";
 import {
   PlayerData,
   HoyoBuilds,
@@ -80,17 +80,17 @@ export class GenshinClient {
       throw new PackageError("The UID parameter is missing");
     if (!this.languages.includes(language))
       throw new AssetFinderError("Invalid or not available language.");
+    this.caching = false;
+    const cacheClient =  undefined;
 
-    const cacheClient = this.caching == true ? new CacheHandler() : undefined;
+    // cacheClient?.setupCacheDirectory();
 
-    cacheClient?.setupCacheDirectory();
-
-    const cache = cacheClient?.get(`player-${uid}`);
-    if (cache != undefined)
-      return new PlayerData(cache, language as AssetFinderOptions["language"]);
+    // const cache = cacheClient?.get(`player-${uid}`);
+    // if (cache != undefined)
+    //   return new PlayerData(cache, language as AssetFinderOptions["language"]);
 
     const data = await this.handler.player(uid, "genshin");
-    cacheClient?.set(`player-${uid}`, data);
+    // cacheClient?.set(`player-${uid}`, data);
 
     return new PlayerData(data, language as AssetFinderOptions["language"]);
   }
