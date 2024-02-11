@@ -223,3 +223,25 @@
     display: flex;
   }
   
+  .char__details__container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .char__data__const{
+  display: flex;
+  flex-direction: row;
+  }
+
+  .char__data__const img {
+    margin: 4px;
+    align-self: self-start;
+    background-color: gray;
+    border-radius: 100%;
+    height: 50px;
+    width: 50px;
+  }
+  .char__img__container{
+    display: flex;
+  }
