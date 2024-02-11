@@ -515,6 +515,27 @@ export const test2 = {
             icon: "UI_Talent_S_Hutao_03",
           },
         },
+        {
+          id: 461,
+          name: "Crimson Bouquet",
+          assets: {
+            icon: "UI_Talent_S_Hutao_03",
+          },
+        },
+        {
+          id: 461,
+          name: "Crimson Bouquet",
+          assets: {
+            icon: "UI_Talent_S_Hutao_03",
+          },
+        },
+        {
+          id: 461,
+          name: "Crimson Bouquet",
+          assets: {
+            icon: "UI_Talent_S_Hutao_03",
+          },
+        },
       ],
       skillDepotId: 4601,
       inherentProudSkillList: [462101, 462201, 462301],

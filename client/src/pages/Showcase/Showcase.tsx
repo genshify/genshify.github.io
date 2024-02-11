@@ -1,17 +1,12 @@
 import { useState } from "react";
 import "./showcase.css";
-import char from "../../assets/jsons/characters.json";
-import loc from "../../assets/jsons/loc.json";
 import { test2 } from "./test2";
-import { calculateAllStats } from "../../utils/calculations";
 import { Wrapper } from "../../enka";
 import { character } from "../../assets/interfaces/charInterface";
 
 export default function Showcase() {
   const [showChar, setShowChar] = useState<boolean>(false);
   const [charIndex, setCharIndex] = useState<number>(0);
-  const charData: any = char;
-  const locData: any = loc;
   const [playerDetails, setPlayerDetails] = useState<any>(null);
 
   const searchPlayer = async () => {
@@ -28,12 +23,12 @@ export default function Showcase() {
       console.log(error);
     }
   };
-  const calculateStat = (baseStat: any, stat: any, statPerc: any) => {
-    if (statPerc === undefined) statPerc = 0;
-    if (stat === undefined) stat = 0;
-    if (baseStat === undefined) baseStat = 0;
-    return Math.round(baseStat * (1 + statPerc) + stat);
-  };
+  // const calculateStat = (baseStat: any, stat: any, statPerc: any) => {
+  //   if (statPerc === undefined) statPerc = 0;
+  //   if (stat === undefined) stat = 0;
+  //   if (baseStat === undefined) baseStat = 0;
+  //   return Math.round(baseStat * (1 + statPerc) + stat);
+  // };
 
   const showCharacterDetails = (id: number) => {
     // ? scrolls to the character details section
@@ -41,7 +36,7 @@ export default function Showcase() {
     setShowChar(true);
     console.log(test2.characters[charIndex].name);
     console.log(id);
-    const element: any = document.getElementById("charDetails");
+    const element = document.getElementById("charDetails");
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -60,11 +55,11 @@ export default function Showcase() {
         <div id="chars--container"></div>
       </div>
       <div>
-        {playerDetails && (
+        {test2 && (
           <div>
-            <h1>{playerDetails.player.username}'s Characters</h1>
+            <h1>{test2.player.username}'s Characters</h1>
             <div className="char_cards_container">
-              {playerDetails.characters.map((character: character, index: number) => (
+              {test2.characters.map((character: character, index: number) => (
                 <div
                   className={`char_cards bg_${character.element}`}
                   key={index}
@@ -92,33 +87,41 @@ export default function Showcase() {
       </div>
 
       <section id="charDetails">
-        {showChar && (
-          <div className={`char__container grid  bg_${playerDetails.characters[charIndex].element}`}>
+        {!showChar && (
+          <div
+            className={`char__container  bg_${test2.characters[charIndex].element}`}
+          >
             <div className="char__data">
-              <h2 className="section__title">Character Details</h2>
-              <div className="char__info">
+              <h2>{test2.characters[charIndex].name}</h2>
+            </div>
+            <div className="char__details__container">
+              <div className="char__img__container">
                 <div>
-                  <h3>Character Name</h3>
-                  <p>{playerDetails.characters[charIndex].name}</p>
+                  <img
+                    src={`https://enka.network/ui/${test2.characters[charIndex].assets.icon}.png`}
+                    alt={test2.characters[charIndex].name}
+                  />
+                  <div className="char__data__const">
+                    {test2.characters[charIndex].constellationsList.map(
+                      (constellation) => (
+                        <img
+                          src={`https://enka.network/ui/${constellation.assets.icon}.png`}
+                          alt={test2.characters[charIndex].name}
+                        />
+                      )
+                    )}
+                  </div>
+                  <p>constellation:C{test2.characters[charIndex].constellationsList.length}</p>
                 </div>
+                <img
+                  src={`https://enka.network/ui/${test2.characters[charIndex].equipment.weapon.assets.icon}.png`}
+                  alt={test2.characters[charIndex].name}
+                />
               </div>
-            </div>
-            <div className="char__img">
-              <img
-                src={`https://enka.network/ui/${playerDetails.characters[charIndex].assets.icon}.png`}
-                alt={playerDetails.characters[charIndex].name}
-              />
-               <img
-                src={`https://enka.network/ui/${playerDetails.characters[charIndex].equipment.weapon.assets.icon}.png`}
-                alt={playerDetails.characters[charIndex].name}
-              />
-            </div>
-            
-            <div className="char_details_stats">
-              <p>{playerDetails.characters[charIndex].element}</p>
-              <p>{playerDetails.characters[charIndex].equipment.weapon.name}</p>
-
-
+              <div className="char_details_stats">
+                <p>{test2.characters[charIndex].element}</p>
+                <p>{test2.characters[charIndex].equipment.weapon.name}</p>
+              </div>
             </div>
           </div>
         )}
