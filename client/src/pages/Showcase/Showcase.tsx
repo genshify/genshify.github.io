@@ -3,6 +3,7 @@ import "./showcase.css";
 import { test2 } from "./test2";
 import { Wrapper } from "../../enka";
 import { character } from "../../assets/interfaces/charInterface";
+import { generateJSON } from "../../tools/genshin-optimizer/libs/good/goodDataMaker";
 
 export default function Showcase() {
   const [showChar, setShowChar] = useState<boolean>(false);
@@ -126,6 +127,7 @@ export default function Showcase() {
           </div>
         )}
       </section>
+      <button onClick={()=>generateJSON(test2)}>Click</button>
     </div>
   );
 }
