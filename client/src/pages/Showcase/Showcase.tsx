@@ -104,8 +104,9 @@ export default function Showcase() {
                   />
                   <div className="char__data__const">
                     {test2.characters[charIndex].constellationsList.map(
-                      (constellation) => (
+                      (constellation,index) => (
                         <img
+                        key={index}
                           src={`https://enka.network/ui/${constellation.assets.icon}.png`}
                           alt={test2.characters[charIndex].name}
                         />
