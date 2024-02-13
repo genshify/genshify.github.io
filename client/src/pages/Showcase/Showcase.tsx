@@ -141,22 +141,27 @@ export default function Showcase() {
             Click to generate json format
           </button>
 
-          <textarea disabled rows={20} className="jsonfield">
-            {jsonData}
-          </textarea>
           {jsonData && (
-            <button
-              id="copy"
-              onClick={() => {
-                // ? copies the json data to the clipboard
-                navigator.clipboard.writeText(jsonData);
-                // ? shows a message that the data has been copied by changine the button text to "copied to clipboard"
-                const copyBtn = document.getElementById("copy");
-                if (copyBtn) copyBtn.textContent = "Copied to Clipboard";
-              }}
-            >
-              Copy Data
-            </button>
+            <div>
+              <textarea
+                disabled
+                rows={20}
+                value={jsonData}
+                className="jsonfield"
+              ></textarea>
+              <button
+                id="copy"
+                onClick={() => {
+                  // ? copies the json data to the clipboard
+                  navigator.clipboard.writeText(jsonData);
+                  // ? shows a message that the data has been copied by changine the button text to "copied to clipboard"
+                  const copyBtn = document.getElementById("copy");
+                  if (copyBtn) copyBtn.textContent = "Copied to Clipboard";
+                }}
+              >
+                Copy Data
+              </button>
+            </div>
           )}
         </div>
       )}
