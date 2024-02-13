@@ -166,5 +166,5 @@ export const generateJSON = (data: PlayerData) => {
 
   // Convert data object to JSON string
   const jsonData = JSON.stringify(goodData, null, 2);
-  console.log(jsonData);
+  return jsonData;
 };

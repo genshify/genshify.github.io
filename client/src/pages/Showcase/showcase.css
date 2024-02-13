@@ -245,3 +245,11 @@
   .char__img__container{
     display: flex;
   }
+
+  .jsonfield{
+    margin-top: 2rem;
+    border: 2px solid;
+    padding: 1rem;
+    width: 100%;
+  
+  }
