@@ -79,7 +79,7 @@ export class HoyoBuilds {
     this.characterName =
       data.hoyo_type == 0
         ? genshinFinder.character(this.characterId).name
-        : console.log("error000");
+        : "", console.log("error000");
         
     this.characterInfo =
       data.hoyo_type == 0

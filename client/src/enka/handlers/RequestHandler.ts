@@ -1,5 +1,5 @@
 import { WrapperOptions } from "../types";
-import { APIError, PackageError } from "../errors";
+import { APIError} from "../errors";
 
 //@ts-ignore
 // import { version } from "../../package.json";
@@ -28,7 +28,7 @@ export class RequestHandler {
    * @param uid - The UID used to get the data of the player.
    * @returns The data of the player.
    */
-  async player(uid: string | number, type: "genshin"): Promise<any> {
+  async player(uid: string | number): Promise<any> {
   //   const url = `https://enka.network/api/uid/${uid}`;
 
   //   if (!/^(18|[1-35-9])\d{8}$/.test(uid.toString()))

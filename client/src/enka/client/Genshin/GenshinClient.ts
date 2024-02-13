@@ -47,7 +47,7 @@ export class GenshinClient {
   /**
    * Enable cache system.
    */
-  private caching?: boolean;
+  // private caching?: boolean;
 
   /**
    * Creates a new `GenshinClient` instance.
@@ -60,7 +60,7 @@ export class GenshinClient {
     this.handler = new RequestHandler(options);
 
     this.language = options?.language || "en";
-    this.caching = options?.cache;
+    // this.caching = options?.cache;
 
     if (!this.languages.includes(this.language))
       throw new AssetFinderError("Invalid or not available language.");
@@ -80,8 +80,8 @@ export class GenshinClient {
       throw new PackageError("The UID parameter is missing");
     if (!this.languages.includes(language))
       throw new AssetFinderError("Invalid or not available language.");
-    this.caching = false;
-    const cacheClient =  undefined;
+    // this.caching = false;
+    // const cacheClient =  undefined;
 
     // cacheClient?.setupCacheDirectory();
 
@@ -89,7 +89,7 @@ export class GenshinClient {
     // if (cache != undefined)
     //   return new PlayerData(cache, language as AssetFinderOptions["language"]);
 
-    const data = await this.handler.player(uid, "genshin");
+    const data = await this.handler.player(uid);
     // cacheClient?.set(`player-${uid}`, data);
 
     return new PlayerData(data, language as AssetFinderOptions["language"]);
