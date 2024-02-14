@@ -1,181 +1,196 @@
-/*=============== Char Container ===============*/
+button {
+  background-color: var(--darkGreen);
+  border-radius: 10px;
+  border: 1px solid var(--mediumGreen);
+  outline: none;
+  color: var(--mediumGreen);
+  padding: 1rem;
+}
+button:hover {
+  background-color: var(--mediumGreen);
+  color: var(--darkGreen);
+}
 
+/* =============== search field =============== */
+.search__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--lightGreen);
+  border-radius: 20px;
+  padding: 1.5rem;
+}
 
-.char__container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    background-color: var(--lightGreen);
-    border-radius: 20px;
-    padding: 1.5rem;
-  }
-  .char__container article img {
-    border-radius: 15px;
-  }
-  .char__container .input__box {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    row-gap: 1rem;
-    flex-wrap: wrap;
-    column-gap: 0.25rem;
-  }
-  .char__container .input__box input {
-    padding: 1rem 1rem;
-    color: var(--darkGreen);
-    font-size: 1rem;
-    border: 1px solid var(--mediumGreen);
-    outline: none;
-    border-radius: 10px;
-  }
-  .char__container .input__box button {
-    border-radius: 10px;
-    border: none;
-    border: 1px solid var(--mediumGreen);
-    outline: none;
-    color: var(--mediumGreen);
-  }
-  .char__container .input__box button i {
-    color: var(--darkGreen);
-  }
-  .char__container .cardDarkColor {
-    background-color: rgba(0, 0, 0, 0.15);
-    font-weight: 550;
-    border-radius: 10px;
-    padding: 0.7rem 1.2rem;
-    text-align: center;
-  }
-  
-  /*=============== Char Cards ===============*/
-  
-  #chars--container{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 3rem;
-    color: #fff;
-  }
-  
-  #charDiv {
-    width: 400px;
-    height: 450px;
-    /* background-color: #7c1f0d; py */
-    /* background-color: #370761; elct */
-    /* background-color: #0082b9 ; cryo */
-    /* background-color: #039da0; animo   */
-    /* background-color: #278a2d; dend*/
-    /* background-color:#1552c5; hyd */
-    /* background-color:#97830f; geo */
-    /* margin: 20px; */
-    border-radius: 20px;
-    padding: 10px;
-    margin: 10000px 0;
-    font-size: 15px;
-    display: flex;
-    /* justify-content: space-around; */
-    flex-direction: column;
-  }
-  .cardDarkColor{
-    background-color: rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    padding: 5px;
-    /* margin: 5px; */
-  }
-  
-  .charCardCol1 {
-    width: 130px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    /* flex-wrap: wrap; */
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .charCardCol2 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 230px;
-    margin-left: 15px;
-  }
-  
-  .charIcon {
-    height: 100px;
-  }
-  
-  .weaponImg {
-    width: 60px;
-  }
-  
-  .charDivRow1 {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    height: 150px;
-  }
-  
-  .charDivRow2 {
-    height: 60px;
-    margin-top: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    position: relative;
-  
-  }
-  
-  .charStatsInfoCol1 {
-    width: 75px;
-  }
-  
-  .talentImg {
-    width: 35px;
-  }
-  
-  .charConstl {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-  }
-  
-  /*? giving a frame to constellation of chars */
-  
-  .conslCircle {
-    position: relative;
-    top: 0;
-    left: 0;
-  }
-  
-  .constlImg1 {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 50px;
-  }
-  
-  .constlImg2 {
-    position: absolute;
-    top: 8px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    width: 40px;
-  }
-  
-  .lockIcon {
-    position: absolute;
-    top: 13px;
-    left: 14px;
-    font-size: 25px;
-    color: white;
-  }
-  .char__search{
-    padding: 1rem;
-  }
+.search__container .input__box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  row-gap: 1rem;
+  flex-wrap: wrap;
+  column-gap: 0.25rem;
+}
+.search__container .input__box input {
+  padding: 1rem 1rem;
+  color: var(--darkGreen);
+  font-size: 1rem;
+  border: 1px solid var(--mediumGreen);
+  outline: none;
+  border-radius: 10px;
+}
 
+/*=============== Char Cards ===============*/
+
+#chars--container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  color: #fff;
+}
+.char_cards_container {
+  display: grid;
+  grid-template-columns: auto auto;
+  flex-wrap: wrap;
+  color: #fff;
+  column-gap: 0.5rem;
+  row-gap: 0.5rem;
+}
+/* 4 column for bigger screens */
+
+.char_cards {
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 15px;
+  display: flex;
+}
+.char_card_stats {
+  display: flex;
+  flex-direction: column;
+  align-self: self-end;
+}
+
+.char_card_stats_container {
+  display: flex;
+}
+.bg_Pyro {
+  background: rgb(237, 143, 143);
+}
+.bg_Hydro {
+  background: rgb(135, 164, 233);
+}
+.bg_Cryo {
+  background: rgb(193, 246, 243);
+}
+.bg_Electro {
+  background: rgb(228, 116, 185);
+}
+.bg_Anemo {
+  background: rgb(193, 246, 203);
+}
+.bg_Geo {
+  background: rgb(246, 245, 172);
+}
+.bg_Dendro {
+  background: rgb(86, 255, 89);
+}
+.cardDarkColor {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 5px;
+  /* margin: 5px; */
+}
+
+.charCardCol1 {
+  width: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  text-align: center;
+}
+
+.charCardCol2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 230px;
+  margin-left: 15px;
+}
+
+.charIcon {
+  height: 100px;
+}
+
+.weaponImg {
+  width: 60px;
+}
+
+.charDivRow1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 150px;
+}
+
+.charDivRow2 {
+  height: 60px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+}
+
+.charStatsInfoCol1 {
+  width: 75px;
+}
+
+.talentImg {
+  width: 35px;
+}
+
+.charConstl {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/*? giving a frame to constellation of chars */
+
+.conslCircle {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.constlImg1 {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 50px;
+}
+
+.constlImg2 {
+  position: absolute;
+  top: 8px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  width: 40px;
+}
+
+.lockIcon {
+  position: absolute;
+  top: 13px;
+  left: 14px;
+  font-size: 25px;
+  color: white;
+}
+
+/* 
   .char_cards_container{
     display: flex;
     align-items: center;
@@ -190,66 +205,38 @@
     margin: 10px;
     background: var(--lightGreen);
   }
-  .bg_Pyro{
-    background: rgb(237, 143, 143);
-  }
-  .bg_Hydro{
-    background: rgb(135, 164, 233);
-  }
-  .bg_Cryo{
-    background: rgb(193, 246, 243);
-  }
-  .bg_Electro{
-    background: rgb(228, 116, 185);
-  }
-  .bg_Anemo{
-    background: rgb(193, 246, 203);
-  }
-  .bg_Geo{
-    background: rgb(246, 245, 172);
-  }
-  .bg_Dendro{
-    background: rgb(86, 255, 89);
-  }
+  
 
 
-  .char_card_stats{
-    display: flex;
-    flex-direction: column;
-    align-self: self-end;
-  }
-  
-  .char_card_stats_container{
-    display: flex;
-  }
-  
-  .char__details__container{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .char__data__const{
+ 
+  } */
+
+.char__details__container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.char__data__const {
   display: flex;
   flex-direction: row;
-  }
+}
 
-  .char__data__const img {
-    margin: 4px;
-    align-self: self-start;
-    background-color: gray;
-    border-radius: 100%;
-    height: 50px;
-    width: 50px;
-  }
-  .char__img__container{
-    display: flex;
-  }
+.char__data__const img {
+  margin: 4px;
+  align-self: self-start;
+  background-color: gray;
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+}
+.char__img__container {
+  display: flex;
+}
 
-  .jsonfield{
-    margin-top: 2rem;
-    border: 2px solid;
-    padding: 1rem;
-    width: 100%;
-  
-  }
+.jsonfield {
+  margin-top: 2rem;
+  border: 2px solid;
+  padding: 1rem;
+  width: 100%;
+}
