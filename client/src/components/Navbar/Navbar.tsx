@@ -1,4 +1,4 @@
-import "./Navbar.css";
+import "./navbar.css";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo/Genshify_logo_for_Light.png";
 export default function navbar() {
