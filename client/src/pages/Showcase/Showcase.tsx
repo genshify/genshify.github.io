@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./showcase.css";
-import {PlayerData, Wrapper } from "../../enka";
+import { PlayerData, Wrapper } from "../../enka";
 import { generateJSON } from "../../tools/genshin-optimizer/libs/good/goodDataMaker";
 import { test2 } from "./test2";
 
@@ -106,7 +106,7 @@ export default function Showcase() {
                       <p>
                         Er :{" "}
                         {Math.round(
-                          Number(character.stats.energyRecharge.value )* 100
+                          Number(character.stats.energyRecharge.value) * 100
                         )}
                         %
                       </p>
@@ -161,177 +161,159 @@ export default function Showcase() {
                     </p>
                   </div>
                 </div>
-                {/* <div className="charDivRow3">
-                  <div className="charConstl cardDarkColor">
-                    <div className="conslCircle">
-                      <img
-                        className="constlImg1"
-                        src={`https://enka.network/ui/${character.constellationsList[0].assets.icon}.png`}
-                        alt=""
-                      />
-                      <img
-                        className="constlImg2"
-                        src={`https://enka.network/ui/${character.assets.talents.elementalBurst}.png`}
-                        alt=""
-                      />
-                      <i className=" constl1 lockIcon fas fa-lock" />
-                    </div>
-                    <div className="conslCircle">
-                      <img
-                        className="constlImg1"
-                        src="images/frames/constlFrame2.png"
-                        alt=""
-                      />
-                      <img
-                        className="constlImg2"
-                        src="https://enka.network/ui/${
-                    contslIconNames[1]
-                  }.png"
-                        alt=""
-                      />
-                      <i className="constl2 lockIcon fas fa-lock" />
-                    </div>
-                    <div className="conslCircle">
-                      <img
-                        className="constlImg1"
-                        src="images/frames/constlFrame2.png"
-                        alt=""
-                      />
-                      <img
-                        className="constlImg2"
-                        src="https://enka.network/ui/${
-                    contslIconNames[2]
-                  }.png"
-                        alt=""
-                      />
-                      <i className="constl3 lockIcon fas fa-lock" />
-                    </div>
-                    <div className="conslCircle">
-                      <img
-                        className="constlImg1"
-                        src="images/frames/constlFrame2.png"
-                        alt=""
-                      />
-                      <img
-                        className="constlImg2"
-                        src="https://enka.network/ui/${
-                    contslIconNames[3]
-                  }.png"
-                        alt=""
-                      />
-                      <i className="constl4 lockIcon fas fa-lock" />
-                    </div>
-                    <div className="conslCircle">
-                      <img
-                        className="constlImg1"
-                        src="images/frames/constlFrame2.png"
-                        alt=""
-                      />
-                      <img
-                        className="constlImg2"
-                        src="https://enka.network/ui/${
-                    contslIconNames[4]
-                  }.png"
-                        alt=""
-                      />
-                      <i className="constl5 lockIcon fas fa-lock" />
-                    </div>
-                    <div className="conslCircle">
-                      <img
-                        className="constlImg1"
-                        src="images/frames/constlFrame2.png"
-                        alt=""
-                      />
-                      <img
-                        className="constlImg2"
-                        src="https://enka.network/ui/${
-                    contslIconNames[5]
-                  }.png"
-                        alt=""
-                      />
-                      <i className="constl6 lockIcon fas fa-lock" />
-                    </div>
-                  </div>
-                </div> */}
               </div>
             ))}
           </div>
         </div>
       )}
-      {/* <div>
-        {test2 && (
-          <div>
-            <h1>{test2.player.username}'s Characters</h1>
-            <div className="char_cards_container">
-              {test2.characters.map((character: Characters, index: number) => (
-                <div
-                  className={`char_cards bg_${character.element}`}
-                  key={index}
-                  onClick={() => showCharacterDetails(index)}
-                >
-                  <h2>{character.name}</h2>
-                  <div className="char_card_stats_container">
-                    <img
-                      src={`https://enka.network/ui/${character.assets.sideIcon}.png`}
-                      alt={character.name}
-                    />
-                    <div className="char_card_stats">
-                      <p>{character.element}</p>
-                      <p>Level : {character.maxLevel}</p>
-                      <p>
-                        hp:{Math.round(Number(character.stats.maxHp.value))}
-                      </p>
-                      <p>atk:{Math.round(Number(character.stats.atk.value))}</p>
-                      <p>def:{Math.round(Number(character.stats.def.value))}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-      </div> */}
 
       {/* selected character details section */}
       <section id="charDetails">
         {showChar && test2 && (
           <div
-            className={`char__container  bg_${test2.characters[charIndex].element}`}
+            className={`char__details bg_${test2.characters[charIndex].element}`}
           >
-            <div className="char__data">
-              <h2>{test2.characters[charIndex].name}</h2>
-            </div>
-            <div className="char__details__container">
-              <div className="char__img__container">
-                <div>
-                  <img
-                    src={`https://enka.network/ui/${test2.characters[charIndex].assets.icon}.png`}
-                    alt={test2.characters[charIndex].name}
-                  />
-                  <div className="char__data__const">
-                    {test2.characters[charIndex].constellationsList.map(
-                      (constellation, index: number) => (
-                        <img
-                          key={index}
-                          src={`https://enka.network/ui/${constellation.assets.icon}.png`}
-                          alt={test2.characters[charIndex].name}
-                        />
+            <div className="charDivRow1">
+              <div className="charCardCol1 charIconName cardDarkColor">
+                <img
+                  className="charIcon"
+                  src={`https://enka.network/ui/${test2.characters[charIndex].assets.icon}.png`}
+                />
+                <p className="charName">{test2.characters[charIndex].name}</p>
+                <p className="charLvl">
+                  {test2.characters[charIndex].maxLevel}
+                </p>
+              </div>
+              <div className="charStatsInfo charCardCol2 cardDarkColor">
+                <div className="charStatsInfoCol1">
+                  <p>
+                    hp:
+                    {Math.round(
+                      Number(test2.characters[charIndex].stats.maxHp.value)
+                    )}
+                  </p>
+                  <p>
+                    Atk :{" "}
+                    {Math.round(
+                      Number(test2.characters[charIndex].stats.atk.value)
+                    )}
+                  </p>
+                  <p>
+                    Def :{" "}
+                    {Math.round(
+                      Number(test2.characters[charIndex].stats.def.value)
+                    )}
+                  </p>
+                  <p>
+                    Em :{" "}
+                    {Math.round(
+                      Number(
+                        test2.characters[charIndex].stats.elementalMastery.value
                       )
                     )}
-                  </div>
-                  <p>
-                    constellation:C
-                    {test2.characters[charIndex].constellationsList.length}
                   </p>
                 </div>
-                <img
-                  src={`https://enka.network/ui/${test2.characters[charIndex].equipment.weapon.assets.icon}.png`}
-                  alt={test2.characters[charIndex].name}
-                />
+                <div className="charStatsInfoCol2">
+                  <p>
+                    Cr :{" "}
+                    {Math.round(
+                      Number(test2.characters[charIndex].stats.critRate.value) *
+                        100
+                    )}
+                    %
+                  </p>
+                  <p>
+                    Cd :{" "}
+                    {Math.round(
+                      Number(
+                        test2.characters[charIndex].stats.critDamage.value
+                      ) * 100
+                    )}
+                    %
+                  </p>
+                  <p>
+                    Er :{" "}
+                    {Math.round(
+                      Number(
+                        test2.characters[charIndex].stats.energyRecharge.value
+                      ) * 100
+                    )}
+                    %
+                  </p>
+                  <p>
+                    {test2.characters[charIndex].element}dmg% :{" "}
+                    {Math.round(
+                      Number(
+                        test2.characters[charIndex].stats.pyroDamageBonus.value
+                      ) * 100
+                    )}
+                    %
+                  </p>
+                </div>
               </div>
-              <div className="char_details_stats">
-                <p>{test2.characters[charIndex].element}</p>
-                <p>{test2.characters[charIndex].equipment.weapon.name}</p>
+            </div>
+            <div className="charDivRow2">
+              <div className="charWeapon charCardCol1 cardDarkColor">
+                <p className="weaponP">
+                  <img
+                    className=" weaponImg"
+                    src={`https://enka.network/ui/${test2.characters[charIndex].equipment.weapon.assets.icon}.png`}
+                    alt=""
+                  />
+                  {test2.characters[charIndex].equipment.weapon.level}
+                </p>
+                <p className="weaponName">
+                  {test2.characters[charIndex].equipment.weapon.name}
+                </p>
+              </div>
+              <div className="charCardCol2 cardDarkColor">
+                <p className="talentP">
+                  <img
+                    className="talentImg"
+                    src={`https://enka.network/ui/${test2.characters[charIndex].assets.talents.normalAttack}.png`}
+                    alt=""
+                  />
+                  {test2.characters[charIndex].skills.normalAttacks.level}
+                </p>
+                <p className="talentP">
+                  <img
+                    className="talentImg"
+                    src={`https://enka.network/ui/${test2.characters[charIndex].assets.talents.elementalSkill}.png`}
+                    alt=""
+                  />
+                  {test2.characters[charIndex].skills.elementalSkill.level}
+                </p>
+                <p className="talentP">
+                  <img
+                    className="talentImg"
+                    src={`https://enka.network/ui/${test2.characters[charIndex].assets.talents.elementalBurst}.png`}
+                    alt=""
+                  />
+                  {test2.characters[charIndex].skills.elementalBurst.level}
+                </p>
+              </div>
+            </div>
+            <div className="charDivRow3">
+              <div className="charConstl cardDarkColor">
+                {test2.player.showcase[charIndex].assets.constellations.map(
+                  (constellation, index) => (
+                    <div key={index} className="conslCircle">
+                      {test2.characters[charIndex].constellationsList[index] ? (
+                        <img
+                          className="constlImg"
+                          src={`https://enka.network/ui/${constellation}.png`}
+                          alt=""
+                        />
+                      ) : (
+                        <img
+                          className="constlImgDisabled"
+                          src={`https://enka.network/ui/${constellation}.png`}
+                          alt=""
+                        />
+                      )}
+                    </div>
+                  )
+                )}
               </div>
             </div>
           </div>
