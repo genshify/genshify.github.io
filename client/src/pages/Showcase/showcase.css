@@ -41,59 +41,82 @@ button:hover {
 
 /*=============== Char Cards ===============*/
 
-#chars--container {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-top: 3rem;
-  color: #fff;
-}
 .char_cards_container {
-  display: grid;
-  grid-template-columns: auto auto;
+  display: flex;
   flex-wrap: wrap;
   color: #fff;
   column-gap: 0.5rem;
   row-gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
 }
-/* 4 column for bigger screens */
 
-.char_cards {
-  border-radius: 20px;
-  padding: 10px;
-  font-size: 15px;
-  display: flex;
-}
-.char_card_stats {
+.charDiv{
   display: flex;
   flex-direction: column;
-  align-self: self-end;
+  padding: 1rem;
+  width: fit-content;
+  height: 350px;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 5%;
 }
 
-.char_card_stats_container {
-  display: flex;
-}
+/* character card and hover colors for each element */
 .bg_Pyro {
-  background: rgb(237, 143, 143);
+  background: rgb(199, 4, 4);
 }
+.bg_Pyro:hover {
+  background: rgb(222, 16, 16);
+  cursor: pointer;
+}
+
 .bg_Hydro {
-  background: rgb(135, 164, 233);
+  background: rgb(0, 50, 168);
 }
+.bg_Hydro:hover {
+  background: rgb(0, 50, 200);
+  cursor: pointer;
+}
+
 .bg_Cryo {
-  background: rgb(193, 246, 243);
+  background: rgb(79, 205, 250);
 }
+.bg_Cryo:hover {
+  background: rgb(115, 218, 255);
+  cursor: pointer;
+}
+
 .bg_Electro {
-  background: rgb(228, 116, 185);
+  background: rgb(213, 5, 213);
 }
+.bg_Electro:hover {
+  background: rgb(233, 33, 233);
+  cursor: pointer;
+}
+
 .bg_Anemo {
-  background: rgb(193, 246, 203);
+  background: rgb(124, 213, 140);
 }
+.bg_Anemo:hover {
+  background: rgb(165, 228, 176);
+  cursor: pointer;
+}
+
 .bg_Geo {
-  background: rgb(246, 245, 172);
+  background: rgb(239, 212, 40);
 }
+.bg_Geo:hover {
+  background: rgb(237, 234, 55);
+  cursor: pointer;
+}
+
 .bg_Dendro {
-  background: rgb(86, 255, 89);
+  background: rgb(19, 189, 22);
+}
+.bg_Dendro:hover {
+  background: rgb(38, 205, 41);
+  cursor: pointer;
 }
 .cardDarkColor {
   background-color: rgba(0, 0, 0, 0.25);
@@ -190,26 +213,7 @@ button:hover {
   color: white;
 }
 
-/* 
-  .char_cards_container{
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 3rem;
-  }
-
-  .char_cards{
-    padding: 1rem;
-    border-radius: 60px;
-    width: 300px;
-    margin: 10px;
-    background: var(--lightGreen);
-  }
-  
-
-
- 
-  } */
+/*===============Selected Char Details ===============*/
 
 .char__details__container {
   width: 100%;

@@ -51,11 +51,11 @@ export default function Showcase() {
       </div>
 
       {/* characters showcase section */}
-      {playerDetails && (
+      {test2 && (
         <div>
-          <h1>{playerDetails.player.username}'s Characters</h1>
+          <h1>{test2.player.username}'s Characters</h1>
           <div className="char_cards_container">
-            {playerDetails.characters.map((character, index) => (
+            {test2.characters.map((character, index) => (
               <div
                 key={index}
                 className={`charDiv bg_${character.element}`}
@@ -141,6 +141,7 @@ export default function Showcase() {
                         src={`https://enka.network/ui/${character.assets.talents.normalAttack}.png`}
                         alt=""
                       />
+                      {character.skills.normalAttacks.level}
                     </p>
                     <p className="talentP">
                       <img
@@ -148,6 +149,7 @@ export default function Showcase() {
                         src={`https://enka.network/ui/${character.assets.talents.elementalSkill}.png`}
                         alt=""
                       />
+                      {character.skills.elementalSkill.level}
                     </p>
                     <p className="talentP">
                       <img
@@ -155,6 +157,7 @@ export default function Showcase() {
                         src={`https://enka.network/ui/${character.assets.talents.elementalBurst}.png`}
                         alt=""
                       />
+                      {character.skills.elementalBurst.level}
                     </p>
                   </div>
                 </div>
