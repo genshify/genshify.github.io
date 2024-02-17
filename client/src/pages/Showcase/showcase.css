@@ -179,30 +179,28 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  padding: 10px;
+  width: 50%;
 }
 
 /*? giving a frame to constellation of chars */
 
 .conslCircle {
+  border: solid 2px white;
+  border-radius: 100%;
   position: relative;
   top: 0;
   left: 0;
 }
 
-.constlImg1 {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 50px;
+.constlImg {
+width: 50px;
+height: 50px;
 }
-
-.constlImg2 {
-  position: absolute;
-  top: 8px;
-  left: 5px;
-  right: 5px;
-  bottom: 5px;
-  width: 40px;
+.constlImgDisabled {
+width: 50px;
+height: 50px;
+opacity: 0.2;
 }
 
 .lockIcon {
@@ -215,11 +213,14 @@ button:hover {
 
 /*===============Selected Char Details ===============*/
 
-.char__details__container {
-  width: 100%;
+.char__details {
   display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  height: 350px;
   justify-content: space-between;
-  align-items: center;
+  border-radius: 5%;
+  color: #fff;
 }
 .char__data__const {
   display: flex;
