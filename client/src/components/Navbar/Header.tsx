@@ -243,8 +243,9 @@ function MobileHeader({
   const { t } = useTranslation("ui");
   return (
     <>
-      <AppBar position="fixed" sx={{ bgcolor: "#343a40" }} elevation={0}>
+      <AppBar position="fixed" sx={{ bgcolor: "#edfdf1" }} elevation={0}>
         <Drawer
+          className="nav__drawer"
           anchor="right"
           variant="temporary"
           open={mobileOpen}
@@ -294,7 +295,7 @@ function MobileHeader({
         <Toolbar>
           <Box flexGrow={1} />
           <IconButton
-            color="inherit"
+            color="secondary"
             aria-label="open drawer"
             edge="end"
             onClick={handleDrawerToggle}

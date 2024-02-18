@@ -2,7 +2,6 @@
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Beginner from "./pages/Beginner/Beginner";
-import Navbar from "./components/Navbar/Navbar";
 import Showcase from "./pages/Showcase/Showcase";
 import CharacterDisplay from "./tools/genshin-optimizer/app/PageCharacter/CharacterDisplay";
 import PageCharacter from "./tools/genshin-optimizer/app/PageCharacter";
@@ -22,6 +21,7 @@ import { HashRouter, Route, Routes } from "react-router-dom";
 
 import ErrorBoundary from "./tools/genshin-optimizer/app/ErrorBoundary";
 import "./App.scss";
+import "./App.css"
 
 import { Suspense, useCallback, useMemo, useState } from "react";
 import { ArtCharDatabase } from "genshin-optimizer/db";
@@ -70,9 +70,6 @@ export default function App() {
           <ErrorBoundary>
             <HashRouter basename="/">
               <Suspense fallback={null}></Suspense>
-
-              {/* navbar */}
-
               <Content/>
             </HashRouter>
           </ErrorBoundary>

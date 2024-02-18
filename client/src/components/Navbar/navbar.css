@@ -1,4 +1,7 @@
 .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   background-color: var(--lightGreen);
   position: fixed;
@@ -6,8 +9,10 @@
   left: 0;
   z-index: var(--z-fixed);
   transition: 0.5s;
+  height: 60px;
 }
 .nav {
+  width: 100%;
   height: var(--header-height);
   display: flex;
   justify-content: space-between;
@@ -29,7 +34,9 @@
     z-index: var(--z-fixed);
   }
 }
-
+.nav__drawer{
+  
+}
 .nav__list {
   display: flex;
   align-items: center;
