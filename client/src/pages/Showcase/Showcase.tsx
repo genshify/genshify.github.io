@@ -3,6 +3,8 @@ import "./showcase.css";
 import { PlayerData, Wrapper } from "../../enka";
 import { generateJSON } from "../../tools/genshin-optimizer/libs/good/goodDataMaker";
 import { test2 } from "./test2";
+import { Link } from "react-router-dom";
+import { nameSetter } from "../../tools/genshin-optimizer/libs/good/goodDataMaker";
 
 export default function Showcase() {
   const [showChar, setShowChar] = useState<boolean>(false);
@@ -221,10 +223,25 @@ export default function Showcase() {
                       )
                     )}
                   </div>
+                  <div>
+                    <Link
+                      onClick={()=>{
+                        console.log(nameSetter(test2.characters[charIndex].name));
+                        
+                      }}
+                      className="showDetailedStatsButton"
+                      to={`/characters/${nameSetter(test2.characters[charIndex].name)}`}
+                    >
+                      show detailed stats
+                    </Link>
+                  </div>
                 </div>
               </div>
             )}
           </section>
+
+          {/* showcase section containing every characters */}
+
           <div className="char_cards_container">
             {test2.characters.map((character, index) => (
               <div

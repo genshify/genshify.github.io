@@ -13,7 +13,7 @@ import {
   WeaponKey,
 } from "../consts";
 
-const nameSetter = (name: string): string => {
+export const nameSetter = (name: string): string => {
   // ? This function is used to convert the artifact name to the key
   // some artifact names contain special characters eg. "Gladiator's Finale" and we need to remove them -> "GladiatorsFinale"
   //some artifact names contain the word "of" eg. "Heart of Depth" and we need to capitalize the letter O. -> "HeartOfDepth"
