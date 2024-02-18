@@ -1,12 +1,15 @@
 import { useState } from "react";
 import "./showcase.css";
 import { PlayerData, Wrapper } from "../../enka";
-import { generateJSON } from "../../tools/genshin-optimizer/libs/good/goodDataMaker";
-import { test2 } from "./test2";
+import { generateGoodData } from "../../tools/genshin-optimizer/libs/good/goodDataMaker";
+
 import { Link } from "react-router-dom";
 import { nameSetter } from "../../tools/genshin-optimizer/libs/good/goodDataMaker";
 
+
 export default function Showcase() {
+
+  
   const [showChar, setShowChar] = useState<boolean>(false);
   const [charIndex, setCharIndex] = useState<number>(0);
   const [playerDetails, setPlayerDetails] = useState<PlayerData>();
@@ -36,7 +39,7 @@ export default function Showcase() {
   return (
     <div className="char container section">
       <h2 className="section__title-center">Character Details</h2>
-
+      <button>click</button>
       {/* search section */}
       <div className="search__container">
         <div className="input__box">
@@ -51,11 +54,11 @@ export default function Showcase() {
       </div>
 
       {/* characters showcase section */}
-      {test2 && (
+      {playerDetails && (
         <div>
-          <h1>{test2.player.username}'s Characters</h1>
+          <h1>{playerDetails.player.username}'s Characters</h1>
           <div className="charSideIconContainer">
-            {test2.characters.map((character, index) => (
+            {playerDetails.characters.map((character, index) => (
               <div
                 key={index}
                 onClick={() => showCharacterDetails(index)}
@@ -69,21 +72,21 @@ export default function Showcase() {
           </div>
           {/* selected character details section */}
           <section id="charDetails">
-            {showChar && test2 && (
+            {showChar && playerDetails && (
               <div
-                className={`char__details bg_${test2.characters[charIndex].element}`}
+                className={`char__details bg_${playerDetails.characters[charIndex].element}`}
               >
                 <div className="charDivRow1">
                   <div className="charCardCol1 charIconName cardDarkColor">
                     <img
                       className="charIcon"
-                      src={`https://enka.network/ui/${test2.characters[charIndex].assets.icon}.png`}
+                      src={`https://enka.network/ui/${playerDetails.characters[charIndex].assets.icon}.png`}
                     />
                     <p className="charName">
-                      {test2.characters[charIndex].name}
+                      {playerDetails.characters[charIndex].name}
                     </p>
                     <p className="charLvl">
-                      {test2.characters[charIndex].maxLevel}
+                      {playerDetails.characters[charIndex].maxLevel}
                     </p>
                   </div>
                   <div className="charStatsInfo charCardCol2 cardDarkColor">
@@ -91,26 +94,26 @@ export default function Showcase() {
                       <p>
                         hp:
                         {Math.round(
-                          Number(test2.characters[charIndex].stats.maxHp.value)
+                          Number(playerDetails.characters[charIndex].stats.maxHp.value)
                         )}
                       </p>
                       <p>
                         Atk :{" "}
                         {Math.round(
-                          Number(test2.characters[charIndex].stats.atk.value)
+                          Number(playerDetails.characters[charIndex].stats.atk.value)
                         )}
                       </p>
                       <p>
                         Def :{" "}
                         {Math.round(
-                          Number(test2.characters[charIndex].stats.def.value)
+                          Number(playerDetails.characters[charIndex].stats.def.value)
                         )}
                       </p>
                       <p>
                         Em :{" "}
                         {Math.round(
                           Number(
-                            test2.characters[charIndex].stats.elementalMastery
+                            playerDetails.characters[charIndex].stats.elementalMastery
                               .value
                           )
                         )}
@@ -121,7 +124,7 @@ export default function Showcase() {
                         Cr :{" "}
                         {Math.round(
                           Number(
-                            test2.characters[charIndex].stats.critRate.value
+                            playerDetails.characters[charIndex].stats.critRate.value
                           ) * 100
                         )}
                         %
@@ -130,7 +133,7 @@ export default function Showcase() {
                         Cd :{" "}
                         {Math.round(
                           Number(
-                            test2.characters[charIndex].stats.critDamage.value
+                            playerDetails.characters[charIndex].stats.critDamage.value
                           ) * 100
                         )}
                         %
@@ -139,17 +142,17 @@ export default function Showcase() {
                         Er :{" "}
                         {Math.round(
                           Number(
-                            test2.characters[charIndex].stats.energyRecharge
+                            playerDetails.characters[charIndex].stats.energyRecharge
                               .value
                           ) * 100
                         )}
                         %
                       </p>
                       <p>
-                        {test2.characters[charIndex].element}dmg% :{" "}
+                        {playerDetails.characters[charIndex].element}dmg% :{" "}
                         {Math.round(
                           Number(
-                            test2.characters[charIndex].stats.pyroDamageBonus
+                            playerDetails.characters[charIndex].stats.pyroDamageBonus
                               .value
                           ) * 100
                         )}
@@ -163,48 +166,48 @@ export default function Showcase() {
                     <p className="weaponP">
                       <img
                         className=" weaponImg"
-                        src={`https://enka.network/ui/${test2.characters[charIndex].equipment.weapon.assets.icon}.png`}
+                        src={`https://enka.network/ui/${playerDetails.characters[charIndex].equipment.weapon.assets.icon}.png`}
                         alt=""
                       />
-                      {test2.characters[charIndex].equipment.weapon.level}
+                      {playerDetails.characters[charIndex].equipment.weapon.level}
                     </p>
                     <p className="weaponName">
-                      {test2.characters[charIndex].equipment.weapon.name}
+                      {playerDetails.characters[charIndex].equipment.weapon.name}
                     </p>
                   </div>
                   <div className="charCardCol2 cardDarkColor">
                     <p className="talentP">
                       <img
                         className="talentImg"
-                        src={`https://enka.network/ui/${test2.characters[charIndex].assets.talents.normalAttack}.png`}
+                        src={`https://enka.network/ui/${playerDetails.characters[charIndex].assets.talents.normalAttack}.png`}
                         alt=""
                       />
-                      {test2.characters[charIndex].skills.normalAttacks.level}
+                      {playerDetails.characters[charIndex].skills.normalAttacks.level}
                     </p>
                     <p className="talentP">
                       <img
                         className="talentImg"
-                        src={`https://enka.network/ui/${test2.characters[charIndex].assets.talents.elementalSkill}.png`}
+                        src={`https://enka.network/ui/${playerDetails.characters[charIndex].assets.talents.elementalSkill}.png`}
                         alt=""
                       />
-                      {test2.characters[charIndex].skills.elementalSkill.level}
+                      {playerDetails.characters[charIndex].skills.elementalSkill.level}
                     </p>
                     <p className="talentP">
                       <img
                         className="talentImg"
-                        src={`https://enka.network/ui/${test2.characters[charIndex].assets.talents.elementalBurst}.png`}
+                        src={`https://enka.network/ui/${playerDetails.characters[charIndex].assets.talents.elementalBurst}.png`}
                         alt=""
                       />
-                      {test2.characters[charIndex].skills.elementalBurst.level}
+                      {playerDetails.characters[charIndex].skills.elementalBurst.level}
                     </p>
                   </div>
                 </div>
                 <div className="charDivRow3">
                   <div className="charConstl cardDarkColor">
-                    {test2.player.showcase[charIndex].assets.constellations.map(
+                    {playerDetails.player.showcase[charIndex].assets.constellations.map(
                       (constellation, index) => (
                         <div key={index} className="constlCircle">
-                          {test2.characters[charIndex].constellationsList[
+                          {playerDetails.characters[charIndex].constellationsList[
                             index
                           ] ? (
                             <img
@@ -225,12 +228,15 @@ export default function Showcase() {
                   </div>
                   <div>
                     <Link
-                      onClick={()=>{
-                        console.log(nameSetter(test2.characters[charIndex].name));
-                        
+                      onClick={() => {
+                        console.log(
+                          nameSetter(playerDetails.characters[charIndex].name)
+                        );
                       }}
                       className="showDetailedStatsButton"
-                      to={`/characters/${nameSetter(test2.characters[charIndex].name)}`}
+                      to={`/characters/${nameSetter(
+                        playerDetails.characters[charIndex].name
+                      )}`}
                     >
                       show detailed stats
                     </Link>
@@ -243,7 +249,7 @@ export default function Showcase() {
           {/* showcase section containing every characters */}
 
           <div className="char_cards_container">
-            {test2.characters.map((character, index) => (
+            {playerDetails.characters.map((character, index) => (
               <div
                 key={index}
                 className={`charDiv bg_${character.element}`}
@@ -357,7 +363,7 @@ export default function Showcase() {
 
       {playerDetails && (
         <div>
-          <button onClick={() => setJsonData(generateJSON(playerDetails))}>
+          <button onClick={() => setJsonData(generateGoodData(playerDetails))}>
             Click to generate json format
           </button>
 

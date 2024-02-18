@@ -155,7 +155,7 @@ export const generateJSON = (data: PlayerData) => {
   );
 
   // Create your data object of type IGOOD
-  const goodData: IGOOD = {
+  const generatedData: IGOOD = {
     format: "GOOD",
     source: "Genshify",
     version: 1,
@@ -165,6 +165,11 @@ export const generateJSON = (data: PlayerData) => {
   };
 
   // Convert data object to JSON string
-  const jsonData = JSON.stringify(goodData, null, 2);
-  return jsonData;
+  return generatedData;
+};
+
+export const generateGoodData = (playerData :PlayerData) =>{
+  const data = generateJSON(playerData)
+  const goodData = JSON.stringify(data, null, 2);
+  return goodData;
 };
