@@ -2,9 +2,9 @@ import { DBLocalStorage, SandboxStorage } from "genshin-optimizer/database";
 import { ArtCharDatabase } from "genshin-optimizer/db";
 import { DatabaseContext } from "genshin-optimizer/db-ui";
 import { theme } from "genshin-optimizer/ui";
-import { KeyboardArrowUp } from "genshin-optimizer
-import {genshin-optimizer
-  Box,genshin-optimizer
+import { KeyboardArrowUp } from "@mui/icons-material"
+import {
+  Box,
   Container,
   CssBaseline,
   Fab,

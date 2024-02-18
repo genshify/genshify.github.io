@@ -7,6 +7,7 @@ import Beginner from "./pages/Beginner/Beginner";
 import Navbar from "./components/Navbar/Navbar";
 import Showcase from "./pages/Showcase/Showcase";
 import CharacterDisplay from "./tools/genshin-optimizer/app/PageCharacter/CharacterDisplay";
+import PageCharacter from "./tools/genshin-optimizer/app/PageCharacter";
 
 export default function App() {
   return (
@@ -20,7 +21,10 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/beginner" element={<Beginner />} />
         <Route path="/showcase" element={<Showcase />} />
-        <Route path="/characterdisplay" element={<CharacterDisplay />} />
+        <Route path="/characters/*">
+              <Route index element={<PageCharacter />} />
+              <Route path=":characterKey/*" element={<CharacterDisplay />} />
+            </Route>
       </Routes>
     </BrowserRouter>
   );

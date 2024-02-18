@@ -1,28 +1,21 @@
-import {
-  useForceUpdate,
-  useMediaQueryUp,
-} from 'genshin-optimizer/react-util'
-import {
-  clamp,
-  filterFunction,
-  sortFunction,
-} from 'genshin-optimizer/util'
-import type { CharacterKey } from 'genshin-optimizer/consts'
+import { useForceUpdate, useMediaQueryUp } from "genshin-optimizer/react-util";
+import { clamp, filterFunction, sortFunction } from "genshin-optimizer/util";
+import type { CharacterKey } from "genshin-optimizer/consts";
 import {
   allCharacterRarityKeys,
   allElementKeys,
   allWeaponTypeKeys,
   charKeyToLocGenderedCharKey,
-} from 'genshin-optimizer/consts'
-import { useDBMeta, useDatabase } from 'genshin-optimizer/db-ui'
+} from "genshin-optimizer/consts";
+import { useDBMeta, useDatabase } from "genshin-optimizer/db-ui";
 import {
   DeleteForever,
   FactCheck,
   Groups,
   Science,
   TrendingUp,
-} from '@mui/icons-material'
-import AddIcon from '@mui/icons-material/Add'
+} from "@mui/icons-material";
+import AddIcon from "@mui/icons-material/Add";
 import {
   Box,
   Button,
@@ -33,8 +26,8 @@ import {
   Skeleton,
   TextField,
   Typography,
-} from '@mui/material'
-import type { ChangeEvent } from 'react'
+} from "@mui/material";
+import type { ChangeEvent } from "react";
 import React, {
   Suspense,
   useCallback,
@@ -44,106 +37,109 @@ import React, {
   useMemo,
   useRef,
   useState,
-} from 'react'
-import ReactGA from 'react-ga4'
-import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
-import BootstrapTooltip from '../Components/BootstrapTooltip'
-import CardDark from '../Components/Card/CardDark'
-import CharacterCard from '../Components/Character/CharacterCard'
-import PageAndSortOptionSelect from '../Components/PageAndSortOptionSelect'
-import CharacterRarityToggle from '../Components/ToggleButton/CharacterRarityToggle'
-import ElementToggle from '../Components/ToggleButton/ElementToggle'
-import WeaponToggle from '../Components/ToggleButton/WeaponToggle'
-import { SillyContext } from '../Context/SillyContext'
-import { getCharSheet } from '../Data/Characters'
-import { getWeaponSheet } from '../Data/Weapons'
-import useCharSelectionCallback from '../ReactHooks/useCharSelectionCallback'
+} from "react";
+import ReactGA from "react-ga4";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import BootstrapTooltip from "../Components/BootstrapTooltip";
+import CardDark from "../Components/Card/CardDark";
+import CharacterCard from "../Components/Character/CharacterCard";
+import PageAndSortOptionSelect from "../Components/PageAndSortOptionSelect";
+import CharacterRarityToggle from "../Components/ToggleButton/CharacterRarityToggle";
+import ElementToggle from "../Components/ToggleButton/ElementToggle";
+import WeaponToggle from "../Components/ToggleButton/WeaponToggle";
+import { SillyContext } from "../Context/SillyContext";
+import { getCharSheet } from "../Data/Characters";
+import { getWeaponSheet } from "../Data/Weapons";
+import useCharSelectionCallback from "../ReactHooks/useCharSelectionCallback";
 import {
   characterFilterConfigs,
   characterSortConfigs,
   characterSortMap,
-} from '../Util/CharacterSort'
-import { catTotal } from '../Util/totalUtils'
+} from "../Util/CharacterSort";
+import { catTotal } from "../Util/totalUtils";
 const CharacterSelectionModal = React.lazy(
-  () => import('./CharacterSelectionModal')
-)
-const columns = { xs: 1, sm: 2, md: 3, lg: 4, xl: 4 }
-const numToShowMap = { xs: 6, sm: 8, md: 12, lg: 16, xl: 16 }
-const sortKeys = Object.keys(characterSortMap)
+  () => import("./CharacterSelectionModal")
+);
+const columns = { xs: 1, sm: 2, md: 3, lg: 4, xl: 4 };
+const numToShowMap = { xs: 6, sm: 8, md: 12, lg: 16, xl: 16 };
+const sortKeys = Object.keys(characterSortMap);
 
 export default function PageCharacter() {
   const { t } = useTranslation([
-    'page_character',
+    "page_character",
     // Always load these 2 so character names are loaded for searching/sorting
-    'sillyWisher_charNames',
-    'charNames_gen',
-  ])
-  const { silly } = useContext(SillyContext)
-  const database = useDatabase()
-  const [state, setState] = useState(() => database.displayCharacter.get())
+    "sillyWisher_charNames",
+    "charNames_gen",
+  ]);
+  const { silly } = useContext(SillyContext);
+  const database = useDatabase();
+  
+  
+  
+  const [state, setState] = useState(() => database.displayCharacter.get());
   useEffect(
     () => database.displayCharacter.follow((r, s) => setState(s)),
     [database, setState]
-  )
-  const [searchTerm, setSearchTerm] = useState('')
-  const deferredSearchTerm = useDeferredValue(searchTerm)
-  const invScrollRef = useRef<HTMLDivElement>(null)
+  );
+  const [searchTerm, setSearchTerm] = useState("");
+  const deferredSearchTerm = useDeferredValue(searchTerm);
+  const invScrollRef = useRef<HTMLDivElement>(null);
   const setPage = useCallback(
     (_: ChangeEvent<unknown>, value: number) => {
-      invScrollRef.current?.scrollIntoView({ behavior: 'smooth' })
-      database.displayCharacter.set({ pageIndex: value - 1 })
+      invScrollRef.current?.scrollIntoView({ behavior: "smooth" });
+      database.displayCharacter.set({ pageIndex: value - 1 });
     },
     [database, invScrollRef]
-  )
+  );
 
-  const brPt = useMediaQueryUp()
-  const maxNumToDisplay = numToShowMap[brPt]
+  const brPt = useMediaQueryUp();
+  const maxNumToDisplay = numToShowMap[brPt];
 
-  const [newCharacter, setnewCharacter] = useState(false)
-  const [dbDirty, forceUpdate] = useForceUpdate()
+  const [newCharacter, setnewCharacter] = useState(false);
+  const [dbDirty, forceUpdate] = useForceUpdate();
   // Set follow, should run only once
   useEffect(() => {
-    ReactGA.send({ hitType: 'pageview', page: '/characters' })
+    ReactGA.send({ hitType: "pageview", page: "/characters" });
     return database.chars.followAny(
-      (k, r) => (r === 'new' || r === 'remove') && forceUpdate()
-    )
-  }, [forceUpdate, database])
+      (k, r) => (r === "new" || r === "remove") && forceUpdate()
+    );
+  }, [forceUpdate, database]);
 
   // character favorite updater
   useEffect(
     () => database.charMeta.followAny((_s) => forceUpdate()),
     [forceUpdate, database]
-  )
+  );
 
-  const { gender } = useDBMeta()
+  const { gender } = useDBMeta();
   const deleteCharacter = useCallback(
     async (cKey: CharacterKey) => {
-      let name = getCharSheet(cKey, gender).name
+      let name = getCharSheet(cKey, gender).name;
       // Use translated string
-      if (typeof name === 'object')
+      if (typeof name === "object")
         name = t(
           `${
-            silly ? 'sillyWisher_charNames' : 'charNames_gen'
+            silly ? "sillyWisher_charNames" : "charNames_gen"
           }:${charKeyToLocGenderedCharKey(cKey, gender)}`
-        )
+        );
 
-      if (!window.confirm(t('removeCharacter', { value: name }))) return
-      database.chars.remove(cKey)
+      if (!window.confirm(t("removeCharacter", { value: name }))) return;
+      database.chars.remove(cKey);
     },
     [database.chars, gender, silly, t]
-  )
+  );
 
-  const editCharacter = useCharSelectionCallback()
+  const editCharacter = useCharSelectionCallback();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const deferredState = useDeferredValue(state)
-  const deferredDbDirty = useDeferredValue(dbDirty)
+  const deferredState = useDeferredValue(state);
+  const deferredDbDirty = useDeferredValue(dbDirty);
   const { charKeyList, totalCharNum } = useMemo(() => {
-    const chars = database.chars.keys
-    const totalCharNum = chars.length
-    const { element, weaponType, rarity, sortType, ascending } = deferredState
+    const chars = database.chars.keys;
+    const totalCharNum = chars.length;
+    const { element, weaponType, rarity, sortType, ascending } = deferredState;
     const charKeyList = database.chars.keys
       .filter(
         filterFunction(
@@ -156,11 +152,11 @@ export default function PageCharacter() {
           characterSortMap[sortType] ?? [],
           ascending,
           characterSortConfigs(database, silly),
-          ['new', 'favorite']
+          ["new", "favorite"]
         )
-      )
-    return deferredDbDirty && { charKeyList, totalCharNum }
-  }, [database, deferredState, deferredSearchTerm, silly, deferredDbDirty])
+      );
+    return deferredDbDirty && { charKeyList, totalCharNum };
+  }, [database, deferredState, deferredSearchTerm, silly, deferredDbDirty]);
 
   const {
     weaponType,
@@ -169,11 +165,11 @@ export default function PageCharacter() {
     sortType,
     ascending,
     pageIndex = 0,
-  } = state
+  } = state;
 
   const { charKeyListToShow, numPages, currentPageIndex } = useMemo(() => {
-    const numPages = Math.ceil(charKeyList.length / maxNumToDisplay)
-    const currentPageIndex = clamp(pageIndex, 0, numPages - 1)
+    const numPages = Math.ceil(charKeyList.length / maxNumToDisplay);
+    const currentPageIndex = clamp(pageIndex, 0, numPages - 1);
     return {
       charKeyListToShow: charKeyList.slice(
         currentPageIndex * maxNumToDisplay,
@@ -181,64 +177,64 @@ export default function PageCharacter() {
       ),
       numPages,
       currentPageIndex,
-    }
-  }, [charKeyList, pageIndex, maxNumToDisplay])
+    };
+  }, [charKeyList, pageIndex, maxNumToDisplay]);
 
   const totalShowing =
     charKeyList.length !== totalCharNum
       ? `${charKeyList.length}/${totalCharNum}`
-      : `${totalCharNum}`
+      : `${totalCharNum}`;
 
   const weaponTotals = useMemo(
     () =>
       catTotal(allWeaponTypeKeys, (ct) =>
         Object.entries(database.chars.data).forEach(([ck, char]) => {
-          const weapon = database.weapons.get(char.equippedWeapon)
-          if (!weapon) return
-          const wtk = getWeaponSheet(weapon.key).weaponType
-          ct[wtk].total++
-          if (charKeyList.includes(ck)) ct[wtk].current++
+          const weapon = database.weapons.get(char.equippedWeapon);
+          if (!weapon) return;
+          const wtk = getWeaponSheet(weapon.key).weaponType;
+          ct[wtk].total++;
+          if (charKeyList.includes(ck)) ct[wtk].current++;
         })
       ),
     [database, charKeyList]
-  )
+  );
 
   const elementTotals = useMemo(
     () =>
       catTotal(allElementKeys, (ct) =>
         Object.entries(database.chars.data).forEach(([ck, char]) => {
-          const eleKey = getCharSheet(char.key, database.gender).elementKey
-          ct[eleKey].total++
-          if (charKeyList.includes(ck)) ct[eleKey].current++
+          const eleKey = getCharSheet(char.key, database.gender).elementKey;
+          ct[eleKey].total++;
+          if (charKeyList.includes(ck)) ct[eleKey].current++;
         })
       ),
     [database, charKeyList]
-  )
+  );
 
   const rarityTotals = useMemo(
     () =>
       catTotal(allCharacterRarityKeys, (ct) =>
         Object.entries(database.chars.data).forEach(([ck, char]) => {
-          const eleKey = getCharSheet(char.key, database.gender).rarity
-          ct[eleKey].total++
-          if (charKeyList.includes(ck)) ct[eleKey].current++
+          const eleKey = getCharSheet(char.key, database.gender).rarity;
+          ct[eleKey].total++;
+          if (charKeyList.includes(ck)) ct[eleKey].current++;
         })
       ),
     [database, charKeyList]
-  )
+  );
 
   const paginationProps = {
     count: numPages,
     page: currentPageIndex + 1,
     onChange: setPage,
-  }
+  };
 
   const showingTextProps = {
     numShowing: charKeyListToShow.length,
     total: totalShowing,
     t: t,
-    namespace: 'page_character',
-  }
+    namespace: "page_character",
+  };
 
   const sortByButtonProps = {
     sortKeys: [...sortKeys],
@@ -246,7 +242,7 @@ export default function PageCharacter() {
     onChange: (sortType) => database.displayCharacter.set({ sortType }),
     ascending: ascending,
     onChangeAsc: (ascending) => database.displayCharacter.set({ ascending }),
-  }
+  };
 
   return (
     <Box my={1} display="flex" flexDirection="column" gap={1}>
@@ -259,11 +255,11 @@ export default function PageCharacter() {
         />
       </Suspense>
       <CardDark ref={invScrollRef}>
-        <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+        <CardContent sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
           <Grid container spacing={1}>
             <Grid item>
               <WeaponToggle
-                sx={{ height: '100%' }}
+                sx={{ height: "100%" }}
                 onChange={(weaponType) =>
                   database.displayCharacter.set({ weaponType })
                 }
@@ -274,7 +270,7 @@ export default function PageCharacter() {
             </Grid>
             <Grid item>
               <ElementToggle
-                sx={{ height: '100%' }}
+                sx={{ height: "100%" }}
                 onChange={(element) =>
                   database.displayCharacter.set({ element })
                 }
@@ -285,7 +281,7 @@ export default function PageCharacter() {
             </Grid>
             <Grid item>
               <CharacterRarityToggle
-                sx={{ height: '100%' }}
+                sx={{ height: "100%" }}
                 onChange={(rarity) => database.displayCharacter.set({ rarity })}
                 value={rarity}
                 totals={rarityTotals}
@@ -300,11 +296,11 @@ export default function PageCharacter() {
                 onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                   setSearchTerm(e.target.value)
                 }
-                label={t('characterName')}
+                label={t("characterName")}
                 size="small"
-                sx={{ height: '100%' }}
+                sx={{ height: "100%" }}
                 InputProps={{
-                  sx: { height: '100%' },
+                  sx: { height: "100%" },
                 }}
               />
             </Grid>
@@ -334,7 +330,7 @@ export default function PageCharacter() {
         fallback={
           <Skeleton
             variant="rectangular"
-            sx={{ width: '100%', height: '100%', minHeight: 5000 }}
+            sx={{ width: "100%", height: "100%", minHeight: 5000 }}
           />
         }
       >
@@ -351,14 +347,14 @@ export default function PageCharacter() {
                       sx={{
                         py: 1,
                         px: 2,
-                        display: 'flex',
+                        display: "flex",
                         gap: 1,
-                        justifyContent: 'space-between',
+                        justifyContent: "space-between",
                       }}
                     >
                       <BootstrapTooltip
                         placement="top"
-                        title={<Typography>{t('tabs.talent')}</Typography>}
+                        title={<Typography>{t("tabs.talent")}</Typography>}
                       >
                         <IconButton
                           onClick={() => navigate(`${charKey}/talent`)}
@@ -368,7 +364,7 @@ export default function PageCharacter() {
                       </BootstrapTooltip>
                       <BootstrapTooltip
                         placement="top"
-                        title={<Typography>{t('tabs.teambuffs')}</Typography>}
+                        title={<Typography>{t("tabs.teambuffs")}</Typography>}
                       >
                         <IconButton
                           onClick={() => navigate(`${charKey}/teambuffs`)}
@@ -378,7 +374,7 @@ export default function PageCharacter() {
                       </BootstrapTooltip>
                       <BootstrapTooltip
                         placement="top"
-                        title={<Typography>{t('tabs.optimize')}</Typography>}
+                        title={<Typography>{t("tabs.optimize")}</Typography>}
                       >
                         <IconButton
                           onClick={() => navigate(`${charKey}/optimize`)}
@@ -388,7 +384,7 @@ export default function PageCharacter() {
                       </BootstrapTooltip>
                       <BootstrapTooltip
                         placement="top"
-                        title={<Typography>{t('tabs.theorycraft')}</Typography>}
+                        title={<Typography>{t("tabs.theorycraft")}</Typography>}
                       >
                         <IconButton
                           onClick={() => navigate(`${charKey}/theorycraft`)}
@@ -399,7 +395,7 @@ export default function PageCharacter() {
                       <Divider orientation="vertical" />
                       <BootstrapTooltip
                         placement="top"
-                        title={<Typography>{t('delete')}</Typography>}
+                        title={<Typography>{t("delete")}</Typography>}
                       >
                         <IconButton
                           color="error"
@@ -418,7 +414,7 @@ export default function PageCharacter() {
       </Suspense>
       {numPages > 1 && (
         <CardDark>
-          <CardContent sx={{ display: 'flex', flexDirection: 'row', gap: 1 }}>
+          <CardContent sx={{ display: "flex", flexDirection: "row", gap: 1 }}>
             <Button
               onClick={() => setnewCharacter(true)}
               color="info"
@@ -442,5 +438,5 @@ export default function PageCharacter() {
         </CardDark>
       )}
     </Box>
-  )
+  );
 }

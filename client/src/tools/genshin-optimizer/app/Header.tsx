@@ -1,5 +1,5 @@
 import { useForceUpdate } from "genshin-optimizer/react-util";
-import { AnvilIcon } from "genshin-/svgicons";
+import { AnvilIcon } from "genshin-optimizer/svgicons";
 import { useDBMeta, useDatabase } from "genshin-optimizer/db-ui";
 import { FlowerIcon } from "genshin-optimizer/svgicons";
 import {
