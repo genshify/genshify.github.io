@@ -39,7 +39,6 @@ export default function Showcase() {
   return (
     <div className="char container section">
       <h2 className="section__title-center">Character Details</h2>
-      <button>click</button>
       {/* search section */}
       <div className="search__container">
         <div className="input__box">
@@ -228,13 +227,8 @@ export default function Showcase() {
                   </div>
                   <div>
                     <Link
-                      onClick={() => {
-                        console.log(
-                          nameSetter(playerDetails.characters[charIndex].name)
-                        );
-                      }}
                       className="showDetailedStatsButton"
-                      to={`/characters/${nameSetter(
+                      to={`/showcase/characters/${nameSetter(
                         playerDetails.characters[charIndex].name
                       )}`}
                     >

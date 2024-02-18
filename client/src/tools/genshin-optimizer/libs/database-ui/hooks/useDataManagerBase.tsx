@@ -1,8 +1,5 @@
-import type {
-  DataManagerBase,
-  Database,
-} from '@genshin-optimizer/common/database'
-import { useEffect, useState } from 'react'
+import type { DataManagerBase, Database } from "genshin-optimizer/database";
+import { useEffect, useState } from "react";
 export function useDataManagerBase<
   A extends string,
   B extends string,
@@ -10,14 +7,14 @@ export function useDataManagerBase<
   D,
   E extends Database
 >(manager: DataManagerBase<A, B, C, D, E>, key: A) {
-  const [data, setData] = useState(() => manager.get(key))
+  const [data, setData] = useState(() => manager.get(key));
 
   useEffect(() => {
-    setData(manager.get(key))
+    setData(manager.get(key));
     return manager.follow(key, (k, r, v) => {
-      if (r === 'update') setData(v)
-      if (r === 'remove') setData(undefined)
-    })
-  }, [manager, key, setData])
-  return data
+      if (r === "update") setData(v);
+      if (r === "remove") setData(undefined);
+    });
+  }, [manager, key, setData]);
+  return data;
 }

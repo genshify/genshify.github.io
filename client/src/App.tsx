@@ -6,22 +6,14 @@ import Showcase from "./pages/Showcase/Showcase";
 import CharacterDisplay from "./tools/genshin-optimizer/app/PageCharacter/CharacterDisplay";
 import PageCharacter from "./tools/genshin-optimizer/app/PageCharacter";
 
-import {
-
-  Container,
-  CssBaseline,
-  Grid,
-  Skeleton,
-  StyledEngineProvider,
-  ThemeProvider,
-} from "@mui/material";
+import { Container, Grid, Skeleton, ThemeProvider } from "@mui/material";
 import { DatabaseContext } from "genshin-optimizer/db-ui";
 import { theme } from "genshin-optimizer/ui";
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import ErrorBoundary from "./tools/genshin-optimizer/app/ErrorBoundary";
 import "./App.scss";
-import "./App.css"
+import "./App.css";
 
 import { Suspense, useCallback, useMemo, useState } from "react";
 import { ArtCharDatabase } from "genshin-optimizer/db";
@@ -62,55 +54,56 @@ export default function App() {
     [databases, setDatabases, database, setDatabase]
   );
   return (
-    <StyledEngineProvider injectFirst>
-      {/* https://mui.com/guides/interoperability/#css-injection-order-2 */}
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <DatabaseContext.Provider value={dbContextObj}>
-          <ErrorBoundary>
-            <HashRouter basename="/">
-              <Suspense fallback={null}></Suspense>
-              <Content/>
-            </HashRouter>
-          </ErrorBoundary>
-        </DatabaseContext.Provider>
-      </ThemeProvider>
-    </StyledEngineProvider>
-  );
-}
-
-function Content() {
-  return (
-    <Grid container direction="column" minHeight="100vh" position="relative">
-      <Grid item>
-        <Header anchor="back-to-top-anchor" />
+    <BrowserRouter>
+      <Grid container direction="column" minHeight="100vh" position="relative">
+        <Grid item>
+          <Header anchor="back-to-top-anchor" />
+        </Grid>
+        <Container maxWidth="xl" sx={{ px: { xs: 0.5, sm: 1, md: 2 } }}>
+          <Suspense
+            fallback={
+              <Skeleton
+                variant="rectangular"
+                sx={{ width: "100%", height: "100%" }}
+              />
+            }
+          >
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/beginner" element={<Beginner />} />
+              <Route
+                path="/showcase/*"
+                element={
+                  <ThemeProvider theme={theme}>
+                    <DatabaseContext.Provider value={dbContextObj}>
+                      <ErrorBoundary>
+                        <Suspense fallback={null}>
+                          <Routes>
+                            <Route index element={<Showcase />} />
+                            <Route path="characters/*">
+                              <Route index element={<PageCharacter />} />
+                              <Route
+                                path=":characterKey/*"
+                                element={<CharacterDisplay />}
+                              />
+                            </Route>
+                          </Routes>
+                        </Suspense>
+                      </ErrorBoundary>
+                    </DatabaseContext.Provider>
+                  </ThemeProvider>
+                }
+              />
+            </Routes>
+          </Suspense>
+        </Container>
+        {/* make sure footer is always at bottom */}
+        <Grid item flexGrow={1} />
+        <Grid item>
+          <Footer />
+        </Grid>
       </Grid>
-      <Container maxWidth="xl" sx={{ px: { xs: 0.5, sm: 1, md: 2 } }}>
-        <Suspense
-          fallback={
-            <Skeleton
-              variant="rectangular"
-              sx={{ width: "100%", height: "100%" }}
-            />
-          }
-        >
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/beginner" element={<Beginner />} />
-            <Route path="/showcase" element={<Showcase />} />
-            <Route path="/characters/*">
-              <Route index element={<PageCharacter />} />
-              <Route path=":characterKey/*" element={<CharacterDisplay />} />
-            </Route>
-          </Routes>
-        </Suspense>
-      </Container>
-      {/* make sure footer is always at bottom */}
-      <Grid item flexGrow={1} />
-      <Grid item>
-        <Footer />
-      </Grid>
-    </Grid>
+    </BrowserRouter>
   );
 }
