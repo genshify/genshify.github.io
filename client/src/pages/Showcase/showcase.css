@@ -41,6 +41,20 @@ button:hover {
 
 /*=============== Char Cards ===============*/
 
+.charSideIconContainer{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5rem 0 5rem;
+  margin: 1rem;
+}
+.charSideIcon{
+  border: 5px solid;
+  border-radius: 100%;
+  border-color: var(--darkGreen);
+  background-color: var(--darkGreen);
+  margin: 1rem;
+}
+
 .char_cards_container {
   display: flex;
   flex-wrap: wrap;
@@ -185,7 +199,7 @@ button:hover {
 
 /*? giving a frame to constellation of chars */
 
-.conslCircle {
+.constlCircle {
   border: solid 2px white;
   border-radius: 100%;
   position: relative;
@@ -239,7 +253,7 @@ opacity: 0.2;
   display: flex;
 }
 
-.jsonfield {
+.jsonField {
   margin-top: 2rem;
   border: 2px solid;
   padding: 1rem;
