@@ -78,7 +78,7 @@ export default function CharacterDisplay() {
   const database = useDatabase()
   const onClose = useCallback(() => navigate('/characters'), [navigate])
   const { characterKey } = useParams<{ characterKey?: CharacterKey }>()
-  const invalidKey = !database.chars.ke(characterKey as CharacterKey)
+  const invalidKey = !database.chars.keys.includes(characterKey as CharacterKey)
   if (invalidKey) return <Navigate to="/characters" />
 
   return (

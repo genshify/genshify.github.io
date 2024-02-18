@@ -299,7 +299,7 @@ export function CustomMultiTargetButton() {
                         Note: Community created custom Multi-Optimization
                         Targets can be found within the
                         <a
-                          href={process.env.NX_URL_DISCORD_GO}
+                          href={"/"}
                           target="_blank"
                           rel="noreferrer"
                         >
@@ -307,7 +307,7 @@ export function CustomMultiTargetButton() {
                         </a>
                         or
                         <a
-                          href={process.env.NX_URL_KQM_MULTI_GUIDE}
+                          href={"/"}
                           target="_blank"
                           rel="noreferrer"
                         >
