@@ -40,21 +40,33 @@ button:hover {
   border-radius: 10px;
 }
 
-/*=============== Char Cards ===============*/
+/*=============== side icons ===============*/
 
-.charSideIconContainer{
+.charSideIconContainer {
   display: flex;
-  justify-content: space-between;
-  padding: 0 5rem 0 5rem;
+  justify-content: space-around;
+
   margin: 1rem;
+  align-items: center;
 }
-.charSideIcon{
-  border: 5px solid;
+@media screen and (min-width: 900px) {
+  .charSideIconContainer {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+  .charSideIcon {
+   margin: 10px;
+  }
+  
+}
+.charSideIcon {
+  border: 2px solid;
   border-radius: 100%;
   border-color: var(--darkGreen);
   background-color: var(--darkGreen);
-  margin: 1rem;
+  margin: 2px;
 }
+
 
 .char_cards_container {
   display: flex;
@@ -66,7 +78,7 @@ button:hover {
   align-items: center;
 }
 
-.charDiv{
+.charDiv {
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -77,11 +89,11 @@ button:hover {
   border-radius: 5%;
 }
 
-/* character card and hover colors for each element */
+/* ? character card and hover colors for each element */
 .bg_Pyro {
   background: rgb(199, 4, 4);
 }
-.char_cards_container .bg_Pyro:hover {
+.bg_Pyro:hover {
   background: rgb(222, 16, 16);
   cursor: pointer;
 }
@@ -89,7 +101,7 @@ button:hover {
 .bg_Hydro {
   background: rgb(0, 50, 168);
 }
-.char_cards_container .bg_Hydro:hover {
+.bg_Hydro:hover {
   background: rgb(0, 50, 200);
   cursor: pointer;
 }
@@ -97,7 +109,7 @@ button:hover {
 .bg_Cryo {
   background: rgb(79, 205, 250);
 }
-.char_cards_container .bg_Cryo:hover {
+.bg_Cryo:hover {
   background: rgb(115, 218, 255);
   cursor: pointer;
 }
@@ -105,7 +117,7 @@ button:hover {
 .bg_Electro {
   background: rgb(213, 5, 213);
 }
-.char_cards_container .bg_Electro:hover {
+.bg_Electro:hover {
   background: rgb(233, 33, 233);
   cursor: pointer;
 }
@@ -113,7 +125,7 @@ button:hover {
 .bg_Anemo {
   background: rgb(124, 213, 140);
 }
-.char_cards_container .bg_Anemo:hover {
+.bg_Anemo:hover {
   background: rgb(165, 228, 176);
   cursor: pointer;
 }
@@ -121,7 +133,7 @@ button:hover {
 .bg_Geo {
   background: rgb(239, 212, 40);
 }
-.char_cards_container .bg_Geo:hover {
+.bg_Geo:hover {
   background: rgb(237, 234, 55);
   cursor: pointer;
 }
@@ -129,10 +141,13 @@ button:hover {
 .bg_Dendro {
   background: rgb(19, 189, 22);
 }
-.char_cards_container .bg_Dendro:hover {
+.bg_Dendro:hover {
   background: rgb(38, 205, 41);
   cursor: pointer;
 }
+
+
+/*=============== Char Cards ===============*/
 .cardDarkColor {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 10px;
@@ -181,7 +196,7 @@ button:hover {
   justify-content: space-around;
   position: relative;
 }
-.charDivRow3{
+.charDivRow3 {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -189,14 +204,14 @@ button:hover {
   margin-top: 5px;
 }
 
-.showDetailedStatsButton{
+.showDetailedStatsButton {
   border-radius: 10px;
   outline: none;
   padding: 1rem;
   background-color: rgba(0, 0, 0, 0.554);
   color: white;
 }
-.showDetailedStatsButton:hover{
+.showDetailedStatsButton:hover {
   background-color: rgba(0, 0, 0, 0.75);
   cursor: pointer;
 }
@@ -209,43 +224,18 @@ button:hover {
   width: 35px;
 }
 
-.charConstl {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 10px;
-  width: 50%;
-}
 
-/*? giving a frame to constellation of chars */
-
-.constlCircle {
-  border: solid 2px white;
-  border-radius: 100%;
-  position: relative;
-  top: 0;
-  left: 0;
-}
-
-.constlImg {
-width: 50px;
-height: 50px;
-}
-.constlImgDisabled {
-width: 50px;
-height: 50px;
-opacity: 0.2;
-}
-
-.lockIcon {
-  position: absolute;
-  top: 13px;
-  left: 14px;
-  font-size: 25px;
-  color: white;
-}
 
 /*===============Selected Char Details ===============*/
+
+#charDetails {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 20px;
+  margin: 1rem;
+}
 
 .char__details {
   display: flex;
@@ -279,4 +269,79 @@ opacity: 0.2;
   border: 2px solid;
   padding: 1rem;
   width: 100%;
+}
+/*? giving a frame to constellation of chars */
+.charConstl {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px;
+  height: 60px;
+}
+
+.constlCircle {
+  border: solid 2px white;
+  border-radius: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  margin: 2px;
+}
+
+.constlImg {
+  width: 50px;
+  height: 50px;
+}
+.constlImgDisabled {
+  width: 50px;
+  height: 50px;
+  opacity: 0.2;
+}
+
+.lockIcon {
+  position: absolute;
+  top: 13px;
+  left: 14px;
+  font-size: 25px;
+  color: white;
+}
+
+/* ? removing the hover effects for single character card */
+
+#charDetails .bg_Electro:hover {
+  background: rgb(213, 5, 213);
+  cursor: default;
+}
+
+#charDetails .bg_Anemo:hover {
+  background: rgb(124, 213, 140);
+  cursor: default;
+}
+
+#charDetails .bg_Geo:hover {
+  background: rgb(239, 212, 40);
+  cursor: default;
+}
+
+#charDetails .bg_Dendro:hover {
+  background: rgb(19, 189, 22);
+  cursor: default;
+}
+
+#charDetails .bg_Pyro:hover {
+  background: rgb(199, 4, 4);
+  cursor: default;
+}
+
+#charDetails .bg_Hydro:hover {
+  background: rgb(0, 50, 168);
+  cursor: default;
+}
+
+#charDetails .bg_Cryo:hover {
+  background: rgb(79, 205, 250);
+  cursor: default;
 }
