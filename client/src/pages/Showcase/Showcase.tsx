@@ -6,24 +6,11 @@ import { CacheHandler } from "../../enka/handlers/CacheHandler";
 import { Link } from "react-router-dom";
 import { nameSetter } from "../../tools/genshin-optimizer/libs/good/goodDataMaker";
 import { useDataStore } from "../../utils/DataStore";
-import { test2 } from "./test2";
 
 export default function Showcase() {
-
   const [isLoading, setIsLoading] = useState(false);
   const dataStore = useDataStore();
 
-  const handleClick = async () => {
-    try {
-      setIsLoading(true);
-      const playerData = generateGoodData(test2); 
-      dataStore(playerData, 1, false, true); // 
-      setIsLoading(false);
-    } catch (error) {
-      console.error('Error updating database:', error);
-      setIsLoading(false);
-    }
-  };
 
 
   const [showChar, setShowChar] = useState<boolean>(false);
@@ -32,20 +19,31 @@ export default function Showcase() {
   const cache = new CacheHandler();
 
   const searchPlayer = async () => {
-    const uid = (document.getElementById("uidInput") as HTMLInputElement).value;
-
-    // ? gets the character details from enka api
-    const { genshin } = new Wrapper();
     try {
+      setIsLoading(true);
+      const uid = (document.getElementById("uidInput") as HTMLInputElement)
+        .value;
+
+      // ? gets the character details from enka api
+      const { genshin } = new Wrapper();
       await genshin
         .getPlayer(uid)
         .then((player) => {
           setPlayerDetails(player); // Set playerDetails
           cache.set("cacheData", player); //set Cache data into local storage
+          try {
+            // ? stores the data into the database
+            const playerData = generateGoodData(player);
+            dataStore(playerData, 1, false, true); 
+          } catch (error) {
+            console.error("Error updating database:", error);
+          }
         })
         .catch((err) => console.log(err));
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
     }
   };
 
@@ -66,19 +64,14 @@ export default function Showcase() {
   const [jsonData, setJsonData] = useState<string>("");
   return (
     <div className="char container section">
-      <div>
-      <button onClick={handleClick} disabled={isLoading}>
-        {isLoading ? 'Updating...' : 'Update Database'}
-      </button>
-    </div>
       <h2 className="section__title-center">Character Details</h2>
       {/* search section */}
       <div className="search__container">
         <div className="input__box">
           {/*test Uid: 825436941 840889067*/}
           <input id="uidInput" type="text" placeholder="Enter your id" />
-          <button onClick={searchPlayer}>
-            <p>Search</p>
+          <button onClick={searchPlayer} disabled={isLoading}>
+            {isLoading ? "Updating..." : "SEARCH"}
           </button>
         </div>
         <p>Search your UID to show your characters..</p>
