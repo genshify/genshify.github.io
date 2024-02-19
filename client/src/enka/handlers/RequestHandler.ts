@@ -1,9 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { WrapperOptions } from "../types";
-import { APIError} from "../errors";
-
-//@ts-ignore
-// import { version } from "../../package.json";
-// import axios, { AxiosRequestConfig } from "axios";
+import { APIError } from "../errors";
 
 /**
  * A class that handles the requests to the APIs.
@@ -29,17 +26,19 @@ export class RequestHandler {
    * @returns The data of the player.
    */
   async player(uid: string | number): Promise<any> {
-  //   const url = `https://enka.network/api/uid/${uid}`;
 
-  //   if (!/^(18|[1-35-9])\d{8}$/.test(uid.toString()))
-  //     throw new PackageError("The UID format is incorrect");
+    if (!/^(18|[1-35-9])\d{8}$/.test(uid.toString()))
+      console.log("The UID format is incorrect");
 
     try {
       const res = await fetch(`https://enka.network/api/uid/${uid}`);
       const data = await res.json();
       return data;
     } catch (err: any) {
-      throw new APIError(err.response.status, `https://enka.network/api/uid/${uid}`);
+      throw new APIError(
+        err.response.status,
+        `https://enka.network/api/uid/${uid}`
+      );
     }
   }
 
@@ -56,7 +55,7 @@ export class RequestHandler {
         headers: {
           "accept-encoding": "*",
           "User-Agent": `${
-            this.options?.userAgent 
+            this.options?.userAgent
             // || `enkanetwork.js/v${version}`
           }`,
         },
