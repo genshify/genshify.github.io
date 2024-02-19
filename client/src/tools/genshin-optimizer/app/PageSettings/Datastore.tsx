@@ -1,21 +1,9 @@
-// import { SandboxStorage } from "genshin-optimizer/database";
-// import { iconInlineProps } from "genshin-optimizer/svgicons";
-// import {
-//   ArtCharDatabase,
-//   type ImportResult,
-//   type ImportResultCounter,
-// } from "genshin-optimizer/db";
 
 import { DatabaseContext } from "genshin-optimizer/db-ui";
-import { IGOOD } from "genshin-optimizer/good";
 import { useContext, useState } from "react";
-import { PlayerData } from "../../../../enka";
 import { SandboxStorage } from "genshin-optimizer/database";
 import { ArtCharDatabase } from "genshin-optimizer/db";
 
-// import { useCallback, useContext, useMemo, useState } from "react";
-// import { Trans, useTranslation } from "react-i18next";
-// import { DatabaseContext } from "genshin-optimizer/db-ui";
 export function DataStore(playerData: string) {
 const index = 0;
   const { databases, setDatabase } = useContext(DatabaseContext);

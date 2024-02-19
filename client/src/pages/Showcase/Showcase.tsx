@@ -5,8 +5,27 @@ import { generateGoodData } from "../../tools/genshin-optimizer/libs/good/goodDa
 import { CacheHandler } from "../../enka/handlers/CacheHandler";
 import { Link } from "react-router-dom";
 import { nameSetter } from "../../tools/genshin-optimizer/libs/good/goodDataMaker";
+import { useDataStore } from "../../utils/DataStore";
+import { test2 } from "./test2";
 
 export default function Showcase() {
+
+  const [isLoading, setIsLoading] = useState(false);
+  const dataStore = useDataStore();
+
+  const handleClick = async () => {
+    try {
+      setIsLoading(true);
+      const playerData = generateGoodData(test2); 
+      dataStore(playerData, 1, false, true); // 
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error updating database:', error);
+      setIsLoading(false);
+    }
+  };
+
+
   const [showChar, setShowChar] = useState<boolean>(false);
   const [charIndex, setCharIndex] = useState<number>(0);
   const [playerDetails, setPlayerDetails] = useState<PlayerData>();
@@ -47,6 +66,11 @@ export default function Showcase() {
   const [jsonData, setJsonData] = useState<string>("");
   return (
     <div className="char container section">
+      <div>
+      <button onClick={handleClick} disabled={isLoading}>
+        {isLoading ? 'Updating...' : 'Update Database'}
+      </button>
+    </div>
       <h2 className="section__title-center">Character Details</h2>
       {/* search section */}
       <div className="search__container">
@@ -261,7 +285,7 @@ export default function Showcase() {
                   <div>
                     <Link
                       className="showDetailedStatsButton"
-                      to={`/showcase/characters/${nameSetter(
+                      to={`/characters/${nameSetter(
                         playerDetails.characters[charIndex].name
                       )}`}
                     >

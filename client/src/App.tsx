@@ -22,11 +22,12 @@ import Footer from "./components/Navbar/Footer";
 import Header from "./components/Navbar/Header";
 
 export default function App() {
+  // ? retrieves the dbIndex from local storage, parsing it into an integer. index indicates which database to use.
   const dbIndex = parseInt(localStorage.getItem("dbIndex") || "1");
   const [databases, setDatabases] = useState(() => {
     localStorage.removeItem("GONewTabDetection");
     localStorage.setItem("GONewTabDetection", "debug");
-    return ([1, 2, 3, 4] as const).map((index) => {
+    return ([1, 2] as const).map((index) => {
       if (index === dbIndex) {
         return new ArtCharDatabase(index, new DBLocalStorage(localStorage));
       } else {
@@ -69,18 +70,18 @@ export default function App() {
             }
           >
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/beginner" element={<Beginner />} />
               <Route
-                path="/showcase/*"
+                path="/*"
                 element={
                   <ThemeProvider theme={theme}>
                     <DatabaseContext.Provider value={dbContextObj}>
                       <ErrorBoundary>
                         <Suspense fallback={null}>
                           <Routes>
-                            <Route index element={<Showcase />} />
+                            <Route index element={<Home />} />
+                            <Route path="/about" element={<About />} />
+                            <Route path="/beginner" element={<Beginner />} />
+                            <Route path="showcase/" element={<Showcase />} />
                             <Route path="characters/*">
                               <Route index element={<PageCharacter />} />
                               <Route
