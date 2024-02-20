@@ -60,63 +60,63 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <Container maxWidth="xl" sx={{ px: { xs: 0.5, sm: 1, md: 2 } }}>
-        <Suspense
-          fallback={
-            <Skeleton
-              variant="rectangular"
-              sx={{ width: "100%", height: "100%" }}
-            />
-          }
-        >
-          <Routes>
-            <Route
-              path="/*"
-              element={
-                <ThemeProvider theme={theme}>
-                  <SnowContext.Provider value={SnowContextObj}>
-                    <DatabaseContext.Provider value={dbContextObj}>
-                      <ErrorBoundary>
-                        <Suspense fallback={null}>
-                          <Grid
-                            container
-                            direction="column"
-                            minHeight="100vh"
-                            position="relative"
-                          >
-                            <Grid item>
-                              <Header anchor="back-to-top-anchor" />
-                            </Grid>
-                            <Routes>
-                              <Route index element={<Home />} />
-                              <Route path="/about" element={<About />} />
-                              <Route path="/beginner" element={<Beginner />} />
-                              <Route path="showcase/" element={<Showcase />} />
-                              <Route path="characters/*">
-                                <Route index element={<PageCharacter />} />
-                                <Route
-                                  path=":characterKey/*"
-                                  element={<CharacterDisplay />}
-                                />
-                              </Route>
-                            </Routes>
-                            <Grid item flexGrow={1} />
-                            <Snow />
-                            <Grid item>
-                              <Footer />
-                            </Grid>
-                          </Grid>
+      <Routes>
+        <Route
+          path="/*"
+          element={
+            <ThemeProvider theme={theme}>
+              <SnowContext.Provider value={SnowContextObj}>
+                <DatabaseContext.Provider value={dbContextObj}>
+                  <ErrorBoundary>
+                    <Grid
+                      container
+                      direction="column"
+                      minHeight="100vh"
+                      position="relative"
+                    >
+                      <Grid item>
+                        <Header anchor="back-to-top-anchor" />
+                      </Grid>
+                      <Container
+                        maxWidth="xl"
+                        sx={{ px: { xs: 0.5, sm: 1, md: 2 } }}
+                      >
+                        <Suspense
+                          fallback={
+                            <Skeleton
+                              variant="rectangular"
+                              sx={{ width: "100%", height: "100%" }}
+                            />
+                          }
+                        >
+                          <Routes>
+                            <Route index element={<Home />} />
+                            <Route path="/about" element={<About />} />
+                            <Route path="/beginner" element={<Beginner />} />
+                            <Route path="showcase/" element={<Showcase />} />
+                            <Route path="characters/*">
+                              <Route index element={<PageCharacter />} />
+                              <Route
+                                path=":characterKey/*"
+                                element={<CharacterDisplay />}
+                              />
+                            </Route>
+                          </Routes>
                         </Suspense>
-                      </ErrorBoundary>
-                    </DatabaseContext.Provider>
-                  </SnowContext.Provider>
-                </ThemeProvider>
-              }
-            />
-          </Routes>
-        </Suspense>
-      </Container>
-      {/* make sure footer is always at bottom */}
+                      </Container>
+                      <Grid item flexGrow={1} />
+                      <Snow />
+                      <Grid item>
+                        <Footer />
+                      </Grid>
+                    </Grid>
+                  </ErrorBoundary>
+                </DatabaseContext.Provider>
+              </SnowContext.Provider>
+            </ThemeProvider>
+          }
+        />
+      </Routes>
     </BrowserRouter>
   );
 }
