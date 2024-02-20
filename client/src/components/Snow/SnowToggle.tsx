@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useContext } from "react";
-import { SnowContext } from "../../../../contexts/SnowContext";
+import { SnowContext } from "../../contexts/SnowContext";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import { useTranslation } from "react-i18next";

@@ -1,6 +1,6 @@
 import { range } from "genshin-optimizer/util";
 import { useContext } from "react";
-import { SnowContext } from "./Context/SnowContext";
+import { SnowContext } from "../../../contexts/SnowContext";
 
 export default function Snow() {
   const { snow } = useContext(SnowContext);

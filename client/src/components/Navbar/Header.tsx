@@ -13,52 +13,59 @@ import {
   Tab,
   Tabs,
   Toolbar,
-  Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import { Suspense, useState } from "react";
+import { SnowToggle } from "../Snow/SnowToggle";
 
 type ITab = {
   to: string;
   value: string;
+  name: string;
 };
 
 const home: ITab = {
   to: "/",
   value: "home",
+  name: "Home",
 };
 
 const about: ITab = {
   to: "/about",
   value: "about",
+  name: "About",
 };
 const banner: ITab = {
   to: "/banner",
   value: "banner",
+  name: "Banner",
 };
 const events: ITab = {
   to: "/events",
   value: "events",
+  name: "Events",
 };
 const tips: ITab = {
   to: "/tips",
   value: "tips",
+  name: "Tips",
 };
 const showcase: ITab = {
   to: "/showcase",
   value: "showcase",
+  name: "Showcase",
 };
-
+const content = [home, about, banner, events, tips, showcase] as const;
 export default function Header({ anchor }: { anchor: string }) {
   return (
     <Suspense fallback={<Skeleton variant="rectangular" height={56} />}>
       <HeaderContent anchor={anchor} />
+      <SnowToggle/>
     </Suspense>
   );
 }
 
-const maincontent = [home,about, banner, events, tips, showcase] as const;
 function HeaderContent({ anchor }: { anchor: string }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -66,25 +73,30 @@ function HeaderContent({ anchor }: { anchor: string }) {
   const {
     params: { currentTab },
   } = useMatch({ path: "/:currentTab", end: false }) ?? {
-    params: { currentTab: "" },
+    params: { currentTab: "home" },
   };
   if (isMobile)
-    return <MobileHeader anchor={anchor} currentTab={currentTab ?? ""} />;
+    return <MobileHeader anchor={anchor} currentTab={currentTab ?? "home"} />;
   return (
     <Box>
-      <AppBar position="static" sx={{ bgcolor: "#edfdf1" }} elevation={0} id={anchor}>
+      <AppBar
+        position="static"
+        sx={{ bgcolor: "#edfdf1" }}
+        elevation={0}
+        id={anchor}
+      >
         <div className="nav">
           <Box display="flex" alignItems="center">
             <Link to={"/"}>
-            <img
-              src={logo}
-              style={{
-                width: "80px",
-                marginRight: "10px",
-                marginLeft: "10px",
-              }}
-              alt=""
-            />
+              <img
+                src={logo}
+                style={{
+                  width: "80px",
+                  marginRight: "10px",
+                  marginLeft: "10px",
+                }}
+                alt=""
+              />
             </Link>
           </Box>
           <Tabs
@@ -95,14 +107,22 @@ function HeaderContent({ anchor }: { anchor: string }) {
                 p: 1,
                 minWidth: "auto",
                 minHeight: "auto",
+                color: "var(--darkGreen)",
+                textTransform: "none",
+                fontFamily: "var(--font)",
+                fontSize: "1rem",
+                borderRadius: "5px",
               },
               "& .MuiTab-root:hover": {
                 transition: "background-color 0.5s ease",
-                backgroundColor: "rgba(255,255,255,0.1)",
+                bgcolor: "var(--mediumGreen)",
+              },
+              ".MuiTabs-indicator": {
+                bgcolor: "var(--mediumGreen)",
               },
             }}
           >
-            {maincontent.map(({ to, value }) => {
+            {content.map(({ to, value, name }) => {
               return (
                 <Tab
                   key={value}
@@ -112,10 +132,12 @@ function HeaderContent({ anchor }: { anchor: string }) {
                   iconPosition="start"
                   label={
                     <Box display="flex" gap={1} alignItems="center">
-                      <p>{value}</p>
+                      <p>{name}</p>
                     </Box>
                   }
-                  sx={{ ml: value === "setting" ? "auto" : undefined }}
+                  sx={{
+                    ml: value === "setting" ? "auto" : undefined,
+                  }}
                 />
               );
             })}
@@ -126,28 +148,42 @@ function HeaderContent({ anchor }: { anchor: string }) {
   );
 }
 
-// const mobileContent = [
-//   artifacts,
-//   weapons,
-//   characters,
-//   tools,
-//   scanner,
-//   doc,
-//   setting,
-// ] as const;
-function MobileHeader({ anchor }: { anchor: string; currentTab: string }) {
-  const [mobileOpen, setMobileOpen] = useState(false);
+// for mobile devices
 
+function MobileHeader({
+  anchor,
+  currentTab,
+}: {
+  anchor: string;
+  currentTab: string;
+}) {
+  const [mobileOpen, setMobileOpen] = useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  // const { t } = useTranslation("ui");
   return (
     <>
-      <AppBar position="fixed" sx={{ bgcolor: "#edfdf1" }} elevation={0}>
+      <AppBar position="static" style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexDirection: "row",
+      }} sx={{ bgcolor: "#edfdf1" }} elevation={0}>
+        <Box display="flex" alignItems="center">
+          <Link to={"/"}>
+            <img
+              src={logo}
+              style={{
+                width: "80px",
+                marginRight: "10px",
+                marginLeft: "10px",
+              }}
+              alt=""
+            />
+          </Link>
+        </Box>
         <Drawer
-          className="nav__drawer"
           anchor="right"
           variant="temporary"
           open={mobileOpen}
@@ -157,39 +193,20 @@ function MobileHeader({ anchor }: { anchor: string; currentTab: string }) {
           }}
         >
           <List>
-            <ListItemButton className="nav__item">
-              <Link to="" className="nav__link ">
-                Home
-              </Link>
-            </ListItemButton>
-            <ListItemButton className="nav__item">
-              <Link to="about" className="nav__link ">
-                About
-              </Link>
-            </ListItemButton>
-            <ListItemButton className="nav__item">
-              <Link to="Banner" className="nav__link ">
-                Banner
-              </Link>
-            </ListItemButton>
-            <ListItemButton className="nav__item">
-              <Link to="Events" className="nav__link ">
-                Events
-              </Link>
-            </ListItemButton>
-            <ListItemButton className="nav__item">
-              <Link to="Tips" className="nav__link ">
-                Tips
-              </Link>
-            </ListItemButton>
-            <ListItemButton className="nav__item">
-              <Link to="showcase" className="nav__link ">
-                Showcase
-              </Link>
-            </ListItemButton>
-            <div className="nav__close" id="nav-close">
-              <i className="ri-close-line"></i>
-            </div>
+            {content.map(({ to, value, name }) => {
+              return (
+                <ListItemButton
+                  key={value}
+                  to={to}
+                  component={Link}
+                  onClick={handleDrawerToggle}
+                  selected={currentTab === value}
+                  className="nav__item"
+                >
+                  {name}
+                </ListItemButton>
+              );
+            })}
           </List>
         </Drawer>
         <Toolbar>
