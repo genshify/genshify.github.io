@@ -64,7 +64,8 @@ export default function ArtifactLevelSlider({
         getAriaLabel={() => "Arifact Level Range"}
         value={[sliderLow, sliderHigh]}
         onChange={setSlider}
-        onChangeCommitted={(e, value) => setBoth(value[0], value[1])}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        onChangeCommitted={(e, value :any ) => setBoth(value[0], value[1])}
         valueLabelDisplay="auto"
         min={0}
         max={20}

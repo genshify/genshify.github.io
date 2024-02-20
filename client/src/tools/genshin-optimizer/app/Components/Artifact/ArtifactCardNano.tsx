@@ -48,7 +48,8 @@ export default function ArtifactCardNano({
   const art = useArtifact(artifactId)
   const database = useDatabase()
   const actionWrapperFunc = useCallback(
-    (children) => (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (children :any) => (
       <CardActionArea onClick={onClick} sx={{ height: '100%' }}>
         {children}
       </CardActionArea>
@@ -213,6 +214,7 @@ function SubstatDisplay({ stat }: { stat: ICachedSubstat }) {
     <Box display="flex" gap={1} alignContent="center">
       <Typography
         sx={{ flexGrow: 1, display: 'flex', gap: 0.5, alignItems: 'center' }}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         color={(numRolls ? `${rollColor}.main` : 'error.main') as any}
         component="span"
       >
