@@ -14,12 +14,17 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ErrorBoundary from "./tools/genshin-optimizer/app/ErrorBoundary";
 import "./App.scss";
 import "./App.css";
+import Snow from "./tools/genshin-optimizer/app/Snow";
 
 import { Suspense, useCallback, useMemo, useState } from "react";
 import { ArtCharDatabase } from "genshin-optimizer/db";
 import { DBLocalStorage, SandboxStorage } from "genshin-optimizer/database";
 import Footer from "./components/Navbar/Footer";
 import Header from "./components/Navbar/Header";
+import {
+  SnowContext,
+  useSnow,
+} from "./tools/genshin-optimizer/app/Context/SnowContext";
 
 export default function App() {
   // ? retrieves the dbIndex from local storage, parsing it into an integer. index indicates which database to use.
@@ -54,6 +59,8 @@ export default function App() {
     () => ({ databases, setDatabases, database, setDatabase }),
     [databases, setDatabases, database, setDatabase]
   );
+  const SnowContextObj = useSnow();
+
   return (
     <BrowserRouter>
       <Grid container direction="column" minHeight="100vh" position="relative">
@@ -74,25 +81,28 @@ export default function App() {
                 path="/*"
                 element={
                   <ThemeProvider theme={theme}>
-                    <DatabaseContext.Provider value={dbContextObj}>
-                      <ErrorBoundary>
-                        <Suspense fallback={null}>
-                          <Routes>
-                            <Route index element={<Home />} />
-                            <Route path="/about" element={<About />} />
-                            <Route path="/beginner" element={<Beginner />} />
-                            <Route path="showcase/" element={<Showcase />} />
-                            <Route path="characters/*">
-                              <Route index element={<PageCharacter />} />
-                              <Route
-                                path=":characterKey/*"
-                                element={<CharacterDisplay />}
-                              />
-                            </Route>
-                          </Routes>
-                        </Suspense>
-                      </ErrorBoundary>
-                    </DatabaseContext.Provider>
+                    <SnowContext.Provider value={SnowContextObj}>
+                      <DatabaseContext.Provider value={dbContextObj}>
+                        <ErrorBoundary>
+                          <Suspense fallback={null}>
+                          <Snow />
+                            <Routes>
+                              <Route index element={<Home />} />
+                              <Route path="/about" element={<About />} />
+                              <Route path="/beginner" element={<Beginner />} />
+                              <Route path="showcase/" element={<Showcase />} />
+                              <Route path="characters/*">
+                                <Route index element={<PageCharacter />} />
+                                <Route
+                                  path=":characterKey/*"
+                                  element={<CharacterDisplay />}
+                                />
+                              </Route>
+                            </Routes>
+                          </Suspense>
+                        </ErrorBoundary>
+                      </DatabaseContext.Provider>
+                    </SnowContext.Provider>
                   </ThemeProvider>
                 }
               />

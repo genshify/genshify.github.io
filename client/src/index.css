@@ -31,7 +31,7 @@
   /*========== Font weight ==========*/
   --font-semi-bold: 600;
   --font-bold: 700;
-  /*========== Margenes ==========*/
+  /*========== Margins ==========*/
   --mb-0-5: .5rem;
   --mb-0-75: .75rem;
   --mb-1: 1rem;
@@ -64,7 +64,6 @@ html {
 }
 
 body {
-  margin: var(--header-height) 0 0 0;
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
   background-color: var(--body-color);
@@ -213,7 +212,7 @@ img {
     margin-left: auto;
   }
   .home__container {
-    padding: 10rem 0 2rem;
+    padding: 5rem 0 2rem;
   }
 }
 /* For large devices */
@@ -225,9 +224,7 @@ img {
   .button__header {
     display: block;
   }
-  .home {
-    position: relative;
-  }
+ 
   .home__img {
     position: absolute;
     margin-top: 6rem;
@@ -286,4 +283,6 @@ img {
   .scrollup {
     right: 2rem;
   }
-}/*# sourceMappingURL=styles.css.map */
+}
+
+/*# sourceMappingURL=styles.css.map */

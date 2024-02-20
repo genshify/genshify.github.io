@@ -13,7 +13,6 @@
 }
 .nav {
   width: 100%;
-  height: var(--header-height);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,9 +33,6 @@
     z-index: var(--z-fixed);
   }
 }
-.nav__drawer{
-  
-}
 .nav__list {
   display: flex;
   align-items: center;
@@ -52,6 +48,7 @@
   width: 88px;
   height: 55px;
 }
+
 .nav__toggle {
   font-size: 1.5rem;
   cursor: pointer;
@@ -62,4 +59,12 @@
   position: absolute;
   top: 1.2rem;
   right: 1.5rem;
+}
+
+.snow_switch_container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  color: var(--darkGreen);
 }
