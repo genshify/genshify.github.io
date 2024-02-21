@@ -40,9 +40,8 @@ body {
 .snowflake {
   $total: 200;
   position: absolute;
-  width: 10px;
-  height: 10px;
-  background: white;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   filter: drop-shadow(0 0 10px white);
   z-index: 99999;

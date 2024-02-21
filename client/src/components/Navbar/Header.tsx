@@ -17,7 +17,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { Suspense, useState } from "react";
-import { SnowToggle } from "../Snow/SnowToggle";
+import { SnowToggle } from "../Effects/PrimoToggle";
 
 type ITab = {
   to: string;
@@ -61,7 +61,7 @@ export default function Header({ anchor }: { anchor: string }) {
   return (
     <Suspense fallback={<Skeleton variant="rectangular" height={56} />}>
       <HeaderContent anchor={anchor} />
-      <SnowToggle/>
+      <SnowToggle />
     </Suspense>
   );
 }
@@ -164,12 +164,17 @@ function MobileHeader({
 
   return (
     <>
-      <AppBar position="static" style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        flexDirection: "row",
-      }} sx={{ bgcolor: "#edfdf1" }} elevation={0}>
+      <AppBar
+        position="static"
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexDirection: "row",
+        }}
+        sx={{ bgcolor: "#edfdf1" }}
+        elevation={0}
+      >
         <Box display="flex" alignItems="center">
           <Link to={"/"}>
             <img

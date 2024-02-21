@@ -14,14 +14,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ErrorBoundary from "./tools/genshin-optimizer/app/ErrorBoundary";
 import "./App.scss";
 import "./App.css";
-import Snow from "./tools/genshin-optimizer/app/Snow";
+import Snow from "./components/Effects/Primo";
 
 import { Suspense, useCallback, useMemo, useState } from "react";
 import { ArtCharDatabase } from "genshin-optimizer/db";
 import { DBLocalStorage, SandboxStorage } from "genshin-optimizer/database";
 import Footer from "./components/Navbar/Footer";
 import Header from "./components/Navbar/Header";
-import { SnowContext, useSnow } from "./contexts/SnowContext";
+import { SnowContext, useSnow } from "./contexts/PrimoContext";
 
 export default function App() {
   // ? retrieves the dbIndex from local storage, parsing it into an integer. index indicates which database to use.
