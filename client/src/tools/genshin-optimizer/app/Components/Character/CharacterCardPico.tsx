@@ -7,7 +7,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Box, CardActionArea, Skeleton, Typography } from "@mui/material";
 import type { MouseEvent, ReactNode } from "react";
 import { Suspense, useCallback, useContext, useEffect, useState } from "react";
-import { SillyContext } from "../../Context/SillyContext";
+import { SillyContext } from "../../../../../contexts/SillyContext";
 import { getCharSheet } from "../../Data/Characters";
 import { ElementIcon } from "../../KeyMap/StatIcon";
 import { iconAsset } from "../../Util/AssetUtil";

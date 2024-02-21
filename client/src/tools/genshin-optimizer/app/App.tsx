@@ -2,7 +2,7 @@ import { DBLocalStorage, SandboxStorage } from "genshin-optimizer/database";
 import { ArtCharDatabase } from "genshin-optimizer/db";
 import { DatabaseContext } from "genshin-optimizer/db-ui";
 import { theme } from "genshin-optimizer/ui";
-import { KeyboardArrowUp } from "@mui/icons-material"
+import { KeyboardArrowUp } from "@mui/icons-material";
 import {
   Box,
   Container,
@@ -19,7 +19,7 @@ import React, { Suspense, lazy, useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { HashRouter, Route, Routes, useMatch } from "react-router-dom";
 import "./App.scss";
-import { SillyContext, useSilly } from "./Context/SillyContext";
+import { SillyContext, useSilly } from "../../../contexts/SillyContext";
 import { SnowContext, useSnow } from "./Context/SnowContext";
 import ErrorBoundary from "./ErrorBoundary";
 import Footer from "./Footer";

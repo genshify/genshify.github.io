@@ -16,7 +16,7 @@ import {
 import { useContext } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import CardLight from "../Components/Card/CardLight";
-import { SillyContext } from "../Context/SillyContext";
+import { SillyContext } from "../../../../contexts/SillyContext";
 import silly_icon from "../silly_icon.png";
 export default function SillyCard() {
   const { silly, setSilly } = useContext(SillyContext);

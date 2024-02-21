@@ -1,25 +1,22 @@
-import {
-  useBoolState,
-  useForceUpdate,
-} from 'genshin-optimizer/react-util'
-import { filterFunction, sortFunction } from 'genshin-optimizer/util'
-import { characterAsset } from 'genshin-optimizer/assets'
-import type { CharacterKey } from 'genshin-optimizer/consts'
+import { useBoolState, useForceUpdate } from "genshin-optimizer/react-util";
+import { filterFunction, sortFunction } from "genshin-optimizer/util";
+import { characterAsset } from "genshin-optimizer/assets";
+import type { CharacterKey } from "genshin-optimizer/consts";
 import {
   allCharacterKeys,
   allElementKeys,
   allWeaponTypeKeys,
-} from 'genshin-optimizer/consts'
-import type { ICachedCharacter } from 'genshin-optimizer/db'
+} from "genshin-optimizer/consts";
+import type { ICachedCharacter } from "genshin-optimizer/db";
 import {
   useCharMeta,
   useCharacter,
   useDBMeta,
   useDatabase,
-} from 'genshin-optimizer/db-ui'
-import { ascensionMaxLevel } from 'genshin-optimizer/util'
-import { Favorite, FavoriteBorder } from '@mui/icons-material'
-import type { TooltipProps } from '@mui/material'
+} from "genshin-optimizer/db-ui";
+import { ascensionMaxLevel } from "genshin-optimizer/util";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import type { TooltipProps } from "@mui/material";
 import {
   Box,
   CardActionArea,
@@ -32,52 +29,52 @@ import {
   Typography,
   styled,
   tooltipClasses,
-} from '@mui/material'
-import type { ChangeEvent } from 'react'
+} from "@mui/material";
+import type { ChangeEvent } from "react";
 import {
   useContext,
   useDeferredValue,
   useEffect,
   useMemo,
   useState,
-} from 'react'
-import { useTranslation } from 'react-i18next'
-import CardDark from '../Components/Card/CardDark'
-import CardLight from '../Components/Card/CardLight'
-import CharacterCard from '../Components/Character/CharacterCard'
-import CloseButton from '../Components/CloseButton'
-import ModalWrapper from '../Components/ModalWrapper'
-import SortByButton from '../Components/SortByButton'
-import SqBadge from '../Components/SqBadge'
-import { StarsDisplay } from '../Components/StarDisplay'
-import ElementToggle from '../Components/ToggleButton/ElementToggle'
-import WeaponToggle from '../Components/ToggleButton/WeaponToggle'
-import { DataContext } from '../Context/DataContext'
-import { SillyContext } from '../Context/SillyContext'
-import { getCharSheet } from '../Data/Characters'
-import type CharacterSheet from '../Data/Characters/CharacterSheet'
-import { iconAsset } from '../Util/AssetUtil'
-import type { CharacterSortKey } from '../Util/CharacterSort'
+} from "react";
+import { useTranslation } from "react-i18next";
+import CardDark from "../Components/Card/CardDark";
+import CardLight from "../Components/Card/CardLight";
+import CharacterCard from "../Components/Character/CharacterCard";
+import CloseButton from "../Components/CloseButton";
+import ModalWrapper from "../Components/ModalWrapper";
+import SortByButton from "../Components/SortByButton";
+import SqBadge from "../Components/SqBadge";
+import { StarsDisplay } from "../Components/StarDisplay";
+import ElementToggle from "../Components/ToggleButton/ElementToggle";
+import WeaponToggle from "../Components/ToggleButton/WeaponToggle";
+import { DataContext } from "../../../../contexts/DataContext";
+import { SillyContext } from "../../../../contexts/SillyContext";
+import { getCharSheet } from "../Data/Characters";
+import type CharacterSheet from "../Data/Characters/CharacterSheet";
+import { iconAsset } from "../Util/AssetUtil";
+import type { CharacterSortKey } from "../Util/CharacterSort";
 import {
   characterFilterConfigs,
   characterSortConfigs,
   characterSortMap,
-} from '../Util/CharacterSort'
-import { catTotal } from '../Util/totalUtils'
+} from "../Util/CharacterSort";
+import { catTotal } from "../Util/totalUtils";
 
 type characterFilter = (
   character: ICachedCharacter | undefined,
   sheet: CharacterSheet
-) => boolean
+) => boolean;
 
 type CharacterSelectionModalProps = {
-  show: boolean
-  newFirst?: boolean
-  onHide: () => void
-  onSelect?: (ckey: CharacterKey) => void
-  filter?: characterFilter
-}
-const sortKeys = Object.keys(characterSortMap)
+  show: boolean;
+  newFirst?: boolean;
+  onHide: () => void;
+  onSelect?: (ckey: CharacterKey) => void;
+  filter?: characterFilter;
+};
+const sortKeys = Object.keys(characterSortMap);
 export default function CharacterSelectionModal({
   show,
   onHide,
@@ -86,39 +83,39 @@ export default function CharacterSelectionModal({
   newFirst = false,
 }: CharacterSelectionModalProps) {
   const { t } = useTranslation([
-    'page_character',
+    "page_character",
     // Always load these 2 so character names are loaded for searching/sorting
-    'sillyWisher_charNames',
-    'charNames_gen',
-  ])
-  const { silly } = useContext(SillyContext)
-  const database = useDatabase()
-  const [state, setState] = useState(() => database.displayCharacter.get())
+    "sillyWisher_charNames",
+    "charNames_gen",
+  ]);
+  const { silly } = useContext(SillyContext);
+  const database = useDatabase();
+  const [state, setState] = useState(() => database.displayCharacter.get());
   useEffect(
     () => database.displayCharacter.follow((r, s) => setState(s)),
     [database, setState]
-  )
+  );
 
-  const { gender } = useDBMeta()
+  const { gender } = useDBMeta();
 
-  const [dbDirty, forceUpdate] = useForceUpdate()
+  const [dbDirty, forceUpdate] = useForceUpdate();
 
   // character favorite updater
   useEffect(
     () => database.charMeta.followAny(() => forceUpdate()),
     [forceUpdate, database]
-  )
+  );
 
-  const [searchTerm, setSearchTerm] = useState('')
-  const deferredSearchTerm = useDeferredValue(searchTerm)
-  const deferredState = useDeferredValue(state)
-  const deferredDbDirty = useDeferredValue(dbDirty)
+  const [searchTerm, setSearchTerm] = useState("");
+  const deferredSearchTerm = useDeferredValue(searchTerm);
+  const deferredState = useDeferredValue(state);
+  const deferredDbDirty = useDeferredValue(dbDirty);
   const characterKeyList = useMemo(() => {
-    const { element, weaponType, sortType, ascending } = deferredState
+    const { element, weaponType, sortType, ascending } = deferredState;
     const sortByKeys = [
-      ...(newFirst ? ['new'] : []),
+      ...(newFirst ? ["new"] : []),
       ...(characterSortMap[sortType] ?? []),
-    ] as CharacterSortKey[]
+    ] as CharacterSortKey[];
     return (
       deferredDbDirty &&
       allCharacterKeys
@@ -136,10 +133,10 @@ export default function CharacterSelectionModal({
             sortByKeys,
             ascending,
             characterSortConfigs(database, silly),
-            ['new', 'favorite']
+            ["new", "favorite"]
           )
         )
-    )
+    );
   }, [
     deferredState,
     newFirst,
@@ -149,52 +146,52 @@ export default function CharacterSelectionModal({
     silly,
     filter,
     gender,
-  ])
+  ]);
 
   const weaponTotals = useMemo(
     () =>
       catTotal(allWeaponTypeKeys, (ct) =>
         allCharacterKeys.forEach((ck) => {
-          const wtk = getCharSheet(ck, database.gender).weaponTypeKey
-          ct[wtk].total++
-          if (characterKeyList.includes(ck)) ct[wtk].current++
+          const wtk = getCharSheet(ck, database.gender).weaponTypeKey;
+          ct[wtk].total++;
+          if (characterKeyList.includes(ck)) ct[wtk].current++;
         })
       ),
     [characterKeyList, database]
-  )
+  );
 
   const elementTotals = useMemo(
     () =>
       catTotal(allElementKeys, (ct) =>
         allCharacterKeys.forEach((ck) => {
-          const ele = getCharSheet(ck, database.gender).elementKey
-          ct[ele].total++
-          if (characterKeyList.includes(ck)) ct[ele].current++
+          const ele = getCharSheet(ck, database.gender).elementKey;
+          ct[ele].total++;
+          if (characterKeyList.includes(ck)) ct[ele].current++;
         })
       ),
     [characterKeyList, database]
-  )
+  );
 
-  const { weaponType, element, sortType, ascending } = state
+  const { weaponType, element, sortType, ascending } = state;
 
   return (
     <ModalWrapper
       open={show}
       onClose={onHide}
-      sx={{ '& .MuiContainer-root': { justifyContent: 'normal' } }}
+      sx={{ "& .MuiContainer-root": { justifyContent: "normal" } }}
     >
       <CardDark>
         <CardContent
           sx={{
             py: 1,
-            display: 'flex',
-            alignItems: 'center',
+            display: "flex",
+            alignItems: "center",
             gap: 1,
-            flexWrap: 'wrap',
+            flexWrap: "wrap",
           }}
         >
           <WeaponToggle
-            sx={{ height: '100%' }}
+            sx={{ height: "100%" }}
             onChange={(weaponType) =>
               database.displayCharacter.set({ weaponType })
             }
@@ -203,7 +200,7 @@ export default function CharacterSelectionModal({
             size="small"
           />
           <ElementToggle
-            sx={{ height: '100%' }}
+            sx={{ height: "100%" }}
             onChange={(element) => database.displayCharacter.set({ element })}
             value={element}
             totals={elementTotals}
@@ -216,16 +213,16 @@ export default function CharacterSelectionModal({
               onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
                 setSearchTerm(e.target.value)
               }
-              label={t('characterName')}
+              label={t("characterName")}
               size="small"
-              sx={{ height: '100%' }}
+              sx={{ height: "100%" }}
               InputProps={{
-                sx: { height: '100%' },
+                sx: { height: "100%" },
               }}
             />
           </Box>
           <SortByButton
-            sx={{ height: '100%' }}
+            sx={{ height: "100%" }}
             sortKeys={sortKeys}
             value={sortType}
             onChange={(sortType) => database.displayCharacter.set({ sortType })}
@@ -249,8 +246,8 @@ export default function CharacterSelectionModal({
                   <SelectionCard
                     characterKey={characterKey}
                     onClick={() => {
-                      onHide()
-                      onSelect?.(characterKey)
+                      onHide();
+                      onSelect?.(characterKey);
                     }}
                   />
                 </Grid>
@@ -260,7 +257,7 @@ export default function CharacterSelectionModal({
         </DataContext.Provider>
       </CardDark>
     </ModalWrapper>
-  )
+  );
 }
 
 const CustomTooltip = styled(({ className, ...props }: TooltipProps) => (
@@ -269,26 +266,26 @@ const CustomTooltip = styled(({ className, ...props }: TooltipProps) => (
   [`& .${tooltipClasses.tooltip}`]: {
     padding: 0,
   },
-})
+});
 
 function SelectionCard({
   characterKey,
   onClick,
 }: {
-  characterKey: CharacterKey
-  onClick: () => void
+  characterKey: CharacterKey;
+  onClick: () => void;
 }) {
-  const { gender } = useDBMeta()
-  const characterSheet = getCharSheet(characterKey, gender)
-  const character = useCharacter(characterKey)
-  const { favorite } = useCharMeta(characterKey)
-  const database = useDatabase()
-  const { silly } = useContext(SillyContext)
+  const { gender } = useDBMeta();
+  const characterSheet = getCharSheet(characterKey, gender);
+  const character = useCharacter(characterKey);
+  const { favorite } = useCharMeta(characterKey);
+  const database = useDatabase();
+  const { silly } = useContext(SillyContext);
 
-  const [open, onOpen, onClose] = useBoolState()
+  const [open, onOpen, onClose] = useBoolState();
 
-  const { level = 1, ascension = 0, constellation = 0 } = character ?? {}
-  const banner = characterAsset(characterKey, 'banner', gender)
+  const { level = 1, ascension = 0, constellation = 0 } = character ?? {};
+  const banner = characterAsset(characterKey, "banner", gender);
   return (
     <CustomTooltip
       enterDelay={300}
@@ -306,14 +303,14 @@ function SelectionCard({
     >
       <Box>
         <CardLight
-          sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}
+          sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}
         >
-          <Box sx={{ position: 'absolute', opacity: 0.7, zIndex: 2 }}>
+          <Box sx={{ position: "absolute", opacity: 0.7, zIndex: 2 }}>
             <IconButton
               sx={{ p: 0.25 }}
               onClick={(_) => {
-                onClose()
-                database.charMeta.set(characterKey, { favorite: !favorite })
+                onClose();
+                database.charMeta.set(characterKey, { favorite: !favorite });
               }}
             >
               {favorite ? <Favorite /> : <FavoriteBorder />}
@@ -327,25 +324,25 @@ function SelectionCard({
                 !banner ? `grad-${characterSheet?.rarity}star` : undefined
               }
               sx={{
-                '&::before': {
+                "&::before": {
                   content: '""',
-                  display: 'block',
-                  position: 'absolute',
+                  display: "block",
+                  position: "absolute",
                   left: 0,
                   top: 0,
-                  width: '100%',
-                  height: '100%',
+                  width: "100%",
+                  height: "100%",
                   opacity: 0.7,
                   backgroundImage: `url(${banner})`,
-                  backgroundPosition: 'center',
-                  backgroundSize: 'cover',
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
                 },
               }}
               width="100%"
             >
               <Box
                 flexShrink={1}
-                sx={{ maxWidth: { xs: '33%', lg: '30%' } }}
+                sx={{ maxWidth: { xs: "33%", lg: "30%" } }}
                 alignSelf="flex-end"
                 display="flex"
                 flexDirection="column"
@@ -357,7 +354,7 @@ function SelectionCard({
                   width="100%"
                   height="auto"
                   maxWidth={256}
-                  sx={{ mt: 'auto' }}
+                  sx={{ mt: "auto" }}
                 />
               </Box>
               <Box
@@ -371,14 +368,14 @@ function SelectionCard({
                 <Typography variant="body2" sx={{ flexGrow: 1 }}>
                   <SqBadge
                     color={characterSheet?.elementKey}
-                    sx={{ opacity: 0.85, textShadow: '0 0 5px gray' }}
+                    sx={{ opacity: 0.85, textShadow: "0 0 5px gray" }}
                   >
                     {characterSheet?.name}
                   </SqBadge>
                 </Typography>
                 {character ? (
-                  <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-                    <Box sx={{ textShadow: '0 0 5px gray' }}>
+                  <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+                    <Box sx={{ textShadow: "0 0 5px gray" }}>
                       <Typography
                         variant="body2"
                         component="span"
@@ -408,5 +405,5 @@ function SelectionCard({
         </CardLight>
       </Box>
     </CustomTooltip>
-  )
+  );
 }

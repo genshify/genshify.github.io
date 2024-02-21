@@ -4,7 +4,7 @@ import About from "./pages/About/About";
 import Beginner from "./pages/Beginner/Beginner";
 import Showcase from "./pages/Showcase/Showcase";
 import CharacterDisplay from "./tools/genshin-optimizer/app/PageCharacter/CharacterDisplay";
-import PageCharacter from "./tools/genshin-optimizer/app/PageCharacter";
+import PageCharacter from "./pages/Showcase/CharactersPage";
 
 import { Container, Grid, Skeleton, ThemeProvider } from "@mui/material";
 import { DatabaseContext } from "genshin-optimizer/db-ui";

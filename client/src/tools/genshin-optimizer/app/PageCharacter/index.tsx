@@ -48,7 +48,7 @@ import PageAndSortOptionSelect from "../Components/PageAndSortOptionSelect";
 import CharacterRarityToggle from "../Components/ToggleButton/CharacterRarityToggle";
 import ElementToggle from "../Components/ToggleButton/ElementToggle";
 import WeaponToggle from "../Components/ToggleButton/WeaponToggle";
-import { SillyContext } from "../Context/SillyContext";
+import { SillyContext } from "../../../../contexts/SillyContext";
 import { getCharSheet } from "../Data/Characters";
 import { getWeaponSheet } from "../Data/Weapons";
 import useCharSelectionCallback from "../ReactHooks/useCharSelectionCallback";
@@ -74,9 +74,7 @@ export default function PageCharacter() {
   ]);
   const { silly } = useContext(SillyContext);
   const database = useDatabase();
-  
-  
-  
+
   const [state, setState] = useState(() => database.displayCharacter.get());
   useEffect(
     () => database.displayCharacter.follow((r, s) => setState(s)),

@@ -1,9 +1,9 @@
-import { useBoolState } from 'genshin-optimizer/react-util'
-import { weaponAsset } from 'genshin-optimizer/assets'
-import type { ICachedWeapon } from 'genshin-optimizer/db'
-import { useDBMeta, useDatabase, useWeapon } from 'genshin-optimizer/db-ui'
-import { milestoneLevelsLow } from 'genshin-optimizer/util'
-import { Lock, LockOpen } from '@mui/icons-material'
+import { useBoolState } from "genshin-optimizer/react-util";
+import { weaponAsset } from "genshin-optimizer/assets";
+import type { ICachedWeapon } from "genshin-optimizer/db";
+import { useDBMeta, useDatabase, useWeapon } from "genshin-optimizer/db-ui";
+import { milestoneLevelsLow } from "genshin-optimizer/util";
+import { Lock, LockOpen } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -14,93 +14,93 @@ import {
   Grid,
   ListItem,
   Typography,
-} from '@mui/material'
-import React, { useCallback, useContext, useEffect, useMemo } from 'react'
-import CardDark from '../Components/Card/CardDark'
-import CardLight from '../Components/Card/CardLight'
-import { LocationAutocomplete } from '../Components/Character/LocationAutocomplete'
-import CloseButton from '../Components/CloseButton'
-import DocumentDisplay from '../Components/DocumentDisplay'
-import { FieldDisplayList, NodeFieldDisplay } from '../Components/FieldDisplay'
-import LevelSelect from '../Components/LevelSelect'
-import ModalWrapper from '../Components/ModalWrapper'
-import RefinementDropdown from '../Components/RefinementDropdown'
-import { StarsDisplay } from '../Components/StarDisplay'
-import { DataContext } from '../Context/DataContext'
-import { getCharSheet } from '../Data/Characters'
-import type CharacterSheet from '../Data/Characters/CharacterSheet'
-import { getWeaponSheet } from '../Data/Weapons'
-import { uiInput as input } from '../Formula'
-import { computeUIData, dataObjForWeapon } from '../Formula/api'
-import type { LocationKey } from '../Types/consts'
+} from "@mui/material";
+import React, { useCallback, useContext, useEffect, useMemo } from "react";
+import CardDark from "../Components/Card/CardDark";
+import CardLight from "../Components/Card/CardLight";
+import { LocationAutocomplete } from "../Components/Character/LocationAutocomplete";
+import CloseButton from "../Components/CloseButton";
+import DocumentDisplay from "../Components/DocumentDisplay";
+import { FieldDisplayList, NodeFieldDisplay } from "../Components/FieldDisplay";
+import LevelSelect from "../Components/LevelSelect";
+import ModalWrapper from "../Components/ModalWrapper";
+import RefinementDropdown from "../Components/RefinementDropdown";
+import { StarsDisplay } from "../Components/StarDisplay";
+import { DataContext } from "../../../../contexts/DataContext";
+import { getCharSheet } from "../Data/Characters";
+import type CharacterSheet from "../Data/Characters/CharacterSheet";
+import { getWeaponSheet } from "../Data/Weapons";
+import { uiInput as input } from "../Formula";
+import { computeUIData, dataObjForWeapon } from "../Formula/api";
+import type { LocationKey } from "../Types/consts";
 const WeaponSelectionModal = React.lazy(
-  () => import('../Components/Weapon/WeaponSelectionModal')
-)
+  () => import("../Components/Weapon/WeaponSelectionModal")
+);
 type WeaponStatsEditorCardProps = {
-  weaponId: string
-  footer?: boolean
-  onClose?: () => void
-  extraButtons?: JSX.Element
-}
+  weaponId: string;
+  footer?: boolean;
+  onClose?: () => void;
+  extraButtons?: JSX.Element;
+};
 export default function WeaponEditor({
   weaponId: propWeaponId,
   footer = false,
   onClose,
   extraButtons,
 }: WeaponStatsEditorCardProps) {
-  const { data } = useContext(DataContext)
+  const { data } = useContext(DataContext);
 
-  const database = useDatabase()
-  const weapon = useWeapon(propWeaponId)
+  const database = useDatabase();
+  const weapon = useWeapon(propWeaponId);
   const {
-    key = '',
+    key = "",
     level = 0,
     refinement = 1,
     ascension = 0,
     lock,
-    location = '',
+    location = "",
     id,
-  } = weapon ?? {}
-  const weaponSheet = key ? getWeaponSheet(key) : undefined
+  } = weapon ?? {};
+  const weaponSheet = key ? getWeaponSheet(key) : undefined;
 
   const weaponDispatch = useCallback(
     (newWeapon: Partial<ICachedWeapon>) => {
-      database.weapons.set(propWeaponId, newWeapon)
+      database.weapons.set(propWeaponId, newWeapon);
     },
     [propWeaponId, database]
-  )
-  const { gender } = useDBMeta()
+  );
+  const { gender } = useDBMeta();
   const characterSheet = useMemo(
     () =>
       location
         ? getCharSheet(database.chars.LocationToCharacterKey(location), gender)
         : undefined,
     [database, gender, location]
-  )
+  );
 
-  const initialWeaponFilter = characterSheet && characterSheet.weaponTypeKey
+  const initialWeaponFilter = characterSheet && characterSheet.weaponTypeKey;
 
   const setLocation = useCallback(
     (k: LocationKey) => id && database.weapons.set(id, { location: k }),
     [database, id]
-  )
+  );
   const filter = useCallback(
     (cs: CharacterSheet) => cs.weaponTypeKey === weaponSheet?.weaponType,
     [weaponSheet]
-  )
+  );
 
-  const [showModal, onShowModal, onHideModal] = useBoolState()
-  const img = key ? weaponAsset(key, ascension >= 2) : ''
+  const [showModal, onShowModal, onHideModal] = useBoolState();
+  const img = key ? weaponAsset(key, ascension >= 2) : "";
 
   //check the levels when switching from a 5* to a 1*, for example.
   useEffect(() => {
     if (!weaponSheet || !weaponDispatch || weaponSheet.key !== weapon?.key)
-      return
+      return;
     if (weaponSheet.rarity <= 2 && (level > 70 || ascension > 4)) {
-      const [level, ascension] = milestoneLevelsLow[0]
-      weaponDispatch({ level, ascension })
+      const [level, ascension] = milestoneLevelsLow[0];
+      weaponDispatch({ level, ascension });
     }
-  }, [weaponSheet, weapon, weaponDispatch, level, ascension])
+  }, [weaponSheet, weapon, weaponDispatch, level, ascension]);
 
   const weaponUIData = useMemo(
     () =>
@@ -108,12 +108,12 @@ export default function WeaponEditor({
       weapon &&
       computeUIData([weaponSheet.data, dataObjForWeapon(weapon)]),
     [weaponSheet, weapon]
-  )
+  );
   return (
     <ModalWrapper
       open={!!propWeaponId}
       onClose={onClose}
-      containerProps={{ maxWidth: 'md' }}
+      containerProps={{ maxWidth: "md" }}
     >
       <CardLight>
         <WeaponSelectionModal
@@ -135,8 +135,8 @@ export default function WeaponEditor({
                       className={`grad-${weaponSheet.rarity}star`}
                       sx={{
                         maxWidth: 256,
-                        width: '100%',
-                        height: 'auto',
+                        width: "100%",
+                        height: "auto",
                         borderRadius: 1,
                       }}
                     />
@@ -152,7 +152,7 @@ export default function WeaponEditor({
                 item
                 xs={12}
                 sm={9}
-                sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}
+                sx={{ display: "flex", flexDirection: "column", gap: 1 }}
               >
                 <Box
                   display="flex"
@@ -162,7 +162,7 @@ export default function WeaponEditor({
                 >
                   <ButtonGroup>
                     <Button color="info" onClick={onShowModal}>
-                      {weaponSheet?.name ?? 'Select a Weapon'}
+                      {weaponSheet?.name ?? "Select a Weapon"}
                     </Button>
                     {weaponSheet?.hasRefinement && (
                       <RefinementDropdown
@@ -194,7 +194,7 @@ export default function WeaponEditor({
                     }
                     startIcon={lock ? <Lock /> : <LockOpen />}
                   >
-                    {lock ? 'Locked' : 'Unlocked'}
+                    {lock ? "Locked" : "Unlocked"}
                   </Button>
                 </Box>
                 <StarsDisplay stars={weaponSheet.rarity} />
@@ -210,8 +210,8 @@ export default function WeaponEditor({
                 <Box display="flex" flexDirection="column" gap={1}>
                   <CardDark>
                     <CardHeader
-                      title={'Main Stats'}
-                      titleTypographyProps={{ variant: 'subtitle2' }}
+                      title={"Main Stats"}
+                      titleTypographyProps={{ variant: "subtitle2" }}
                     />
                     <Divider />
                     <FieldDisplayList>
@@ -220,15 +220,15 @@ export default function WeaponEditor({
                         input.weapon.sub,
                         input.weapon.sub2,
                       ].map((node) => {
-                        const n = weaponUIData.get(node)
-                        if (n.isEmpty || !n.value) return null
+                        const n = weaponUIData.get(node);
+                        if (n.isEmpty || !n.value) return null;
                         return (
                           <NodeFieldDisplay
                             key={JSON.stringify(n.info)}
                             node={n}
                             component={ListItem}
                           />
-                        )
+                        );
                       })}
                     </FieldDisplayList>
                   </CardDark>
@@ -255,7 +255,7 @@ export default function WeaponEditor({
               {!!onClose && (
                 <Grid item>
                   <CloseButton
-                    sx={{ height: '100%' }}
+                    sx={{ height: "100%" }}
                     large
                     onClick={onClose}
                   />
@@ -266,5 +266,5 @@ export default function WeaponEditor({
         )}
       </CardLight>
     </ModalWrapper>
-  )
+  );
 }

@@ -1,23 +1,20 @@
-import { range } from 'genshin-optimizer/util'
-import { characterAsset } from 'genshin-optimizer/assets'
+import { range } from "genshin-optimizer/util";
+import { characterAsset } from "genshin-optimizer/assets";
 import type {
   ArtifactSlotKey,
   CharacterKey,
   ElementKey,
-} from 'genshin-optimizer/consts'
-import { allArtifactSlotKeys } from 'genshin-optimizer/consts'
-import type {
-  ICachedArtifact,
-  ICachedCharacter,
-} from 'genshin-optimizer/db'
+} from "genshin-optimizer/consts";
+import { allArtifactSlotKeys } from "genshin-optimizer/consts";
+import type { ICachedArtifact, ICachedCharacter } from "genshin-optimizer/db";
 import {
   useCharMeta,
   useCharacter,
   useDBMeta,
   useDatabase,
-} from 'genshin-optimizer/db-ui'
-import { ascensionMaxLevel } from 'genshin-optimizer/util'
-import { Favorite, FavoriteBorder } from '@mui/icons-material'
+} from "genshin-optimizer/db-ui";
+import { ascensionMaxLevel } from "genshin-optimizer/util";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import {
   Box,
   CardActionArea,
@@ -27,41 +24,41 @@ import {
   IconButton,
   Skeleton,
   Typography,
-} from '@mui/material'
-import { Suspense, useCallback, useContext, useMemo } from 'react'
-import type { CharacterContextObj } from '../../Context/CharacterContext'
-import { CharacterContext } from '../../Context/CharacterContext'
-import type { dataContextObj } from '../../Context/DataContext'
-import { DataContext } from '../../Context/DataContext'
-import { SillyContext } from '../../Context/SillyContext'
-import { getCharSheet } from '../../Data/Characters'
-import { uiInput as input } from '../../Formula'
-import useCharacterReducer from '../../ReactHooks/useCharacterReducer'
-import useTeamData from '../../ReactHooks/useTeamData'
-import type { RollColorKey } from '../../Types/consts'
-import { iconAsset } from '../../Util/AssetUtil'
-import ArtifactCardPico from '../Artifact/ArtifactCardPico'
-import CardLight from '../Card/CardLight'
-import ColorText from '../ColoredText'
-import ConditionalWrapper from '../ConditionalWrapper'
-import { NodeFieldDisplay } from '../FieldDisplay'
-import SqBadge from '../SqBadge'
-import { StarsDisplay } from '../StarDisplay'
-import WeaponCardPico from '../Weapon/WeaponCardPico'
-import WeaponFullCard from '../Weapon/WeaponFullCard'
-import CharacterCardPico, { BlankCharacterCardPico } from './CharacterCardPico'
+} from "@mui/material";
+import { Suspense, useCallback, useContext, useMemo } from "react";
+import type { CharacterContextObj } from "../../../../../contexts/CharacterContext";
+import { CharacterContext } from "../../../../../contexts/CharacterContext";
+import type { dataContextObj } from "../../../../../contexts/DataContext";
+import { DataContext } from "../../../../../contexts/DataContext";
+import { SillyContext } from "../../../../../contexts/SillyContext";
+import { getCharSheet } from "../../Data/Characters";
+import { uiInput as input } from "../../Formula";
+import useCharacterReducer from "../../ReactHooks/useCharacterReducer";
+import useTeamData from "../../ReactHooks/useTeamData";
+import type { RollColorKey } from "../../Types/consts";
+import { iconAsset } from "../../Util/AssetUtil";
+import ArtifactCardPico from "../Artifact/ArtifactCardPico";
+import CardLight from "../Card/CardLight";
+import ColorText from "../ColoredText";
+import ConditionalWrapper from "../ConditionalWrapper";
+import { NodeFieldDisplay } from "../FieldDisplay";
+import SqBadge from "../SqBadge";
+import { StarsDisplay } from "../StarDisplay";
+import WeaponCardPico from "../Weapon/WeaponCardPico";
+import WeaponFullCard from "../Weapon/WeaponFullCard";
+import CharacterCardPico, { BlankCharacterCardPico } from "./CharacterCardPico";
 type CharacterCardProps = {
-  characterKey: CharacterKey
-  onClick?: (characterKey: CharacterKey) => void
-  onClickHeader?: (characterKey: CharacterKey) => void
-  onClickTeammate?: (characterKey: CharacterKey) => void
-  artifactChildren?: Displayable
-  weaponChildren?: Displayable
-  characterChildren?: Displayable
-  footer?: Displayable
-  hideStats?: boolean
-  isTeammateCard?: boolean
-}
+  characterKey: CharacterKey;
+  onClick?: (characterKey: CharacterKey) => void;
+  onClickHeader?: (characterKey: CharacterKey) => void;
+  onClickTeammate?: (characterKey: CharacterKey) => void;
+  artifactChildren?: Displayable;
+  weaponChildren?: Displayable;
+  characterChildren?: Displayable;
+  footer?: Displayable;
+  hideStats?: boolean;
+  isTeammateCard?: boolean;
+};
 export default function CharacterCard({
   characterKey,
   artifactChildren,
@@ -74,28 +71,28 @@ export default function CharacterCard({
   hideStats,
   isTeammateCard,
 }: CharacterCardProps) {
-  const database = useDatabase()
-  const teamData = useTeamData(characterKey)
-  const character = useCharacter(characterKey)
-  const { gender } = useDBMeta()
-  const characterSheet = getCharSheet(characterKey, gender)
-  const characterDispatch = useCharacterReducer(characterKey)
-  const data = teamData?.[characterKey]?.target
+  const database = useDatabase();
+  const teamData = useTeamData(characterKey);
+  const character = useCharacter(characterKey);
+  const { gender } = useDBMeta();
+  const characterSheet = getCharSheet(characterKey, gender);
+  const characterDispatch = useCharacterReducer(characterKey);
+  const data = teamData?.[characterKey]?.target;
   const onClickHandler = useCallback(
     () => characterKey && onClick?.(characterKey),
     [characterKey, onClick]
-  )
+  );
   const actionWrapperFunc = useCallback(
     (children) => (
       <CardActionArea
         onClick={onClickHandler}
-        sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}
+        sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}
       >
         {children}
       </CardActionArea>
     ),
     [onClickHandler]
-  )
+  );
 
   const characterContextObj: CharacterContextObj | undefined = useMemo(
     () =>
@@ -106,7 +103,7 @@ export default function CharacterCard({
         characterDispatch,
       },
     [character, characterSheet, characterDispatch]
-  )
+  );
   const dataContextObj: dataContextObj | undefined = useMemo(
     () =>
       data &&
@@ -115,9 +112,9 @@ export default function CharacterCard({
         teamData,
       },
     [data, teamData]
-  )
+  );
 
-  const { favorite } = useCharMeta(characterKey)
+  const { favorite } = useCharMeta(characterKey);
   return (
     <Suspense
       fallback={
@@ -129,12 +126,12 @@ export default function CharacterCard({
       }
     >
       <CardLight
-        sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+        sx={{ height: "100%", display: "flex", flexDirection: "column" }}
       >
         <Box
           sx={{
-            display: 'flex',
-            position: 'absolute',
+            display: "flex",
+            position: "absolute",
             zIndex: 2,
             opacity: 0.7,
           }}
@@ -171,23 +168,23 @@ export default function CharacterCard({
         {footer}
       </CardLight>
     </Suspense>
-  )
+  );
 }
 
 type ExistingCharacterCardContentProps = {
-  characterContextObj: CharacterContextObj
-  dataContextObj: dataContextObj
-  characterKey: CharacterKey
-  onClick?: (characterKey: CharacterKey) => void
-  onClickHeader?: (characterKey: CharacterKey) => void
-  isTeammateCard?: boolean
-  character: ICachedCharacter
-  onClickTeammate?: (characterKey: CharacterKey) => void
-  hideStats?: boolean
-  weaponChildren?: Displayable
-  artifactChildren?: Displayable
-  characterChildren?: Displayable
-}
+  characterContextObj: CharacterContextObj;
+  dataContextObj: dataContextObj;
+  characterKey: CharacterKey;
+  onClick?: (characterKey: CharacterKey) => void;
+  onClickHeader?: (characterKey: CharacterKey) => void;
+  isTeammateCard?: boolean;
+  character: ICachedCharacter;
+  onClickTeammate?: (characterKey: CharacterKey) => void;
+  hideStats?: boolean;
+  weaponChildren?: Displayable;
+  artifactChildren?: Displayable;
+  characterChildren?: Displayable;
+};
 function ExistingCharacterCardContent({
   characterContextObj,
   dataContextObj,
@@ -213,9 +210,9 @@ function ExistingCharacterCardContent({
         </Header>
         <CardContent
           sx={(theme) => ({
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
             gap: 1,
             flexGrow: 1,
             padding: hideStats ? `${theme.spacing(1)}!important` : undefined,
@@ -252,13 +249,13 @@ function ExistingCharacterCardContent({
         </CardContent>
       </DataContext.Provider>
     </CharacterContext.Provider>
-  )
+  );
 }
 
 function NewCharacterCardContent({
   characterKey,
 }: {
-  characterKey: CharacterKey
+  characterKey: CharacterKey;
 }) {
   return (
     <>
@@ -267,16 +264,16 @@ function NewCharacterCardContent({
       </Header>
       <CardContent
         sx={{
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
           gap: 1,
           flexGrow: 1,
-          height: '100%',
+          height: "100%",
         }}
       ></CardContent>
     </>
-  )
+  );
 }
 
 function Header({
@@ -284,27 +281,27 @@ function Header({
   characterKey,
   onClick,
 }: {
-  children: JSX.Element
-  characterKey: CharacterKey
-  onClick?: (characterKey: CharacterKey) => void
+  children: JSX.Element;
+  characterKey: CharacterKey;
+  onClick?: (characterKey: CharacterKey) => void;
 }) {
-  const { gender } = useDBMeta()
-  const { silly } = useContext(SillyContext)
-  const characterSheet = getCharSheet(characterKey, gender)
+  const { gender } = useDBMeta();
+  const { silly } = useContext(SillyContext);
+  const characterSheet = getCharSheet(characterKey, gender);
 
   const actionWrapperFunc = useCallback(
     (children) => (
       <CardActionArea
         onClick={() => characterKey && onClick?.(characterKey)}
-        sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}
+        sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}
       >
         {children}
       </CardActionArea>
     ),
     [onClick, characterKey]
-  )
-  const banner = characterAsset(characterKey, 'banner', gender)
-  if (!characterSheet) return null
+  );
+  const banner = characterAsset(characterKey, "banner", gender);
+  if (!characterSheet) return null;
   return (
     <ConditionalWrapper condition={!!onClick} wrapper={actionWrapperFunc}>
       <Box
@@ -312,18 +309,18 @@ function Header({
         position="relative"
         className={!banner ? `grad-${characterSheet.rarity}star` : undefined}
         sx={{
-          '&::before': {
+          "&::before": {
             content: '""',
-            display: 'block',
-            position: 'absolute',
+            display: "block",
+            position: "absolute",
             left: 0,
             top: 0,
-            width: '100%',
-            height: '100%',
+            width: "100%",
+            height: "100%",
             opacity: 0.7,
             backgroundImage: `url(${banner})`,
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
+            backgroundPosition: "center",
+            backgroundSize: "cover",
           },
         }}
         width="100%"
@@ -332,7 +329,7 @@ function Header({
           flexShrink={1}
           component="img"
           src={iconAsset(characterKey, gender, silly)}
-          sx={{ maxWidth: '40%' }}
+          sx={{ maxWidth: "40%" }}
           alignSelf="flex-end"
           display="flex"
           flexDirection="column"
@@ -350,23 +347,23 @@ function Header({
         </Box>
       </Box>
     </ConditionalWrapper>
-  )
+  );
 }
 
 function HeaderContent() {
-  const { characterSheet } = useContext(CharacterContext)
-  const { data } = useContext(DataContext)
-  const characterEle = data.get(input.charEle).value as ElementKey
-  const characterLevel = data.get(input.lvl).value
-  const constellation = data.get(input.constellation).value
-  const ascension = data.get(input.asc).value
-  const autoBoost = data.get(input.total.autoBoost).value
-  const skillBoost = data.get(input.total.skillBoost).value
-  const burstBoost = data.get(input.total.burstBoost).value
+  const { characterSheet } = useContext(CharacterContext);
+  const { data } = useContext(DataContext);
+  const characterEle = data.get(input.charEle).value as ElementKey;
+  const characterLevel = data.get(input.lvl).value;
+  const constellation = data.get(input.constellation).value;
+  const ascension = data.get(input.asc).value;
+  const autoBoost = data.get(input.total.autoBoost).value;
+  const skillBoost = data.get(input.total.skillBoost).value;
+  const burstBoost = data.get(input.total.burstBoost).value;
 
-  const tAuto = data.get(input.total.auto).value
-  const tSkill = data.get(input.total.skill).value
-  const tBurst = data.get(input.total.burst).value
+  const tAuto = data.get(input.total.auto).value;
+  const tSkill = data.get(input.total.skill).value;
+  const tBurst = data.get(input.total.burst).value;
 
   return (
     <>
@@ -381,7 +378,7 @@ function HeaderContent() {
       <Box
         display="flex"
         gap={1}
-        sx={{ textShadow: '0 0 5px gray' }}
+        sx={{ textShadow: "0 0 5px gray" }}
         alignItems="center"
       >
         <Box>
@@ -407,17 +404,17 @@ function HeaderContent() {
       <Box display="flex" gap={1} sx={{ opacity: 0.85 }}>
         <Chip
           size="small"
-          color={autoBoost ? 'info' : 'secondary'}
+          color={autoBoost ? "info" : "secondary"}
           label={<strong>{tAuto}</strong>}
         />
         <Chip
           size="small"
-          color={skillBoost ? 'info' : 'secondary'}
+          color={skillBoost ? "info" : "secondary"}
           label={<strong>{tSkill}</strong>}
         />
         <Chip
           size="small"
-          color={burstBoost ? 'info' : 'secondary'}
+          color={burstBoost ? "info" : "secondary"}
           label={<strong>{tBurst}</strong>}
         />
       </Box>
@@ -425,14 +422,14 @@ function HeaderContent() {
         <StarsDisplay stars={characterSheet.rarity} colored inline />
       </Typography>
     </>
-  )
+  );
 }
 
 function HeaderContentNew({ characterKey }: { characterKey: CharacterKey }) {
-  const { gender } = useDBMeta()
-  const sheet = getCharSheet(characterKey, gender)
+  const { gender } = useDBMeta();
+  const sheet = getCharSheet(characterKey, gender);
 
-  if (!sheet) return null
+  if (!sheet) return null;
   return (
     <>
       <Chip
@@ -450,20 +447,20 @@ function HeaderContentNew({ characterKey }: { characterKey: CharacterKey }) {
         <StarsDisplay stars={sheet.rarity} colored />
       </Typography>
     </>
-  )
+  );
 }
 
 function Artifacts() {
-  const database = useDatabase()
-  const { data } = useContext(DataContext)
+  const database = useDatabase();
+  const { data } = useContext(DataContext);
   const artifacts = useMemo(
     () =>
       allArtifactSlotKeys.map((k) => [
         k,
-        database.arts.get(data.get(input.art[k].id).value?.toString() ?? ''),
+        database.arts.get(data.get(input.art[k].id).value?.toString() ?? ""),
       ]),
     [data, database]
-  ) as Array<[ArtifactSlotKey, ICachedArtifact | undefined]>
+  ) as Array<[ArtifactSlotKey, ICachedArtifact | undefined]>;
 
   return (
     <Grid direction="row" container spacing={0.75} columns={5}>
@@ -475,18 +472,18 @@ function Artifacts() {
         )
       )}
     </Grid>
-  )
+  );
 }
 
 function Stats() {
-  const { data } = useContext(DataContext)
+  const { data } = useContext(DataContext);
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: "100%" }}>
       {Object.values(data.getDisplay().basic).map((n) => (
         <NodeFieldDisplay key={JSON.stringify(n.info)} node={n} />
       ))}
       {data.get(input.special).info.name && (
-        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+        <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
           <Typography flexGrow={1}>
             <strong>Specialized:</strong>
           </Typography>
@@ -495,5 +492,5 @@ function Stats() {
         </Box>
       )}
     </Box>
-  )
+  );
 }

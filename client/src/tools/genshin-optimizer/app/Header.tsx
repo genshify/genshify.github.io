@@ -34,7 +34,7 @@ import {
 import { Suspense, useContext, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link as RouterLink, useMatch } from "react-router-dom";
-import { SillyContext } from "./Context/SillyContext";
+import { SillyContext } from "../../../contexts/SillyContext";
 import { shouldShowDevComponents } from "./Util/Util";
 import silly_icon from "./silly_icon.png";
 type ITab = {

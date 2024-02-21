@@ -8,7 +8,7 @@ import type {
 } from "genshin-optimizer/db";
 import { useDBMeta, useDatabase } from "genshin-optimizer/db-ui";
 import { useDeferredValue, useEffect, useMemo } from "react";
-import type { TeamData } from "../Context/DataContext";
+import type { TeamData } from "../../../../contexts/DataContext";
 import { allArtifactData } from "../Data/Artifacts";
 import { getCharSheet } from "../Data/Characters";
 import type CharacterSheet from "../Data/Characters/CharacterSheet";

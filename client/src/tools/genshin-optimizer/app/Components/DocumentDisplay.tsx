@@ -1,26 +1,26 @@
-import { Box, Divider, Typography } from '@mui/material'
-import { useContext } from 'react'
-import { DataContext } from '../Context/DataContext'
+import { Box, Divider, Typography } from "@mui/material";
+import { useContext } from "react";
+import { DataContext } from "../../../../contexts/DataContext";
 import type {
   DocumentSection,
   IDocumentFields,
   IDocumentHeader,
   IDocumentText,
-} from '../Types/sheet'
-import { evalIfFunc } from '../Util/Util'
-import CardDark from './Card/CardDark'
-import CardHeaderCustom from './Card/CardHeaderCustom'
-import ConditionalDisplay from './Conditional/ConditionalDisplay'
-import FieldsDisplay from './FieldDisplay'
-import { InfoTooltipInline } from './InfoTooltip'
+} from "../Types/sheet";
+import { evalIfFunc } from "../Util/Util";
+import CardDark from "./Card/CardDark";
+import CardHeaderCustom from "./Card/CardHeaderCustom";
+import ConditionalDisplay from "./Conditional/ConditionalDisplay";
+import FieldsDisplay from "./FieldDisplay";
+import { InfoTooltipInline } from "./InfoTooltip";
 
 type DocumentDisplayProps = {
-  sections: DocumentSection[]
-  teamBuffOnly?: boolean
-  hideDesc?: boolean
-  hideHeader?: boolean | ((section: DocumentSection) => boolean)
-  disabled?: boolean
-}
+  sections: DocumentSection[];
+  teamBuffOnly?: boolean;
+  hideDesc?: boolean;
+  hideHeader?: boolean | ((section: DocumentSection) => boolean);
+  disabled?: boolean;
+};
 
 export default function DocumentDisplay({
   sections,
@@ -29,14 +29,14 @@ export default function DocumentDisplay({
   hideHeader = false,
   disabled = false,
 }: DocumentDisplayProps) {
-  const { data } = useContext(DataContext)
-  if (!sections.length) return null
+  const { data } = useContext(DataContext);
+  if (!sections.length) return null;
   const sectionDisplays = sections
     .map((s, i) => {
       // If we can't show this section, return null
-      if (s.canShow && !data.get(s.canShow).value) return null
+      if (s.canShow && !data.get(s.canShow).value) return null;
       // If we are showing only teambuffs, and this section is not a teambuff, return null
-      if (teamBuffOnly && !s.teamBuff) return null
+      if (teamBuffOnly && !s.teamBuff) return null;
       return (
         <SectionDisplay
           section={s}
@@ -45,15 +45,15 @@ export default function DocumentDisplay({
           hideHeader={hideHeader}
           disabled={disabled}
         />
-      )
+      );
     })
-    .filter((s) => s)
-  if (!sectionDisplays.length) return null
+    .filter((s) => s);
+  if (!sectionDisplays.length) return null;
   return (
     <Box display="flex" flexDirection="column" gap={1}>
       {sectionDisplays}
     </Box>
-  )
+  );
 }
 
 function SectionDisplay({
@@ -62,20 +62,20 @@ function SectionDisplay({
   hideHeader = false,
   disabled = false,
 }: {
-  section: DocumentSection
-  hideDesc?: boolean
-  hideHeader?: boolean | ((section: DocumentSection) => boolean)
-  disabled?: boolean
+  section: DocumentSection;
+  hideDesc?: boolean;
+  hideHeader?: boolean | ((section: DocumentSection) => boolean);
+  disabled?: boolean;
 }) {
-  if ('fields' in section) {
+  if ("fields" in section) {
     return (
       <FieldsSectionDisplay
         section={section}
         hideDesc={hideDesc}
         hideHeader={hideHeader}
       />
-    )
-  } else if ('states' in section) {
+    );
+  } else if ("states" in section) {
     return (
       <ConditionalDisplay
         conditional={section}
@@ -83,9 +83,9 @@ function SectionDisplay({
         hideHeader={hideHeader}
         disabled={disabled}
       />
-    )
+    );
   } /* if ("text" in section) */ else {
-    return <TextSectionDisplay section={section} />
+    return <TextSectionDisplay section={section} />;
   }
 }
 
@@ -94,9 +94,9 @@ function FieldsSectionDisplay({
   hideDesc,
   hideHeader,
 }: {
-  section: IDocumentFields
-  hideDesc?: boolean
-  hideHeader?: boolean | ((section: DocumentSection) => boolean)
+  section: IDocumentFields;
+  hideDesc?: boolean;
+  hideHeader?: boolean | ((section: DocumentSection) => boolean);
 }) {
   return (
     <CardDark>
@@ -109,12 +109,12 @@ function FieldsSectionDisplay({
       )}
       <FieldsDisplay fields={section.fields} />
     </CardDark>
-  )
+  );
 }
 
 function TextSectionDisplay({ section }: { section: IDocumentText }) {
-  const { data } = useContext(DataContext)
-  return <div>{evalIfFunc(section.text, data)}</div>
+  const { data } = useContext(DataContext);
+  return <div>{evalIfFunc(section.text, data)}</div>;
 }
 
 export function HeaderDisplay({
@@ -122,14 +122,14 @@ export function HeaderDisplay({
   hideDesc,
   hideDivider,
 }: {
-  header: IDocumentHeader
-  hideDesc?: boolean
-  hideDivider?: boolean | ((section: DocumentSection) => boolean)
+  header: IDocumentHeader;
+  hideDesc?: boolean;
+  hideDivider?: boolean | ((section: DocumentSection) => boolean);
 }) {
-  const { data } = useContext(DataContext)
-  const { icon: preicon, title, action } = header
-  const icon = evalIfFunc(preicon, data)
-  const description = !hideDesc && evalIfFunc(header.description, data)
+  const { data } = useContext(DataContext);
+  const { icon: preicon, title, action } = header;
+  const icon = evalIfFunc(preicon, data);
+  const description = !hideDesc && evalIfFunc(header.description, data);
   const displayTitle = hideDesc ? (
     title
   ) : (
@@ -137,11 +137,11 @@ export function HeaderDisplay({
       {title}
       <InfoTooltipInline title={<Typography>{description}</Typography>} />
     </span>
-  )
+  );
   return (
     <>
       <CardHeaderCustom avatar={icon} title={displayTitle} action={action} />
       {!hideDivider && <Divider />}
     </>
-  )
+  );
 }

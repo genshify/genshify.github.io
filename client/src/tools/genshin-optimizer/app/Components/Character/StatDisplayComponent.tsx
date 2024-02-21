@@ -1,29 +1,32 @@
-import { objMap } from 'genshin-optimizer/util'
-import { Masonry } from '@mui/lab'
-import { Box, Divider, ListItem } from '@mui/material'
-import { useContext, useMemo } from 'react'
-import { DataContext } from '../../Context/DataContext'
-import { OptimizationTargetContext } from '../../Context/OptimizationTargetContext'
-import { useDatabase } from 'genshin-optimizer/db-ui'
-import { getDisplayHeader, getDisplaySections } from '../../Formula/DisplayUtil'
-import type { DisplaySub } from '../../Formula/type'
-import type { NodeDisplay } from '../../Formula/uiData'
-import { customRead } from '../../Formula/utils'
-import CardDark from '../Card/CardDark'
-import CardHeaderCustom from '../Card/CardHeaderCustom'
-import { FieldDisplayList, NodeFieldDisplay } from '../FieldDisplay'
-import ImgIcon from '../Image/ImgIcon'
-import SqBadge from '../SqBadge'
+import { objMap } from "genshin-optimizer/util";
+import { Masonry } from "@mui/lab";
+import { Box, Divider, ListItem } from "@mui/material";
+import { useContext, useMemo } from "react";
+import { DataContext } from "../../../../../contexts/DataContext";
+import { OptimizationTargetContext } from "../../../../../contexts/OptimizationTargetContext";
+import { useDatabase } from "genshin-optimizer/db-ui";
+import {
+  getDisplayHeader,
+  getDisplaySections,
+} from "../../Formula/DisplayUtil";
+import type { DisplaySub } from "../../Formula/type";
+import type { NodeDisplay } from "../../Formula/uiData";
+import { customRead } from "../../Formula/utils";
+import CardDark from "../Card/CardDark";
+import CardHeaderCustom from "../Card/CardHeaderCustom";
+import { FieldDisplayList, NodeFieldDisplay } from "../FieldDisplay";
+import ImgIcon from "../Image/ImgIcon";
+import SqBadge from "../SqBadge";
 
 export default function StatDisplayComponent() {
-  const { data } = useContext(DataContext)
+  const { data } = useContext(DataContext);
   const sections = useMemo(
     () =>
       getDisplaySections(data).filter(([, ns]) =>
         Object.values(ns).some((n) => !n.isEmpty)
       ),
     [data]
-  )
+  );
   return (
     <Box sx={{ mr: -1, mb: -1 }}>
       <Masonry columns={{ xs: 1, sm: 2, md: 3, xl: 4 }} spacing={1}>
@@ -32,33 +35,33 @@ export default function StatDisplayComponent() {
         ))}
       </Masonry>
     </Box>
-  )
+  );
 }
 
 function Section({
   displayNs,
   sectionKey,
 }: {
-  displayNs: DisplaySub<NodeDisplay>
-  sectionKey: string
+  displayNs: DisplaySub<NodeDisplay>;
+  sectionKey: string;
 }) {
-  const optimizationTarget = useContext(OptimizationTargetContext)
-  const { data, oldData } = useContext(DataContext)
-  const database = useDatabase()
+  const optimizationTarget = useContext(OptimizationTargetContext);
+  const { data, oldData } = useContext(DataContext);
+  const database = useDatabase();
   const header = useMemo(
     () => getDisplayHeader(data, sectionKey, database),
     [database, data, sectionKey]
-  )
+  );
   const displayNsReads = useMemo(
     () =>
       objMap(displayNs, (n, nodeKey) =>
-        customRead(['display', sectionKey, nodeKey])
+        customRead(["display", sectionKey, nodeKey])
       ),
     [displayNs, sectionKey]
-  )
-  if (!header) return <CardDark></CardDark>
+  );
+  if (!header) return <CardDark></CardDark>;
 
-  const { title, icon, action } = header
+  const { title, icon, action } = header;
   return (
     <CardDark>
       <CardHeaderCustom
@@ -84,5 +87,5 @@ function Section({
         ))}
       </FieldDisplayList>
     </CardDark>
-  )
+  );
 }

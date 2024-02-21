@@ -1,36 +1,33 @@
-import { iconInlineProps } from 'genshin-optimizer/svgicons'
+import { iconInlineProps } from "genshin-optimizer/svgicons";
 import type {
   AdditiveReactionKey,
   AmpReactionKey,
   ElementKey,
-} from 'genshin-optimizer/consts'
-import {
-  allAmpReactionKeys,
-  allHitModeKeys,
-} from 'genshin-optimizer/consts'
+} from "genshin-optimizer/consts";
+import { allAmpReactionKeys, allHitModeKeys } from "genshin-optimizer/consts";
 import {
   CryoIcon,
   ElectroIcon,
   HydroIcon,
   PyroIcon,
-} from 'genshin-optimizer/svgicons'
-import type { ToggleButtonGroupProps } from '@mui/material'
-import { MenuItem, ToggleButton } from '@mui/material'
-import { useContext } from 'react'
-import { useTranslation } from 'react-i18next'
-import { CharacterContext } from '../Context/CharacterContext'
-import { DataContext } from '../Context/DataContext'
-import { infusionNode, uiInput as input } from '../Formula'
-import { allowedAdditiveReactions, allowedAmpReactions } from '../Types/consts'
-import AdditiveReactionModeText from './AdditiveReactionModeText'
-import AmpReactionModeText from './AmpReactionModeText'
-import type { DropdownButtonProps } from './DropdownMenu/DropdownButton'
-import DropdownButton from './DropdownMenu/DropdownButton'
-import SolidToggleButtonGroup from './SolidToggleButtonGroup'
-import SqBadge from './SqBadge'
+} from "genshin-optimizer/svgicons";
+import type { ToggleButtonGroupProps } from "@mui/material";
+import { MenuItem, ToggleButton } from "@mui/material";
+import { useContext } from "react";
+import { useTranslation } from "react-i18next";
+import { CharacterContext } from "../../../../contexts/CharacterContext";
+import { DataContext } from "../../../../contexts/DataContext";
+import { infusionNode, uiInput as input } from "../Formula";
+import { allowedAdditiveReactions, allowedAmpReactions } from "../Types/consts";
+import AdditiveReactionModeText from "./AdditiveReactionModeText";
+import AmpReactionModeText from "./AmpReactionModeText";
+import type { DropdownButtonProps } from "./DropdownMenu/DropdownButton";
+import DropdownButton from "./DropdownMenu/DropdownButton";
+import SolidToggleButtonGroup from "./SolidToggleButtonGroup";
+import SqBadge from "./SqBadge";
 
 export const infusionVals = {
-  '': <span>No Team Melee Infusion</span>,
+  "": <span>No Team Melee Infusion</span>,
   pyro: (
     <span>
       <PyroIcon {...iconInlineProps} /> <SqBadge>Bennett C6</SqBadge> Fire
@@ -51,26 +48,26 @@ export const infusionVals = {
   ),
   electro: (
     <span>
-      <ElectroIcon {...iconInlineProps} /> <SqBadge>Somnia Burst</SqBadge>{' '}
+      <ElectroIcon {...iconInlineProps} /> <SqBadge>Somnia Burst</SqBadge>{" "}
       Parallax Paws
     </span>
   ),
-}
+};
 type InfusionAuraDropdownProps = Omit<
   DropdownButtonProps,
-  'title' | 'onChange' | 'children'
->
+  "title" | "onChange" | "children"
+>;
 export function InfusionAuraDropdown(props: InfusionAuraDropdownProps) {
   const {
     characterSheet,
     character: { infusionAura },
     characterDispatch,
-  } = useContext(CharacterContext)
-  if (!characterSheet?.isMelee()) return null
+  } = useContext(CharacterContext);
+  if (!characterSheet?.isMelee()) return null;
   return (
     <DropdownButton
       title={infusionVals[infusionAura]}
-      color={infusionAura || 'secondary'}
+      color={infusionAura || "secondary"}
       disableElevation
       {...props}
     >
@@ -86,19 +83,19 @@ export function InfusionAuraDropdown(props: InfusionAuraDropdownProps) {
         </MenuItem>
       ))}
     </DropdownButton>
-  )
+  );
 }
 
-type ReactionToggleProps = Omit<ToggleButtonGroupProps, 'color'>
+type ReactionToggleProps = Omit<ToggleButtonGroupProps, "color">;
 export function ReactionToggle(props: ReactionToggleProps) {
-  const { t } = useTranslation('page_character')
+  const { t } = useTranslation("page_character");
   const {
     character: { reaction },
     characterDispatch,
-  } = useContext(CharacterContext)
-  const { data } = useContext(DataContext)
-  const charEleKey = data.get(input.charEle).value as ElementKey
-  const infusion = data.get(infusionNode).value as ElementKey
+  } = useContext(CharacterContext);
+  const { data } = useContext(DataContext);
+  const charEleKey = data.get(input.charEle).value as ElementKey;
+  const infusion = data.get(infusionNode).value as ElementKey;
   const reactions = [
     ...new Set([
       ...(allowedAmpReactions[charEleKey] ?? []),
@@ -106,7 +103,7 @@ export function ReactionToggle(props: ReactionToggleProps) {
       ...(allowedAdditiveReactions[charEleKey] ?? []),
       ...(allowedAdditiveReactions[infusion] ?? []),
     ]),
-  ]
+  ];
   return (
     <SolidToggleButtonGroup
       exclusive
@@ -126,15 +123,15 @@ export function ReactionToggle(props: ReactionToggleProps) {
         </ToggleButton>
       ))}
     </SolidToggleButtonGroup>
-  )
+  );
 }
-type HitModeToggleProps = Omit<ToggleButtonGroupProps, 'color'>
+type HitModeToggleProps = Omit<ToggleButtonGroupProps, "color">;
 export function HitModeToggle(props: HitModeToggleProps) {
-  const { t } = useTranslation('page_character')
+  const { t } = useTranslation("page_character");
   const {
     character: { hitMode },
     characterDispatch,
-  } = useContext(CharacterContext)
+  } = useContext(CharacterContext);
   return (
     <SolidToggleButtonGroup
       exclusive
@@ -149,5 +146,5 @@ export function HitModeToggle(props: HitModeToggleProps) {
         </ToggleButton>
       ))}
     </SolidToggleButtonGroup>
-  )
+  );
 }
