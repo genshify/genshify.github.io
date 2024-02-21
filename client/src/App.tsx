@@ -3,15 +3,15 @@ import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Beginner from "./pages/Beginner/Beginner";
 import Showcase from "./pages/Showcase/Showcase";
-import CharacterDisplay from "./tools/genshin-optimizer/app/PageCharacter/CharacterDisplay";
 import PageCharacter from "./pages/Showcase/CharactersPage";
+import CharacterDisplay from "./pages/Showcase/CharactersPage/CharacterDisplay";
 
 import { Container, Grid, Skeleton, ThemeProvider } from "@mui/material";
 import { DatabaseContext } from "genshin-optimizer/db-ui";
 import { theme } from "genshin-optimizer/ui";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import ErrorBoundary from "./tools/genshin-optimizer/app/ErrorBoundary";
+import ErrorBoundary from "./ErrorBoundary";
 import "./App.scss";
 import "./App.css";
 import Snow from "./components/Effects/Primo";

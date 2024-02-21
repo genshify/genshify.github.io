@@ -59,7 +59,7 @@ import {
 } from "./GO-files/Util/CharacterSort";
 import { catTotal } from "./GO-files/Util/totalUtils";
 const CharacterSelectionModal = React.lazy(
-  () => import("./GO-files/PageCharacter/CharacterSelectionModal")
+  () => import("./CharacterSelectionModal")
 );
 const columns = { xs: 1, sm: 2, md: 3, lg: 4, xl: 4 };
 const numToShowMap = { xs: 6, sm: 8, md: 12, lg: 16, xl: 16 };
@@ -74,9 +74,7 @@ export default function PageCharacter() {
   ]);
   const { silly } = useContext(SillyContext);
   const database = useDatabase();
-  
-  
-  
+
   const [state, setState] = useState(() => database.displayCharacter.get());
   useEffect(
     () => database.displayCharacter.follow((r, s) => setState(s)),
