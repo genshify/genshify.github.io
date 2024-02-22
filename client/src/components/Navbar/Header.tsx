@@ -56,7 +56,22 @@ const showcase: ITab = {
   value: "showcase",
   name: "Showcase",
 };
-const content = [home, about, banner, events, tips, showcase] as const;
+
+const characters: ITab = {
+  to: "/characters",
+  value: "characters",
+  name: "Showcase",
+};
+
+const content = [
+  home,
+  about,
+  banner,
+  events,
+  tips,
+  showcase,
+  characters,
+] as const;
 export default function Header({ anchor }: { anchor: string }) {
   return (
     <Suspense fallback={<Skeleton variant="rectangular" height={56} />}>

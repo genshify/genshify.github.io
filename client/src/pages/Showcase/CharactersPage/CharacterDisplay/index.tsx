@@ -1,17 +1,8 @@
 import { useBoolState } from "genshin-optimizer/react-util";
 import type { CharacterKey } from "genshin-optimizer/consts";
-import { charKeyToLocGenderedCharKey } from "genshin-optimizer/consts";
 import { useCharacter, useDBMeta, useDatabase } from "genshin-optimizer/db-ui";
-import {
-  BarChart,
-  Calculate,
-  FactCheck,
-  Groups,
-  Person,
-  Science,
-  TrendingUp,
-} from "@mui/icons-material";
-import { Box, Button, CardContent, Skeleton, Tab, Tabs } from "@mui/material";
+import { BarChart, Calculate } from "@mui/icons-material";
+import { Box, Button, CardContent, Skeleton } from "@mui/material";
 import {
   Suspense,
   useCallback,
@@ -20,10 +11,10 @@ import {
   useMemo,
   useState,
 } from "react";
-import { useTranslation } from "react-i18next";
 import {
   Navigate,
-  Link as RouterLink,
+  Route,
+  Routes,
   useMatch,
   useNavigate,
   useParams,
@@ -51,7 +42,6 @@ import type {
   GraphContextObj,
 } from "../../../../contexts/GraphContext";
 import { GraphContext } from "../../../../contexts/GraphContext";
-import { SillyContext } from "../../../../contexts/SillyContext";
 import { getCharSheet } from "../GO-files/Data/Characters";
 import useCharacterReducer from "../GO-files/ReactHooks/useCharacterReducer";
 import useTeamData from "../GO-files/ReactHooks/useTeamData";
@@ -63,6 +53,7 @@ import FormulaModal from "./FormulaModal";
 import StatModal from "./StatModal";
 import TravelerElementSelect from "./TravelerElementSelect";
 import TravelerGenderSelect from "./TravelerGenderSelect";
+import TabOverview from "./Tabs/TabOverview";
 
 export default function CharacterDisplay() {
   const navigate = useNavigate();
@@ -99,7 +90,6 @@ function CharacterDisplayCard({
   characterKey,
   onClose,
 }: CharacterDisplayCardProps) {
-  const { silly } = useContext(SillyContext);
   const character = useCharacter(characterKey);
   const { gender } = useDBMeta();
   const characterSheet = getCharSheet(characterKey, gender);
@@ -110,21 +100,12 @@ function CharacterDisplayCard({
   } = useMatch({ path: "/characters/:charKey/:tab", end: false }) ?? {
     params: { tab: "overview" },
   };
-  const { t } = useTranslation([
-    "sillyWisher_charNames",
-    "charNames_gen",
-    "page_character",
-  ]);
 
   useTitle(
     useMemo(
       () =>
-        `${t(
-          `${
-            silly ? "sillyWisher_charNames" : "charNames_gen"
-          }:${charKeyToLocGenderedCharKey(characterKey, gender)}`
-        )} - ${t(`page_character:tabs.${tab}`)}`,
-      [t, silly, characterKey, gender, tab]
+        `${`character-${tab}`}`,
+      [tab]
     )
   );
 
@@ -200,13 +181,9 @@ function CharacterDisplayCard({
                     <InfusionAuraDropdown />
                     <ReactionToggle size="small" />
                   </Box>
-                  <CardLight>
-                    <TabNav tab={tab} />
-                  </CardLight>
-                  {/* <CharacterPanel /> */}
-                  <CardLight>
-                    <TabNav tab={tab} />
-                  </CardLight>
+                  <CardLight></CardLight>
+                  <CharacterPanel />
+                  <CardLight></CardLight>
                 </CardContent>
               </FormulaDataWrapper>
             </GraphContext.Provider>
@@ -218,98 +195,27 @@ function CharacterDisplayCard({
     </CardDark>
   );
 }
-// function CharacterPanel() {
-//   return (
-//     <Suspense
-//       fallback={<Skeleton variant="rectangular" width="100%" height={500} />}
-//     >
-//       <Routes>
-//         {/* Character Panel */}
-//         <Route index element={<TabOverview />} />
-//         <Route path="/talent" element={<TabTalent />} />
-//         <Route path="/teambuffs" element={<TabTeambuffs />} />
-//         <Route path="/optimize" element={<TabBuild />} />
-//         <Route path="/theorycraft" element={<TabTheorycraft />} />
-//         {shouldShowDevComponents && (
-//           <Route path="/upopt" element={<TabUpopt />} />
-//         )}
-//       </Routes>
-//     </Suspense>
-//   );
-// }
-function TabNav({ tab }: { tab: string }) {
-  const { t } = useTranslation("page_character");
-  const tabSx = shouldShowDevComponents
-    ? { minWidth: "16.6%" }
-    : { minWidth: "20%" };
+function CharacterPanel() {
   return (
-    <Tabs
-      value={tab}
-      variant="scrollable"
-      allowScrollButtonsMobile
-      sx={{
-        "& .MuiTab-root:hover": {
-          transition: "background-color 0.25s ease",
-          backgroundColor: "rgba(255,255,255,0.1)",
-        },
-      }}
+    <Suspense
+      fallback={<Skeleton variant="rectangular" width="100%" height={500} />}
     >
-      <Tab
-        sx={tabSx}
-        value="overview"
-        label={t("tabs.overview")}
-        icon={<Person />}
-        component={RouterLink}
-        to=""
-      />
-      <Tab
-        sx={tabSx}
-        value="talent"
-        label={t("tabs.talent")}
-        icon={<FactCheck />}
-        component={RouterLink}
-        to="talent"
-      />
-      <Tab
-        sx={tabSx}
-        value="teambuffs"
-        label={t("tabs.teambuffs")}
-        icon={<Groups />}
-        component={RouterLink}
-        to="teambuffs"
-      />
-      <Tab
-        sx={tabSx}
-        value="optimize"
-        label={t("tabs.optimize")}
-        icon={<TrendingUp />}
-        component={RouterLink}
-        to="optimize"
-      />
-      <Tab
-        sx={tabSx}
-        value="theorycraft"
-        label={t("tabs.theorycraft")}
-        icon={<Science />}
-        component={RouterLink}
-        to="theorycraft"
-      />
-      {shouldShowDevComponents && (
-        <Tab
-          sx={tabSx}
-          value="upopt"
-          label={t("tabs.upgradeopt")}
-          icon={<TrendingUp />}
-          component={RouterLink}
-          to="upopt"
-        />
-      )}
-    </Tabs>
+      <Routes>
+        {/* Character Panel */}
+        <Route index element={<TabOverview />} />
+        <Route path="/talent" element={<TabOverview />} />
+        <Route path="/teambuffs" element={<TabOverview />} />
+        <Route path="/optimize" element={<TabOverview />} />
+        <Route path="/theorycraft" element={<TabOverview />} />
+        {shouldShowDevComponents && (
+          <Route path="/upopt" element={<TabOverview />} />
+        )}
+      </Routes>
+    </Suspense>
   );
 }
 
 function DetailStatButton() {
-  const { t } = useTranslation("page_character");
   const [open, onOpen, onClose] = useBoolState();
   const {
     character: { bonusStats },
@@ -318,7 +224,7 @@ function DetailStatButton() {
   return (
     <>
       <Button color="info" startIcon={<BarChart />} onClick={onOpen}>
-        {t`addStats.title`}
+        {`addStats.title`}
         {!!bStatsNum && (
           <SqBadge sx={{ ml: 1 }} color="success">
             {bStatsNum}
