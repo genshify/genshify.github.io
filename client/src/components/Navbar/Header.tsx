@@ -57,21 +57,7 @@ const showcase: ITab = {
   name: "Showcase",
 };
 
-const characters: ITab = {
-  to: "/characters",
-  value: "characters",
-  name: "Showcase",
-};
-
-const content = [
-  home,
-  about,
-  banner,
-  events,
-  tips,
-  showcase,
-  characters,
-] as const;
+const content = [home, about, banner, events, tips, showcase] as const;
 export default function Header({ anchor }: { anchor: string }) {
   return (
     <Suspense fallback={<Skeleton variant="rectangular" height={56} />}>
@@ -116,7 +102,7 @@ function HeaderContent({ anchor }: { anchor: string }) {
           </Box>
           <Tabs
             centered
-            value={currentTab}
+            value={currentTab === "characters" ? "showcase" : currentTab}
             sx={{
               "& .MuiTab-root": {
                 p: 1,
@@ -138,6 +124,8 @@ function HeaderContent({ anchor }: { anchor: string }) {
             }}
           >
             {content.map(({ to, value, name }) => {
+              if (value === "character") return null;
+
               return (
                 <Tab
                   key={value}
