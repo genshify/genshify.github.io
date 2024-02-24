@@ -18,24 +18,24 @@ import {
 } from "@mui/material";
 import { useCallback, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import ArtifactCardNano from "../../../GO-files/Components/Artifact/ArtifactCardNano";
-import CardLight from "../../../GO-files/Components/Card/CardLight";
+import ArtifactCardNano from "../../../../../../libs/GO-files/Components/Artifact/ArtifactCardNano";
+import CardLight from "../../../../../../libs/GO-files/Components/Card/CardLight";
 import CharacterCardPico, {
   BlankCharacterCardPico,
-} from "../../../GO-files/Components/Character/CharacterCardPico";
-import StatDisplayComponent from "../../../GO-files/Components/Character/StatDisplayComponent";
-import ImgIcon from "../../../GO-files/Components/Image/ImgIcon";
-import SqBadge from "../../../GO-files/Components/SqBadge";
-import { StarsDisplay } from "../../../GO-files/Components/StarDisplay";
-import WeaponCardNano from "../../../GO-files/Components/Weapon/WeaponCardNano";
+} from "../../../../../../libs/GO-files/Components/Character/CharacterCardPico";
+import StatDisplayComponent from "../../../../../../libs/GO-files/Components/Character/StatDisplayComponent";
+import ImgIcon from "../../../../../../libs/GO-files/Components/Image/ImgIcon";
+import SqBadge from "../../../../../../libs/GO-files/Components/SqBadge";
+import { StarsDisplay } from "../../../../../../libs/GO-files/Components/StarDisplay";
+import WeaponCardNano from "../../../../../../libs/GO-files/Components/Weapon/WeaponCardNano";
 import { CharacterContext } from "../../../../../../contexts/CharacterContext";
 import { DataContext } from "../../../../../../contexts/DataContext";
 import { SillyContext } from "../../../../../../contexts/SillyContext";
-import type { TalentSheetElementKey } from "../../../GO-files/Data/Characters/ICharacterSheet";
-import { uiInput as input } from "../../../GO-files/Formula";
-import { ElementIcon } from "../../../GO-files/KeyMap/StatIcon";
-import useCharacterReducer from "../../../GO-files/ReactHooks/useCharacterReducer";
-import { range } from "../../../GO-files/Util/Util";
+import type { TalentSheetElementKey } from "../../../../../../libs/GO-files/Data/Characters/ICharacterSheet";
+import { uiInput as input } from "../../../../../../libs/GO-files/Formula";
+import { ElementIcon } from "../../../../../../libs/GO-files/KeyMap/StatIcon";
+import useCharacterReducer from "../../../../../../libs/GO-files/ReactHooks/useCharacterReducer";
+import { range } from "../../../../../../libs/GO-files/Util/Util";
 import EquipmentSection from "./EquipmentSection";
 
 export default function TabOverview() {

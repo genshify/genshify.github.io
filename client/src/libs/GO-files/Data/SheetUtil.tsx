@@ -5,7 +5,7 @@ import type {
   WeaponKey,
 } from "genshin-optimizer/consts";
 import { Translate } from "../Components/Translate";
-import { SillyContext } from "../../../../../contexts/SillyContext";
+import { SillyContext } from "../../../contexts/SillyContext";
 import type { ReadNode } from "../Formula/type";
 import { customStringRead } from "../Formula/utils";
 import type { CharacterSheetKey } from "../Types/consts";

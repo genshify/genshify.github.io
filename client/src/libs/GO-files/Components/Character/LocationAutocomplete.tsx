@@ -15,7 +15,7 @@ import type { AutocompleteProps } from "@mui/material";
 import { Box, Skeleton } from "@mui/material";
 import { Suspense, useCallback, useContext, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { SillyContext } from "../../../../../../contexts/SillyContext";
+import { SillyContext } from "../../../../contexts/SillyContext";
 import { getCharSheet } from "../../Data/Characters";
 import type CharacterSheet from "../../Data/Characters/CharacterSheet";
 import type { Variant } from "../../Formula/type";

@@ -5,11 +5,11 @@ import {
 } from "genshin-optimizer/consts";
 import { MenuItem } from "@mui/material";
 import { useContext } from "react";
-import ColorText from "../GO-files/Components/ColoredText";
-import DropdownButton from "../GO-files/Components/DropdownMenu/DropdownButton";
+import ColorText from "../../../../libs/GO-files/Components/ColoredText";
+import DropdownButton from "../../../../libs/GO-files/Components/DropdownMenu/DropdownButton";
 import { CharacterContext } from "../../../../contexts/CharacterContext";
-import { stg } from "../GO-files/Data/SheetUtil";
-import useCharSelectionCallback from "../GO-files/ReactHooks/useCharSelectionCallback";
+import { stg } from "../../../../libs/GO-files/Data/SheetUtil";
+import useCharSelectionCallback from "../../../../libs/GO-files/ReactHooks/useCharSelectionCallback";
 
 export default function TravelerElementSelect() {
   const { character } = useContext(CharacterContext);

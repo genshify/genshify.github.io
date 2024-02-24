@@ -31,13 +31,13 @@ import {
   useState,
 } from "react";
 import { useTranslation } from "react-i18next";
-import CardDark from "../../../GO-files/Components/Card/CardDark";
-import CloseButton from "../../../GO-files/Components/CloseButton";
-import ImgIcon from "../../../GO-files/Components/Image/ImgIcon";
-import ModalWrapper from "../../../GO-files/Components/ModalWrapper";
-import PageAndSortOptionSelect from "../../../GO-files/Components/PageAndSortOptionSelect";
-import SolidToggleButtonGroup from "../../../GO-files/Components/SolidToggleButtonGroup";
-import WeaponSelectionModal from "../../../GO-files/Components/Weapon/WeaponSelectionModal";
+import CardDark from "../../../../../../libs/GO-files/Components/Card/CardDark";
+import CloseButton from "../../../../../../libs/GO-files/Components/CloseButton";
+import ImgIcon from "../../../../../../libs/GO-files/Components/Image/ImgIcon";
+import ModalWrapper from "../../../../../../libs/GO-files/Components/ModalWrapper";
+import PageAndSortOptionSelect from "../../../../../../libs/GO-files/Components/PageAndSortOptionSelect";
+import SolidToggleButtonGroup from "../../../../../../libs/GO-files/Components/SolidToggleButtonGroup";
+import WeaponSelectionModal from "../../../../../../libs/GO-files/Components/Weapon/WeaponSelectionModal";
 import WeaponCard from "../../../../PageWeapon/WeaponCard";
 import WeaponEditor from "../../../../PageWeapon/WeaponEditor";
 import { handleMultiSelect } from "../../../../Util/MultiSelect";

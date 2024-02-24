@@ -1,7 +1,7 @@
 import type { ICachedCharacter } from "genshin-optimizer/db";
 import { createContext } from "react";
-import type CharacterSheet from "../tools/genshin-optimizer/app/Data/Characters/CharacterSheet";
-import type { characterReducerAction } from "../tools/genshin-optimizer/app/ReactHooks/useCharacterReducer";
+import type CharacterSheet from "../libs/GO-files/Data/Characters/CharacterSheet";
+import type { characterReducerAction } from "../libs/GO-files/ReactHooks/useCharacterReducer";
 export type CharacterContextObj = {
   character: ICachedCharacter;
   characterSheet: CharacterSheet;

@@ -39,28 +39,28 @@ import {
   useState,
 } from "react";
 import { useTranslation } from "react-i18next";
-import CardDark from "./GO-files/Components/Card/CardDark";
-import CardLight from "./GO-files/Components/Card/CardLight";
-import CharacterCard from "./GO-files/Components/Character/CharacterCard";
-import CloseButton from "./GO-files/Components/CloseButton";
-import ModalWrapper from "./GO-files/Components/ModalWrapper";
-import SortByButton from "./GO-files/Components/SortByButton";
-import SqBadge from "./GO-files/Components/SqBadge";
-import { StarsDisplay } from "./GO-files/Components/StarDisplay";
-import ElementToggle from "./GO-files/Components/ToggleButton/ElementToggle";
-import WeaponToggle from "./GO-files/Components/ToggleButton/WeaponToggle";
+import CardDark from "../../../libs/GO-files/Components/Card/CardDark";
+import CardLight from "../../../libs/GO-files/Components/Card/CardLight";
+import CharacterCard from "../../../libs/GO-files/Components/Character/CharacterCard";
+import CloseButton from "../../../libs/GO-files/Components/CloseButton";
+import ModalWrapper from "../../../libs/GO-files/Components/ModalWrapper";
+import SortByButton from "../../../libs/GO-files/Components/SortByButton";
+import SqBadge from "../../../libs/GO-files/Components/SqBadge";
+import { StarsDisplay } from "../../../libs/GO-files/Components/StarDisplay";
+import ElementToggle from "../../../libs/GO-files/Components/ToggleButton/ElementToggle";
+import WeaponToggle from "../../../libs/GO-files/Components/ToggleButton/WeaponToggle";
 import { DataContext } from "../../../contexts/DataContext";
 import { SillyContext } from "../../../contexts/SillyContext";
-import { getCharSheet } from "./GO-files/Data/Characters";
-import type CharacterSheet from "./GO-files/Data/Characters/CharacterSheet";
-import { iconAsset } from "./GO-files/Util/AssetUtil";
-import type { CharacterSortKey } from "./GO-files/Util/CharacterSort";
+import { getCharSheet } from "../../../libs/GO-files/Data/Characters";
+import type CharacterSheet from "../../../libs/GO-files/Data/Characters/CharacterSheet";
+import { iconAsset } from "../../../libs/GO-files/Util/AssetUtil";
+import type { CharacterSortKey } from "../../../libs/GO-files/Util/CharacterSort";
 import {
   characterFilterConfigs,
   characterSortConfigs,
   characterSortMap,
-} from "./GO-files/Util/CharacterSort";
-import { catTotal } from "./GO-files/Util/totalUtils";
+} from "../../../libs/GO-files/Util/CharacterSort";
+import { catTotal } from "../../../libs/GO-files/Util/totalUtils";
 
 type characterFilter = (
   character: ICachedCharacter | undefined,

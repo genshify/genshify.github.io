@@ -1,9 +1,9 @@
 import type { CharacterKey } from "genshin-optimizer/consts";
 import type { ICachedCharacter, ICachedWeapon } from "genshin-optimizer/db";
 import { createContext } from "react";
-import type CharacterSheet from "../tools/genshin-optimizer/app/Data/Characters/CharacterSheet";
-import type WeaponSheet from "../tools/genshin-optimizer/app/Data/Weapons/WeaponSheet";
-import type { UIData } from "../tools/genshin-optimizer/app/Formula/uiData";
+import type CharacterSheet from "../libs/GO-files/Data/Characters/CharacterSheet";
+import type WeaponSheet from "../libs/GO-files/Data/Weapons/WeaponSheet";
+import type { UIData } from "../libs/GO-files/Formula/uiData";
 export type TeamData = Partial<
   Record<
     CharacterKey,

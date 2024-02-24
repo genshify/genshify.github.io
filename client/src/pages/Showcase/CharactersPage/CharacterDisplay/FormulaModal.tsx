@@ -22,25 +22,25 @@ import {
   useRef,
   useState,
 } from "react";
-import AmpReactionModeText from "../GO-files/Components/AmpReactionModeText";
-import CardDark from "../GO-files/Components/Card/CardDark";
-import CardHeaderCustom from "../GO-files/Components/Card/CardHeaderCustom";
-import CardLight from "../GO-files/Components/Card/CardLight";
-import CloseButton from "../GO-files/Components/CloseButton";
-import ColorText from "../GO-files/Components/ColoredText";
-import ImgIcon from "../GO-files/Components/Image/ImgIcon";
-import ModalWrapper from "../GO-files/Components/ModalWrapper";
-import SqBadge from "../GO-files/Components/SqBadge";
+import AmpReactionModeText from "../../../../libs/GO-files/Components/AmpReactionModeText";
+import CardDark from "../../../../libs/GO-files/Components/Card/CardDark";
+import CardHeaderCustom from "../../../../libs/GO-files/Components/Card/CardHeaderCustom";
+import CardLight from "../../../../libs/GO-files/Components/Card/CardLight";
+import CloseButton from "../../../../libs/GO-files/Components/CloseButton";
+import ColorText from "../../../../libs/GO-files/Components/ColoredText";
+import ImgIcon from "../../../../libs/GO-files/Components/Image/ImgIcon";
+import ModalWrapper from "../../../../libs/GO-files/Components/ModalWrapper";
+import SqBadge from "../../../../libs/GO-files/Components/SqBadge";
 import { DataContext } from "../../../../contexts/DataContext";
 import { FormulaDataContext } from "../../../../contexts/FormulaDataContext";
 import { useDatabase } from "genshin-optimizer/db-ui";
 import {
   getDisplayHeader,
   getDisplaySections,
-} from "../GO-files/Formula/DisplayUtil";
-import type { DisplaySub } from "../GO-files/Formula/type";
-import type { NodeDisplay } from "../GO-files/Formula/uiData";
-import { nodeVStr } from "../GO-files/Formula/uiData";
+} from "../../../../libs/GO-files/Formula/DisplayUtil";
+import type { DisplaySub } from "../../../../libs/GO-files/Formula/type";
+import type { NodeDisplay } from "../../../../libs/GO-files/Formula/uiData";
+import { nodeVStr } from "../../../../libs/GO-files/Formula/uiData";
 
 export default function FormulaModal() {
   const { modalOpen } = useContext(FormulaDataContext);

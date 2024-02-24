@@ -14,8 +14,8 @@ import {
   styled,
 } from "@mui/material";
 import React, { Suspense, useCallback, useContext, useMemo } from "react";
-import { DataContext } from "../../../../../contexts/DataContext";
-import { FormulaDataContext } from "../../../../../contexts/FormulaDataContext";
+import { DataContext } from "../../../contexts/DataContext";
+import { FormulaDataContext } from "../../../contexts/FormulaDataContext";
 import type { NodeDisplay } from "../Formula/api";
 import { nodeVStr } from "../Formula/uiData";
 import type { IBasicFieldDisplay, IFieldDisplay } from "../Types/fieldDisplay";

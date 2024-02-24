@@ -3,7 +3,7 @@ import { createContext, useCallback, useState } from "react";
 import type {
   NodeDisplay,
   UIData,
-} from "../tools/genshin-optimizer/app/Formula/uiData";
+} from "../libs/GO-files/Formula/uiData";
 
 type FormulaDataContextObj = {
   data?: UIData;

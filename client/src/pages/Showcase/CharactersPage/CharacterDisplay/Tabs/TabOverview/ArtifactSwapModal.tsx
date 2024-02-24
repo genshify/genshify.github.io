@@ -1,8 +1,8 @@
 import { useForceUpdate, useMediaQueryUp } from "genshin-optimizer/react-util";
 import { clamp, filterFunction } from "genshin-optimizer/util";
-import { imgAssets } from "@genshin-optimizer/gi/assets";
-import type { ArtifactSlotKey } from "@genshin-optimizer/gi/consts";
-import { useDatabase } from "@genshin-optimizer/gi/db-ui";
+import { imgAssets } from "genshin-optimizer/assets";
+import type { ArtifactSlotKey } from "genshin-optimizer/consts";
+import { useDatabase } from "genshin-optimizer/db-ui";
 import {
   Box,
   CardContent,
@@ -22,11 +22,11 @@ import {
   useState,
 } from "react";
 import { useTranslation } from "react-i18next";
-import CardDark from "../../../GO-files/Components/Card/CardDark";
-import CloseButton from "../../../GO-files/Components/CloseButton";
-import ImgIcon from "../../../GO-files/Components/Image/ImgIcon";
-import ModalWrapper from "../../../GO-files/Components/ModalWrapper";
-import PageAndSortOptionSelect from "../../../GO-files/Components/PageAndSortOptionSelect";
+import CardDark from "../../../../../../libs/GO-files/Components/Card/CardDark";
+import CloseButton from "../../../../../../libs/GO-files/Components/CloseButton";
+import ImgIcon from "../../../../../../libs/GO-files/Components/Image/ImgIcon";
+import ModalWrapper from "../../../../../../libs/GO-files/Components/ModalWrapper";
+import PageAndSortOptionSelect from "../../../../../../libs/GO-files/Components/PageAndSortOptionSelect";
 import ArtifactCard from "../../../../PageArtifact/ArtifactCard";
 import type { FilterOption } from "../../../../PageArtifact/ArtifactSort";
 import {
@@ -37,7 +37,10 @@ import CompareBuildButton from "./CompareBuildButton";
 
 const numToShowMap = { xs: 2 * 3, sm: 2 * 3, md: 3 * 3, lg: 4 * 3, xl: 4 * 3 };
 const ArtifactFilterDisplay = lazy(
-  () => import("../../../GO-files/Components/Artifact/ArtifactFilterDisplay")
+  () =>
+    import(
+      "../../../../../../libs/GO-files/Components/Artifact/ArtifactFilterDisplay"
+    )
 );
 
 export default function ArtifactSwapModal({

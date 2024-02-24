@@ -19,16 +19,16 @@ import {
   useNavigate,
   useParams,
 } from "react-router-dom";
-import CardDark from "../GO-files/Components/Card/CardDark";
-import CardLight from "../GO-files/Components/Card/CardLight";
-import CloseButton from "../GO-files/Components/CloseButton";
+import CardDark from "../../../../libs/GO-files/Components/Card/CardDark";
+import CardLight from "../../../../libs/GO-files/Components/Card/CardLight";
+import CloseButton from "../../../../libs/GO-files/Components/CloseButton";
 import {
   HitModeToggle,
   InfusionAuraDropdown,
   ReactionToggle,
-} from "../GO-files/Components/HitModeEditor";
-import LevelSelect from "../GO-files/Components/LevelSelect";
-import SqBadge from "../GO-files/Components/SqBadge";
+} from "../../../../libs/GO-files/Components/HitModeEditor";
+import LevelSelect from "../../../../libs/GO-files/Components/LevelSelect";
+import SqBadge from "../../../../libs/GO-files/Components/SqBadge";
 import type { CharacterContextObj } from "../../../../contexts/CharacterContext";
 import { CharacterContext } from "../../../../contexts/CharacterContext";
 import type { dataContextObj } from "../../../../contexts/DataContext";
@@ -42,11 +42,11 @@ import type {
   GraphContextObj,
 } from "../../../../contexts/GraphContext";
 import { GraphContext } from "../../../../contexts/GraphContext";
-import { getCharSheet } from "../GO-files/Data/Characters";
-import useCharacterReducer from "../GO-files/ReactHooks/useCharacterReducer";
-import useTeamData from "../GO-files/ReactHooks/useTeamData";
-import useTitle from "../GO-files/ReactHooks/useTitle";
-import { shouldShowDevComponents } from "../GO-files/Util/Util";
+import { getCharSheet } from "../../../../libs/GO-files/Data/Characters";
+import useCharacterReducer from "../../../../libs/GO-files/ReactHooks/useCharacterReducer";
+import useTeamData from "../../../../libs/GO-files/ReactHooks/useTeamData";
+import useTitle from "../../../../libs/GO-files/ReactHooks/useTitle";
+import { shouldShowDevComponents } from "../../../../libs/GO-files/Util/Util";
 import { CustomMultiTargetButton } from "../CustomMultiTarget";
 import CharSelectButton from "./CharSelectButton";
 import FormulaModal from "./FormulaModal";
@@ -101,13 +101,7 @@ function CharacterDisplayCard({
     params: { tab: "overview" },
   };
 
-  useTitle(
-    useMemo(
-      () =>
-        `${`character-${tab}`}`,
-      [tab]
-    )
-  );
+  useTitle(useMemo(() => `${`character-${tab}`}`, [tab]));
 
   const characterDispatch = useCharacterReducer(character?.key ?? "");
 

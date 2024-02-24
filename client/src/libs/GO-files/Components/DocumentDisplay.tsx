@@ -1,6 +1,6 @@
 import { Box, Divider, Typography } from "@mui/material";
 import { useContext } from "react";
-import { DataContext } from "../../../../../contexts/DataContext";
+import { DataContext } from "../../../contexts/DataContext";
 import type {
   DocumentSection,
   IDocumentFields,

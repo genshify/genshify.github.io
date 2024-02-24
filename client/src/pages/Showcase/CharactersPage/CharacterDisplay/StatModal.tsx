@@ -11,22 +11,25 @@ import {
 } from "@mui/material";
 import { useCallback, useContext, useMemo } from "react";
 import { Trans, useTranslation } from "react-i18next";
-import CardDark from "../GO-files/Components/Card/CardDark";
-import CardLight from "../GO-files/Components/Card/CardLight";
-import CloseButton from "../GO-files/Components/CloseButton";
-import ColorText from "../GO-files/Components/ColoredText";
-import { EnemyExpandCard } from "../GO-files/Components/EnemyEditor";
+import CardDark from "../../../../libs/GO-files/Components/Card/CardDark";
+import CardLight from "../../../../libs/GO-files/Components/Card/CardLight";
+import CloseButton from "../../../../libs/GO-files/Components/CloseButton";
+import ColorText from "../../../../libs/GO-files/Components/ColoredText";
+import { EnemyExpandCard } from "../../../../libs/GO-files/Components/EnemyEditor";
 import {
   FieldDisplayList,
   NodeFieldDisplay,
-} from "../GO-files/Components/FieldDisplay";
-import ModalWrapper from "../GO-files/Components/ModalWrapper";
-import StatEditorList from "../GO-files/Components/StatEditorList";
+} from "../../../../libs/GO-files/Components/FieldDisplay";
+import ModalWrapper from "../../../../libs/GO-files/Components/ModalWrapper";
+import StatEditorList from "../../../../libs/GO-files/Components/StatEditorList";
 import { CharacterContext } from "../../../../contexts/CharacterContext";
 import { DataContext } from "../../../../contexts/DataContext";
-import { allInputPremodKeys, uiInput as input } from "../GO-files/Formula";
-import type { ReadNode } from "../GO-files/Formula/type";
-import { nodeVStr } from "../GO-files/Formula/uiData";
+import {
+  allInputPremodKeys,
+  uiInput as input,
+} from "../../../../libs/GO-files/Formula";
+import type { ReadNode } from "../../../../libs/GO-files/Formula/type";
+import { nodeVStr } from "../../../../libs/GO-files/Formula/uiData";
 
 const cols = {
   xs: 1,

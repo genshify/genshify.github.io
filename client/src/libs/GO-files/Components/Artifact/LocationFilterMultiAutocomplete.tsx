@@ -8,7 +8,7 @@ import { useDBMeta, useDatabase } from "genshin-optimizer/db-ui";
 import { Chip, Skeleton } from "@mui/material";
 import { Suspense, useCallback, useContext, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { SillyContext } from "../../../../../../contexts/SillyContext";
+import { SillyContext } from "../../../../contexts/SillyContext";
 import { getCharSheet } from "../../Data/Characters";
 import type { GeneralAutocompleteOption } from "../GeneralAutocomplete";
 import { GeneralAutocompleteMulti } from "../GeneralAutocomplete";

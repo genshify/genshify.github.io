@@ -19,8 +19,8 @@ import {
 } from "@mui/material";
 import { useCallback, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { CharacterContext } from "../../../../../contexts/CharacterContext";
-import { DataContext } from "../../../../../contexts/DataContext";
+import { CharacterContext } from "../../../contexts/CharacterContext";
+import { DataContext } from "../../../contexts/DataContext";
 import { uiInput as input } from "../Formula";
 import { nodeVStr } from "../Formula/uiData";
 import { ElementIcon } from "../KeyMap/StatIcon";

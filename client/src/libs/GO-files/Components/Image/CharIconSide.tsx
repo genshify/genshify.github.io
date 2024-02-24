@@ -4,7 +4,7 @@ import { useDBMeta } from "genshin-optimizer/db-ui";
 import { portrait } from "genshin-optimizer/silly-wisher";
 import { styled } from "@mui/material";
 import { useContext } from "react";
-import { SillyContext } from "../../../../../../contexts/SillyContext";
+import { SillyContext } from "../../../../contexts/SillyContext";
 interface ImgIconProps {
   size?: number;
   sideMargin?: boolean;

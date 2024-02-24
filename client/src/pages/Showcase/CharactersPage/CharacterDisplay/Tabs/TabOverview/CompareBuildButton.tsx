@@ -7,12 +7,12 @@ import { useTranslation } from "react-i18next";
 import {
   HitModeToggle,
   ReactionToggle,
-} from "../../../GO-files/Components/HitModeEditor";
-import ModalWrapper from "../../../GO-files/Components/ModalWrapper";
+} from "../../../../../../libs/GO-files/Components/HitModeEditor";
+import ModalWrapper from "../../../../../../libs/GO-files/Components/ModalWrapper";
 import { CharacterContext } from "../../../../../../contexts/CharacterContext";
 import { DataContext } from "../../../../../../contexts/DataContext";
 import { useDatabase } from "genshin-optimizer/db-ui";
-import useTeamData from "../../../GO-files/ReactHooks/useTeamData";
+import useTeamData from "../../../../../../libs/GO-files/ReactHooks/useTeamData";
 export default function CompareBuildButton({
   artId,
   weaponId,

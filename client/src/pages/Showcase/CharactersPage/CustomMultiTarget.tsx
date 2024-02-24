@@ -51,30 +51,30 @@ import {
   useState,
 } from "react";
 import { Trans, useTranslation } from "react-i18next";
-import AdditiveReactionModeText from "./GO-files/Components/AdditiveReactionModeText";
-import AmpReactionModeText from "./GO-files/Components/AmpReactionModeText";
-import CardDark from "./GO-files/Components/Card/CardDark";
-import CloseButton from "./GO-files/Components/CloseButton";
-import ColorText from "./GO-files/Components/ColoredText";
+import AdditiveReactionModeText from "../../../libs/GO-files/Components/AdditiveReactionModeText";
+import AmpReactionModeText from "../../../libs/GO-files/Components/AmpReactionModeText";
+import CardDark from "../../../libs/GO-files/Components/Card/CardDark";
+import CloseButton from "../../../libs/GO-files/Components/CloseButton";
+import ColorText from "../../../libs/GO-files/Components/ColoredText";
 import CustomNumberInput, {
   CustomNumberInputButtonGroupWrapper,
-} from "./GO-files/Components/CustomNumberInput";
-import DropdownButton from "./GO-files/Components/DropdownMenu/DropdownButton";
-import { infusionVals } from "./GO-files/Components/HitModeEditor";
-import InfoTooltip from "./GO-files/Components/InfoTooltip";
-import ModalWrapper from "./GO-files/Components/ModalWrapper";
-import StatEditorList from "./GO-files/Components/StatEditorList";
+} from "../../../libs/GO-files/Components/CustomNumberInput";
+import DropdownButton from "../../../libs/GO-files/Components/DropdownMenu/DropdownButton";
+import { infusionVals } from "../../../libs/GO-files/Components/HitModeEditor";
+import InfoTooltip from "../../../libs/GO-files/Components/InfoTooltip";
+import ModalWrapper from "../../../libs/GO-files/Components/ModalWrapper";
+import StatEditorList from "../../../libs/GO-files/Components/StatEditorList";
 import { CharacterContext } from "../../../contexts/CharacterContext";
 import { DataContext } from "../../../contexts/DataContext";
-import type { InputPremodKey } from "./GO-files/Formula";
-import { allInputPremodKeys } from "./GO-files/Formula";
-import type { NodeDisplay } from "./GO-files/Formula/uiData";
-import { UIData } from "./GO-files/Formula/uiData";
+import type { InputPremodKey } from "../../../libs/GO-files/Formula";
+import { allInputPremodKeys } from "../../../libs/GO-files/Formula";
+import type { NodeDisplay } from "../../../libs/GO-files/Formula/uiData";
+import { UIData } from "../../../libs/GO-files/Formula/uiData";
 import type { CustomMultiTarget, CustomTarget } from "genshin-optimizer/db";
 import {
   allowedAdditiveReactions,
   allowedAmpReactions,
-} from "./GO-files/Types/consts";
+} from "../../../libs/GO-files/Types/consts";
 
 const MAX_NAME_LENGTH = 200;
 const MAX_DESC_LENGTH = 2000;

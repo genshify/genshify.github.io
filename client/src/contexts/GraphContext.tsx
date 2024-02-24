@@ -1,6 +1,6 @@
 import { createContext } from "react";
-import type { NumNode } from "../tools/genshin-optimizer/app/Formula/type";
-import type { Build } from "../tools/genshin-optimizer/app/Solver/common";
+import type { NumNode } from "../libs/GO-files/Formula/type";
+import type { Build } from "../libs/GO-files/Solver/common";
 
 export type ChartData = {
   valueNode: NumNode;

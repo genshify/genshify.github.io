@@ -11,8 +11,6 @@ export default function Showcase() {
   const [isLoading, setIsLoading] = useState(false);
   const dataStore = useDataStore();
 
-
-
   const [showChar, setShowChar] = useState<boolean>(false);
   const [charIndex, setCharIndex] = useState<number>(0);
   const [playerDetails, setPlayerDetails] = useState<PlayerData>();
@@ -34,7 +32,7 @@ export default function Showcase() {
           try {
             // ? stores the data into the database
             const playerData = generateGoodData(player);
-            dataStore(playerData, 1, false, true); 
+            dataStore(playerData, 1, false, true);
           } catch (error) {
             console.error("Error updating database:", error);
           }
@@ -68,7 +66,7 @@ export default function Showcase() {
       {/* search section */}
       <div className="search__container">
         <div className="input__box">
-          {/*test Uid: 825436941 840889067*/}
+          {/*test Uid: 825436941 840889067  801669600*/}
           <input id="uidInput" type="text" placeholder="Enter your id" />
           <button onClick={searchPlayer} disabled={isLoading}>
             {isLoading ? "Updating..." : "SEARCH"}

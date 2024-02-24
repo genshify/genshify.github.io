@@ -41,23 +41,23 @@ import React, {
 import ReactGA from "react-ga4";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import BootstrapTooltip from "./GO-files/Components/BootstrapTooltip";
-import CardDark from "./GO-files/Components/Card/CardDark";
-import CharacterCard from "./GO-files/Components/Character/CharacterCard";
-import PageAndSortOptionSelect from "./GO-files/Components/PageAndSortOptionSelect";
-import CharacterRarityToggle from "./GO-files/Components/ToggleButton/CharacterRarityToggle";
-import ElementToggle from "./GO-files/Components/ToggleButton/ElementToggle";
-import WeaponToggle from "./GO-files/Components/ToggleButton/WeaponToggle";
+import BootstrapTooltip from "../../../libs/GO-files/Components/BootstrapTooltip";
+import CardDark from "../../../libs/GO-files/Components/Card/CardDark";
+import CharacterCard from "../../../libs/GO-files/Components/Character/CharacterCard";
+import PageAndSortOptionSelect from "../../../libs/GO-files/Components/PageAndSortOptionSelect";
+import CharacterRarityToggle from "../../../libs/GO-files/Components/ToggleButton/CharacterRarityToggle";
+import ElementToggle from "../../../libs/GO-files/Components/ToggleButton/ElementToggle";
+import WeaponToggle from "../../../libs/GO-files/Components/ToggleButton/WeaponToggle";
 import { SillyContext } from "./../../../contexts/SillyContext";
-import { getCharSheet } from "./GO-files/Data/Characters";
-import { getWeaponSheet } from "./GO-files/Data/Weapons";
-import useCharSelectionCallback from "./GO-files/ReactHooks/useCharSelectionCallback";
+import { getCharSheet } from "../../../libs/GO-files/Data/Characters";
+import { getWeaponSheet } from "../../../libs/GO-files/Data/Weapons";
+import useCharSelectionCallback from "../../../libs/GO-files/ReactHooks/useCharSelectionCallback";
 import {
   characterFilterConfigs,
   characterSortConfigs,
   characterSortMap,
-} from "./GO-files/Util/CharacterSort";
-import { catTotal } from "./GO-files/Util/totalUtils";
+} from "../../../libs/GO-files/Util/CharacterSort";
+import { catTotal } from "../../../libs/GO-files/Util/totalUtils";
 const CharacterSelectionModal = React.lazy(
   () => import("./CharacterSelectionModal")
 );

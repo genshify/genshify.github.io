@@ -2,8 +2,8 @@ import { objMap } from "genshin-optimizer/util";
 import { Masonry } from "@mui/lab";
 import { Box, Divider, ListItem } from "@mui/material";
 import { useContext, useMemo } from "react";
-import { DataContext } from "../../../../../../contexts/DataContext";
-import { OptimizationTargetContext } from "../../../../../../contexts/OptimizationTargetContext";
+import { DataContext } from "../../../../contexts/DataContext";
+import { OptimizationTargetContext } from "../../../../contexts/OptimizationTargetContext";
 import { useDatabase } from "genshin-optimizer/db-ui";
 import {
   getDisplayHeader,

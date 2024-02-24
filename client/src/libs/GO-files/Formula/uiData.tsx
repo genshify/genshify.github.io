@@ -11,7 +11,7 @@ import { useContext } from "react";
 import { uiInput } from ".";
 import ColorText from "../Components/ColoredText";
 import { Translate } from "../Components/Translate";
-import { SillyContext } from "../../../../../contexts/SillyContext";
+import { SillyContext } from "../../../contexts/SillyContext";
 import type { CharacterSheetKey } from "../Types/consts";
 import { allCharacterSheetKeys } from "../Types/consts";
 import { allOperations } from "./optimization";

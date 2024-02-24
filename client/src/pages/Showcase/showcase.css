@@ -45,9 +45,9 @@ button:hover {
 .charSideIconContainer {
   display: flex;
   justify-content: space-around;
-
   margin: 1rem;
   align-items: center;
+  height: 100px;
 }
 @media screen and (min-width: 900px) {
   .charSideIconContainer {
@@ -60,6 +60,7 @@ button:hover {
   
 }
 .charSideIcon {
+  display: flex;
   border: 2px solid;
   border-radius: 100%;
   border-color: var(--darkGreen);

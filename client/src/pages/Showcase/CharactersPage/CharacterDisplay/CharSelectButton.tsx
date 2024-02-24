@@ -1,9 +1,9 @@
 import { Button } from "@mui/material";
 import React, { Suspense, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import CharIconSide from "../GO-files/Components/Image/CharIconSide";
+import CharIconSide from "../../../../libs/GO-files/Components/Image/CharIconSide";
 import { CharacterContext } from "../../../../contexts/CharacterContext";
-import useCharSelectionCallback from "../GO-files/ReactHooks/useCharSelectionCallback";
+import useCharSelectionCallback from "../../../../libs/GO-files/ReactHooks/useCharSelectionCallback";
 
 const CharacterSelectionModal = React.lazy(
   () => import("../CharacterSelectionModal")

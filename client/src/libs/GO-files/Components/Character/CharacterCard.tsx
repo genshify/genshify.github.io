@@ -26,11 +26,11 @@ import {
   Typography,
 } from "@mui/material";
 import { Suspense, useCallback, useContext, useMemo } from "react";
-import type { CharacterContextObj } from "../../../../../../contexts/CharacterContext";
-import { CharacterContext } from "../../../../../../contexts/CharacterContext";
-import type { dataContextObj } from "../../../../../../contexts/DataContext";
-import { DataContext } from "../../../../../../contexts/DataContext";
-import { SillyContext } from "../../../../../../contexts/SillyContext";
+import type { CharacterContextObj } from "../../../../contexts/CharacterContext";
+import { CharacterContext } from "../../../../contexts/CharacterContext";
+import type { dataContextObj } from "../../../../contexts/DataContext";
+import { DataContext } from "../../../../contexts/DataContext";
+import { SillyContext } from "../../../../contexts/SillyContext";
 import { getCharSheet } from "../../Data/Characters";
 import { uiInput as input } from "../../Formula";
 import useCharacterReducer from "../../ReactHooks/useCharacterReducer";

@@ -33,26 +33,26 @@ import {
   useState,
 } from "react";
 import { useTranslation } from "react-i18next";
-import SetEffectDisplay from "../../../GO-files/Components/Artifact/SetEffectDisplay";
-import SlotIcon from "../../../GO-files/Components/Artifact/SlotIcon";
-import SubstatToggle from "../../../GO-files/Components/Artifact/SubstatToggle";
-import CardDark from "../../../GO-files/Components/Card/CardDark";
-import CardLight from "../../../GO-files/Components/Card/CardLight";
-import DocumentDisplay from "../../../GO-files/Components/DocumentDisplay";
+import SetEffectDisplay from "../../../../../../libs/GO-files/Components/Artifact/SetEffectDisplay";
+import SlotIcon from "../../../../../../libs/GO-files/Components/Artifact/SlotIcon";
+import SubstatToggle from "../../../../../../libs/GO-files/Components/Artifact/SubstatToggle";
+import CardDark from "../../../../../../libs/GO-files/Components/Card/CardDark";
+import CardLight from "../../../../../../libs/GO-files/Components/Card/CardLight";
+import DocumentDisplay from "../../../../../../libs/GO-files/Components/DocumentDisplay";
 import {
   BasicFieldDisplay,
   FieldDisplayList,
-} from "../../../GO-files/Components/FieldDisplay";
-import ModalWrapper from "../../../GO-files/Components/ModalWrapper";
-import PercentBadge from "../../../GO-files/Components/PercentBadge";
+} from "../../../../../../libs/GO-files/Components/FieldDisplay";
+import ModalWrapper from "../../../../../../libs/GO-files/Components/ModalWrapper";
+import PercentBadge from "../../../../../../libs/GO-files/Components/PercentBadge";
 import { CharacterContext } from "../../../../../../contexts/CharacterContext";
 import { DataContext } from "../../../../../../contexts/DataContext";
-import { dataSetEffects } from "../../../GO-files/Data/Artifacts";
-import Artifact from "../../../GO-files/Data/Artifacts/Artifact";
-import { uiInput as input } from "../../../GO-files/Formula";
+import { dataSetEffects } from "../../../../../../libs/GO-files/Data/Artifacts";
+import Artifact from "../../../../../../libs/GO-files/Data/Artifacts/Artifact";
+import { uiInput as input } from "../../../../../../libs/GO-files/Formula";
 // import ArtifactCard from "../../../../PageArtifact/ArtifactCard";
 // import WeaponCard from "../../../../PageWeapon/WeaponCard";
-import type { IFieldDisplay } from "../../../GO-files/Types/fieldDisplay";
+import type { IFieldDisplay } from "../../../../../../libs/GO-files/Types/fieldDisplay";
 export default function EquipmentSection() {
   const {
     character: { equippedWeapon, key: characterKey },
