@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { imgAssets } from "genshin-optimizer/assets";
 import { charCard } from "genshin-optimizer/char-cards";
 import type { AscensionKey, CharacterKey } from "genshin-optimizer/consts";

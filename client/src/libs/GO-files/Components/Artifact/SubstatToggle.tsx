@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { iconInlineProps } from 'genshin-optimizer/svgicons'
 import { allSubstatKeys } from 'genshin-optimizer/consts'
 import { Box, ToggleButton } from '@mui/material'
@@ -9,9 +10,9 @@ import { ArtifactStatWithUnit } from './ArtifactStatKeyDisplay'
 const rvfilterHandler = handleMultiSelect([...allSubstatKeys])
 const keys1 = allSubstatKeys.slice(0, 6)
 const keys2 = allSubstatKeys.slice(6)
-export default function SubstatToggle({ selectedKeys, onChange }) {
-  const selKeys1 = selectedKeys.filter((k) => keys1.includes(k))
-  const selKeys2 = selectedKeys.filter((k) => keys2.includes(k))
+export default function SubstatToggle({ selectedKeys, onChange }:any) {
+  const selKeys1 = selectedKeys.filter((k:any) => keys1.includes(k))
+  const selKeys2 = selectedKeys.filter((k:any) => keys2.includes(k))
   return (
     <Box display="flex" gap={1} flexWrap="wrap">
       <SolidToggleButtonGroup value={selKeys1} sx={{ flexGrow: 1 }}>

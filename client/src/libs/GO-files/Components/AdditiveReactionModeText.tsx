@@ -1,30 +1,30 @@
-import { iconInlineProps } from 'genshin-optimizer/svgicons'
-import type { AdditiveReactionKey } from 'genshin-optimizer/consts'
-import { DendroIcon, ElectroIcon } from 'genshin-optimizer/svgicons'
-import { Box } from '@mui/material'
-import { useTranslation } from 'react-i18next'
-import { ElementIcon } from '../KeyMap/StatIcon'
-import ColorText from './ColoredText'
-import SqBadge from './SqBadge'
+import { iconInlineProps } from "genshin-optimizer/svgicons";
+import type { AdditiveReactionKey } from "genshin-optimizer/consts";
+import { DendroIcon, ElectroIcon } from "genshin-optimizer/svgicons";
+import { Box } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { ElementIcon } from "../KeyMap/StatIcon";
+import { ColorText } from "genshin-optimizer/ui";
+import SqBadge from "./SqBadge";
 
-const sqBadgeStyle = { mx: 0.25, px: 0.25 }
+const sqBadgeStyle = { mx: 0.25, px: 0.25 };
 export default function AdditiveReactionModeText({
   reaction,
 }: {
-  reaction: AdditiveReactionKey
+  reaction: AdditiveReactionKey;
 }) {
-  const { t } = useTranslation('sheet_gen')
+  const { t } = useTranslation("sheet_gen");
 
-  const trigger = reaction === 'spread' ? 'dendro' : 'electro'
+  const trigger = reaction === "spread" ? "dendro" : "electro";
 
   return (
     <Box display="flex" alignItems="center">
       <ColorText color={reaction}>{t(`reaction.${reaction}`)}</ColorText>
-      <SqBadge sx={sqBadgeStyle} color={'dendro'}>
+      <SqBadge sx={sqBadgeStyle} color={"dendro"}>
         <DendroIcon {...iconInlineProps} />
       </SqBadge>
       {`+`}
-      <SqBadge sx={sqBadgeStyle} color={'electro'}>
+      <SqBadge sx={sqBadgeStyle} color={"electro"}>
         <ElectroIcon {...iconInlineProps} />
       </SqBadge>
       {`+`}
@@ -32,5 +32,5 @@ export default function AdditiveReactionModeText({
         <ElementIcon ele={trigger} iconProps={iconInlineProps} />
       </SqBadge>
     </Box>
-  )
+  );
 }

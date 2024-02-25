@@ -25,7 +25,7 @@ export default function ArtifactLevelSlider({
   const [sliderLow, setsliderLow] = useState(levelLow);
   const [sliderHigh, setsliderHigh] = useState(levelHigh);
   const setSlider = useCallback(
-    (e: unknown, value: number | number[]) => {
+    (_e: unknown, value: number | number[]) => {
       if (typeof value == "number") throw new TypeError();
       const [l, h] = value;
       setsliderLow(l);
@@ -65,7 +65,7 @@ export default function ArtifactLevelSlider({
         value={[sliderLow, sliderHigh]}
         onChange={setSlider}
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        onChangeCommitted={(e, value :any ) => setBoth(value[0], value[1])}
+        onChangeCommitted={(_e, value :any ) => setBoth(value[0], value[1])}
         valueLabelDisplay="auto"
         min={0}
         max={20}

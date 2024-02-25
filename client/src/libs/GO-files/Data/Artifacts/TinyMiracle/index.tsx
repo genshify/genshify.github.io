@@ -1,4 +1,4 @@
-import ColorText from "../../../Components/ColoredText";
+import { ColorText } from "genshin-optimizer/ui";
 import { input } from "../../../Formula/index";
 import type { Data } from "../../../Formula/type";
 import { equal, greaterEq, percent, sum } from "../../../Formula/utils";

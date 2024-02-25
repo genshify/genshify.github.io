@@ -22,7 +22,7 @@ import type { IBasicFieldDisplay, IFieldDisplay } from "../Types/fieldDisplay";
 import { evalIfFunc } from "../Util/Util";
 import AmpReactionModeText from "./AmpReactionModeText";
 import BootstrapTooltip from "./BootstrapTooltip";
-import ColorText from "./ColoredText";
+import { ColorText } from "genshin-optimizer/ui";
 
 export default function FieldsDisplay({ fields }: { fields: IFieldDisplay[] }) {
   return (

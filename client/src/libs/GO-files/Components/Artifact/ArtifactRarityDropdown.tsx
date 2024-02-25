@@ -8,7 +8,7 @@ import { StarsDisplay } from "../StarDisplay";
 type props = ButtonProps & {
   rarity?: ArtifactRarity;
   onChange: (rarity: ArtifactRarity) => void;
-  filter: (ArtifactRarity) => boolean;
+  filter: (arg0: ArtifactRarity) => boolean;
 };
 
 export default function ArtifactRarityDropdown({

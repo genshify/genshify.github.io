@@ -1,9 +1,9 @@
-import { Favorite } from '@mui/icons-material'
+import { Favorite } from "@mui/icons-material";
 import type {
   AutocompleteProps,
   ChipProps,
   TextFieldProps,
-} from '@mui/material'
+} from "@mui/material";
 import {
   Autocomplete,
   Chip,
@@ -13,41 +13,41 @@ import {
   Skeleton,
   TextField,
   useTheme,
-} from '@mui/material'
-import { Suspense, useMemo } from 'react'
-import type { Variant } from '../Formula/type'
-import ColorText from './ColoredText'
+} from "@mui/material";
+import { Suspense, useMemo } from "react";
+import type { Variant } from "../Formula/type";
+import { ColorText } from "genshin-optimizer/ui";
 /**
  * NOTE: the rationale behind toImg/toExlabel/toExItemLabel, is because `options` needs to be serializable, and having JSX in there will disrupt seralizability.
  */
 export type GeneralAutocompleteOption<T extends string> = {
-  key: T
-  label: string
-  grouper?: string | number
-  color?: Variant
-  favorite?: boolean
-  alternateNames?: string[]
-}
+  key: T;
+  label: string;
+  grouper?: string | number;
+  color?: Variant;
+  favorite?: boolean;
+  alternateNames?: string[];
+};
 type GeneralAutocompletePropsBase<T extends string> = {
-  label?: string
-  toImg: (v: T) => JSX.Element | undefined
-  toExItemLabel?: (v: T) => Displayable | undefined
-  toExLabel?: (v: T) => Displayable | undefined
-  chipProps?: Partial<ChipProps>
-  textFieldProps?: Partial<TextFieldProps>
-}
+  label?: string;
+  toImg: (v: T) => JSX.Element | undefined;
+  toExItemLabel?: (v: T) => Displayable | undefined;
+  toExLabel?: (v: T) => Displayable | undefined;
+  chipProps?: Partial<ChipProps>;
+  textFieldProps?: Partial<TextFieldProps>;
+};
 export type GeneralAutocompleteProps<T extends string> =
   GeneralAutocompletePropsBase<T> & {
-    valueKey: T | null
-    onChange: (v: T | null) => void
+    valueKey: T | null;
+    onChange: (v: T | null) => void;
   } & Omit<
       AutocompleteProps<GeneralAutocompleteOption<T>, false, false, false>,
-      | 'renderInput'
-      | 'isOptionEqualToValue'
-      | 'renderOption'
-      | 'onChange'
-      | 'value'
-    >
+      | "renderInput"
+      | "isOptionEqualToValue"
+      | "renderOption"
+      | "onChange"
+      | "value"
+    >;
 export function GeneralAutocomplete<T extends string>({
   options,
   valueKey: key,
@@ -59,8 +59,8 @@ export function GeneralAutocomplete<T extends string>({
   textFieldProps,
   ...acProps
 }: GeneralAutocompleteProps<T>) {
-  const value = options.find((o) => o.key === key) ?? null
-  const theme = useTheme()
+  const value = options.find((o) => o.key === key) ?? null;
+  const theme = useTheme();
   return (
     <Autocomplete
       autoHighlight
@@ -69,9 +69,9 @@ export function GeneralAutocomplete<T extends string>({
       onChange={(_event, newValue, _reason) => onChange(newValue?.key ?? null)}
       isOptionEqualToValue={(option, value) => option.key === value?.key}
       renderInput={(params) => {
-        const variant = value?.color
-        const color = variant ? theme.palette[variant]?.main : undefined
-        const valueKey = value?.key
+        const variant = value?.color;
+        const color = variant ? theme.palette[variant]?.main : undefined;
+        const valueKey = value?.key;
         return (
           <TextField
             {...params}
@@ -83,19 +83,19 @@ export function GeneralAutocomplete<T extends string>({
             }}
             inputProps={{
               ...params.inputProps,
-              autoComplete: 'new-password', // disable autocomplete and autofill
+              autoComplete: "new-password", // disable autocomplete and autofill
               style: { color },
             }}
-            color={key ? 'success' : 'primary'}
+            color={key ? "success" : "primary"}
           />
-        )
+        );
       }}
       renderOption={(props, option) => (
-        <MenuItem value={option.key} sx={{ whiteSpace: 'normal' }} {...props}>
+        <MenuItem value={option.key} sx={{ whiteSpace: "normal" }} {...props}>
           <ListItemIcon>{toImg(option.key)}</ListItemIcon>
           <ListItemText color={option.color}>
             <Suspense fallback={<Skeleton variant="text" width={100} />}>
-              <ColorText color={option.color} sx={{ display: 'flex', gap: 1 }}>
+              <ColorText color={option.color} sx={{ display: "flex", gap: 1 }}>
                 {option.key === value?.key ? (
                   <strong>{option.label}</strong>
                 ) : (
@@ -119,20 +119,20 @@ export function GeneralAutocomplete<T extends string>({
       }
       {...acProps}
     />
-  )
+  );
 }
 export type GeneralAutocompleteMultiProps<T extends string> =
   GeneralAutocompletePropsBase<T> & {
-    valueKeys: T[]
-    onChange: (v: T[]) => void
+    valueKeys: T[];
+    onChange: (v: T[]) => void;
   } & Omit<
       AutocompleteProps<GeneralAutocompleteOption<T>, true, true, false>,
-      | 'renderInput'
-      | 'isOptionEqualToValue'
-      | 'renderOption'
-      | 'onChange'
-      | 'value'
-    >
+      | "renderInput"
+      | "isOptionEqualToValue"
+      | "renderOption"
+      | "onChange"
+      | "value"
+    >;
 export function GeneralAutocompleteMulti<T extends string>({
   options,
   valueKeys: keys,
@@ -150,7 +150,7 @@ export function GeneralAutocompleteMulti<T extends string>({
         .map((k) => options.find((o) => o.key === k))
         .filter((o) => o) as unknown as GeneralAutocompleteOption<T>[],
     [options, keys]
-  )
+  );
   return (
     <Autocomplete
       autoHighlight
@@ -159,8 +159,8 @@ export function GeneralAutocompleteMulti<T extends string>({
       disableCloseOnSelect
       value={value}
       onChange={(event, newValue, reason) => {
-        if (reason === 'clear') return onChange([])
-        return newValue !== null && onChange(newValue.map((v) => v.key))
+        if (reason === "clear") return onChange([]);
+        return newValue !== null && onChange(newValue.map((v) => v.key));
       }}
       isOptionEqualToValue={(option, value) => option.key === value.key}
       renderInput={(params) => (
@@ -169,9 +169,9 @@ export function GeneralAutocompleteMulti<T extends string>({
           label={label}
           inputProps={{
             ...params.inputProps,
-            autoComplete: 'new-password', // disable autocomplete and autofill
+            autoComplete: "new-password", // disable autocomplete and autofill
           }}
-          color={keys.length ? 'success' : 'primary'}
+          color={keys.length ? "success" : "primary"}
         />
       )}
       renderOption={(props, option) => (
@@ -179,7 +179,7 @@ export function GeneralAutocompleteMulti<T extends string>({
           <ListItemIcon>{toImg(option.key)}</ListItemIcon>
           <ListItemText>
             <Suspense fallback={<Skeleton variant="text" width={100} />}>
-              <ColorText color={option.color} sx={{ display: 'flex', gap: 1 }}>
+              <ColorText color={option.color} sx={{ display: "flex", gap: 1 }}>
                 {keys.includes(option.key) ? (
                   <strong>{option.label}</strong>
                 ) : (
@@ -223,5 +223,5 @@ export function GeneralAutocompleteMulti<T extends string>({
       }
       {...acProps}
     />
-  )
+  );
 }

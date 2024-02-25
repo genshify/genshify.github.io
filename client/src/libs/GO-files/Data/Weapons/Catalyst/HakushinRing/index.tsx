@@ -1,6 +1,6 @@
 import type { WeaponKey } from "genshin-optimizer/consts";
 import { allStats } from "genshin-optimizer/stats";
-import ColorText from "../../../../Components/ColoredText";
+import { ColorText } from "genshin-optimizer/ui";
 import { input, target } from "../../../../Formula";
 import { equal, infoMut, subscript, unequal } from "../../../../Formula/utils";
 import KeyMap from "../../../../KeyMap";

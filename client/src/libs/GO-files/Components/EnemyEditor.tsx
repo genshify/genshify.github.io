@@ -25,7 +25,7 @@ import { uiInput as input } from "../Formula";
 import { nodeVStr } from "../Formula/uiData";
 import { ElementIcon } from "../KeyMap/StatIcon";
 import CardLight from "./Card/CardLight";
-import ColorText from "./ColoredText";
+import { ColorText } from "genshin-optimizer/ui";
 import ExpandButton from "./ExpandButton";
 import StatInput from "./StatInput";
 

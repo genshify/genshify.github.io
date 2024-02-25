@@ -5,7 +5,7 @@ import type {
 } from "genshin-optimizer/consts";
 import { weaponAsset } from "genshin-optimizer/assets";
 import { input } from ".";
-import ColorText from "../Components/ColoredText";
+import { ColorText } from "genshin-optimizer/ui";
 import { getArtSheet } from "../Data/Artifacts";
 import { artifactDefIcon } from "../Data/Artifacts/ArtifactSheet";
 import { getCharSheet } from "../Data/Characters";

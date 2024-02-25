@@ -1,8 +1,8 @@
-import { objKeyMap, range } from 'genshin-optimizer/util'
-import type { CharacterKey, ElementKey } from 'genshin-optimizer/consts'
-import { allStats } from 'genshin-optimizer/stats'
-import ColorText from '../../../Components/ColoredText'
-import { input } from '../../../Formula'
+import { objKeyMap, range } from "genshin-optimizer/util";
+import type { CharacterKey, ElementKey } from "genshin-optimizer/consts";
+import { allStats } from "genshin-optimizer/stats";
+import { ColorText } from "genshin-optimizer/ui";
+import { input } from "../../../Formula";
 import {
   constant,
   equal,
@@ -13,28 +13,28 @@ import {
   lookup,
   percent,
   prod,
-} from '../../../Formula/utils'
-import { cond, st, stg } from '../../SheetUtil'
-import CharacterSheet from '../CharacterSheet'
-import type { ICharacterSheet } from '../ICharacterSheet.d'
-import { charTemplates } from '../charTemplates'
+} from "../../../Formula/utils";
+import { cond, st, stg } from "../../SheetUtil";
+import CharacterSheet from "../CharacterSheet";
+import type { ICharacterSheet } from "../ICharacterSheet.d";
+import { charTemplates } from "../charTemplates";
 import {
   customDmgNode,
   dataObjForCharacterSheet,
   dmgNode,
   plungingDmgNodes,
-} from '../dataUtil'
+} from "../dataUtil";
 
-const key: CharacterKey = 'Keqing'
-const elementKey: ElementKey = 'electro'
-const data_gen = allStats.char.data[key]
-const skillParam_gen = allStats.char.skillParam[key]
-const ct = charTemplates(key, data_gen.weaponType)
+const key: CharacterKey = "Keqing";
+const elementKey: ElementKey = "electro";
+const data_gen = allStats.char.data[key];
+const skillParam_gen = allStats.char.skillParam[key];
+const ct = charTemplates(key, data_gen.weaponType);
 
 let a = 0,
   s = 0,
   b = 0,
-  p2 = 0
+  p2 = 0;
 const dm = {
   normal: {
     hitArr: [
@@ -88,64 +88,64 @@ const dm = {
     electroInc: skillParam_gen.constellation6[0],
     duration: skillParam_gen.constellation6[1],
   },
-} as const
+} as const;
 
 const dmgFormulas = {
   normal: Object.fromEntries(
-    dm.normal.hitArr.map((arr, i) => [i, dmgNode('atk', arr, 'normal')])
+    dm.normal.hitArr.map((arr, i) => [i, dmgNode("atk", arr, "normal")])
   ),
   charged: {
-    dmg1: dmgNode('atk', dm.charged.dmg1, 'charged'),
-    dmg2: dmgNode('atk', dm.charged.dmg2, 'charged'),
+    dmg1: dmgNode("atk", dm.charged.dmg1, "charged"),
+    dmg2: dmgNode("atk", dm.charged.dmg2, "charged"),
   },
-  plunging: plungingDmgNodes('atk', dm.plunging),
+  plunging: plungingDmgNodes("atk", dm.plunging),
   skill: {
-    stiletto: dmgNode('atk', dm.skill.stiletto, 'skill'),
-    slash: dmgNode('atk', dm.skill.slash, 'skill'),
-    thunderclap: dmgNode('atk', dm.skill.thunderclap, 'skill'),
+    stiletto: dmgNode("atk", dm.skill.stiletto, "skill"),
+    slash: dmgNode("atk", dm.skill.slash, "skill"),
+    thunderclap: dmgNode("atk", dm.skill.thunderclap, "skill"),
   },
   burst: {
-    initial: dmgNode('atk', dm.burst.initial, 'burst'),
-    slash: dmgNode('atk', dm.burst.slash, 'burst'),
-    final: dmgNode('atk', dm.burst.final, 'burst'),
+    initial: dmgNode("atk", dm.burst.initial, "burst"),
+    slash: dmgNode("atk", dm.burst.slash, "burst"),
+    final: dmgNode("atk", dm.burst.final, "burst"),
   },
   constellation1: {
     dmg: greaterEq(
       input.constellation,
       1,
-      customDmgNode(prod(input.total.atk, dm.constellation1.dmg), 'elemental', {
+      customDmgNode(prod(input.total.atk, dm.constellation1.dmg), "elemental", {
         hit: { ele: constant(elementKey) },
       })
     ),
   },
-}
+};
 
-const nodeC3 = greaterEq(input.constellation, 3, 3)
-const nodeC5 = greaterEq(input.constellation, 5, 3)
+const nodeC3 = greaterEq(input.constellation, 3, 3);
+const nodeC5 = greaterEq(input.constellation, 5, 3);
 
-const [condAfterRecastPath, condAfterRecast] = cond(key, 'afterRecast')
+const [condAfterRecastPath, condAfterRecast] = cond(key, "afterRecast");
 const afterRecastInfusion = greaterEqStr(
   input.asc,
   1,
-  equalStr('afterRecast', condAfterRecast, elementKey)
-)
+  equalStr("afterRecast", condAfterRecast, elementKey)
+);
 
-const [condAfterBurstPath, condAfterBurst] = cond(key, 'afterBurst')
+const [condAfterBurstPath, condAfterBurst] = cond(key, "afterBurst");
 const afterBurstCritRate_ = greaterEq(
   input.asc,
   4,
-  equal('afterBurst', condAfterBurst, percent(dm.passive2.critInc_))
-)
-const afterBurstEnerRech_ = { ...afterBurstCritRate_ }
+  equal("afterBurst", condAfterBurst, percent(dm.passive2.critInc_))
+);
+const afterBurstEnerRech_ = { ...afterBurstCritRate_ };
 
-const [condAfterReactPath, condAfterReact] = cond(key, 'afterReact')
+const [condAfterReactPath, condAfterReact] = cond(key, "afterReact");
 const afterReactAtk_ = greaterEq(
   input.constellation,
   4,
-  equal('afterReact', condAfterReact, percent(dm.constellation4.atkInc))
-)
+  equal("afterReact", condAfterReact, percent(dm.constellation4.atkInc))
+);
 
-const [condC6StackPath, condC6Stack] = cond(key, 'c6Stack')
+const [condC6StackPath, condC6Stack] = cond(key, "c6Stack");
 const c6Electro_dmg_ = greaterEq(
   input.constellation,
   6,
@@ -157,12 +157,12 @@ const c6Electro_dmg_ = greaterEq(
     ),
     dm.constellation6.electroInc
   )
-)
+);
 
 export const data = dataObjForCharacterSheet(
   key,
   elementKey,
-  'liyue',
+  "liyue",
   data_gen,
   dmgFormulas,
   {
@@ -178,7 +178,7 @@ export const data = dataObjForCharacterSheet(
       electro_dmg_: c6Electro_dmg_,
     },
   }
-)
+);
 
 const sheet: ICharacterSheet = {
   key,
@@ -186,70 +186,70 @@ const sheet: ICharacterSheet = {
   rarity: data_gen.rarity,
   elementKey,
   weaponTypeKey: data_gen.weaponType,
-  gender: 'F',
-  constellationName: ct.chg('constellationName'),
-  title: ct.chg('title'),
+  gender: "F",
+  constellationName: ct.chg("constellationName"),
+  title: ct.chg("title"),
   talent: {
-    auto: ct.talentTem('auto', [
+    auto: ct.talentTem("auto", [
       {
-        text: ct.chg('auto.fields.normal'),
+        text: ct.chg("auto.fields.normal"),
       },
       {
         fields: dm.normal.hitArr.map((_, i) => ({
           node: infoMut(dmgFormulas.normal[i], {
             name: ct.chg(`auto.skillParams.${i + (i < 4 ? 0 : -1)}`),
-            textSuffix: i === 3 ? '(1)' : i === 4 ? '(2)' : '',
+            textSuffix: i === 3 ? "(1)" : i === 4 ? "(2)" : "",
           }),
         })),
       },
       {
-        text: ct.chg('auto.fields.charged'),
+        text: ct.chg("auto.fields.charged"),
       },
       {
         fields: [
           {
             node: infoMut(dmgFormulas.charged.dmg1, {
               name: ct.chg(`auto.skillParams.5`),
-              textSuffix: '(1)',
+              textSuffix: "(1)",
             }),
           },
           {
             node: infoMut(dmgFormulas.charged.dmg2, {
               name: ct.chg(`auto.skillParams.5`),
-              textSuffix: '(2)',
+              textSuffix: "(2)",
             }),
           },
           {
-            text: ct.chg('auto.skillParams.6'),
+            text: ct.chg("auto.skillParams.6"),
             value: dm.charged.stamina,
           },
         ],
       },
       {
-        text: ct.chg('auto.fields.plunging'),
+        text: ct.chg("auto.fields.plunging"),
       },
       {
         fields: [
           {
             node: infoMut(dmgFormulas.plunging.dmg, {
-              name: stg('plunging.dmg'),
+              name: stg("plunging.dmg"),
             }),
           },
           {
             node: infoMut(dmgFormulas.plunging.low, {
-              name: stg('plunging.low'),
+              name: stg("plunging.low"),
             }),
           },
           {
             node: infoMut(dmgFormulas.plunging.high, {
-              name: stg('plunging.high'),
+              name: stg("plunging.high"),
             }),
           },
         ],
       },
     ]),
 
-    skill: ct.talentTem('skill', [
+    skill: ct.talentTem("skill", [
       {
         fields: [
           {
@@ -268,26 +268,26 @@ const sheet: ICharacterSheet = {
             }),
           },
           {
-            text: stg('cd'),
+            text: stg("cd"),
             value: dm.skill.cd,
-            unit: 's',
+            unit: "s",
             fixed: 1,
           },
         ],
       },
-      ct.headerTem('constellation1', {
+      ct.headerTem("constellation1", {
         fields: [
           {
             node: infoMut(dmgFormulas.constellation1.dmg, {
-              name: ct.ch('c1DMG'),
+              name: ct.ch("c1DMG"),
             }),
           },
         ],
       }),
-      ct.condTem('passive1', {
+      ct.condTem("passive1", {
         value: condAfterRecast,
         path: condAfterRecastPath,
-        name: ct.ch('recast'),
+        name: ct.ch("recast"),
         states: {
           afterRecast: {
             fields: [
@@ -296,14 +296,14 @@ const sheet: ICharacterSheet = {
                   data.get(afterRecastInfusion).value === elementKey,
                 text: (
                   <ColorText color="electro">
-                    {st('infusion.electro')}
+                    {st("infusion.electro")}
                   </ColorText>
                 ),
               },
               {
-                text: stg('duration'),
+                text: stg("duration"),
                 value: dm.passive1.duration,
-                unit: 's',
+                unit: "s",
               },
             ],
           },
@@ -311,7 +311,7 @@ const sheet: ICharacterSheet = {
       }),
     ]),
 
-    burst: ct.talentTem('burst', [
+    burst: ct.talentTem("burst", [
       {
         fields: [
           {
@@ -331,20 +331,20 @@ const sheet: ICharacterSheet = {
             }),
           },
           {
-            text: stg('cd'),
+            text: stg("cd"),
             value: dm.burst.cd,
-            unit: 's',
+            unit: "s",
           },
           {
-            text: stg('energyCost'),
+            text: stg("energyCost"),
             value: dm.burst.cost,
           },
         ],
       },
-      ct.condTem('passive2', {
+      ct.condTem("passive2", {
         value: condAfterBurst,
         path: condAfterBurstPath,
-        name: st('afterUse.burst'),
+        name: st("afterUse.burst"),
         states: {
           afterBurst: {
             fields: [
@@ -360,19 +360,19 @@ const sheet: ICharacterSheet = {
       }),
     ]),
 
-    passive1: ct.talentTem('passive1'),
-    passive2: ct.talentTem('passive2'),
-    passive3: ct.talentTem('passive3'),
-    constellation1: ct.talentTem('constellation1'),
-    constellation2: ct.talentTem('constellation2'),
-    constellation3: ct.talentTem('constellation3', [
+    passive1: ct.talentTem("passive1"),
+    passive2: ct.talentTem("passive2"),
+    passive3: ct.talentTem("passive3"),
+    constellation1: ct.talentTem("constellation1"),
+    constellation2: ct.talentTem("constellation2"),
+    constellation3: ct.talentTem("constellation3", [
       { fields: [{ node: nodeC3 }] },
     ]),
-    constellation4: ct.talentTem('constellation4', [
-      ct.condTem('constellation4', {
+    constellation4: ct.talentTem("constellation4", [
+      ct.condTem("constellation4", {
         value: condAfterReact,
         path: condAfterReactPath,
-        name: st('elementalReaction.electro'),
+        name: st("elementalReaction.electro"),
         states: {
           afterReact: {
             fields: [
@@ -384,16 +384,16 @@ const sheet: ICharacterSheet = {
         },
       }),
     ]),
-    constellation5: ct.talentTem('constellation5', [
+    constellation5: ct.talentTem("constellation5", [
       { fields: [{ node: nodeC5 }] },
     ]),
-    constellation6: ct.talentTem('constellation6', [
-      ct.condTem('constellation6', {
+    constellation6: ct.talentTem("constellation6", [
+      ct.condTem("constellation6", {
         value: condC6Stack,
         path: condC6StackPath,
-        name: st('hitOp.normalChargedSkillBurst'),
+        name: st("hitOp.normalChargedSkillBurst"),
         states: objKeyMap(range(1, 4), (i) => ({
-          name: st('stack', { count: i }),
+          name: st("stack", { count: i }),
           fields: [
             {
               node: c6Electro_dmg_,
@@ -403,6 +403,6 @@ const sheet: ICharacterSheet = {
       }),
     ]),
   },
-}
+};
 
-export default new CharacterSheet(sheet, data)
+export default new CharacterSheet(sheet, data);

@@ -5,7 +5,7 @@ import {
 } from "genshin-optimizer/consts";
 import { MenuItem } from "@mui/material";
 import { useContext } from "react";
-import ColorText from "../../../../libs/GO-files/Components/ColoredText";
+import { ColorText } from "genshin-optimizer/ui";
 import DropdownButton from "../../../../libs/GO-files/Components/DropdownMenu/DropdownButton";
 import { CharacterContext } from "../../../../contexts/CharacterContext";
 import { stg } from "../../../../libs/GO-files/Data/SheetUtil";

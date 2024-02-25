@@ -7,7 +7,7 @@ import { ArtifactSheet, setHeaderTemplate } from "../ArtifactSheet";
 import type { IArtifactSheet } from "../IArtifactSheet";
 import { dataObjForArtifactSheet } from "../dataUtil";
 import type { ArtifactSetKey } from "genshin-optimizer/consts";
-import ColorText from "../../../Components/ColoredText";
+import { ColorText } from "genshin-optimizer/ui";
 const key: ArtifactSetKey = "ArchaicPetra";
 const setHeader = setHeaderTemplate(key);
 const [, trm] = trans("artifact", key);

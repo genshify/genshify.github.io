@@ -1,8 +1,8 @@
-import { Skeleton, Typography } from '@mui/material'
-import { Suspense } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import ColorText from './ColoredText'
-import SqBadge from './SqBadge'
+import { Skeleton, Typography } from "@mui/material";
+import { Suspense } from "react";
+import { Trans, useTranslation } from "react-i18next";
+import { ColorText } from "genshin-optimizer/ui";
+import SqBadge from "./SqBadge";
 const textComponents = {
   anemo: <ColorText color="anemo" />,
   geo: <ColorText color="geo" />,
@@ -22,7 +22,7 @@ const textComponents = {
   bloom: <ColorText color="bloom" />,
   burgeon: <ColorText color="burgeon" />,
   hyperbloom: <ColorText color="hyperbloom" />,
-}
+};
 const badgeComponents = {
   anemo: <SqBadge color="anemo" />,
   geo: <SqBadge color="geo" />,
@@ -42,7 +42,7 @@ const badgeComponents = {
   bloom: <SqBadge color="bloom" />,
   burgeon: <SqBadge color="burgeon" />,
   hyperbloom: <SqBadge color="hyperbloom" />,
-}
+};
 
 /**
  * Note: Trans.values & Trans.components wont work together...
@@ -54,18 +54,18 @@ export function Translate({
   children,
   useBadge,
 }: {
-  ns: string
-  key18: string
-  values?: any
-  children?: any
-  useBadge?: boolean
+  ns: string;
+  key18: string;
+  values?: any;
+  children?: any;
+  useBadge?: boolean;
 }) {
-  const { t } = useTranslation(ns)
-  const textKey = `${ns}:${key18}`
+  const { t } = useTranslation(ns);
+  const textKey = `${ns}:${key18}`;
   const textObj = values
     ? (t(textKey, values, { returnObjects: true }) as any)
-    : (t(textKey, { returnObjects: true }) as any)
-  if (typeof textObj === 'string')
+    : (t(textKey, { returnObjects: true }) as any);
+  if (typeof textObj === "string")
     return (
       <span>
         {children ? (
@@ -87,7 +87,7 @@ export function Translate({
           />
         )}
       </span>
-    )
+    );
   return (
     <Suspense fallback={<Skeleton>{children}</Skeleton>}>
       <T
@@ -98,7 +98,7 @@ export function Translate({
         useBadge={useBadge}
       />
     </Suspense>
-  )
+  );
 }
 /**this is used cause the `components` prop mess with tag interpolation. */
 export function TransWrapper({
@@ -107,23 +107,23 @@ export function TransWrapper({
   values,
   children,
 }: {
-  ns: string
-  key18: string
-  values?: any
-  children?: any
+  ns: string;
+  key18: string;
+  values?: any;
+  children?: any;
 }) {
-  const { t } = useTranslation(ns)
-  const textKey = `${ns}:${key18}`
+  const { t } = useTranslation(ns);
+  const textKey = `${ns}:${key18}`;
   return (
     <Suspense fallback={<Skeleton>{children}</Skeleton>}>
       <Trans i18nKey={textKey} t={t} values={values}>
         {children}
       </Trans>
     </Suspense>
-  )
+  );
 }
 function Para({ children }: { children?: JSX.Element }) {
-  return <Typography gutterBottom>{children}</Typography>
+  return <Typography gutterBottom>{children}</Typography>;
 }
 
 function T({
@@ -134,14 +134,14 @@ function T({
   values,
   useBadge,
 }: {
-  key18: string
-  obj: any
-  li?: boolean
-  t
-  values?: any
-  useBadge?: boolean
+  key18: string;
+  obj: any;
+  li?: boolean;
+  t;
+  values?: any;
+  useBadge?: boolean;
 }) {
-  if (typeof obj === 'string')
+  if (typeof obj === "string")
     return (
       <Trans
         i18nKey={key18}
@@ -150,7 +150,7 @@ function T({
         t={t}
         values={values}
       />
-    )
+    );
   if (Array.isArray(obj))
     return (
       <Typography component="div">
@@ -165,11 +165,11 @@ function T({
           />
         </ul>
       </Typography>
-    )
+    );
   return Object.entries(obj).map(([key, val]) => {
-    if (val === '<br/>') return null
+    if (val === "<br/>") return null;
 
-    if (typeof val === 'object')
+    if (typeof val === "object")
       return (
         <T
           key={key as any}
@@ -179,8 +179,8 @@ function T({
           values={values}
           useBadge={useBadge}
         />
-      )
-    if (typeof val === 'string') {
+      );
+    if (typeof val === "string") {
       const trans = (
         <Trans
           key={key as any}
@@ -190,9 +190,9 @@ function T({
           t={t}
           values={values}
         />
-      )
-      return li ? <li key={key as any}>{trans}</li> : trans
+      );
+      return li ? <li key={key as any}>{trans}</li> : trans;
     }
-    return null
-  }) as any
+    return null;
+  }) as any;
 }

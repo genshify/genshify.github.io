@@ -54,7 +54,7 @@ function Section({
   );
   const displayNsReads = useMemo(
     () =>
-      objMap(displayNs, (n, nodeKey) =>
+      objMap(displayNs, (_n, nodeKey) =>
         customRead(["display", sectionKey, nodeKey])
       ),
     [displayNs, sectionKey]

@@ -55,7 +55,7 @@ import AdditiveReactionModeText from "../../../libs/GO-files/Components/Additive
 import AmpReactionModeText from "../../../libs/GO-files/Components/AmpReactionModeText";
 import CardDark from "../../../libs/GO-files/Components/Card/CardDark";
 import CloseButton from "../../../libs/GO-files/Components/CloseButton";
-import ColorText from "../../../libs/GO-files/Components/ColoredText";
+import { ColorText } from "genshin-optimizer/ui";
 import CustomNumberInput, {
   CustomNumberInputButtonGroupWrapper,
 } from "../../../libs/GO-files/Components/CustomNumberInput";

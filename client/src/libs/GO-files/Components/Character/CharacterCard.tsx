@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { range } from "genshin-optimizer/util";
 import { characterAsset } from "genshin-optimizer/assets";
 import type {
@@ -39,7 +40,8 @@ import type { RollColorKey } from "../../Types/consts";
 import { iconAsset } from "../../Util/AssetUtil";
 import ArtifactCardPico from "../Artifact/ArtifactCardPico";
 import CardLight from "../Card/CardLight";
-import ColorText from "../ColoredText";
+import { ColorText } from "genshin-optimizer/ui";
+
 import ConditionalWrapper from "../ConditionalWrapper";
 import { NodeFieldDisplay } from "../FieldDisplay";
 import SqBadge from "../SqBadge";
@@ -83,7 +85,7 @@ export default function CharacterCard({
     [characterKey, onClick]
   );
   const actionWrapperFunc = useCallback(
-    (children) => (
+    (children: any) => (
       <CardActionArea
         onClick={onClickHandler}
         sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}
@@ -114,7 +116,7 @@ export default function CharacterCard({
     [data, teamData]
   );
 
-  const { favorite } = useCharMeta(characterKey);
+  const { favorite } = useCharMeta(characterKey) || {};
   return (
     <Suspense
       fallback={
@@ -138,6 +140,7 @@ export default function CharacterCard({
         >
           <IconButton
             sx={{ p: 0.5 }}
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             onClick={(_) =>
               database.charMeta.set(characterKey, { favorite: !favorite })
             }
@@ -290,7 +293,7 @@ function Header({
   const characterSheet = getCharSheet(characterKey, gender);
 
   const actionWrapperFunc = useCallback(
-    (children) => (
+    (children: any) => (
       <CardActionArea
         onClick={() => characterKey && onClick?.(characterKey)}
         sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}

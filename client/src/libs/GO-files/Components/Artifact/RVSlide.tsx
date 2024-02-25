@@ -24,7 +24,7 @@ export default function RVSlide({
   const [sliderLow, setsliderLow] = useState(levelLow);
   const [sliderHigh, setsliderHigh] = useState(levelHigh);
   const setSlider = useCallback(
-    (e: unknown, value: number | number[]) => {
+    (_e: unknown, value: number | number[]) => {
       if (typeof value == "number") throw new TypeError();
       const [l, h] = value;
       setsliderLow(l);

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { allEleDmgKeys, allEleResKeys } from "genshin-optimizer/keymap";
 import {
   Alert,
@@ -14,7 +15,7 @@ import { Trans, useTranslation } from "react-i18next";
 import CardDark from "../../../../libs/GO-files/Components/Card/CardDark";
 import CardLight from "../../../../libs/GO-files/Components/Card/CardLight";
 import CloseButton from "../../../../libs/GO-files/Components/CloseButton";
-import ColorText from "../../../../libs/GO-files/Components/ColoredText";
+import { ColorText } from "genshin-optimizer/ui";
 import { EnemyExpandCard } from "../../../../libs/GO-files/Components/EnemyEditor";
 import {
   FieldDisplayList,
@@ -37,7 +38,7 @@ const cols = {
   lg: 3,
 };
 
-export default function StatModal({ open, onClose }) {
+export default function StatModal({ open, onClose }: any) {
   const { t } = useTranslation("page_character");
   return (
     <ModalWrapper open={open} onClose={onClose}>
@@ -70,7 +71,7 @@ function BonusStatsEditor() {
     characterDispatch,
   } = useContext(CharacterContext);
   const setFilter = useCallback(
-    (bonusStats) => characterDispatch({ bonusStats }),
+    (bonusStats: any) => characterDispatch({ bonusStats }),
     [characterDispatch]
   );
   return (
@@ -230,7 +231,7 @@ function MainStatsCards() {
     </CardLight>
   );
 }
-function StatDisplayCard({ title, children }) {
+function StatDisplayCard({ title, children }: any) {
   return (
     <CardDark>
       <CardContent sx={{ py: 1 }}>

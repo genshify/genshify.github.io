@@ -1,5 +1,5 @@
 import { allStats } from "genshin-optimizer/stats";
-import ColorText from "../../../Components/ColoredText";
+import { ColorText } from "genshin-optimizer/ui";
 import { input, target } from "../../../Formula";
 import {
   constant,

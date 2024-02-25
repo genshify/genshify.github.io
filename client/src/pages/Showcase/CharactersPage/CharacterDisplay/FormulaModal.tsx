@@ -27,7 +27,7 @@ import CardDark from "../../../../libs/GO-files/Components/Card/CardDark";
 import CardHeaderCustom from "../../../../libs/GO-files/Components/Card/CardHeaderCustom";
 import CardLight from "../../../../libs/GO-files/Components/Card/CardLight";
 import CloseButton from "../../../../libs/GO-files/Components/CloseButton";
-import ColorText from "../../../../libs/GO-files/Components/ColoredText";
+import { ColorText } from "genshin-optimizer/ui";
 import ImgIcon from "../../../../libs/GO-files/Components/Image/ImgIcon";
 import ModalWrapper from "../../../../libs/GO-files/Components/ModalWrapper";
 import SqBadge from "../../../../libs/GO-files/Components/SqBadge";
@@ -95,6 +95,7 @@ function FormulaCalc({
     [database, contextData, data, sectionKey]
   );
   if (!header) return null;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   if (Object.entries(displayNs).every(([_, node]) => node.isEmpty)) return null;
   const { title, icon, action } = header;
   return (
@@ -118,7 +119,7 @@ function FormulaAccordian({ node }: { node: NodeDisplay }) {
   const { node: contextNode } = useContext(FormulaDataContext);
   const [expanded, setExpanded] = useState(false);
   const handleChange = useCallback(
-    (e: React.SyntheticEvent, isExpanded: boolean) => setExpanded(isExpanded),
+    (_e: React.SyntheticEvent, isExpanded: boolean) => setExpanded(isExpanded),
     []
   );
   const scrollRef =

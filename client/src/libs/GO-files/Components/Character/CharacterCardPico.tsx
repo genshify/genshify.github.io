@@ -33,7 +33,7 @@ export default function CharacterCardPico({
   disableTooltip?: boolean;
 }) {
   const character = useCharacter(characterKey);
-  const { favorite } = useCharMeta(characterKey);
+  const { favorite } = useCharMeta(characterKey) || {}; // Add default empty object //todo: fix this
   const { gender } = useDBMeta();
   const { silly } = useContext(SillyContext);
   const characterSheet = getCharSheet(characterKey, gender);
@@ -210,7 +210,7 @@ export function BlankCharacterCardPico({ index }: { index: number }) {
     >
       <Box
         component="img"
-        src={imgAssets.team[`team${index + 2}`]}
+        src={imgAssets.team[`team${index + 2}` as keyof typeof imgAssets.team]}
         sx={{ width: "75%", height: "auto", opacity: 0.7 }}
       />
     </CardDark>

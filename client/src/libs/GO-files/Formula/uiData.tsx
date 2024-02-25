@@ -9,7 +9,7 @@ import type { ArtifactSetKey, WeaponKey } from "genshin-optimizer/consts";
 import { allArtifactSetKeys, allWeaponKeys } from "genshin-optimizer/consts";
 import { useContext } from "react";
 import { uiInput } from ".";
-import ColorText from "../Components/ColoredText";
+import { ColorText } from "genshin-optimizer/ui";
 import { Translate } from "../Components/Translate";
 import { SillyContext } from "../../../contexts/SillyContext";
 import type { CharacterSheetKey } from "../Types/consts";
