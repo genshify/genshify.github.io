@@ -6,6 +6,7 @@ import SortByButton from '../Components/SortByButton'
 type PaginationProps = {
   count: number
   page: number
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange: (_: any, value: number) => void
 }
 
@@ -48,11 +49,12 @@ export default function PageAndSortOptionSelect({
         t={showingTextProps.t}
         namespace={showingTextProps.namespace}
       />
-      {displaySort && (
+      {displaySort && sortByButtonProps && (
         <SortByButton
           sortKeys={sortByButtonProps.sortKeys}
           value={sortByButtonProps.value}
-          onChange={(value) => sortByButtonProps.onChange(value)}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          onChange={(value) => sortByButtonProps.onChange(value as any)}
           ascending={sortByButtonProps.ascending}
           onChangeAsc={sortByButtonProps.onChangeAsc}
         />

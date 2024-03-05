@@ -6,7 +6,7 @@ import { Box, Typography } from "@mui/material";
 import Artifact from "../../Data/Artifacts/Artifact";
 import StatIcon from "../../KeyMap/StatIcon";
 import CardDark from "../Card/CardDark";
-import SqBadge from "../SqBadge";
+import { SqBadge } from "genshin-optimizer/ui";
 import ArtifactTooltip from "./ArtifactTooltip";
 
 export default function ArtifactCardPico({

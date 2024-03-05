@@ -315,7 +315,7 @@ const sheet: ICharacterSheet = {
       {
         fields: [
           ...dm.skill.dmgArr.map((_, i) => ({
-            node: infoMut(dmgFormulas.skill[`dmg${i}`], {
+            node: infoMut(dmgFormulas.skill[`dmg${i}` as keyof typeof dmgFormulas.skill], {
               name: ct.chg(`skill.skillParams.${i}`),
             }),
           })),

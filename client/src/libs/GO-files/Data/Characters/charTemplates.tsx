@@ -1,7 +1,7 @@
 import { characterAsset, imgAssets } from "genshin-optimizer/assets";
 import type { CharacterKey, WeaponTypeKey } from "genshin-optimizer/consts";
 import ImgIcon from "../../Components/Image/ImgIcon";
-import SqBadge from "../../Components/SqBadge";
+import { SqBadge } from "genshin-optimizer/ui";
 import { input } from "../../Formula";
 import type { NumNode } from "../../Formula/type";
 import { greaterEq } from "../../Formula/utils";

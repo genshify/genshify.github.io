@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { ElementIcon } from "../KeyMap/StatIcon";
 import { ColorText } from "genshin-optimizer/ui";
-import SqBadge from "./SqBadge";
+import { SqBadge } from "genshin-optimizer/ui";
 
 const sqBadgeStyle = { mx: 0.25, px: 0.25 };
 export default function AdditiveReactionModeText({

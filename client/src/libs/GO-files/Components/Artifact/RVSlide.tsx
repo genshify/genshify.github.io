@@ -58,7 +58,7 @@ export default function RVSlide({
         getAriaLabel={() => "Arifact RV Range"}
         value={[sliderLow, sliderHigh]}
         onChange={setSlider}
-        onChangeCommitted={(e, value) => setBoth(value[0], value[1])}
+        onChangeCommitted={(_e, value) => setBoth(value[0], value[1])}
         valueLabelDisplay="auto"
         min={0}
         max={900}

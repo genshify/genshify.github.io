@@ -44,7 +44,7 @@ import { ColorText } from "genshin-optimizer/ui";
 
 import ConditionalWrapper from "../ConditionalWrapper";
 import { NodeFieldDisplay } from "../FieldDisplay";
-import SqBadge from "../SqBadge";
+import { SqBadge } from "genshin-optimizer/ui";
 import { StarsDisplay } from "../StarDisplay";
 import WeaponCardPico from "../Weapon/WeaponCardPico";
 import WeaponFullCard from "../Weapon/WeaponFullCard";

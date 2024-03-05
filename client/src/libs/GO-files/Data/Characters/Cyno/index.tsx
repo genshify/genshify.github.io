@@ -379,7 +379,7 @@ const sheet: ICharacterSheet = {
       {
         fields: [
           ...dm.burst.normal.hitArr.map((_, i) => ({
-            node: infoMut(dmgFormulas.burst[`normal_${i}`], {
+            node: infoMut(dmgFormulas.burst[`normal_${i}` as keyof typeof dmgFormulas.bur], {
               name: ct.chg(`burst.skillParams.${i}`),
               multi: i === 3 ? 2 : undefined,
             }),

@@ -16,7 +16,7 @@ import CardDark from "../Card/CardDark";
 import CardHeaderCustom from "../Card/CardHeaderCustom";
 import { FieldDisplayList, NodeFieldDisplay } from "../FieldDisplay";
 import ImgIcon from "../Image/ImgIcon";
-import SqBadge from "../SqBadge";
+import { SqBadge } from "genshin-optimizer/ui";
 
 export default function StatDisplayComponent() {
   const { data } = useContext(DataContext);

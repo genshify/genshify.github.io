@@ -373,7 +373,7 @@ const sheet: ICharacterSheet = {
       },
       {
         fields: dm.normal.hitArr.map((_, i) => ({
-          node: infoMut(dmgFormulas.normal[i], {
+          node: infoMut(dmgFormulas.normal[i as unknown as keyof typeof dmgFormulas.normal], {
             name: ct.chg(`auto.skillParams.${i}`),
           }),
         })),

@@ -30,7 +30,7 @@ import CloseButton from "../../../../libs/GO-files/Components/CloseButton";
 import { ColorText } from "genshin-optimizer/ui";
 import ImgIcon from "../../../../libs/GO-files/Components/Image/ImgIcon";
 import ModalWrapper from "../../../../libs/GO-files/Components/ModalWrapper";
-import SqBadge from "../../../../libs/GO-files/Components/SqBadge";
+import { SqBadge } from "genshin-optimizer/ui";
 import { DataContext } from "../../../../contexts/DataContext";
 import { FormulaDataContext } from "../../../../contexts/FormulaDataContext";
 import { useDatabase } from "genshin-optimizer/db-ui";

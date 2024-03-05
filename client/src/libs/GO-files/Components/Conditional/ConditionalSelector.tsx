@@ -16,7 +16,7 @@ import type {
   IDocumentConditionalMultiple,
 } from "../../Types/sheet";
 import DropdownButton from "../DropdownMenu/DropdownButton";
-import SqBadge from "../SqBadge";
+import { SqBadge } from "genshin-optimizer/ui";
 import { Translate } from "../Translate";
 
 interface ConditionalSelectorProps {

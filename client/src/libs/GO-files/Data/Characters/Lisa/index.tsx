@@ -205,7 +205,7 @@ const sheet: ICharacterSheet = {
             }),
           },
           ...range(0, 3).map((i) => ({
-            node: infoMut(dmgFormulas.skill[`stack${i}`], {
+            node: infoMut(dmgFormulas.skill[`stack${i}` as keyof typeof dmgFormulas.skill], {
               name: ct.chg(`skill.skillParams.${2 + i}`),
             }),
           })),

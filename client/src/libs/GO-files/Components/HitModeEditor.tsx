@@ -24,7 +24,7 @@ import AmpReactionModeText from "./AmpReactionModeText";
 import type { DropdownButtonProps } from "./DropdownMenu/DropdownButton";
 import DropdownButton from "./DropdownMenu/DropdownButton";
 import SolidToggleButtonGroup from "./SolidToggleButtonGroup";
-import SqBadge from "./SqBadge";
+import { SqBadge } from "genshin-optimizer/ui";
 
 export const infusionVals = {
   "": <span>No Team Melee Infusion</span>,

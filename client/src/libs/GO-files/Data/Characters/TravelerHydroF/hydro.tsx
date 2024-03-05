@@ -310,7 +310,7 @@ export default function dendro(
       ct.headerTem('constellation2', {
         fields: [
           {
-            text: KeyMap.getStr('moveSPD_'),
+            text: KeyMap.getStr('moveSPD_') || '',
             value: dm.constellation2.movementSpdDec * -100,
             unit: '%',
           },

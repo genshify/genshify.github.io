@@ -1,19 +1,20 @@
-import { Box, Skeleton, Stack, Typography } from '@mui/material'
-import { Suspense } from 'react'
-import { useTranslation } from 'react-i18next'
-import type { ArtifactSheet } from '../../Data/Artifacts/ArtifactSheet'
-import BootstrapTooltip from '../BootstrapTooltip'
-import SqBadge from '../SqBadge'
-import { Translate } from '../Translate'
+import { Box, Skeleton, Stack, Typography } from "@mui/material";
+import { Suspense } from "react";
+import { useTranslation } from "react-i18next";
+import type { ArtifactSheet } from "../../Data/Artifacts/ArtifactSheet";
+import BootstrapTooltip from "../BootstrapTooltip";
+import { SqBadge } from "genshin-optimizer/ui";
+
+import { Translate } from "../Translate";
 
 export default function ArtifactSetTooltip({
   children,
   artifactSheet,
   numInSet = 5,
 }: {
-  children: JSX.Element
-  artifactSheet: ArtifactSheet
-  numInSet?: number
+  children: JSX.Element;
+  artifactSheet: ArtifactSheet;
+  numInSet?: number;
 }) {
   return (
     <BootstrapTooltip
@@ -28,14 +29,14 @@ export default function ArtifactSetTooltip({
     >
       {children}
     </BootstrapTooltip>
-  )
+  );
 }
 export function ArtifactSetTooltipContent({
   artifactSheet,
   numInSet = 5,
 }: {
-  artifactSheet: ArtifactSheet
-  numInSet?: number
+  artifactSheet: ArtifactSheet;
+  numInSet?: number;
 }) {
   return (
     <Suspense
@@ -43,16 +44,16 @@ export function ArtifactSetTooltipContent({
     >
       <SetToolTipTitle artifactSheet={artifactSheet} numInSet={numInSet} />
     </Suspense>
-  )
+  );
 }
 function SetToolTipTitle({
   artifactSheet,
   numInSet = 5,
 }: {
-  artifactSheet: ArtifactSheet
-  numInSet?: number
+  artifactSheet: ArtifactSheet;
+  numInSet?: number;
 }) {
-  const { t } = useTranslation('sheet')
+  const { t } = useTranslation("sheet");
   return (
     <Stack spacing={2} sx={{ p: 1 }}>
       {Object.keys(artifactSheet.setEffects).map((setKey) => (
@@ -72,5 +73,5 @@ function SetToolTipTitle({
         </Box>
       ))}
     </Stack>
-  )
+  );
 }

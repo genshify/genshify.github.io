@@ -45,7 +45,8 @@ import CharacterCard from "../../../libs/GO-files/Components/Character/Character
 import CloseButton from "../../../libs/GO-files/Components/CloseButton";
 import ModalWrapper from "../../../libs/GO-files/Components/ModalWrapper";
 import SortByButton from "../../../libs/GO-files/Components/SortByButton";
-import SqBadge from "../../../libs/GO-files/Components/SqBadge";
+import { SqBadge } from "genshin-optimizer/ui";
+
 import { StarsDisplay } from "../../../libs/GO-files/Components/StarDisplay";
 import ElementToggle from "../../../libs/GO-files/Components/ToggleButton/ElementToggle";
 import WeaponToggle from "../../../libs/GO-files/Components/ToggleButton/WeaponToggle";

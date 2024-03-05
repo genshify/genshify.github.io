@@ -276,7 +276,7 @@ export default function dendro(
           Object.entries(c6_ele_dmg_disp).map(([ele, node]) => [
             ele,
             {
-              name: <ColorText color={ele}>{stg(`element.${ele}`)}</ColorText>,
+              name: <ColorText color={"dendro"}>{stg(`element.${ele}`)}</ColorText>,
               fields: [
                 {
                   node: infoMut(node, {

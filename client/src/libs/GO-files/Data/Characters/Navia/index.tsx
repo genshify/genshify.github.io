@@ -131,7 +131,7 @@ const [condShotsHitPath, condShotsHit] = cond(key, 'shotsHit')
 const shotsHit_shot_mult_ = lookup(
   condShotsHit,
   objKeyMap(shotsHitArr, (shot) =>
-    greaterEq(skillShotsFired, shot, percent(shotsHit_mult_map[shot]))
+    greaterEq(skillShotsFired, shot, percent(shotsHit_mult_map[shot as keyof typeof shotsHit_mult_map]))
   ),
   naught
 )
@@ -159,7 +159,7 @@ const a1AfterSkill_charged_dmg_ = { ...a1AfterSkill_auto_dmg_ }
 const a1AfterSkill_plunging_dmg_ = { ...a1AfterSkill_auto_dmg_ }
 
 const a4ElementArr = ['pyro', 'electro', 'cryo', 'hydro']
-const numTeammates = sum(...a4ElementArr.map((ele) => tally[ele]))
+const numTeammates = sum(...a4ElementArr.map((ele) => tally[ele as keyof typeof tally]))
 const a4Element_atk_ = greaterEq(
   input.asc,
   4,

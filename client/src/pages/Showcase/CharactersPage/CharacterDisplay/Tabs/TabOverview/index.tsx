@@ -26,7 +26,7 @@ import CharacterCardPico, {
 } from "../../../../../../libs/GO-files/Components/Character/CharacterCardPico";
 import StatDisplayComponent from "../../../../../../libs/GO-files/Components/Character/StatDisplayComponent";
 import ImgIcon from "../../../../../../libs/GO-files/Components/Image/ImgIcon";
-import SqBadge from "../../../../../../libs/GO-files/Components/SqBadge";
+import { SqBadge } from "genshin-optimizer/ui";
 import { StarsDisplay } from "../../../../../../libs/GO-files/Components/StarDisplay";
 import WeaponCardNano from "../../../../../../libs/GO-files/Components/Weapon/WeaponCardNano";
 import { CharacterContext } from "../../../../../../contexts/CharacterContext";

@@ -293,7 +293,7 @@ const sheet: ICharacterSheet = {
               ),
               fields: [
                 {
-                  node: infoMut(dmgFormulas.burst[eleKey], {
+                  node: infoMut(dmgFormulas.burst[eleKey as keyof typeof dmgFormulas.burst], {
                     name: ct.chg(`burst.skillParams.1`),
                   }),
                 },

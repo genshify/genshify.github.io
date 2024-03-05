@@ -3,7 +3,7 @@ import type { AmpReactionKey } from "genshin-optimizer/consts";
 import { Box } from "@mui/material";
 import { ElementIcon } from "../KeyMap/StatIcon";
 import { ColorText } from "genshin-optimizer/ui";
-import SqBadge from "./SqBadge";
+import { SqBadge } from "genshin-optimizer/ui";
 
 export const ampReactionMap = {
   melt: {

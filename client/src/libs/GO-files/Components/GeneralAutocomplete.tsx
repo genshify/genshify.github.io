@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Favorite } from "@mui/icons-material";
 import type {
   AutocompleteProps,
@@ -158,7 +159,7 @@ export function GeneralAutocompleteMulti<T extends string>({
       multiple
       disableCloseOnSelect
       value={value}
-      onChange={(event, newValue, reason) => {
+      onChange={(_event, newValue, reason) => {
         if (reason === "clear") return onChange([]);
         return newValue !== null && onChange(newValue.map((v) => v.key));
       }}

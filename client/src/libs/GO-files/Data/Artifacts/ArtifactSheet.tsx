@@ -7,7 +7,7 @@ import type {
 import { allArtifactSlotKeys } from "genshin-optimizer/consts";
 import artifactSheets from ".";
 import ImgIcon from "../../Components/Image/ImgIcon";
-import SqBadge from "../../Components/SqBadge";
+import { SqBadge } from "genshin-optimizer/ui";
 import { Translate } from "../../Components/Translate";
 import { input } from "../../Formula";
 import type { Data } from "../../Formula/type";

@@ -2,7 +2,7 @@ import { Skeleton, Typography } from "@mui/material";
 import { Suspense } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { ColorText } from "genshin-optimizer/ui";
-import SqBadge from "./SqBadge";
+import { SqBadge } from "genshin-optimizer/ui";
 const textComponents = {
   anemo: <ColorText color="anemo" />,
   geo: <ColorText color="geo" />,

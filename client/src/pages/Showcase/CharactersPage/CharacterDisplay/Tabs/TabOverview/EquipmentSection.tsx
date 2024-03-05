@@ -1,30 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useBoolState } from "genshin-optimizer/react-util";
-import { iconInlineProps } from "genshin-optimizer/svgicons";
-import type { ArtifactSlotKey, WeaponTypeKey } from "genshin-optimizer/consts";
 import {
   allArtifactSlotKeys,
   allSubstatKeys,
-  charKeyToLocCharKey,
 } from "genshin-optimizer/consts";
 import { useCharMeta, useDatabase } from "genshin-optimizer/db-ui";
-import { Settings, SwapHoriz } from "@mui/icons-material";
+import { Settings} from "@mui/icons-material";
 import {
   Box,
   Button,
   CardContent,
-  Divider,
   Grid,
   ListItem,
   Stack,
-  Tooltip,
   Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import {
   Suspense,
-  lazy,
   useCallback,
   useContext,
   useDeferredValue,
@@ -34,7 +28,6 @@ import {
 } from "react";
 import { useTranslation } from "react-i18next";
 import SetEffectDisplay from "../../../../../../libs/GO-files/Components/Artifact/SetEffectDisplay";
-import SlotIcon from "../../../../../../libs/GO-files/Components/Artifact/SlotIcon";
 import SubstatToggle from "../../../../../../libs/GO-files/Components/Artifact/SubstatToggle";
 import CardDark from "../../../../../../libs/GO-files/Components/Card/CardDark";
 import CardLight from "../../../../../../libs/GO-files/Components/Card/CardLight";
@@ -49,23 +42,14 @@ import { CharacterContext } from "../../../../../../contexts/CharacterContext";
 import { DataContext } from "../../../../../../contexts/DataContext";
 import { dataSetEffects } from "../../../../../../libs/GO-files/Data/Artifacts";
 import Artifact from "../../../../../../libs/GO-files/Data/Artifacts/Artifact";
-import { uiInput as input } from "../../../../../../libs/GO-files/Formula";
-// import ArtifactCard from "../../../../PageArtifact/ArtifactCard";
-// import WeaponCard from "../../../../PageWeapon/WeaponCard";
 import type { IFieldDisplay } from "../../../../../../libs/GO-files/Types/fieldDisplay";
 export default function EquipmentSection() {
   const {
     character: { equippedWeapon, key: characterKey },
-    characterSheet,
   } = useContext(CharacterContext);
-  const { teamData, data } = useContext(DataContext);
+  const { teamData } = useContext(DataContext);
   const weaponSheet = teamData[characterKey]?.weaponSheet;
   const [weaponId, setweaponId] = useState("");
-  const showWeapon = useCallback(
-    () => setweaponId(equippedWeapon),
-    [equippedWeapon]
-  );
-  const hideWeapon = useCallback(() => setweaponId(""), []);
 
   //triggers when character swap weapons
   useEffect(() => {
@@ -86,12 +70,6 @@ export default function EquipmentSection() {
         </CardLight>
       ),
     [weaponSheet]
-  );
-  const { rvFilter } = useCharMeta(characterKey);
-  const deferredRvFilter = useDeferredValue(rvFilter);
-  const deferredRvSet = useMemo(
-    () => new Set(deferredRvFilter),
-    [deferredRvFilter]
   );
   return (
     <Box>
@@ -180,146 +158,7 @@ export default function EquipmentSection() {
     </Box>
   );
 }
-function ArtSwapCard({ slotKey }: { slotKey: ArtifactSlotKey }) {
-  const {
-    character: { key: characterKey },
-  } = useContext(CharacterContext);
-  const database = useDatabase();
-  const [show, onOpen, onClose] = useBoolState();
-  const { t } = useTranslation("artifact");
-  return (
-    <CardLight
-      sx={{
-        height: "100%",
-        width: "100%",
-        minHeight: 300,
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <CardContent>
-        <Typography>
-          <SlotIcon iconProps={iconInlineProps} slotKey={slotKey} />{" "}
-          {t(`slotName.${slotKey}`)}
-        </Typography>
-      </CardContent>
-      <Divider />
-      <Box
-        sx={{
-          flexGrow: 1,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {/* <ArtifactSwapModal
-          slotKey={slotKey}
-          show={show}
-          onClose={onClose}
-          onChangeId={(id) =>
-            database.arts.set(id, {
-              location: charKeyToLocCharKey(characterKey),
-            })
-          }
-        /> */}
-        <Button onClick={onOpen} color="info" sx={{ borderRadius: "1em" }}>
-          <SwapHoriz sx={{ height: 100, width: 100 }} />
-        </Button>
-      </Box>
-    </CardLight>
-  );
-}
-function WeaponSwapButton({ weaponTypeKey }: { weaponTypeKey: WeaponTypeKey }) {
-  const { t } = useTranslation("page_character");
-  const {
-    character: { key: characterKey },
-  } = useContext(CharacterContext);
-  const database = useDatabase();
-  const [show, onOpen, onClose] = useBoolState();
-  return (
-    <>
-      <Tooltip
-        title={<Typography>{t`tabEquip.swapWeapon`}</Typography>}
-        placement="top"
-        arrow
-      >
-        <Button color="info" size="small" onClick={onOpen}>
-          <SwapHoriz />
-        </Button>
-      </Tooltip>
-      {/* <WeaponSwapModal
-        weaponTypeKey={weaponTypeKey}
-        onChangeId={(id) =>
-          database.weapons.set(id, {
-            location: charKeyToLocCharKey(characterKey),
-          })
-        }
-        show={show}
-        onClose={onClose}
-      /> */}
-    </>
-  );
-}
-function LargeWeaponSwapButton({
-  weaponTypeKey,
-}: {
-  weaponTypeKey: WeaponTypeKey;
-}) {
-  const { t } = useTranslation("page_character");
-  const {
-    character: { key: characterKey },
-  } = useContext(CharacterContext);
-  const database = useDatabase();
-  const [show, onOpen, onClose] = useBoolState();
-  return (
-    <>
-      <Button
-        color="info"
-        onClick={onOpen}
-        startIcon={<SwapHoriz />}
-      >{t`tabEquip.swapWeapon`}</Button>
-      {/* <WeaponSwapModal
-        weaponTypeKey={weaponTypeKey}
-        onChangeId={(id) =>
-          database.weapons.set(id, {
-            location: charKeyToLocCharKey(characterKey),
-          })
-        }
-        show={show}
-        onClose={onClose}
-      /> */}
-    </>
-  );
-}
-function ArtifactSwapButton({ slotKey }: { slotKey: ArtifactSlotKey }) {
-  const { t } = useTranslation("page_character");
-  const {
-    character: { key: characterKey },
-  } = useContext(CharacterContext);
-  const database = useDatabase();
-  const [show, onOpen, onClose] = useBoolState();
-  return (
-    <>
-      <Tooltip
-        title={<Typography>{t`tabEquip.swapArt`}</Typography>}
-        placement="top"
-        arrow
-      >
-        <Button color="info" size="small" onClick={onOpen}>
-          <SwapHoriz />
-        </Button>
-      </Tooltip>
-      {/* <ArtifactSwapModal
-        slotKey={slotKey}
-        show={show}
-        onClose={onClose}
-        onChangeId={(id) =>
-          database.arts.set(id, { location: charKeyToLocCharKey(characterKey) })
-        }
-      /> */}
-    </>
-  );
-}
+
 function ArtifactSectionCard() {
   const { t } = useTranslation(["page_character", "artifact"]);
   const database = useDatabase();
@@ -346,9 +185,10 @@ function ArtifactSectionCard() {
   }, [character, database, equippedArtifacts]);
 
   const setEffects = useMemo(() => dataSetEffects(data), [data]);
-  const { rvFilter } = useCharMeta(characterKey);
+  const { rvFilter } = useCharMeta(characterKey) || {};
   const setRVFilter = useCallback(
-    (rvFilter) => database.charMeta.set(characterKey, { rvFilter }),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (rvFilter: any) => database.charMeta.set(characterKey, { rvFilter }),
     [database, characterKey]
   );
 

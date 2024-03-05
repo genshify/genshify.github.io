@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { valueString } from "genshin-optimizer/util";
 import type { AmpReactionKey } from "genshin-optimizer/consts";
 import { allAmpReactionKeys } from "genshin-optimizer/consts";
@@ -22,7 +23,7 @@ import type { IBasicFieldDisplay, IFieldDisplay } from "../Types/fieldDisplay";
 import { evalIfFunc } from "../Util/Util";
 import AmpReactionModeText from "./AmpReactionModeText";
 import BootstrapTooltip from "./BootstrapTooltip";
-import { ColorText } from "genshin-optimizer/ui";
+import { ColorText } from "genshin-optimizer/ui"
 
 export default function FieldsDisplay({ fields }: { fields: IFieldDisplay[] }) {
   return (
@@ -209,7 +210,7 @@ export function NodeFieldDisplayText({ node }: { node: NodeDisplay }) {
     >
       {!!node.info.isTeamBuff && <Groups />}
       {node.info.icon}
-      <ColorText color={node.info.variant}>
+      <ColorText color={node.info.variant as keyof Palette}>
         {node.info.name}
         {suffixDisplay}
       </ColorText>

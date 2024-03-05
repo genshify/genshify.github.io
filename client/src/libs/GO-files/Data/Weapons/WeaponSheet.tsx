@@ -9,7 +9,7 @@ import type { WeaponData } from "genshin-optimizer/stats";
 import { getLevelString } from "genshin-optimizer/util";
 import { displayDataMap } from ".";
 import ImgIcon from "../../Components/Image/ImgIcon";
-import SqBadge from "../../Components/SqBadge";
+import { SqBadge } from "genshin-optimizer/ui";
 import { input } from "../../Formula";
 import type { Data } from "../../Formula/type";
 import type { IDocumentHeader } from "../../Types/sheet";

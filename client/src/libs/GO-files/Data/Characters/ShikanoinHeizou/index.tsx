@@ -377,7 +377,7 @@ const sheet: ICharacterSheet = {
             }),
           },
           ...absorbableEle.map((ele) => ({
-            node: infoMut(dmgFormulas.burst[`${ele}_iris_dmg`], {
+            node: infoMut(dmgFormulas.burst[`${ele}_iris_dmg` as keyof typeof dmgFormulas.burst], {
               name: ct.chg(`burst.skillParams.1`),
             }),
           })),

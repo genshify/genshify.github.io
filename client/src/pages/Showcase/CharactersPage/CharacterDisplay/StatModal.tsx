@@ -16,7 +16,6 @@ import CardDark from "../../../../libs/GO-files/Components/Card/CardDark";
 import CardLight from "../../../../libs/GO-files/Components/Card/CardLight";
 import CloseButton from "../../../../libs/GO-files/Components/CloseButton";
 import { ColorText } from "genshin-optimizer/ui";
-import { EnemyExpandCard } from "../../../../libs/GO-files/Components/EnemyEditor";
 import {
   FieldDisplayList,
   NodeFieldDisplay,
@@ -50,7 +49,6 @@ export default function StatModal({ open, onClose }: any) {
         <CardContent sx={{ pt: 0 }}>
           <Stack spacing={1}>
             <BonusStatsEditor />
-            <EnemyExpandCard />
             <MainStatsCards />
           </Stack>
         </CardContent>

@@ -9,7 +9,7 @@ import { computeUIData, dataObjForWeapon } from "../../Formula/api";
 import type { NodeDisplay } from "../../Formula/uiData";
 import { nodeVStr } from "../../Formula/uiData";
 import CardDark from "../Card/CardDark";
-import SqBadge from "../SqBadge";
+import { SqBadge } from "genshin-optimizer/ui";
 import WeaponNameTooltip from "./WeaponNameTooltip";
 
 export default function WeaponCardPico({ weaponId }: { weaponId: string }) {

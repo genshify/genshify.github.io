@@ -14,7 +14,7 @@ import { iconAsset } from "../../Util/AssetUtil";
 import BootstrapTooltip from "../BootstrapTooltip";
 import CardDark from "../Card/CardDark";
 import ConditionalWrapper from "../ConditionalWrapper";
-import SqBadge from "../SqBadge";
+import { SqBadge } from "genshin-optimizer/ui";
 import CharacterCard from "./CharacterCard";
 
 export default function CharacterCardPico({

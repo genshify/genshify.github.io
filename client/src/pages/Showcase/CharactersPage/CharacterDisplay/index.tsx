@@ -28,7 +28,7 @@ import {
   ReactionToggle,
 } from "../../../../libs/GO-files/Components/HitModeEditor";
 import LevelSelect from "../../../../libs/GO-files/Components/LevelSelect";
-import SqBadge from "../../../../libs/GO-files/Components/SqBadge";
+import { SqBadge } from "genshin-optimizer/ui";
 import type { CharacterContextObj } from "../../../../contexts/CharacterContext";
 import { CharacterContext } from "../../../../contexts/CharacterContext";
 import type { dataContextObj } from "../../../../contexts/DataContext";

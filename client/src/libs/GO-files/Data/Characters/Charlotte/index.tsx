@@ -128,6 +128,7 @@ const numNonFontainians = infoMut(
           (allRegionKeys as readonly string[]).includes(key) &&
           key !== 'fontaine'
       )
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       .map(([_key, value]) => value)
   ),
   { asConst: true }
@@ -145,7 +146,7 @@ const c2Hit_atk_ = greaterEq(
   2,
   lookup(
     condC2Hit,
-    objKeyMap(c2HitArr, (hit) => percent(dm.constellation2[`atk${hit}`])),
+    objKeyMap(c2HitArr, (hit) => percent(dm.constellation2[`atk${hit}` as keyof typeof dm.constellation2])),
     naught
   )
 )
