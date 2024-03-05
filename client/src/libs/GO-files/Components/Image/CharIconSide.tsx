@@ -1,10 +1,7 @@
 import { characterAsset } from "genshin-optimizer/assets";
 import type { CharacterKey } from "genshin-optimizer/consts";
 import { useDBMeta } from "genshin-optimizer/db-ui";
-import { portrait } from "genshin-optimizer/silly-wisher";
 import { styled } from "@mui/material";
-import { useContext } from "react";
-import { SillyContext } from "../../../../contexts/SillyContext";
 interface ImgIconProps {
   size?: number;
   sideMargin?: boolean;
@@ -31,21 +28,7 @@ const CharIconSideWrapper = styled("img", {
 /**
  * Silly wisher side icons are just front icons, and they are much more sensibly sized.
  */
-const SillyCharIconSideWrapper = styled("img", {
-  name: "ImgIcon",
-  slot: "Root",
-  shouldForwardProp: (pn) =>
-    !["size", "sideMargin"].includes(pn as "size" | "sideMargin"),
-})<ImgIconProps>(({ size = 2, sideMargin = false }) => ({
-  display: "inline-block",
-  width: `${size}em`,
-  height: `${size}em`,
-  marginTop: `${0.5 * (1 - size)}em`,
-  marginBottom: `${0.5 * (1 - size)}em`,
-  marginLeft: sideMargin ? undefined : `${0.5 * (1 - size)}em`,
-  marginRight: sideMargin ? undefined : `${0.5 * (1 - size)}em`,
-  verticalAlign: "text-bottom",
-}));
+
 
 export default function CharIconSide({
   characterKey,
@@ -55,14 +38,8 @@ export default function CharIconSide({
   sideMargin?: boolean;
 }) {
   const { gender } = useDBMeta();
-  const { silly } = useContext(SillyContext);
 
-  const sillyAsset = portrait(characterKey, gender);
   const genshinAsset = characterAsset(characterKey, "iconSide", gender);
 
-  if (silly && sillyAsset)
-    return (
-      <SillyCharIconSideWrapper src={sillyAsset} sideMargin={sideMargin} />
-    );
   return <CharIconSideWrapper src={genshinAsset} sideMargin={sideMargin} />;
 }

@@ -14,7 +14,7 @@ import type {
   IDocumentFields,
   IDocumentHeader,
 } from "../../Types/sheet";
-import { nameTrans, st, trans } from "../SheetUtil";
+import { st, trans } from "../SheetUtil";
 import type {
   TalentSheetElement,
   TalentSheetElementKey,
@@ -82,13 +82,13 @@ export const charTemplates = (
       talentKey: TalentSheetElementKey,
       partialCond: DocumentConditionalBase
     ) => conditionalTemplate(talentKey, partialCond, chg, img(talentKey)),
-    name: nameTrans(cKey, chg),
+    name: cKey,
   };
 };
 
 const talentTemplate = (
   talentKey: TalentSheetElementKey,
-  tr: (string) => Displayable,
+  tr: (arg0: string) => Displayable,
   img: string,
   docSections?: DocumentSection[]
 ): TalentSheetElement => ({
@@ -102,7 +102,7 @@ const talentTemplate = (
 
 const talentHeader = (
   talentKey: TalentSheetElementKey,
-  tr: (string) => Displayable,
+  tr: (arg0: string) => Displayable,
   img: string
 ): IDocumentHeader => {
   return {
@@ -124,7 +124,7 @@ function charSheetKeyToCharKey(csk: CharacterSheetKey): CharacterKey {
 
 const headerTemplate = (
   talentKey: TalentSheetElementKey,
-  tr: (string) => Displayable,
+  tr: (arg0: string) => Displayable,
   img: string,
   partialSection: DocumentSection
 ): DocumentSection => ({
@@ -144,7 +144,7 @@ const fieldsTemplate = (
 const conditionalTemplate = (
   talentKey: TalentSheetElementKey,
   partialCond: DocumentConditionalBase,
-  tr: (string) => Displayable,
+  tr: (arg0: string) => Displayable,
   img: string
 ): DocumentConditional => ({
   ...partialCond,

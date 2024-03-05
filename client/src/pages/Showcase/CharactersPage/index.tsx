@@ -63,7 +63,6 @@ const CharacterSelectionModal = React.lazy(
 );
 const columns = { xs: 1, sm: 2, md: 3, lg: 4, xl: 4 };
 const numToShowMap = { xs: 6, sm: 8, md: 12, lg: 16, xl: 16 };
-const sortKeys = Object.keys(characterSortMap);
 
 export default function PageCharacter() {
   const { t } = useTranslation([
@@ -77,7 +76,7 @@ export default function PageCharacter() {
 
   const [state, setState] = useState(() => database.displayCharacter.get());
   useEffect(
-    () => database.displayCharacter.follow((r, s) => setState(s)),
+    () => database.displayCharacter.follow((_r, s) => setState(s)),
     [database, setState]
   );
   const [searchTerm, setSearchTerm] = useState("");
@@ -100,7 +99,7 @@ export default function PageCharacter() {
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: "/characters" });
     return database.chars.followAny(
-      (k, r) => (r === "new" || r === "remove") && forceUpdate()
+      (_k, r) => (r === "new" || r === "remove") && forceUpdate()
     );
   }, [forceUpdate, database]);
 
@@ -160,8 +159,6 @@ export default function PageCharacter() {
     weaponType,
     element,
     rarity,
-    sortType,
-    ascending,
     pageIndex = 0,
   } = state;
 
@@ -214,8 +211,8 @@ export default function PageCharacter() {
       catTotal(allCharacterRarityKeys, (ct) =>
         Object.entries(database.chars.data).forEach(([ck, char]) => {
           const eleKey = getCharSheet(char.key, database.gender).rarity;
-          ct[eleKey].total++;
-          if (charKeyList.includes(ck)) ct[eleKey].current++;
+          ct[eleKey as keyof typeof ct].total++;
+          if (charKeyList.includes(ck)) ct[eleKey as keyof typeof ct].current++;
         })
       ),
     [database, charKeyList]
@@ -232,14 +229,6 @@ export default function PageCharacter() {
     total: totalShowing,
     t: t,
     namespace: "page_character",
-  };
-
-  const sortByButtonProps = {
-    sortKeys: [...sortKeys],
-    value: sortType,
-    onChange: (sortType) => database.displayCharacter.set({ sortType }),
-    ascending: ascending,
-    onChangeAsc: (ascending) => database.displayCharacter.set({ ascending }),
   };
 
   return (
@@ -313,7 +302,6 @@ export default function PageCharacter() {
               paginationProps={paginationProps}
               showingTextProps={showingTextProps}
               displaySort={true}
-              sortByButtonProps={sortByButtonProps}
             />
           </Box>
         </CardContent>

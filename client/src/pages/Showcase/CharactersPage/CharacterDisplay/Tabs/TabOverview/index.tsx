@@ -4,7 +4,6 @@ import { charCard } from "genshin-optimizer/char-cards";
 import type { AscensionKey, CharacterKey } from "genshin-optimizer/consts";
 import { allArtifactSlotKeys } from "genshin-optimizer/consts";
 import { useCharMeta, useDBMeta, useDatabase } from "genshin-optimizer/db-ui";
-import { splash } from "genshin-optimizer/silly-wisher";
 import { getLevelString } from "genshin-optimizer/util";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import {
@@ -27,11 +26,10 @@ import CharacterCardPico, {
 import StatDisplayComponent from "../../../../../../libs/GO-files/Components/Character/StatDisplayComponent";
 import ImgIcon from "../../../../../../libs/GO-files/Components/Image/ImgIcon";
 import { SqBadge } from "genshin-optimizer/ui";
-import { StarsDisplay } from "../../../../../../libs/GO-files/Components/StarDisplay";
+import { StarsDisplay } from "genshin-optimizer/ui";
 import WeaponCardNano from "../../../../../../libs/GO-files/Components/Weapon/WeaponCardNano";
 import { CharacterContext } from "../../../../../../contexts/CharacterContext";
 import { DataContext } from "../../../../../../contexts/DataContext";
-import { SillyContext } from "../../../../../../contexts/SillyContext";
 import type { TalentSheetElementKey } from "../../../../../../libs/GO-files/Data/Characters/ICharacterSheet";
 import { uiInput as input } from "../../../../../../libs/GO-files/Formula";
 import { ElementIcon } from "../../../../../../libs/GO-files/KeyMap/StatIcon";
@@ -104,7 +102,6 @@ function EquipmentRow({ onClick }: { onClick: () => void }) {
 }
 /* Image card with star and name and level */
 function CharacterProfileCard() {
-  const { silly } = useContext(SillyContext);
   const {
     characterSheet,
     character: { key: characterKey, team },
@@ -126,16 +123,12 @@ function CharacterProfileCard() {
     skill: data.get(input.total.skillBoost).value,
     burst: data.get(input.total.burstBoost).value,
   };
-  const sillySplash = splash(characterKey, gender);
   const card = charCard(characterKey, gender);
 
   return (
     <CardLight sx={{ height: "100%" }}>
-      {silly && sillySplash ? (
-        <SillyCoverArea src={sillySplash} level={level} ascension={ascension} />
-      ) : (
-        <CoverArea src={card} level={level} ascension={ascension} />
-      )}
+      <CoverArea src={card} level={level} ascension={ascension} />
+
       <Box>
         <CardActionArea sx={{ p: 1 }} onClick={() => navigate("talent")}>
           <Grid container spacing={1} mt={-1}>
@@ -143,8 +136,8 @@ function CharacterProfileCard() {
               (tKey) => (
                 <Grid item xs={4} key={tKey}>
                   <Badge
-                    badgeContent={tlvl[tKey]}
-                    color={tBoost[tKey] ? "info" : "secondary"}
+                    badgeContent={tlvl[tKey as keyof typeof tlvl]}
+                    color={tBoost[tKey as keyof typeof tlvl] ? "info" : "secondary"}
                     overlap="circular"
                     anchorOrigin={{
                       vertical: "bottom",
@@ -175,7 +168,7 @@ function CharacterProfileCard() {
           </Grid>
         </CardActionArea>
         <Typography sx={{ textAlign: "center", mt: 1 }} variant="h6">
-          {characterSheet.constellationName}
+          Constellations
         </Typography>
         <Grid container spacing={1}>
           {range(1, 6).map((i) => (
@@ -223,42 +216,9 @@ function CharacterProfileCard() {
     </CardLight>
   );
 }
-function SillyCoverArea({ src, level, ascension }) {
-  const { characterSheet } = useContext(CharacterContext);
 
-  return (
-    <Box sx={{ position: "relative" }}>
-      <Box src={src} component="img" width="100%" height="auto" />
-      <Box sx={{ width: "100%", height: "100%" }}>
-        <Box
-          sx={{
-            opacity: 0.85,
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            px: 1,
-          }}
-        >
-          <CharChip />
-        </Box>
-        <Typography
-          variant="h6"
-          sx={{
-            width: "100%",
-            opacity: 0.75,
-            textAlign: "center",
-          }}
-        >
-          <StarsDisplay stars={characterSheet.rarity} colored />
-        </Typography>
-        <FavoriteButton />
-        <LevelBadge level={level} ascension={ascension} />
-      </Box>
-    </Box>
-  );
-}
 
-function CoverArea({ src, level, ascension }) {
+function CoverArea({ src, level, ascension }:any) {
   const { characterSheet } = useContext(CharacterContext);
 
   return (
@@ -345,7 +305,7 @@ function FavoriteButton() {
     character: { key: characterKey },
   } = useContext(CharacterContext);
   const database = useDatabase();
-  const { favorite } = useCharMeta(characterKey);
+  const { favorite } = useCharMeta(characterKey) || {};
   return (
     <Box sx={{ position: "absolute", left: 0, top: 0 }}>
       <IconButton

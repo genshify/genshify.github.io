@@ -1,15 +1,12 @@
-import { useContext } from "react";
 import type {
   ArtifactSetKey,
   CharacterKey,
   WeaponKey,
 } from "genshin-optimizer/consts";
 import { Translate } from "../Components/Translate";
-import { SillyContext } from "../../../contexts/SillyContext";
 import type { ReadNode } from "../Formula/type";
 import { customStringRead } from "../Formula/utils";
 import type { CharacterSheetKey } from "../Types/consts";
-import { useTranslation } from "react-i18next";
 
 export const st = (strKey: string, values?: object) => (
   <Translate ns="sheet" key18={strKey} values={values} />
@@ -64,22 +61,10 @@ export function trans(
     ),
   ];
 }
+
 export function nameTrans(
   cKey: CharTransKey,
   chg: (i18key: string) => Displayable
 ): Displayable {
-  return <NameTrans cKey={cKey} chg={chg} />;
-}
-function NameTrans({
-  cKey,
-  chg,
-}: {
-  cKey: string;
-  chg: (i18key: string) => Displayable;
-}) {
-  const { silly } = useContext(SillyContext);
-  const { i18n } = useTranslation("sillyWisher_charNames");
-  if (silly && i18n.exists(`sillyWisher_charNames:${cKey}`))
-    return <Translate ns={`sillyWisher_charNames`} key18={cKey} />;
-  else return chg("name") as JSX.Element;
+  return chg(cKey) as JSX.Element;
 }

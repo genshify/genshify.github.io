@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Skeleton, Typography } from "@mui/material";
 import { Suspense } from "react";
 import { Trans, useTranslation } from "react-i18next";
@@ -137,7 +138,7 @@ function T({
   key18: string;
   obj: any;
   li?: boolean;
-  t;
+  t: any;
   values?: any;
   useBadge?: boolean;
 }) {

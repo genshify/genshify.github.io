@@ -15,6 +15,9 @@ export default class CharacterSheet {
     this.data = data;
   }
   static get = () => null;
+  get key() {
+    return this.sheet.key;
+  }
   get name() {
     return this.sheet.name;
   }

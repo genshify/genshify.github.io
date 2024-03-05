@@ -137,6 +137,7 @@ function validateCustomTarget(ct: unknown): CustomTarget | undefined {
 
   return { weight, path, hitMode, reaction, infusionAura, bonusStats };
 }
+// eslint-disable-next-line react-refresh/only-export-components
 export function validateCustomMultiTarget(
   cmt: unknown
 ): CustomMultiTarget | undefined {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useBoolState, useForceUpdate } from "genshin-optimizer/react-util";
 import { filterFunction, sortFunction } from "genshin-optimizer/util";
 import { characterAsset } from "genshin-optimizer/assets";
@@ -44,7 +45,6 @@ import CardLight from "../../../libs/GO-files/Components/Card/CardLight";
 import CharacterCard from "../../../libs/GO-files/Components/Character/CharacterCard";
 import CloseButton from "../../../libs/GO-files/Components/CloseButton";
 import ModalWrapper from "../../../libs/GO-files/Components/ModalWrapper";
-import SortByButton from "../../../libs/GO-files/Components/SortByButton";
 import { SqBadge } from "genshin-optimizer/ui";
 
 import { StarsDisplay } from "../../../libs/GO-files/Components/StarDisplay";
@@ -75,7 +75,6 @@ type CharacterSelectionModalProps = {
   onSelect?: (ckey: CharacterKey) => void;
   filter?: characterFilter;
 };
-const sortKeys = Object.keys(characterSortMap);
 export default function CharacterSelectionModal({
   show,
   onHide,
@@ -93,7 +92,7 @@ export default function CharacterSelectionModal({
   const database = useDatabase();
   const [state, setState] = useState(() => database.displayCharacter.get());
   useEffect(
-    () => database.displayCharacter.follow((r, s) => setState(s)),
+    () => database.displayCharacter.follow((_r, s) => setState(s)),
     [database, setState]
   );
 
@@ -173,7 +172,7 @@ export default function CharacterSelectionModal({
     [characterKeyList, database]
   );
 
-  const { weaponType, element, sortType, ascending } = state;
+  const { weaponType, element} = state;
 
   return (
     <ModalWrapper
@@ -222,16 +221,6 @@ export default function CharacterSelectionModal({
               }}
             />
           </Box>
-          <SortByButton
-            sx={{ height: "100%" }}
-            sortKeys={sortKeys}
-            value={sortType}
-            onChange={(sortType) => database.displayCharacter.set({ sortType })}
-            ascending={ascending}
-            onChangeAsc={(ascending) =>
-              database.displayCharacter.set({ ascending })
-            }
-          />
           <CloseButton onClick={onHide} />
         </CardContent>
         <Divider />
@@ -279,10 +268,8 @@ function SelectionCard({
   const { gender } = useDBMeta();
   const characterSheet = getCharSheet(characterKey, gender);
   const character = useCharacter(characterKey);
-  const { favorite } = useCharMeta(characterKey);
+  const { favorite } = useCharMeta(characterKey) || {};
   const database = useDatabase();
-  const { silly } = useContext(SillyContext);
-
   const [open, onOpen, onClose] = useBoolState();
 
   const { level = 1, ascension = 0, constellation = 0 } = character ?? {};
@@ -309,6 +296,7 @@ function SelectionCard({
           <Box sx={{ position: "absolute", opacity: 0.7, zIndex: 2 }}>
             <IconButton
               sx={{ p: 0.25 }}
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               onClick={(_) => {
                 onClose();
                 database.charMeta.set(characterKey, { favorite: !favorite });
@@ -351,7 +339,7 @@ function SelectionCard({
               >
                 <Box
                   component="img"
-                  src={iconAsset(characterKey, gender, silly)}
+                  src={iconAsset(characterKey, gender)}
                   width="100%"
                   height="auto"
                   maxWidth={256}

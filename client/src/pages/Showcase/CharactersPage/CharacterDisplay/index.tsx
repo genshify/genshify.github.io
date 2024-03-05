@@ -19,7 +19,7 @@ import {
   useNavigate,
   useParams,
 } from "react-router-dom";
-import CardDark from "../../../../libs/GO-files/Components/Card/CardDark";
+import { CardThemed } from "genshin-optimizer/ui";
 import CardLight from "../../../../libs/GO-files/Components/Card/CardLight";
 import CloseButton from "../../../../libs/GO-files/Components/CloseButton";
 import {
@@ -47,7 +47,6 @@ import useCharacterReducer from "../../../../libs/GO-files/ReactHooks/useCharact
 import useTeamData from "../../../../libs/GO-files/ReactHooks/useTeamData";
 import useTitle from "../../../../libs/GO-files/ReactHooks/useTitle";
 import { shouldShowDevComponents } from "../../../../libs/GO-files/Util/Util";
-import { CustomMultiTargetButton } from "../CustomMultiTarget";
 import CharSelectButton from "./CharSelectButton";
 import FormulaModal from "./FormulaModal";
 import StatModal from "./StatModal";
@@ -143,7 +142,7 @@ function CharacterDisplayCard({
   }, [characterKey]);
 
   return (
-    <CardDark>
+    <CardThemed>
       {dataContextValue && characterContextValue && graphContextValue ? (
         <CharacterContext.Provider value={characterContextValue}>
           <DataContext.Provider value={dataContextValue}>
@@ -158,7 +157,6 @@ function CharacterDisplayCard({
                       <TravelerElementSelect />
                       <TravelerGenderSelect />
                       <DetailStatButton />
-                      <CustomMultiTargetButton />
                       <FormulasButton />
                     </Box>
                     {!!onClose && <CloseButton onClick={onClose} />}
@@ -186,7 +184,7 @@ function CharacterDisplayCard({
       ) : (
         <Skeleton variant="rectangular" width="100%" height={1000} />
       )}
-    </CardDark>
+    </CardThemed>
   );
 }
 function CharacterPanel() {
