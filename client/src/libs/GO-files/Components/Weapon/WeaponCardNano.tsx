@@ -32,7 +32,8 @@ export default function WeaponCardNano({
   const weapon = useWeapon(weaponId);
   const weaponSheet = weapon?.key && getWeaponSheet(weapon.key);
   const actionWrapperFunc = useCallback(
-    (children) => (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (children:any) => (
       <CardActionArea sx={{ height: "100%" }} onClick={onClick}>
         {children}
       </CardActionArea>

@@ -120,7 +120,7 @@ export default function electro(
         6,
         customDmgNode(
           prod(
-            subscript(input.total.burstIndex, dm.burst.thunderDmg, {
+            subscript<number>(input.total.burstIndex, dm.burst.thunderDmg, {
               unit: "%",
             }),
             percent(dm.constellation6.thunder_dmg_),
@@ -169,21 +169,32 @@ export default function electro(
           },
           {
             canShow: (data) => data.get(input.constellation).value < 4,
-            node: subscript(input.total.skillIndex, dm.skill.energyRestore, {
-              name: ch(`skill.enerRest.none`),
-            }),
+            node: subscript<number>(
+              input.total.skillIndex,
+              dm.skill.energyRestore,
+              {
+                name: ch(`skill.enerRest.none`),
+              }
+            ),
           },
           {
             canShow: (data) => data.get(input.constellation).value >= 4,
-            node: subscript(input.total.skillIndex, dm.skill.energyRestore, {
-              name: ch("skill.enerRest.over35"),
-            }),
+            node: subscript<number>(
+              input.total.skillIndex,
+              dm.skill.energyRestore,
+              {
+                name: ch("skill.enerRest.over35"),
+              }
+            ),
           },
           {
             canShow: (data) => data.get(input.constellation).value >= 4,
             node: infoMut(
               prod(
-                subscript(input.total.skillIndex, dm.skill.energyRestore),
+                subscript<number>(
+                  input.total.skillIndex,
+                  dm.skill.energyRestore
+                ),
                 2
               ),
               { name: ch("skill.enerRest.under35") }

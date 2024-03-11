@@ -108,7 +108,7 @@ const const5TalentInc = greaterEq(input.constellation, 5, 3);
 const normal_dmgMult = compareEq(
   condSkill,
   "skill",
-  subscript(input.total.skillIndex, dm.skill.dmg_, {
+  subscript<number>(input.total.skillIndex, dm.skill.dmg_, {
     name: st("dmgMult.normal"),
     unit: "%",
   }),
@@ -191,7 +191,7 @@ const kindlingEntries = kindlingArrs.map((arr, i) => [
       "skill",
       customDmgNode(
         prod(
-          subscript(input.total.autoIndex, arr, { unit: "%" }),
+          subscript<number>(input.total.autoIndex, arr, { unit: "%" }),
           constant(dm.constellation6.dmg_, {
             name: ct.ch("c6Key_"),
             unit: "%",

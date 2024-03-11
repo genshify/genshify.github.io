@@ -146,7 +146,7 @@ const dmgFormulas = {
   plunging: plungingDmgNodes("atk", dm.plunging),
   skill: {
     inheritedHp: prod(
-      subscript(input.total.skillIndex, dm.skill.inheritedHp),
+      subscript<number>(input.total.skillIndex, dm.skill.inheritedHp),
       input.total.hp
     ),
     dmg: dmgNode("atk", dm.skill.dmg, "skill"),

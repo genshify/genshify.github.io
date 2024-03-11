@@ -1,13 +1,13 @@
-import { ColorText } from 'genshin-optimizer/ui'
-import { objKeyMap, range } from 'genshin-optimizer/util'
+import { ColorText } from "genshin-optimizer/ui";
+import { objKeyMap, range } from "genshin-optimizer/util";
 import type {
   CharacterKey,
   ElementKey,
   RegionKey,
-} from 'genshin-optimizer/consts'
-import { allStats } from 'genshin-optimizer/stats'
-import { input } from '../../../Formula'
-import type { Data } from '../../../Formula/type'
+} from "genshin-optimizer/consts";
+import { allStats } from "genshin-optimizer/stats";
+import { input } from "../../../Formula";
+import type { Data } from "../../../Formula/type";
 import {
   constant,
   equal,
@@ -24,28 +24,28 @@ import {
   prod,
   subscript,
   sum,
-} from '../../../Formula/utils'
-import KeyMap from '../../../KeyMap'
-import { cond, st, stg } from '../../SheetUtil'
-import CharacterSheet from '../CharacterSheet'
-import type { ICharacterSheet } from '../ICharacterSheet'
-import { charTemplates } from '../charTemplates'
+} from "../../../Formula/utils";
+import KeyMap from "../../../KeyMap";
+import { cond, st, stg } from "../../SheetUtil";
+import CharacterSheet from "../CharacterSheet";
+import type { ICharacterSheet } from "../ICharacterSheet";
+import { charTemplates } from "../charTemplates";
 import {
   dataObjForCharacterSheet,
   dmgNode,
   healNode,
   healNodeTalent,
   plungingDmgNodes,
-} from '../dataUtil'
+} from "../dataUtil";
 
-const key: CharacterKey = 'Furina'
-const data_gen = allStats.char.data[key]
-const skillParam_gen = allStats.char.skillParam[key]
-const ct = charTemplates(key, data_gen.weaponType)
+const key: CharacterKey = "Furina";
+const data_gen = allStats.char.data[key];
+const skillParam_gen = allStats.char.skillParam[key];
+const ct = charTemplates(key, data_gen.weaponType);
 
 let a = 0,
   s = 0,
-  b = 0
+  b = 0;
 const dm = {
   normal: {
     hitArr: [
@@ -125,47 +125,47 @@ const dm = {
     pneumaAuto_dmgInc: skillParam_gen.constellation6[6],
     triggers: skillParam_gen.constellation6[7],
   },
-} as const
+} as const;
 
 const [condSkillHpConsumeStacksPath, condSkillHpConsumeStacks] = cond(
   key,
-  'skillHpConsumeStacks'
-)
-const skillHpConsumeStacksArr = range(1, 4)
+  "skillHpConsumeStacks"
+);
+const skillHpConsumeStacksArr = range(1, 4);
 const member_mult_ = lookup(
   condSkillHpConsumeStacks,
   objKeyMap(skillHpConsumeStacksArr, (stack) => percent(1 + 0.1 * stack)),
   one
-)
+);
 
-const [condBurstFanfarePath, condBurstFanfare] = cond(key, 'burstFanfare')
-const burstFanfareArr = range(50, dm.burst.maxFanfare, 50)
+const [condBurstFanfarePath, condBurstFanfare] = cond(key, "burstFanfare");
+const burstFanfareArr = range(50, dm.burst.maxFanfare, 50);
 const c1FanfareArr = range(
   50,
   dm.burst.maxFanfare + dm.constellation1.fanfareLimitInc,
   50
-)
+);
 const clampedFanfareNum = lookup(
   condBurstFanfare,
   objKeyMap(c1FanfareArr, (stacks) =>
     stacks > 450 ? greaterEq(input.constellation, 1, stacks) : constant(stacks)
   ),
   naught
-)
+);
 const burstFanfare_all_dmg_ = prod(
   clampedFanfareNum,
-  subscript(input.total.burstIndex, dm.burst.dmgIncRatio, {
-    unit: '%',
+  subscript<number>(input.total.burstIndex, dm.burst.dmgIncRatio, {
+    unit: "%",
     fixed: 2,
   })
-)
+);
 const burstFanfare_incHeal_ = prod(
   clampedFanfareNum,
-  subscript(input.total.burstIndex, dm.burst.heal_ratio, {
-    unit: '%',
+  subscript<number>(input.total.burstIndex, dm.burst.heal_ratio, {
+    unit: "%",
     fixed: 2,
   })
-)
+);
 
 const a4Member_dmg_ = greaterEq(
   input.asc,
@@ -174,7 +174,7 @@ const a4Member_dmg_ = greaterEq(
     prod(percent(dm.passive2.member_dmg_), input.total.hp, percent(1 / 1000)),
     percent(dm.passive2.max_member_dmg_)
   )
-)
+);
 const a4HealInterval = greaterEq(
   input.asc,
   4,
@@ -186,15 +186,15 @@ const a4HealInterval = greaterEq(
     ),
     percent(-dm.passive2.max_interval_dec_)
   )
-)
+);
 const member_addl: Data = {
   premod: {
     skill_dmg_: a4Member_dmg_,
   },
-}
+};
 
-const [condC2OverstackPath, condC2Overstack] = cond(key, 'c2Overstack')
-const c2OverstackArr = range(50, dm.constellation2.stacks, 50)
+const [condC2OverstackPath, condC2Overstack] = cond(key, "c2Overstack");
+const c2OverstackArr = range(50, dm.constellation2.stacks, 50);
 const c2Overstack_hp_ = greaterEq(
   input.constellation,
   2,
@@ -205,112 +205,112 @@ const c2Overstack_hp_ = greaterEq(
     ),
     naught
   )
-)
+);
 
-const [condc6Path, condc6] = cond(key, 'c6')
-const [condC6PneumaPath, condC6Pneuma] = cond(key, 'c6Pneuma')
+const [condc6Path, condc6] = cond(key, "c6");
+const [condC6PneumaPath, condC6Pneuma] = cond(key, "c6Pneuma");
 
 const c6_infusion = greaterEqStr(
   input.constellation,
   6,
-  equalStr(condc6, 'on', 'hydro')
-)
+  equalStr(condc6, "on", "hydro")
+);
 const c6_auto_dmgInc = greaterEq(
   input.constellation,
   6,
   equal(
     condc6,
-    'on',
+    "on",
     prod(percent(dm.constellation6.auto_dmgInc), input.total.hp)
   )
-)
+);
 const c6_normal_dmgInc = infoMut(
   { ...c6_auto_dmgInc },
-  KeyMap.info('normal_dmgInc')
-)
+  KeyMap.info("normal_dmgInc")
+);
 const c6_charged_dmgInc = infoMut(
   { ...c6_auto_dmgInc },
-  KeyMap.info('charged_dmgInc')
-)
+  KeyMap.info("charged_dmgInc")
+);
 const c6_plunging_dmgInc = infoMut(
   { ...c6_auto_dmgInc },
-  KeyMap.info('plunging_dmgInc')
-)
+  KeyMap.info("plunging_dmgInc")
+);
 
 const c6Pneuma_auto_dmgInc = greaterEq(
   input.constellation,
   6,
   equal(
     condc6,
-    'on',
+    "on",
     equal(
       condC6Pneuma,
-      'on',
+      "on",
       prod(percent(dm.constellation6.pneumaAuto_dmgInc), input.total.hp)
     )
   )
-)
+);
 const c6Pneuma_normal_dmgInc = infoMut(
   { ...c6Pneuma_auto_dmgInc },
-  KeyMap.info('normal_dmgInc')
-)
+  KeyMap.info("normal_dmgInc")
+);
 const c6Pneuma_charged_dmgInc = infoMut(
   { ...c6Pneuma_auto_dmgInc },
-  KeyMap.info('charged_dmgInc')
-)
+  KeyMap.info("charged_dmgInc")
+);
 const c6Pneuma_plunging_impact_dmgInc = infoMut(
   { ...c6Pneuma_auto_dmgInc },
-  KeyMap.info('plunging_dmgInc')
-)
+  KeyMap.info("plunging_dmgInc")
+);
 
 const dmgFormulas = {
   normal: {
     ...Object.fromEntries(
-      dm.normal.hitArr.map((arr, i) => [i, dmgNode('atk', arr, 'normal')])
+      dm.normal.hitArr.map((arr, i) => [i, dmgNode("atk", arr, "normal")])
     ),
-    thornBladeDmg: dmgNode('atk', dm.normal.bladeThornDmg, 'normal', {
+    thornBladeDmg: dmgNode("atk", dm.normal.bladeThornDmg, "normal", {
       hit: { ele: constant(data_gen.ele) },
     }),
   },
   charged: {
-    dmg: dmgNode('atk', dm.charged.dmg, 'charged'),
+    dmg: dmgNode("atk", dm.charged.dmg, "charged"),
   },
-  plunging: plungingDmgNodes('atk', dm.plunging),
+  plunging: plungingDmgNodes("atk", dm.plunging),
   skill: {
-    bubbleDmg: dmgNode('hp', dm.skill.bubbleDmg, 'skill'),
+    bubbleDmg: dmgNode("hp", dm.skill.bubbleDmg, "skill"),
     usherDmg: dmgNode(
-      'hp',
+      "hp",
       dm.skill.usherDmg,
-      'skill',
+      "skill",
       member_addl,
       member_mult_
     ),
     chevalDmg: dmgNode(
-      'hp',
+      "hp",
       dm.skill.chevalDmg,
-      'skill',
+      "skill",
       member_addl,
       member_mult_
     ),
     crabDmg: dmgNode(
-      'hp',
+      "hp",
       dm.skill.crabDmg,
-      'skill',
+      "skill",
       member_addl,
       member_mult_
     ),
     streamsHeal: healNodeTalent(
-      'hp',
+      "hp",
       dm.skill.streamsHealBase,
       dm.skill.streamsHealFlat,
-      'skill'
+      "skill"
     ),
   },
   burst: {
-    skillDmg: dmgNode('hp', dm.burst.skillDmg, 'burst'),
+    skillDmg: dmgNode("hp", dm.burst.skillDmg, "burst"),
   },
   passive1: {
-    heal: greaterEq(input.asc, 1, healNode('hp', percent(dm.passive1.heal), 0)),
+    heal: greaterEq(input.asc, 1, healNode("hp", percent(dm.passive1.heal), 0)),
   },
   passive2: {
     member_dmg_: a4Member_dmg_,
@@ -322,12 +322,12 @@ const dmgFormulas = {
     heal: greaterEq(
       input.constellation,
       6,
-      healNode('hp', percent(dm.constellation6.ousiaHeal), 0)
+      healNode("hp", percent(dm.constellation6.ousiaHeal), 0)
     ),
   },
-}
-const burstC3 = greaterEq(input.constellation, 3, 3)
-const skillC5 = greaterEq(input.constellation, 5, 3)
+};
+const burstC3 = greaterEq(input.constellation, 3, 3);
+const skillC5 = greaterEq(input.constellation, 5, 3);
 
 export const data = dataObjForCharacterSheet(
   key,
@@ -355,7 +355,7 @@ export const data = dataObjForCharacterSheet(
       },
     },
   }
-)
+);
 
 const sheet: ICharacterSheet = {
   key,
@@ -363,23 +363,26 @@ const sheet: ICharacterSheet = {
   rarity: data_gen.rarity,
   elementKey: data_gen.ele!,
   weaponTypeKey: data_gen.weaponType,
-  gender: 'F',
-  constellationName: ct.chg('constellationName'),
-  title: ct.chg('title'),
+  gender: "F",
+  constellationName: ct.chg("constellationName"),
+  title: ct.chg("title"),
   talent: {
-    auto: ct.talentTem('auto', [
+    auto: ct.talentTem("auto", [
       {
-        text: ct.chg('auto.fields.normal'),
+        text: ct.chg("auto.fields.normal"),
       },
       {
         fields: dm.normal.hitArr.map((_, i) => ({
-          node: infoMut(dmgFormulas.normal[i as unknown as keyof typeof dmgFormulas.normal], {
-            name: ct.chg(`auto.skillParams.${i}`),
-          }),
+          node: infoMut(
+            dmgFormulas.normal[i as unknown as keyof typeof dmgFormulas.normal],
+            {
+              name: ct.chg(`auto.skillParams.${i}`),
+            }
+          ),
         })),
       },
       {
-        text: ct.chg('auto.fields.charged'),
+        text: ct.chg("auto.fields.charged"),
       },
       {
         fields: [
@@ -389,60 +392,60 @@ const sheet: ICharacterSheet = {
             }),
           },
           {
-            text: ct.chg('auto.skillParams.5'),
+            text: ct.chg("auto.skillParams.5"),
             value: dm.charged.stam,
           },
         ],
       },
       {
-        text: ct.chg('auto.fields.arkhe'),
+        text: ct.chg("auto.fields.arkhe"),
       },
       {
         fields: [
           {
             node: infoMut(dmgFormulas.normal.thornBladeDmg, {
-              name: ct.chg('auto.skillParams.8'),
+              name: ct.chg("auto.skillParams.8"),
             }),
           },
           {
-            text: ct.chg('auto.skillParams.9'),
+            text: ct.chg("auto.skillParams.9"),
             value: dm.normal.bladeThornInterval,
-            unit: 's',
+            unit: "s",
           },
         ],
       },
       {
-        text: ct.chg('auto.fields.plunging'),
+        text: ct.chg("auto.fields.plunging"),
       },
       {
         fields: [
           {
             node: infoMut(dmgFormulas.plunging.dmg, {
-              name: stg('plunging.dmg'),
+              name: stg("plunging.dmg"),
             }),
           },
           {
             node: infoMut(dmgFormulas.plunging.low, {
-              name: stg('plunging.low'),
+              name: stg("plunging.low"),
             }),
           },
           {
             node: infoMut(dmgFormulas.plunging.high, {
-              name: stg('plunging.high'),
+              name: stg("plunging.high"),
             }),
           },
         ],
       },
-      ct.condTem('constellation6', {
+      ct.condTem("constellation6", {
         value: condc6,
         path: condc6Path,
-        name: st('afterUse.skill'),
+        name: st("afterUse.skill"),
         states: {
           on: {
             fields: [
               {
                 text: (
-                  <ColorText color="hydro">{st('infusion.hydro')}</ColorText>
+                  <ColorText color="hydro">{st("infusion.hydro")}</ColorText>
                 ),
               },
               {
@@ -458,11 +461,11 @@ const sheet: ICharacterSheet = {
           },
         },
       }),
-      ct.condTem('constellation6', {
-        canShow: equal(condc6, 'on', 1),
+      ct.condTem("constellation6", {
+        canShow: equal(condc6, "on", 1),
         path: condC6PneumaPath,
         value: condC6Pneuma,
-        name: ct.ch('c6Pneuma'),
+        name: ct.ch("c6Pneuma"),
         states: {
           on: {
             fields: [
@@ -479,28 +482,28 @@ const sheet: ICharacterSheet = {
           },
         },
       }),
-      ct.headerTem('constellation6', {
+      ct.headerTem("constellation6", {
         fields: [
           {
             node: infoMut(dmgFormulas.constellation6.heal, {
-              name: ct.ch('c6Healing'),
+              name: ct.ch("c6Healing"),
             }),
           },
           {
-            text: st('interval'),
+            text: st("interval"),
             value: dm.constellation6.ousiaCd,
-            unit: 's',
+            unit: "s",
           },
           {
-            text: stg('duration'),
+            text: stg("duration"),
             value: dm.constellation6.ousiaDuration,
-            unit: 's',
+            unit: "s",
           },
         ],
       }),
     ]),
 
-    skill: ct.talentTem('skill', [
+    skill: ct.talentTem("skill", [
       {
         fields: [
           {
@@ -509,9 +512,9 @@ const sheet: ICharacterSheet = {
             }),
           },
           {
-            text: stg('duration'),
+            text: stg("duration"),
             value: dm.skill.duration,
-            unit: 's',
+            unit: "s",
           },
           {
             node: infoMut(dmgFormulas.skill.usherDmg, {
@@ -529,67 +532,67 @@ const sheet: ICharacterSheet = {
             }),
           },
           {
-            text: ct.chg('skill.skillParams.5'),
+            text: ct.chg("skill.skillParams.5"),
             value: dm.skill.usherHp * 100,
-            unit: st('percentMaxHP'),
+            unit: st("percentMaxHP"),
             fixed: 1,
           },
           {
-            text: ct.chg('skill.skillParams.6'),
+            text: ct.chg("skill.skillParams.6"),
             value: dm.skill.chevalHp * 100,
-            unit: st('percentMaxHP'),
+            unit: st("percentMaxHP"),
             fixed: 1,
           },
           {
-            text: ct.chg('skill.skillParams.7'),
+            text: ct.chg("skill.skillParams.7"),
             value: dm.skill.crabHp * 100,
-            unit: st('percentMaxHP'),
+            unit: st("percentMaxHP"),
             fixed: 1,
           },
           {
             node: infoMut(dmgFormulas.skill.streamsHeal, {
-              name: ct.chg('skill.skillParams.8'),
+              name: ct.chg("skill.skillParams.8"),
             }),
           },
           {
-            text: stg('cd'),
+            text: stg("cd"),
             value: dm.skill.cd,
-            unit: 's',
+            unit: "s",
           },
         ],
       },
-      ct.condTem('skill', {
+      ct.condTem("skill", {
         value: condSkillHpConsumeStacks,
         path: condSkillHpConsumeStacksPath,
-        name: ct.ch('numOffer'),
+        name: ct.ch("numOffer"),
         states: objKeyMap(skillHpConsumeStacksArr, (member) => ({
-          name: st('members', { count: member }),
+          name: st("members", { count: member }),
           fields: [
             {
-              node: infoMut(member_mult_, { name: ct.ch('memberMult_') }),
+              node: infoMut(member_mult_, { name: ct.ch("memberMult_") }),
             },
           ],
         })),
       }),
-      ct.headerTem('passive2', {
+      ct.headerTem("passive2", {
         fields: [
           {
             node: infoMut(dmgFormulas.passive2.member_dmg_, {
-              name: ct.ch('a4MemberDmg'),
-              unit: '%',
+              name: ct.ch("a4MemberDmg"),
+              unit: "%",
             }),
           },
           {
             node: infoMut(a4HealInterval, {
-              name: ct.ch('a4HealInterval'),
-              unit: '%',
+              name: ct.ch("a4HealInterval"),
+              unit: "%",
             }),
           },
         ],
       }),
     ]),
 
-    burst: ct.talentTem('burst', [
+    burst: ct.talentTem("burst", [
       {
         fields: [
           {
@@ -598,12 +601,12 @@ const sheet: ICharacterSheet = {
             }),
           },
           {
-            text: stg('duration'),
+            text: stg("duration"),
             value: dm.burst.duration,
-            unit: 's',
+            unit: "s",
           },
           {
-            text: ct.chg('burst.skillParams.2'),
+            text: ct.chg("burst.skillParams.2"),
             value: (data) =>
               data.get(input.constellation).value >= 1
                 ? `${dm.burst.maxFanfare} + ${
@@ -614,20 +617,20 @@ const sheet: ICharacterSheet = {
                 : dm.burst.maxFanfare,
           },
           {
-            text: stg('cd'),
+            text: stg("cd"),
             value: dm.burst.cd,
-            unit: 's',
+            unit: "s",
           },
           {
-            text: stg('energyCost'),
+            text: stg("energyCost"),
             value: dm.burst.enerCost,
           },
         ],
       },
-      ct.condTem('burst', {
+      ct.condTem("burst", {
         value: condBurstFanfare,
         path: condBurstFanfarePath,
-        name: ct.ch('fanfarePoints'),
+        name: ct.ch("fanfarePoints"),
         teamBuff: true,
         states: (data) =>
           objKeyMap(
@@ -647,19 +650,19 @@ const sheet: ICharacterSheet = {
             })
           ),
       }),
-      ct.headerTem('constellation1', {
+      ct.headerTem("constellation1", {
         fields: [
           {
-            text: ct.ch('c1Inc'),
+            text: ct.ch("c1Inc"),
             value: dm.constellation1.fanfareLimitInc,
           },
-          { text: ct.ch('c1Bonus'), value: dm.constellation1.bonusFanfare },
+          { text: ct.ch("c1Bonus"), value: dm.constellation1.bonusFanfare },
         ],
       }),
-      ct.condTem('constellation2', {
+      ct.condTem("constellation2", {
         value: condC2Overstack,
         path: condC2OverstackPath,
-        name: ct.ch('c2Points'),
+        name: ct.ch("c2Points"),
         teamBuff: true,
         states: objKeyMap(c2OverstackArr, (point) => ({
           name: `${point}`,
@@ -672,39 +675,39 @@ const sheet: ICharacterSheet = {
       }),
     ]),
 
-    passive1: ct.talentTem('passive1', [
+    passive1: ct.talentTem("passive1", [
       {
         fields: [
           {
             node: infoMut(dmgFormulas.passive1.heal, {
-              name: stg('contHealing'),
+              name: stg("contHealing"),
             }),
           },
           {
-            text: st('interval'),
+            text: st("interval"),
             value: dm.passive1.interval,
-            unit: 's',
+            unit: "s",
           },
           {
-            text: stg('duration'),
+            text: stg("duration"),
             value: dm.passive1.duration,
-            unit: 's',
+            unit: "s",
           },
         ],
       },
     ]),
-    passive2: ct.talentTem('passive2'),
-    passive3: ct.talentTem('passive3'),
-    constellation1: ct.talentTem('constellation1'),
-    constellation2: ct.talentTem('constellation2'),
-    constellation3: ct.talentTem('constellation3', [
+    passive2: ct.talentTem("passive2"),
+    passive3: ct.talentTem("passive3"),
+    constellation1: ct.talentTem("constellation1"),
+    constellation2: ct.talentTem("constellation2"),
+    constellation3: ct.talentTem("constellation3", [
       { fields: [{ node: burstC3 }] },
     ]),
-    constellation4: ct.talentTem('constellation4'),
-    constellation5: ct.talentTem('constellation5', [
+    constellation4: ct.talentTem("constellation4"),
+    constellation5: ct.talentTem("constellation5", [
       { fields: [{ node: skillC5 }] },
     ]),
-    constellation6: ct.talentTem('constellation6'),
+    constellation6: ct.talentTem("constellation6"),
   },
-}
-export default new CharacterSheet(sheet, data)
+};
+export default new CharacterSheet(sheet, data);

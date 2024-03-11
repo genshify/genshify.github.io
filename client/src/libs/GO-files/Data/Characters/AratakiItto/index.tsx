@@ -103,14 +103,18 @@ const [condP1Path, condP1] = cond(key, "passive1");
 const [condC4Path, condC4] = cond(key, "constellation4");
 
 const nodeSkillHP = prod(
-  subscript(input.total.skillIndex, dm.skill.hp, KeyMap.info("hp_")),
+  subscript<number>(input.total.skillIndex, dm.skill.hp, KeyMap.info("hp_")),
   input.total.hp
 );
 const nodeBurstAtk = equal(
   condBurst,
   "on",
   prod(
-    subscript(input.total.burstIndex, dm.burst.defConv, KeyMap.info("def_")),
+    subscript<number>(
+      input.total.burstIndex,
+      dm.burst.defConv,
+      KeyMap.info("def_")
+    ),
     input.total.def
   )
 );

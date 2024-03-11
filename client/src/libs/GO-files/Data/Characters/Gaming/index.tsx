@@ -137,7 +137,7 @@ const dmgFormulas = {
   skill: {
     cloudstriderDmg: customDmgNode(
       prod(
-        subscript(input.total.skillIndex, dm.skill.cloudstriderDmg, {
+        subscript<number>(input.total.skillIndex, dm.skill.cloudstriderDmg, {
           unit: "%",
         }),
         input.total.atk

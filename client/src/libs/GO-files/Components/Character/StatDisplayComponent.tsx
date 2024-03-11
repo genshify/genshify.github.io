@@ -1,5 +1,4 @@
 import { objMap } from "genshin-optimizer/util";
-import { Masonry } from "@mui/lab";
 import { Box, Divider, ListItem } from "@mui/material";
 import { useContext, useMemo } from "react";
 import { DataContext } from "../../../../contexts/DataContext";
@@ -29,11 +28,11 @@ export default function StatDisplayComponent() {
   );
   return (
     <Box sx={{ mr: -1, mb: -1 }}>
-      <Masonry columns={{ xs: 1, sm: 2, md: 3, xl: 4 }} spacing={1}>
+      <div >
         {sections.map(([key, Nodes]) => (
           <Section key={key} displayNs={Nodes} sectionKey={key} />
         ))}
-      </Masonry>
+      </div>
     </Box>
   );
 }

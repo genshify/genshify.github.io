@@ -1,7 +1,7 @@
-import { objKeyMap, range } from 'genshin-optimizer/util'
-import type { CharacterKey, ElementKey } from 'genshin-optimizer/consts'
-import { allStats } from 'genshin-optimizer/stats'
-import { input, target } from '../../../Formula'
+import { objKeyMap, range } from "genshin-optimizer/util";
+import type { CharacterKey, ElementKey } from "genshin-optimizer/consts";
+import { allStats } from "genshin-optimizer/stats";
+import { input, target } from "../../../Formula";
 import {
   equal,
   greaterEq,
@@ -11,29 +11,29 @@ import {
   percent,
   prod,
   subscript,
-} from '../../../Formula/utils'
-import KeyMap from '../../../KeyMap'
-import { cond, st, stg } from '../../SheetUtil'
-import CharacterSheet from '../CharacterSheet'
-import type { ICharacterSheet } from '../ICharacterSheet'
-import { charTemplates } from '../charTemplates'
+} from "../../../Formula/utils";
+import KeyMap from "../../../KeyMap";
+import { cond, st, stg } from "../../SheetUtil";
+import CharacterSheet from "../CharacterSheet";
+import type { ICharacterSheet } from "../ICharacterSheet";
+import { charTemplates } from "../charTemplates";
 import {
   dataObjForCharacterSheet,
   dmgNode,
   healNodeTalent,
   plungingDmgNodes,
-} from '../dataUtil'
+} from "../dataUtil";
 
-const key: CharacterKey = 'Mika'
-const elementKey: ElementKey = 'cryo'
+const key: CharacterKey = "Mika";
+const elementKey: ElementKey = "cryo";
 
-const data_gen = allStats.char.data[key]
-const skillParam_gen = allStats.char.skillParam[key]
-const ct = charTemplates(key, data_gen.weaponType)
+const data_gen = allStats.char.data[key];
+const skillParam_gen = allStats.char.skillParam[key];
+const ct = charTemplates(key, data_gen.weaponType);
 
 let a = -1,
   s = 0,
-  b = 0
+  b = 0;
 const dm = {
   normal: {
     hitArr: [
@@ -83,34 +83,34 @@ const dm = {
     physical_critDMG_: skillParam_gen.constellation6[0],
     extraStacks: skillParam_gen.constellation6[1],
   },
-} as const
+} as const;
 
-const [condInSoulwindPath, condInSoulwind] = cond(key, 'inSoulwind')
+const [condInSoulwindPath, condInSoulwind] = cond(key, "inSoulwind");
 const skillInSoulwind_atkSPD_disp = equal(
   condInSoulwind,
-  'on',
-  subscript(input.total.skillIndex, dm.skill.atkSPD_, {
-    ...KeyMap.info('atkSPD_'),
+  "on",
+  subscript<number>(input.total.skillIndex, dm.skill.atkSPD_, {
+    ...KeyMap.info("atkSPD_"),
     isTeamBuff: true,
   })
-)
+);
 const skillInSoulwind_atkSPD_ = equal(
   input.activeCharKey,
   target.charKey,
   skillInSoulwind_atkSPD_disp
-)
+);
 
 const [condA1DetectorStacksPath, condA1DetectorStacks] = cond(
   key,
-  'a1DetectorStacks'
-)
-const detectorStacksArr = range(1, 4)
+  "a1DetectorStacks"
+);
+const detectorStacksArr = range(1, 4);
 const a1DetectorStacks_physical_dmg_disp = greaterEq(
   input.asc,
   1,
   equal(
     condInSoulwind,
-    'on',
+    "on",
     lookup(
       condA1DetectorStacks,
       objKeyMap(detectorStacksArr, (stack) =>
@@ -124,69 +124,69 @@ const a1DetectorStacks_physical_dmg_disp = greaterEq(
           : prod(stack, percent(dm.passive1.physical_dmg_))
       ),
       naught,
-      { ...KeyMap.info('physical_dmg_'), isTeamBuff: true }
+      { ...KeyMap.info("physical_dmg_"), isTeamBuff: true }
     )
   )
-)
+);
 const a1DetectorStacks_physical_dmg_ = equal(
   input.activeCharKey,
   target.charKey,
   a1DetectorStacks_physical_dmg_disp
-)
-const [condC6CritPath, condC6Crit] = cond(key, 'c6Crit')
+);
+const [condC6CritPath, condC6Crit] = cond(key, "c6Crit");
 const c6InSoulwind_physical_critDMG_disp = greaterEq(
   input.constellation,
   6,
   equal(
     condInSoulwind,
-    'on',
-    equal(condC6Crit, 'on', dm.constellation6.physical_critDMG_, {
-      ...KeyMap.info('physical_critDMG_'),
+    "on",
+    equal(condC6Crit, "on", dm.constellation6.physical_critDMG_, {
+      ...KeyMap.info("physical_critDMG_"),
       isTeamBuff: true,
     })
   )
-)
+);
 const c6InSoulwind_physical_critDMG_ = equal(
   input.activeCharKey,
   target.charKey,
   c6InSoulwind_physical_critDMG_disp
-)
+);
 
 const dmgFormulas = {
   normal: Object.fromEntries(
-    dm.normal.hitArr.map((arr, i) => [i, dmgNode('atk', arr, 'normal')])
+    dm.normal.hitArr.map((arr, i) => [i, dmgNode("atk", arr, "normal")])
   ),
   charged: {
-    dmg: dmgNode('atk', dm.charged.dmg, 'charged'),
+    dmg: dmgNode("atk", dm.charged.dmg, "charged"),
   },
-  plunging: plungingDmgNodes('atk', dm.plunging),
+  plunging: plungingDmgNodes("atk", dm.plunging),
   skill: {
-    arrowDmg: dmgNode('atk', dm.skill.arrowDmg, 'skill'),
-    flareDmg: dmgNode('atk', dm.skill.flareDmg, 'skill'),
-    shardDmg: dmgNode('atk', dm.skill.shardDmg, 'skill'),
+    arrowDmg: dmgNode("atk", dm.skill.arrowDmg, "skill"),
+    flareDmg: dmgNode("atk", dm.skill.flareDmg, "skill"),
+    shardDmg: dmgNode("atk", dm.skill.shardDmg, "skill"),
   },
   burst: {
     castHeal: healNodeTalent(
-      'hp',
+      "hp",
       dm.burst.castHealHp,
       dm.burst.castHealBase,
-      'burst'
+      "burst"
     ),
     plumeHeal: healNodeTalent(
-      'hp',
+      "hp",
       dm.burst.plumeHealHp,
       dm.burst.plumeHealBase,
-      'burst'
+      "burst"
     ),
   },
-}
+};
 
-const burstC3 = greaterEq(input.constellation, 3, 3)
-const skillC5 = greaterEq(input.constellation, 5, 3)
+const burstC3 = greaterEq(input.constellation, 3, 3);
+const skillC5 = greaterEq(input.constellation, 5, 3);
 export const data = dataObjForCharacterSheet(
   key,
   elementKey,
-  'mondstadt',
+  "mondstadt",
   data_gen,
   dmgFormulas,
   {
@@ -202,7 +202,7 @@ export const data = dataObjForCharacterSheet(
       },
     },
   }
-)
+);
 
 const sheet: ICharacterSheet = {
   key,
@@ -210,13 +210,13 @@ const sheet: ICharacterSheet = {
   rarity: data_gen.rarity,
   elementKey: elementKey,
   weaponTypeKey: data_gen.weaponType,
-  gender: 'M',
-  constellationName: ct.chg('constellationName'),
-  title: ct.chg('title'),
+  gender: "M",
+  constellationName: ct.chg("constellationName"),
+  title: ct.chg("title"),
   talent: {
-    auto: ct.talentTem('auto', [
+    auto: ct.talentTem("auto", [
       {
-        text: ct.chg('auto.fields.normal'),
+        text: ct.chg("auto.fields.normal"),
       },
       {
         fields: dm.normal.hitArr.map((_, i) => ({
@@ -227,7 +227,7 @@ const sheet: ICharacterSheet = {
         })),
       },
       {
-        text: ct.chg('auto.fields.charged'),
+        text: ct.chg("auto.fields.charged"),
       },
       {
         fields: [
@@ -237,36 +237,36 @@ const sheet: ICharacterSheet = {
             }),
           },
           {
-            text: ct.chg('auto.skillParams.6'),
+            text: ct.chg("auto.skillParams.6"),
             value: dm.charged.stamina,
           },
         ],
       },
       {
-        text: ct.chg('auto.fields.plunging'),
+        text: ct.chg("auto.fields.plunging"),
       },
       {
         fields: [
           {
             node: infoMut(dmgFormulas.plunging.dmg, {
-              name: stg('plunging.dmg'),
+              name: stg("plunging.dmg"),
             }),
           },
           {
             node: infoMut(dmgFormulas.plunging.low, {
-              name: stg('plunging.low'),
+              name: stg("plunging.low"),
             }),
           },
           {
             node: infoMut(dmgFormulas.plunging.high, {
-              name: stg('plunging.high'),
+              name: stg("plunging.high"),
             }),
           },
         ],
       },
     ]),
 
-    skill: ct.talentTem('skill', [
+    skill: ct.talentTem("skill", [
       {
         fields: [
           {
@@ -285,22 +285,22 @@ const sheet: ICharacterSheet = {
             }),
           },
           {
-            text: ct.chg('skill.skillParams.4'),
+            text: ct.chg("skill.skillParams.4"),
             value: dm.skill.soulwindDuration,
-            unit: 's',
+            unit: "s",
           },
           {
-            text: stg('cd'),
+            text: stg("cd"),
             value: dm.skill.cd,
-            unit: 's',
+            unit: "s",
           },
         ],
       },
-      ct.condTem('skill', {
+      ct.condTem("skill", {
         path: condInSoulwindPath,
         value: condInSoulwind,
         teamBuff: true,
-        name: ct.ch('inSoulwind'),
+        name: ct.ch("inSoulwind"),
         states: {
           on: {
             fields: [
@@ -311,17 +311,17 @@ const sheet: ICharacterSheet = {
           },
         },
       }),
-      ct.condTem('passive1', {
+      ct.condTem("passive1", {
         path: condA1DetectorStacksPath,
         value: condA1DetectorStacks,
         teamBuff: true,
-        canShow: equal(condInSoulwind, 'on', 1),
-        name: ct.ch('numDetectorStacks'),
+        canShow: equal(condInSoulwind, "on", 1),
+        name: ct.ch("numDetectorStacks"),
         states: (data) =>
           objKeyMap(
             range(1, data.get(input.constellation).value >= 6 ? 4 : 3),
             (stack) => ({
-              name: st('stack', { count: stack }),
+              name: st("stack", { count: stack }),
               fields: [
                 {
                   node: a1DetectorStacks_physical_dmg_disp,
@@ -330,12 +330,12 @@ const sheet: ICharacterSheet = {
             })
           ),
       }),
-      ct.condTem('constellation6', {
+      ct.condTem("constellation6", {
         teamBuff: true,
-        canShow: equal(condInSoulwind, 'on', 1),
+        canShow: equal(condInSoulwind, "on", 1),
         path: condC6CritPath,
         value: condC6Crit,
-        name: ct.ch('inSoulwind'),
+        name: ct.ch("inSoulwind"),
         states: {
           on: {
             fields: [
@@ -346,17 +346,17 @@ const sheet: ICharacterSheet = {
           },
         },
       }),
-      ct.headerTem('constellation6', {
+      ct.headerTem("constellation6", {
         fields: [
           {
-            text: ct.ch('incDetectorStacks'),
+            text: ct.ch("incDetectorStacks"),
             value: dm.constellation6.extraStacks,
           },
         ],
       }),
     ]),
 
-    burst: ct.talentTem('burst', [
+    burst: ct.talentTem("burst", [
       {
         fields: [
           {
@@ -370,10 +370,10 @@ const sheet: ICharacterSheet = {
             }),
           },
           {
-            text: ct.chg('burst.skillParams.2'),
+            text: ct.chg("burst.skillParams.2"),
             value: (data) =>
               data.get(input.constellation).value >= 1 &&
-              data.get(condInSoulwind).value === 'on' &&
+              data.get(condInSoulwind).value === "on" &&
               data.get(input.activeCharKey).value ===
                 data.get(target.charKey).value
                 ? `${dm.burst.plumeInterval}s - ${
@@ -383,39 +383,39 @@ const sheet: ICharacterSheet = {
                     (1 - data.get(skillInSoulwind_atkSPD_disp).value)
                   ).toFixed(2)}`
                 : dm.burst.plumeInterval,
-            unit: 's',
+            unit: "s",
             fixed: 1,
           },
           {
-            text: ct.chg('burst.skillParams.3'),
+            text: ct.chg("burst.skillParams.3"),
             value: dm.burst.plumeDuration,
-            unit: 's',
+            unit: "s",
           },
           {
-            text: stg('cd'),
+            text: stg("cd"),
             value: dm.burst.cd,
-            unit: 's',
+            unit: "s",
           },
           {
-            text: stg('energyCost'),
+            text: stg("energyCost"),
             value: dm.burst.energyCost,
           },
         ],
       },
     ]),
 
-    passive1: ct.talentTem('passive1'),
-    passive2: ct.talentTem('passive2'),
-    constellation1: ct.talentTem('constellation1'),
-    constellation2: ct.talentTem('constellation2'),
-    constellation3: ct.talentTem('constellation3', [
+    passive1: ct.talentTem("passive1"),
+    passive2: ct.talentTem("passive2"),
+    constellation1: ct.talentTem("constellation1"),
+    constellation2: ct.talentTem("constellation2"),
+    constellation3: ct.talentTem("constellation3", [
       { fields: [{ node: burstC3 }] },
     ]),
-    constellation4: ct.talentTem('constellation4'),
-    constellation5: ct.talentTem('constellation5', [
+    constellation4: ct.talentTem("constellation4"),
+    constellation5: ct.talentTem("constellation5", [
       { fields: [{ node: skillC5 }] },
     ]),
-    constellation6: ct.talentTem('constellation6'),
+    constellation6: ct.talentTem("constellation6"),
   },
-}
-export default new CharacterSheet(sheet, data)
+};
+export default new CharacterSheet(sheet, data);

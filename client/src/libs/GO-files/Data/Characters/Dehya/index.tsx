@@ -1,7 +1,7 @@
-import { objKeyMap, range } from 'genshin-optimizer/util'
-import type { CharacterKey, ElementKey } from 'genshin-optimizer/consts'
-import { allStats } from 'genshin-optimizer/stats'
-import { input } from '../../../Formula'
+import { objKeyMap, range } from "genshin-optimizer/util";
+import type { CharacterKey, ElementKey } from "genshin-optimizer/consts";
+import { allStats } from "genshin-optimizer/stats";
+import { input } from "../../../Formula";
 import {
   equal,
   greaterEq,
@@ -11,28 +11,28 @@ import {
   percent,
   prod,
   subscript,
-} from '../../../Formula/utils'
-import { cond, st, stg } from '../../SheetUtil'
-import CharacterSheet from '../CharacterSheet'
-import type { ICharacterSheet } from '../ICharacterSheet'
-import { charTemplates } from '../charTemplates'
+} from "../../../Formula/utils";
+import { cond, st, stg } from "../../SheetUtil";
+import CharacterSheet from "../CharacterSheet";
+import type { ICharacterSheet } from "../ICharacterSheet";
+import { charTemplates } from "../charTemplates";
 import {
   customHealNode,
   dataObjForCharacterSheet,
   dmgNode,
   plungingDmgNodes,
   splitScaleDmgNode,
-} from '../dataUtil'
+} from "../dataUtil";
 
-const key: CharacterKey = 'Dehya'
-const elementKey: ElementKey = 'pyro'
-const data_gen = allStats.char.data[key]
-const skillParam_gen = allStats.char.skillParam[key]
-const ct = charTemplates(key, data_gen.weaponType)
+const key: CharacterKey = "Dehya";
+const elementKey: ElementKey = "pyro";
+const data_gen = allStats.char.data[key];
+const skillParam_gen = allStats.char.skillParam[key];
+const ct = charTemplates(key, data_gen.weaponType);
 
 let a = 0,
   s = 0,
-  b = 0
+  b = 0;
 const dm = {
   normal: {
     hitArr: [
@@ -101,34 +101,34 @@ const dm = {
     maxDuration: skillParam_gen.constellation6[3],
     maxBurst_critDMG_: skillParam_gen.constellation6[4],
   },
-} as const
+} as const;
 
-const c1_hp_ = greaterEq(input.constellation, 1, dm.c1.hp_)
+const c1_hp_ = greaterEq(input.constellation, 1, dm.c1.hp_);
 const c1_skill_dmgInc = greaterEq(
   input.constellation,
   1,
   prod(percent(dm.c1.skill_dmgInc), input.total.hp)
-)
+);
 const c1_burst_dmgInc = greaterEq(
   input.constellation,
   1,
   prod(percent(dm.c1.burst_dmgInc), input.total.hp)
-)
+);
 
-const [condC2InFieldPath, condC2InField] = cond(key, 'c2InField')
+const [condC2InFieldPath, condC2InField] = cond(key, "c2InField");
 const c2InField_field_dmg_ = greaterEq(
   input.constellation,
   2,
-  equal(condC2InField, 'on', dm.c2.field_dmg_)
-)
+  equal(condC2InField, "on", dm.c2.field_dmg_)
+);
 
 const c6_burst_critRate_ = greaterEq(
   input.constellation,
   6,
   dm.c6.burst_critRate_
-)
-const c6CritStacksArr = range(1, 4)
-const [condC6CritStacksPath, condC6CritStacks] = cond(key, 'c6CritStacks')
+);
+const c6CritStacksArr = range(1, 4);
+const [condC6CritStacksPath, condC6CritStacks] = cond(key, "c6CritStacks");
 const c6CritStacks_burst_critDMG_ = greaterEq(
   input.constellation,
   6,
@@ -139,38 +139,38 @@ const c6CritStacks_burst_critDMG_ = greaterEq(
     ),
     naught
   )
-)
+);
 
 const dmgFormulas = {
   normal: Object.fromEntries(
-    dm.normal.hitArr.map((arr, i) => [i, dmgNode('atk', arr, 'normal')])
+    dm.normal.hitArr.map((arr, i) => [i, dmgNode("atk", arr, "normal")])
   ),
   charged: {
-    spin: dmgNode('atk', dm.charged.spin, 'charged'),
-    final: dmgNode('atk', dm.charged.final, 'charged'),
+    spin: dmgNode("atk", dm.charged.spin, "charged"),
+    final: dmgNode("atk", dm.charged.final, "charged"),
   },
-  plunging: plungingDmgNodes('atk', dm.plunging),
+  plunging: plungingDmgNodes("atk", dm.plunging),
   skill: {
-    indomitableDmg: dmgNode('atk', dm.skill.indomitableDmg, 'skill'),
-    rangingDmg: dmgNode('atk', dm.skill.rangingDmg, 'skill'),
+    indomitableDmg: dmgNode("atk", dm.skill.indomitableDmg, "skill"),
+    rangingDmg: dmgNode("atk", dm.skill.rangingDmg, "skill"),
     fieldDmg: splitScaleDmgNode(
-      ['atk', 'hp'],
+      ["atk", "hp"],
       [dm.skill.fieldDmgAtk, dm.skill.fieldDmgHp],
-      'skill',
+      "skill",
       { premod: { skill_dmg_: c2InField_field_dmg_ } }
     ),
     redmaneMax: prod(percent(dm.skill.redmaneMax), input.total.hp),
   },
   burst: {
     fistDmg: splitScaleDmgNode(
-      ['atk', 'hp'],
+      ["atk", "hp"],
       [dm.burst.fistDmgAtk, dm.burst.fistDmgHp],
-      'burst'
+      "burst"
     ),
     driveDmg: splitScaleDmgNode(
-      ['atk', 'hp'],
+      ["atk", "hp"],
       [dm.burst.driveDmgAtk, dm.burst.driveDmgHp],
-      'burst'
+      "burst"
     ),
   },
   passive2: {
@@ -196,15 +196,15 @@ const dmgFormulas = {
       customHealNode(prod(percent(dm.c4.heal), input.total.hp))
     ),
   },
-} as const
+} as const;
 
-const burstC3 = greaterEq(input.constellation, 3, 3)
-const skillC5 = greaterEq(input.constellation, 5, 3)
+const burstC3 = greaterEq(input.constellation, 3, 3);
+const skillC5 = greaterEq(input.constellation, 5, 3);
 
 export const data = dataObjForCharacterSheet(
   key,
   elementKey,
-  'sumeru',
+  "sumeru",
   data_gen,
   dmgFormulas,
   {
@@ -218,7 +218,7 @@ export const data = dataObjForCharacterSheet(
       burst_critDMG_: c6CritStacks_burst_critDMG_,
     },
   }
-)
+);
 
 const sheet: ICharacterSheet = {
   key,
@@ -226,13 +226,13 @@ const sheet: ICharacterSheet = {
   rarity: data_gen.rarity,
   elementKey,
   weaponTypeKey: data_gen.weaponType,
-  gender: 'F',
-  constellationName: ct.chg('constellationName'),
-  title: ct.chg('title'),
+  gender: "F",
+  constellationName: ct.chg("constellationName"),
+  title: ct.chg("title"),
   talent: {
-    auto: ct.talentTem('auto', [
+    auto: ct.talentTem("auto", [
       {
-        text: ct.chg('auto.fields.normal'),
+        text: ct.chg("auto.fields.normal"),
       },
       {
         fields: dm.normal.hitArr.map((_, i) => ({
@@ -242,7 +242,7 @@ const sheet: ICharacterSheet = {
         })),
       },
       {
-        text: ct.chg('auto.fields.charged'),
+        text: ct.chg("auto.fields.charged"),
       },
       {
         fields: [
@@ -257,36 +257,36 @@ const sheet: ICharacterSheet = {
             }),
           },
           {
-            text: ct.chg('auto.skillParams.6'),
+            text: ct.chg("auto.skillParams.6"),
             value: `${dm.charged.stamina}/s`,
           },
         ],
       },
       {
-        text: ct.chg('auto.fields.plunging'),
+        text: ct.chg("auto.fields.plunging"),
       },
       {
         fields: [
           {
             node: infoMut(dmgFormulas.plunging.dmg, {
-              name: stg('plunging.dmg'),
+              name: stg("plunging.dmg"),
             }),
           },
           {
             node: infoMut(dmgFormulas.plunging.low, {
-              name: stg('plunging.low'),
+              name: stg("plunging.low"),
             }),
           },
           {
             node: infoMut(dmgFormulas.plunging.high, {
-              name: stg('plunging.high'),
+              name: stg("plunging.high"),
             }),
           },
         ],
       },
     ]),
 
-    skill: ct.talentTem('skill', [
+    skill: ct.talentTem("skill", [
       {
         fields: [
           {
@@ -305,46 +305,50 @@ const sheet: ICharacterSheet = {
             }),
           },
           {
-            node: subscript(input.total.skillIndex, dm.skill.mitigation, {
-              name: ct.chg('skill.skillParams.3'),
-              unit: '%',
-            }),
+            node: subscript<number>(
+              input.total.skillIndex,
+              dm.skill.mitigation,
+              {
+                name: ct.chg("skill.skillParams.3"),
+                unit: "%",
+              }
+            ),
           },
           {
             node: infoMut(dmgFormulas.skill.redmaneMax, {
-              name: ct.chg('skill.skillParams.4'),
+              name: ct.chg("skill.skillParams.4"),
             }),
           },
           {
-            text: ct.chg('skill.skillParams.5'),
+            text: ct.chg("skill.skillParams.5"),
             value: dm.skill.fieldDuration,
-            unit: 's',
+            unit: "s",
           },
           {
-            text: stg('cd'),
+            text: stg("cd"),
             value: dm.skill.cd,
-            unit: 's',
+            unit: "s",
           },
         ],
       },
-      ct.headerTem('constellation1', {
+      ct.headerTem("constellation1", {
         fields: [
           {
             node: c1_skill_dmgInc,
           },
         ],
       }),
-      ct.condTem('constellation2', {
+      ct.condTem("constellation2", {
         path: condC2InFieldPath,
         value: condC2InField,
-        name: ct.ch('inFieldAndTakeDmg'),
+        name: ct.ch("inFieldAndTakeDmg"),
         states: {
           on: {
             fields: [
               {
                 node: infoMut(c2InField_field_dmg_, {
-                  name: ct.ch('field_dmg_'),
-                  unit: '%',
+                  name: ct.ch("field_dmg_"),
+                  unit: "%",
                 }),
               },
             ],
@@ -353,7 +357,7 @@ const sheet: ICharacterSheet = {
       }),
     ]),
 
-    burst: ct.talentTem('burst', [
+    burst: ct.talentTem("burst", [
       {
         fields: [
           {
@@ -367,60 +371,60 @@ const sheet: ICharacterSheet = {
             }),
           },
           {
-            text: stg('duration'),
+            text: stg("duration"),
             value: dm.burst.duration,
-            unit: 's',
+            unit: "s",
           },
           {
-            text: stg('cd'),
+            text: stg("cd"),
             value: dm.burst.cd,
-            unit: 's',
+            unit: "s",
           },
           {
-            text: stg('energyCost'),
+            text: stg("energyCost"),
             value: dm.burst.enerCost,
           },
         ],
       },
-      ct.headerTem('constellation1', {
+      ct.headerTem("constellation1", {
         fields: [
           {
             node: c1_burst_dmgInc,
           },
         ],
       }),
-      ct.headerTem('constellation4', {
+      ct.headerTem("constellation4", {
         fields: [
           {
             node: infoMut(dmgFormulas.constellation4.heal, {
-              name: stg('hpRegenPerHit'),
+              name: stg("hpRegenPerHit"),
             }),
           },
           {
-            text: st('enerRegenPerHit'),
+            text: st("enerRegenPerHit"),
             value: dm.c4.energyRestore,
           },
           {
-            text: stg('cd'),
+            text: stg("cd"),
             value: dm.c4.cd,
-            unit: 's',
+            unit: "s",
             fixed: 1,
           },
         ],
       }),
-      ct.headerTem('constellation6', {
+      ct.headerTem("constellation6", {
         fields: [
           {
             node: c6_burst_critRate_,
           },
         ],
       }),
-      ct.condTem('constellation6', {
+      ct.condTem("constellation6", {
         path: condC6CritStacksPath,
         value: condC6CritStacks,
-        name: ct.ch('critHitDuringBurst'),
+        name: ct.ch("critHitDuringBurst"),
         states: objKeyMap(c6CritStacksArr, (stack) => ({
-          name: st('hits', { count: stack }),
+          name: st("hits", { count: stack }),
           fields: [
             {
               node: c6CritStacks_burst_critDMG_,
@@ -430,40 +434,40 @@ const sheet: ICharacterSheet = {
       }),
     ]),
 
-    passive1: ct.talentTem('passive1'),
-    passive2: ct.talentTem('passive2', [
-      ct.fieldsTem('passive2', {
+    passive1: ct.talentTem("passive1"),
+    passive2: ct.talentTem("passive2", [
+      ct.fieldsTem("passive2", {
         fields: [
           {
             node: infoMut(dmgFormulas.passive2.initialHeal, {
-              name: ct.ch('initialHeal'),
+              name: ct.ch("initialHeal"),
             }),
           },
           {
             node: infoMut(dmgFormulas.passive2.dotHeal, {
-              name: ct.ch('dotHeal'),
+              name: ct.ch("dotHeal"),
               multi: 5,
             }),
           },
         ],
       }),
     ]),
-    passive3: ct.talentTem('passive3'),
-    constellation1: ct.talentTem('constellation1', [
-      ct.fieldsTem('constellation1', {
+    passive3: ct.talentTem("passive3"),
+    constellation1: ct.talentTem("constellation1", [
+      ct.fieldsTem("constellation1", {
         fields: [{ node: c1_hp_ }],
       }),
     ]),
-    constellation2: ct.talentTem('constellation2'),
-    constellation3: ct.talentTem('constellation3', [
+    constellation2: ct.talentTem("constellation2"),
+    constellation3: ct.talentTem("constellation3", [
       { fields: [{ node: burstC3 }] },
     ]),
-    constellation4: ct.talentTem('constellation4'),
-    constellation5: ct.talentTem('constellation5', [
+    constellation4: ct.talentTem("constellation4"),
+    constellation5: ct.talentTem("constellation5", [
       { fields: [{ node: skillC5 }] },
     ]),
-    constellation6: ct.talentTem('constellation6'),
+    constellation6: ct.talentTem("constellation6"),
   },
-}
+};
 
-export default new CharacterSheet(sheet, data)
+export default new CharacterSheet(sheet, data);

@@ -107,7 +107,7 @@ const dmgFormulas = {
       prod(
         infoMut(
           sum(
-            subscript(input.total.skillIndex, dm.skill.summonDmg, {
+            subscript<number>(input.total.skillIndex, dm.skill.summonDmg, {
               unit: "%",
             }),
             greaterEq(input.constellation, 2, percent(dm.constellation2.dmg))

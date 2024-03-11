@@ -104,7 +104,10 @@ const atk = equal(
   "on",
   condAfterlife,
   min(
-    prod(subscript(input.total.skillIndex, dm.skill.atkInc), input.premod.hp),
+    prod(
+      subscript<number>(input.total.skillIndex, dm.skill.atkInc),
+      input.premod.hp
+    ),
     prod(percent(dm.skill.maxAtkInc), input.base.atk)
   )
 );
@@ -183,13 +186,15 @@ const dmgFormulas = {
     regen: customHealNode(
       prod(
         input.total.hp,
-        subscript(input.total.burstIndex, dm.burst.regen, { unit: "%" })
+        subscript<number>(input.total.burstIndex, dm.burst.regen, { unit: "%" })
       )
     ),
     lowHpRegen: customHealNode(
       prod(
         input.total.hp,
-        subscript(input.total.burstIndex, dm.burst.lowHpRegen, { unit: "%" })
+        subscript<number>(input.total.burstIndex, dm.burst.lowHpRegen, {
+          unit: "%",
+        })
       )
     ),
   },

@@ -102,13 +102,13 @@ const nodeC3 = greaterEq(input.constellation, 3, 3);
 const nodeC5 = greaterEq(input.constellation, 5, 3);
 
 const [condInBurstPath, condInBurst] = cond(key, "inBurst");
-const auto_dmg_ = subscript(input.total.burstIndex, dm.burst.dmgBonus, {
+const auto_dmg_ = subscript<number>(input.total.burstIndex, dm.burst.dmgBonus, {
   unit: "%",
 });
 const normal_dmg_ = equal("inBurst", condInBurst, auto_dmg_, { unit: "%" });
 const charged_dmg_ = { ...normal_dmg_ };
 const plunging_dmg_ = { ...normal_dmg_ };
-const lifeDrain = subscript(input.total.burstIndex, dm.burst.drain);
+const lifeDrain = subscript<number>(input.total.burstIndex, dm.burst.drain);
 const infusion = equalStr("inBurst", condInBurst, elementKey);
 
 const [condA1BurstStackPath, condA1BurstStack] = cond(key, "a1BurstStack");

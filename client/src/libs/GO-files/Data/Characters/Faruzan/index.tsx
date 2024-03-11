@@ -86,7 +86,7 @@ const [condBurstBenefitPath, condBurstBenefit] = cond(key, "burstBenefit");
 const burstBenefit_anemo_dmg_ = equal(
   condBurstBenefit,
   "on",
-  subscript(input.total.burstIndex, datamine.burst.anemo_dmg_)
+  subscript<number>(input.total.burstIndex, datamine.burst.anemo_dmg_)
 );
 
 const [condBurstHitPath, condBurstHit] = cond(key, "burstHit");

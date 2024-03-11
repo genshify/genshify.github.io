@@ -175,7 +175,9 @@ const dmgFormulas = {
       6,
       customDmgNode(
         prod(
-          subscript(input.total.autoIndex, dm.charged.barb, { unit: "%" }),
+          subscript<number>(input.total.autoIndex, dm.charged.barb, {
+            unit: "%",
+          }),
           percent(dm.constellation6.dmg_),
           input.total.hp
         ),

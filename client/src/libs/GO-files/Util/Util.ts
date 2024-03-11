@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 //assign obj.[keys...] = value
-export function layeredAssignment(obj, keys: readonly string[], value) {
+export function layeredAssignment(obj: any, keys: readonly string[], value: any) {
   keys.reduce((accu, key, i, arr) => {
     if (i === arr.length - 1) return (accu[key] = value);
     if (!accu[key]) accu[key] = {};
@@ -14,17 +15,17 @@ export function objPathValue(
 ): any {
   if (!obj || !keys) return undefined;
   !Array.isArray(keys) && console.error(keys);
-  return keys.reduce((a, k) => a?.[k], obj);
+  return keys.reduce((a, k) => a?.[k as keyof typeof a], obj);
 }
 //delete the value denoted by the path. Will also delete empty objects as well.
-export function deletePropPath(obj, path) {
+export function deletePropPath(obj: object | undefined, path: any) {
   const tempPath = [...path];
   const lastKey = tempPath.pop();
   const objPathed = objPathValue(obj, tempPath);
   delete objPathed?.[lastKey];
 }
 
-export function objClearEmpties(o) {
+export function objClearEmpties(o: { [x: string]: any; }) {
   for (const k in o) {
     if (typeof o[k] !== "object") continue;
     objClearEmpties(o[k]);
@@ -46,7 +47,7 @@ export function crawlObject(
       );
 }
 // const getObjectKeysRecursive = (obj) => Object.values(obj).reduce((a, prop) => typeof prop === "object" ? [...a, ...getObjectKeysRecursive(prop)] : a, Object.keys(obj))
-export const getObjectKeysRecursive = (obj) =>
+export const getObjectKeysRecursive = (obj: Partial<Record<string, any>>):string[] =>
   typeof obj === "object"
     ? Object.values(obj)
         .flatMap(getObjectKeysRecursive)
@@ -130,10 +131,9 @@ export function cartesian<T>(...q: T[][]): T[][] {
   ] as T[][]);
 }
 
-export const isDev = process.env.NODE_ENV === "development";
+
 
 /**
  * Boolean indicating if dev components should be shown
  */
-export const shouldShowDevComponents =
-  isDev || process.env.NX_SHOW_DEV_COMPONENTS === "true";
+

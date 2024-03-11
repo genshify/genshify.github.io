@@ -106,7 +106,9 @@ const nodeBurstAtk = equal(
   prod(
     input.total.def,
     sum(
-      subscript(input.total.burstIndex, dm.burst.defToAtk, { unit: "%" }),
+      subscript<number>(input.total.burstIndex, dm.burst.defToAtk, {
+        unit: "%",
+      }),
       greaterEq(
         input.constellation,
         6,

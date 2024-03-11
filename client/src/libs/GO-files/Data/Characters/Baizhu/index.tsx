@@ -199,11 +199,13 @@ const dmgFormulas = {
       healNode(
         "hp",
         prod(
-          subscript(input.total.skillIndex, dm.skill.healHp, { unit: "%" }),
+          subscript<number>(input.total.skillIndex, dm.skill.healHp, {
+            unit: "%",
+          }),
           percent(dm.constellation2.heal)
         ),
         prod(
-          subscript(input.total.skillIndex, dm.skill.healBase),
+          subscript<number>(input.total.skillIndex, dm.skill.healBase),
           percent(dm.constellation2.heal)
         )
       )

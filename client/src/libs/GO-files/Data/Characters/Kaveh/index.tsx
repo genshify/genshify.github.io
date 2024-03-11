@@ -102,7 +102,7 @@ const afterBurst_infusion = equalStr(
 const afterBurst_bloom_dmg_ = equal(
   condAfterBurst,
   "on",
-  subscript(input.total.burstIndex, dm.burst.bloom_dmg_)
+  subscript<number>(input.total.burstIndex, dm.burst.bloom_dmg_)
 );
 
 const [condA4StacksPath, condA4Stacks] = cond(key, "a4Stacks");

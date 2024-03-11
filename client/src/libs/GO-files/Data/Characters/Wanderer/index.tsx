@@ -97,14 +97,14 @@ const [condAfterSkillPath, condAfterSkill] = cond(key, "afterSkill");
 const afterSkill_normal_mult_ = compareEq(
   condAfterSkill,
   "on",
-  subscript(input.total.skillIndex, datamine.skill.normal_mult),
+  subscript<number>(input.total.skillIndex, datamine.skill.normal_mult),
   one,
   { name: st("dmgMult.normal"), unit: "%" }
 );
 const afterSkill_charged_mult_ = compareEq(
   condAfterSkill,
   "on",
-  subscript(input.total.skillIndex, datamine.skill.charged_mult),
+  subscript<number>(input.total.skillIndex, datamine.skill.charged_mult),
   one,
   { name: st("dmgMult.charged"), unit: "%" }
 );
@@ -228,7 +228,7 @@ const dmgFormulas = {
           "on",
           customDmgNode(
             prod(
-              subscript(input.total.autoIndex, arr, { unit: "%" }),
+              subscript<number>(input.total.autoIndex, arr, { unit: "%" }),
               constant(datamine.constellation6.dmg, {
                 name: ct.ch("c6Key"),
                 unit: "%",

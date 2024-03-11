@@ -90,7 +90,11 @@ const [condInFieldPath, condInField] = cond(key, "inField");
 const skill1_defDisp = equal(
   condInField,
   "inField",
-  greaterEq(tally["geo"], 1, subscript(input.total.skillIndex, dm.skill.defInc))
+  greaterEq(
+    tally["geo"],
+    1,
+    subscript<number>(input.total.skillIndex, dm.skill.defInc)
+  )
 );
 const skill1_def = equal(input.activeCharKey, target.charKey, skill1_defDisp);
 const skill3_geo_dmg_Disp = equal(

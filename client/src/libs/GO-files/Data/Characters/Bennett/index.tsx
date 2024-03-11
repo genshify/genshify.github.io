@@ -96,9 +96,13 @@ const dm = {
   },
 } as const;
 
-const burstAtkRatio = subscript(input.total.burstIndex, dm.burst.atkBonus, {
-  unit: "%",
-});
+const burstAtkRatio = subscript<number>(
+  input.total.burstIndex,
+  dm.burst.atkBonus,
+  {
+    unit: "%",
+  }
+);
 const c1AtkRatio = greaterEq(
   input.constellation,
   1,

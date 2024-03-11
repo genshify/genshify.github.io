@@ -176,7 +176,7 @@ const dmgFormulas = {
         `normal_${i}`,
         customDmgNode(
           prod(
-            subscript(input.total.burstIndex, arr, { unit: "%" }),
+            subscript<number>(input.total.burstIndex, arr, { unit: "%" }),
             input.total.atk
           ),
           "normal",
@@ -189,7 +189,9 @@ const dmgFormulas = {
     ),
     charged: customDmgNode(
       prod(
-        subscript(input.total.burstIndex, dm.burst.charged.dmg, { unit: "%" }),
+        subscript<number>(input.total.burstIndex, dm.burst.charged.dmg, {
+          unit: "%",
+        }),
         input.total.atk
       ),
       "charged",
@@ -200,7 +202,7 @@ const dmgFormulas = {
         `plunging_${key}`,
         customDmgNode(
           prod(
-            subscript(input.total.burstIndex, value, { unit: "%" }),
+            subscript<number>(input.total.burstIndex, value, { unit: "%" }),
             input.total.atk
           ),
           key === "dmg" ? "plunging_collision" : "plunging_impact",
@@ -379,10 +381,15 @@ const sheet: ICharacterSheet = {
       {
         fields: [
           ...dm.burst.normal.hitArr.map((_, i) => ({
-            node: infoMut(dmgFormulas.burst[`normal_${i}` as keyof typeof dmgFormulas.bur], {
-              name: ct.chg(`burst.skillParams.${i}`),
-              multi: i === 3 ? 2 : undefined,
-            }),
+            node: infoMut(
+              dmgFormulas.burst[
+                `normal_${i}` as keyof typeof dmgFormulas.burst
+              ],
+              {
+                name: ct.chg(`burst.skillParams.${i}`),
+                multi: i === 3 ? 2 : undefined,
+              }
+            ),
           })),
           {
             node: infoMut(dmgFormulas.burst.charged, {
@@ -394,9 +401,14 @@ const sheet: ICharacterSheet = {
             value: dm.burst.charged.stamina,
           },
           ...Object.entries(dm.burst.plunging).map(([key]) => ({
-            node: infoMut(dmgFormulas.burst[`plunging_${key}`], {
-              name: stg(`plunging.${key}`),
-            }),
+            node: infoMut(
+              dmgFormulas.burst[
+                `plunging_${key}` as keyof typeof dmgFormulas.burst
+              ],
+              {
+                name: stg(`plunging.${key}`),
+              }
+            ),
           })),
           {
             text: ct.chg(`burst.skillParams.10`),

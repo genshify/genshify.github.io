@@ -181,7 +181,9 @@ const dmgFormulas = {
       customDmgNode(
         prod(
           percent(dm.constellation1.dmgRatio),
-          subscript(input.total.autoIndex, dm.charged.aimed, { unit: "%" }),
+          subscript<number>(input.total.autoIndex, dm.charged.aimed, {
+            unit: "%",
+          }),
           input.total.atk
         ),
         "charged"
@@ -193,7 +195,9 @@ const dmgFormulas = {
       customDmgNode(
         prod(
           percent(dm.constellation1.dmgRatio),
-          subscript(input.total.autoIndex, dm.charged.fully, { unit: "%" }),
+          subscript<number>(input.total.autoIndex, dm.charged.fully, {
+            unit: "%",
+          }),
           input.total.atk
         ),
         "charged",

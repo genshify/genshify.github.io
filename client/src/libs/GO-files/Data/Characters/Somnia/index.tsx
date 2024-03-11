@@ -112,7 +112,7 @@ const superposition_normCharged_dmgInc = equal(
   condSuperposition,
   "on",
   prod(
-    subscript(input.total.skillIndex, dm.skill.norm_charged_dmgInc, {
+    subscript<number>(input.total.skillIndex, dm.skill.norm_charged_dmgInc, {
       unit: "%",
     }),
     input.total.eleMas
@@ -153,7 +153,9 @@ const subtraction_normCharged_dmgInc = equal(
     condSubtraction,
     "on",
     prod(
-      subscript(input.total.burstIndex, dm.burst.subDmgInc, { unit: "%" }),
+      subscript<number>(input.total.burstIndex, dm.burst.subDmgInc, {
+        unit: "%",
+      }),
       input.total.eleMas
     )
   )
@@ -164,7 +166,9 @@ const lessThan3_eleRes_ = equal(
   condLessThan3,
   "on",
   prod(
-    subscript(input.total.burstIndex, dm.burst.subElemRes, { unit: "%" }),
+    subscript<number>(input.total.burstIndex, dm.burst.subElemRes, {
+      unit: "%",
+    }),
     input.total.eleMas
   )
 );
@@ -255,7 +259,9 @@ const dmgFormulas = {
       condCycloneActive,
       "on",
       prod(
-        subscript(input.total.burstIndex, dm.burst.eleMas_, { unit: "%" }),
+        subscript<number>(input.total.burstIndex, dm.burst.eleMas_, {
+          unit: "%",
+        }),
         input.premod.eleMas
       )
     ),

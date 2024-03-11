@@ -102,7 +102,9 @@ const nodeSkill = equal(
     prod(
       input.premod.def,
       sum(
-        subscript(input.total.burstIndex, dm.burst.dmgInc, { unit: "%" }),
+        subscript<number>(input.total.burstIndex, dm.burst.dmgInc, {
+          unit: "%",
+        }),
         nodeA4
       )
     )

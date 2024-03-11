@@ -106,7 +106,7 @@ const nodeSkillDmgRed_ = equal(
   condSkill,
   "on",
   sum(
-    subscript(input.total.skillIndex, dm.skill.dmgRed_, { unit: "%" }),
+    subscript<number>(input.total.skillIndex, dm.skill.dmgRed_, { unit: "%" }),
     min(percent(0.24), prod(percent(0.2), input.premod.hydro_dmg_))
   )
 );

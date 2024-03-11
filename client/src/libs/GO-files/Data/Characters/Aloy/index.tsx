@@ -86,18 +86,34 @@ const [condCoilPath, condCoil] = cond(key, "coil");
 const normal_dmg_ = lookup(
   condCoil,
   {
-    coil1: subscript(input.total.skillIndex, dm.skill.coilNormalDmgBonus1, {
-      unit: "%",
-    }),
-    coil2: subscript(input.total.skillIndex, dm.skill.coilNormalDmgBonus2, {
-      unit: "%",
-    }),
-    coil3: subscript(input.total.skillIndex, dm.skill.coilNormalDmgBonus3, {
-      unit: "%",
-    }),
-    rush: subscript(input.total.skillIndex, dm.skill.rushingNormalDmgBonus, {
-      unit: "%",
-    }),
+    coil1: subscript<number>(
+      input.total.skillIndex,
+      dm.skill.coilNormalDmgBonus1,
+      {
+        unit: "%",
+      }
+    ),
+    coil2: subscript<number>(
+      input.total.skillIndex,
+      dm.skill.coilNormalDmgBonus2,
+      {
+        unit: "%",
+      }
+    ),
+    coil3: subscript<number>(
+      input.total.skillIndex,
+      dm.skill.coilNormalDmgBonus3,
+      {
+        unit: "%",
+      }
+    ),
+    rush: subscript<number>(
+      input.total.skillIndex,
+      dm.skill.rushingNormalDmgBonus,
+      {
+        unit: "%",
+      }
+    ),
   },
   naught
 );
@@ -259,10 +275,14 @@ const sheet: ICharacterSheet = {
             }),
           },
           {
-            node: subscript(input.total.skillIndex, dm.skill.atkDecrease, {
-              name: ct.chg(`skill.skillParams.2`),
-              unit: "%",
-            }),
+            node: subscript<number>(
+              input.total.skillIndex,
+              dm.skill.atkDecrease,
+              {
+                name: ct.chg(`skill.skillParams.2`),
+                unit: "%",
+              }
+            ),
           },
           {
             text: ct.chg("skill.skillParams.3"),

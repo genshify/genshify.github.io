@@ -106,7 +106,7 @@ const declension_dmg_ = lookup(
     stacksArr.map((stacks) => [
       stacks,
       prod(
-        subscript(input.total.skillIndex, dm.skill.declension_dmg_, {
+        subscript<number>(input.total.skillIndex, dm.skill.declension_dmg_, {
           name: st("bonusScaling.skill_"),
           unit: "%",
         }),
@@ -120,7 +120,9 @@ const declension_dmg_ = lookup(
 const conviction_dmg_ = equal(
   condDeclensionStacks,
   "4",
-  subscript(input.total.skillIndex, dm.skill.conviction_dmg_, { unit: "%" }),
+  subscript<number>(input.total.skillIndex, dm.skill.conviction_dmg_, {
+    unit: "%",
+  }),
   { name: st("bonusScaling.skill_"), unit: "%" }
 );
 const totalStacks_dmg_ = sum(declension_dmg_, conviction_dmg_);
@@ -178,7 +180,9 @@ export const dmgFormulas = {
     dmg: customDmgNode(
       prod(
         sum(
-          subscript(input.total.skillIndex, dm.skill.dmg, { unit: "%" }),
+          subscript<number>(input.total.skillIndex, dm.skill.dmg, {
+            unit: "%",
+          }),
           totalStacks_dmg_
         ),
         input.total.atk
@@ -377,9 +381,14 @@ const sheet: ICharacterSheet = {
             }),
           },
           ...absorbableEle.map((ele) => ({
-            node: infoMut(dmgFormulas.burst[`${ele}_iris_dmg` as keyof typeof dmgFormulas.burst], {
-              name: ct.chg(`burst.skillParams.1`),
-            }),
+            node: infoMut(
+              dmgFormulas.burst[
+                `${ele}_iris_dmg` as keyof typeof dmgFormulas.burst
+              ],
+              {
+                name: ct.chg(`burst.skillParams.1`),
+              }
+            ),
           })),
           {
             text: stg("cd"),

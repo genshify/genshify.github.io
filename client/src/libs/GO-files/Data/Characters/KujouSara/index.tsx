@@ -79,7 +79,8 @@ const [condSkillTenguAmbushPath, condSkillTenguAmbush] = cond(
 );
 const atkIncRatio = subscript(
   input.total.skillIndex,
-  dm.skill.atkBonus.map((x) => x),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  dm.skill.atkBonus.map((x: any) => x),
   { unit: "%" }
 );
 const skillTenguAmbush_disp = equal(

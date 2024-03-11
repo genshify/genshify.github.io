@@ -292,7 +292,10 @@ const sheet: ICharacterSheet = {
                 text: ct.chg("skill.skillParams.1"),
                 value: (data) =>
                   data.get(
-                    subscript(input.total.skillIndex, dm.skill.infusionDuration)
+                    subscript<number>(
+                      input.total.skillIndex,
+                      dm.skill.infusionDuration
+                    )
                   ).value,
                 unit: "s",
                 fixed: 1,

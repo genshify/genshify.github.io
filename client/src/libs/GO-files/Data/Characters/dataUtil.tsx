@@ -139,7 +139,7 @@ export function dmgNode(
   const talentType = getTalentType(move)
   return customDmgNode(
     prod(
-      subscript(input.total[`${talentType}Index`], lvlMultiplier, {
+      subscript<number>(input.total[`${talentType}Index`], lvlMultiplier, {
         unit: '%',
       }),
       input.total[base],
@@ -167,7 +167,7 @@ export function splitScaleDmgNode(
     sum(
       ...bases.map((base, i) =>
         prod(
-          subscript(input.total[`${talentType}Index`], lvlMultipliers[i], {
+          subscript<number>(input.total[`${talentType}Index`], lvlMultipliers[i], {
             unit: '%',
           }),
           input.total[base]
@@ -345,6 +345,7 @@ export function dataObjForCharacterSheet(
       prefix: 'char',
       asConst: true,
     })
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     if (stat.endsWith('_dmg_')) result.info!.variant = stat.slice(0, -5) as any
     if (stat === 'atk' || stat === 'def' || stat === 'hp')
       data.base![stat] = result

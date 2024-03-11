@@ -102,7 +102,9 @@ const burstNormalDmgInc = equal(
   "on",
   prod(
     sum(
-      subscript(input.total.burstIndex, dm.burst.nBonus_, { unit: "%" }),
+      subscript<number>(input.total.burstIndex, dm.burst.nBonus_, {
+        unit: "%",
+      }),
       greaterEq(
         input.asc,
         4,
@@ -118,7 +120,9 @@ const burstChargedDmgInc = equal(
   "on",
   prod(
     sum(
-      subscript(input.total.burstIndex, dm.burst.cBonus_, { unit: "%" }),
+      subscript<number>(input.total.burstIndex, dm.burst.cBonus_, {
+        unit: "%",
+      }),
       greaterEq(
         input.asc,
         4,
@@ -133,7 +137,7 @@ const burstSkillDmgInc = equal(
   condBurst,
   "on",
   prod(
-    subscript(input.total.burstIndex, dm.burst.sBonus_, { unit: "%" }),
+    subscript<number>(input.total.burstIndex, dm.burst.sBonus_, { unit: "%" }),
     input.premod.hp
   )
 );

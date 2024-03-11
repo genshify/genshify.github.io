@@ -117,7 +117,9 @@ const dmgFormulas = {
     stanceDmg: dmgNode("atk", dm.skill.stanceDmg, "skill"),
     normal1: customDmgNode(
       prod(
-        subscript(input.total.skillIndex, dm.skill.normal1, { unit: "%" }),
+        subscript<number>(input.total.skillIndex, dm.skill.normal1, {
+          unit: "%",
+        }),
         input.total.atk
       ),
       "normal",
@@ -125,7 +127,9 @@ const dmgFormulas = {
     ),
     normal2: customDmgNode(
       prod(
-        subscript(input.total.skillIndex, dm.skill.normal2, { unit: "%" }),
+        subscript<number>(input.total.skillIndex, dm.skill.normal2, {
+          unit: "%",
+        }),
         input.total.atk
       ),
       "normal",
@@ -133,7 +137,9 @@ const dmgFormulas = {
     ),
     normal3: customDmgNode(
       prod(
-        subscript(input.total.skillIndex, dm.skill.normal3, { unit: "%" }),
+        subscript<number>(input.total.skillIndex, dm.skill.normal3, {
+          unit: "%",
+        }),
         input.total.atk
       ),
       "normal",
@@ -141,7 +147,9 @@ const dmgFormulas = {
     ),
     normal4: customDmgNode(
       prod(
-        subscript(input.total.skillIndex, dm.skill.normal4, { unit: "%" }),
+        subscript<number>(input.total.skillIndex, dm.skill.normal4, {
+          unit: "%",
+        }),
         input.total.atk
       ),
       "normal",
@@ -149,7 +157,9 @@ const dmgFormulas = {
     ),
     normal5: customDmgNode(
       prod(
-        subscript(input.total.skillIndex, dm.skill.normal5, { unit: "%" }),
+        subscript<number>(input.total.skillIndex, dm.skill.normal5, {
+          unit: "%",
+        }),
         input.total.atk
       ),
       "normal",
@@ -157,7 +167,9 @@ const dmgFormulas = {
     ),
     normal61: customDmgNode(
       prod(
-        subscript(input.total.skillIndex, dm.skill.normal61, { unit: "%" }),
+        subscript<number>(input.total.skillIndex, dm.skill.normal61, {
+          unit: "%",
+        }),
         input.total.atk
       ),
       "normal",
@@ -165,7 +177,9 @@ const dmgFormulas = {
     ),
     normal62: customDmgNode(
       prod(
-        subscript(input.total.skillIndex, dm.skill.normal62, { unit: "%" }),
+        subscript<number>(input.total.skillIndex, dm.skill.normal62, {
+          unit: "%",
+        }),
         input.total.atk
       ),
       "normal",
@@ -173,7 +187,9 @@ const dmgFormulas = {
     ),
     charged1: customDmgNode(
       prod(
-        subscript(input.total.skillIndex, dm.skill.charged1, { unit: "%" }),
+        subscript<number>(input.total.skillIndex, dm.skill.charged1, {
+          unit: "%",
+        }),
         input.total.atk
       ),
       "charged",
@@ -181,7 +197,9 @@ const dmgFormulas = {
     ),
     charged2: customDmgNode(
       prod(
-        subscript(input.total.skillIndex, dm.skill.charged2, { unit: "%" }),
+        subscript<number>(input.total.skillIndex, dm.skill.charged2, {
+          unit: "%",
+        }),
         input.total.atk
       ),
       "charged",

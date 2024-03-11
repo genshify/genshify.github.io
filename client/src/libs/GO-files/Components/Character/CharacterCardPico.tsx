@@ -6,8 +6,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Box, CardActionArea, Skeleton, Typography } from "@mui/material";
 import type { MouseEvent, ReactNode } from "react";
-import { Suspense, useCallback, useContext, useEffect, useState } from "react";
-import { SillyContext } from "../../../../contexts/SillyContext";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { getCharSheet } from "../../Data/Characters";
 import { ElementIcon } from "../../KeyMap/StatIcon";
 import { iconAsset } from "../../Util/AssetUtil";
@@ -35,7 +34,6 @@ export default function CharacterCardPico({
   const character = useCharacter(characterKey);
   const { favorite } = useCharMeta(characterKey) || {}; // Add default empty object //todo: fix this
   const { gender } = useDBMeta();
-  const { silly } = useContext(SillyContext);
   const characterSheet = getCharSheet(characterKey, gender);
   const onClickHandler = useCallback(
     () => onClick?.(characterKey),
@@ -144,7 +142,7 @@ export default function CharacterCardPico({
           <Box display="flex" className={`grad-${characterSheet.rarity}star`}>
             <Box
               component="img"
-              src={iconAsset(characterKey, gender, silly)}
+              src={iconAsset(characterKey, gender)}
               maxWidth="100%"
               maxHeight="100%"
               draggable={false}

@@ -167,7 +167,9 @@ const dmgFormulas = {
       2,
       customDmgNode(
         prod(
-          subscript(input.total.skillIndex, dm.skill.shotDmg, { unit: "%" }),
+          subscript<number>(input.total.skillIndex, dm.skill.shotDmg, {
+            unit: "%",
+          }),
           percent(dm.constellation2.toopDmg, {
             name: ct.ch("c2MultiplierKey_"),
           }),
@@ -373,8 +375,9 @@ const sheet: ICharacterSheet = {
           {
             text: stg("energyRegen"),
             value: (data) =>
-              data.get(subscript(input.total.burstIndex, dm.burst.energyRegen))
-                .value,
+              data.get(
+                subscript<number>(input.total.burstIndex, dm.burst.energyRegen)
+              ).value,
             fixed: 1,
           },
           {

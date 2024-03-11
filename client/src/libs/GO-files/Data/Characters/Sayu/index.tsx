@@ -149,10 +149,12 @@ const c6_daruma_heal_inc = greaterEq(
 const darumaHeal = customHealNode(
   sum(
     prod(
-      subscript(input.total.burstIndex, dm.burst.darumaAtkHeal, { unit: "%" }),
+      subscript<number>(input.total.burstIndex, dm.burst.darumaAtkHeal, {
+        unit: "%",
+      }),
       input.total.atk
     ),
-    subscript(input.total.burstIndex, dm.burst.darumaBaseHeal),
+    subscript<number>(input.total.burstIndex, dm.burst.darumaBaseHeal),
     c6_daruma_heal_inc
   )
 );

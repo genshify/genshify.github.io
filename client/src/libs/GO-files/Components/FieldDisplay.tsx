@@ -1,28 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { valueString } from "genshin-optimizer/util";
-import type { AmpReactionKey } from "genshin-optimizer/consts";
-import { allAmpReactionKeys } from "genshin-optimizer/consts";
 import { Groups } from "@mui/icons-material";
-import HelpIcon from "@mui/icons-material/Help";
 import type { ListProps, Palette, PaletteColor } from "@mui/material";
 import {
   Box,
-  Divider,
   List,
   ListItem,
-  Skeleton,
   Typography,
   styled,
 } from "@mui/material";
-import React, { Suspense, useCallback, useContext, useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import { DataContext } from "../../../contexts/DataContext";
-import { FormulaDataContext } from "../../../contexts/FormulaDataContext";
 import type { NodeDisplay } from "../Formula/api";
 import { nodeVStr } from "../Formula/uiData";
 import type { IBasicFieldDisplay, IFieldDisplay } from "../Types/fieldDisplay";
 import { evalIfFunc } from "../Util/Util";
-import AmpReactionModeText from "./AmpReactionModeText";
-import BootstrapTooltip from "./BootstrapTooltip";
 import { ColorText } from "genshin-optimizer/ui"
 
 export default function FieldsDisplay({ fields }: { fields: IFieldDisplay[] }) {
@@ -104,13 +96,6 @@ export function NodeFieldDisplay({
   component?: React.ElementType;
   emphasize?: boolean;
 }) {
-  const { data } = useContext(DataContext);
-  const { setFormulaData } = useContext(FormulaDataContext);
-  const onClick = useCallback(
-    () => setFormulaData(data, node),
-    [setFormulaData, data, node]
-  );
-
   if (node.isEmpty) return null;
   const { multi } = node.info;
 
@@ -157,45 +142,6 @@ export function NodeFieldDisplay({
           {multiDisplay}
           {fieldVal}
         </Typography>
-        {!!node.formula && (
-          <BootstrapTooltip
-            placement="top"
-            title={
-              <Typography>
-                <Suspense
-                  fallback={
-                    <Skeleton variant="rectangular" width={300} height={30} />
-                  }
-                >
-                  {allAmpReactionKeys.includes(node.info.variant as any) && (
-                    <Box sx={{ display: "inline-flex", gap: 1, mr: 1 }}>
-                      <Box>
-                        <AmpReactionModeText
-                          reaction={node.info.variant as AmpReactionKey}
-                          trigger={
-                            node.info.subVariant as
-                              | "cryo"
-                              | "pyro"
-                              | "hydro"
-                              | undefined
-                          }
-                        />
-                      </Box>
-                      <Divider orientation="vertical" flexItem />
-                    </Box>
-                  )}
-                  <span>{node.formula}</span>
-                </Suspense>
-              </Typography>
-            }
-          >
-            <HelpIcon
-              onClick={onClick}
-              fontSize="inherit"
-              sx={{ cursor: "help" }}
-            />
-          </BootstrapTooltip>
-        )}
       </Box>
     </Box>
   );

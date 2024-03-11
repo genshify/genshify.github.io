@@ -46,7 +46,6 @@ import { getCharSheet } from "../../../../libs/GO-files/Data/Characters";
 import useCharacterReducer from "../../../../libs/GO-files/ReactHooks/useCharacterReducer";
 import useTeamData from "../../../../libs/GO-files/ReactHooks/useTeamData";
 import useTitle from "../../../../libs/GO-files/ReactHooks/useTitle";
-import { shouldShowDevComponents } from "../../../../libs/GO-files/Util/Util";
 import CharSelectButton from "./CharSelectButton";
 import FormulaModal from "./FormulaModal";
 import StatModal from "./StatModal";
@@ -199,9 +198,6 @@ function CharacterPanel() {
         <Route path="/teambuffs" element={<TabOverview />} />
         <Route path="/optimize" element={<TabOverview />} />
         <Route path="/theorycraft" element={<TabOverview />} />
-        {shouldShowDevComponents && (
-          <Route path="/upopt" element={<TabOverview />} />
-        )}
       </Routes>
     </Suspense>
   );

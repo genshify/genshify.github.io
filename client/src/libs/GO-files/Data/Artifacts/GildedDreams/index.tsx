@@ -41,16 +41,17 @@ const autoOtherNum = sum(
 
 const [condOverrideOtherPath, condOverrideOther] = cond(key, 'overrideOther')
 const overrideArr = range(0, 3)
+
 const overrideOtherNum = lookup(
   condOverrideOther,
   objKeyMap(overrideArr, (numOther) => constant(numOther)),
-  undefined
+  "none"
 )
 const [condOverrideSamePath, condOverrideSame] = cond(key, 'overrideSame')
 const overrideSameNum = lookup(
   condOverrideSame,
   objKeyMap(overrideArr, (numSame) => constant(numSame)),
-  undefined
+  "none"
 )
 
 const set4_atk_ = greaterEq(

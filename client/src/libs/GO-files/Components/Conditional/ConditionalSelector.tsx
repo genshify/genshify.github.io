@@ -5,7 +5,6 @@ import {
   layeredAssignment,
 } from "genshin-optimizer/util";
 import { CheckBox, CheckBoxOutlineBlank } from "@mui/icons-material";
-import type { ButtonProps } from "@mui/material";
 import { Button, ButtonGroup, Divider, MenuItem } from "@mui/material";
 import { useCallback, useContext } from "react";
 import { CharacterContext } from "../../../../contexts/CharacterContext";
@@ -229,18 +228,16 @@ function isElement(disp: Displayable): disp is JSX.Element {
 function getStateBadge(stateName: Displayable | undefined): Displayable {
   if (!stateName) return "";
 
-  let badgeColor: ButtonProps["color"] = "primary";
   let badgeText = stateName;
   if (stateName && isElement(stateName)) {
     if (stateName.props.color) {
-      badgeColor = stateName.props.color;
       badgeText = <span>{stateName.props.children}</span>;
     }
   }
   return (
-    <SqBadge sx={{ ml: 0.5 }} color={badgeColor}>
+    <div >
       {badgeText}
-    </SqBadge>
+    </div>
   );
 }
 

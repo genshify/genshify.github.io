@@ -100,16 +100,17 @@ const nodeC3 = greaterEq(input.constellation, 3, 3);
 const nodeC5 = greaterEq(input.constellation, 5, 3);
 
 const skillDmgOneHit = dm.skill.dmgBase.map(
-  (dmg, i) => dmg + dm.skill.onHitDmgBonus[i]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (dmg: any, i: string | number) => dmg + dm.skill.onHitDmgBonus[i]
 );
 const skillDmgTwoHits = dm.skill.dmgBase.map(
-  (dmg, i) => dmg + 2 * dm.skill.onHitDmgBonus[i]
+  (dmg: number, i: string | number) => dmg + 2 * dm.skill.onHitDmgBonus[i]
 );
 
 const nodeBurstDmgRed_ = equal(
   condBurst,
   "on",
-  subscript(input.total.burstIndex, dm.burst.damageReduction)
+  subscript<number>(input.total.burstIndex, dm.burst.damageReduction)
 );
 const nodeBurstElectroResRed_ = greaterEq(
   input.constellation,

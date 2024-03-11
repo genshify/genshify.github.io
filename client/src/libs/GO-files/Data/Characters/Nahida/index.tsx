@@ -119,8 +119,8 @@ const burst_karma_dmg_ = equal(
     compareEq(
       pyroLevel,
       1,
-      subscript(input.total.burstIndex, dm.burst.dmg_1),
-      subscript(input.total.burstIndex, dm.burst.dmg_2)
+      subscript<number>(input.total.burstIndex, dm.burst.dmg_1),
+      subscript<number>(input.total.burstIndex, dm.burst.dmg_2)
     )
   ),
   { unit: "%" }
@@ -136,8 +136,8 @@ const burst_skillIntervalDec = equal(
     compareEq(
       electroLevel,
       1,
-      subscript(input.total.burstIndex, dm.burst.intervalDec_1),
-      subscript(input.total.burstIndex, dm.burst.intervalDec_2)
+      subscript<number>(input.total.burstIndex, dm.burst.intervalDec_1),
+      subscript<number>(input.total.burstIndex, dm.burst.intervalDec_2)
     )
   ),
   { unit: "%" }
@@ -153,8 +153,8 @@ const burst_durationInc = equal(
     compareEq(
       hydroLevel,
       1,
-      subscript(input.total.burstIndex, dm.burst.durationInc1),
-      subscript(input.total.burstIndex, dm.burst.durationInc2)
+      subscript<number>(input.total.burstIndex, dm.burst.durationInc1),
+      subscript<number>(input.total.burstIndex, dm.burst.durationInc2)
     )
   ),
   { unit: "%" }

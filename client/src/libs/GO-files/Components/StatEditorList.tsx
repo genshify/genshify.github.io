@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { MainStatKey, SubstatKey } from "genshin-optimizer/consts";
 import { allMainStatKeys, allSubstatKeys } from "genshin-optimizer/consts";
 import { KeyMap } from "genshin-optimizer/keymap";
@@ -90,18 +91,18 @@ export default function StatEditorList({
   );
 
   const setFilter = useCallback(
-    (sKey, min) => {
+    (sKey:any, min:any) => {
       const statFilters_ = { ...statFilters };
-      statFilters_[sKey] = min;
+      statFilters_[sKey as keyof typeof statFilters_] = min;
       setStatFilters({ ...statFilters_ });
     },
     [statFilters, setStatFilters]
   );
 
   const delKey = useCallback(
-    (statKey) => {
+    (statKey:any) => {
       const statFilters_ = { ...statFilters };
-      delete statFilters_[statKey];
+      delete statFilters_[statKey as keyof typeof statFilters_];
       setStatFilters({ ...statFilters_ });
     },
     [statFilters, setStatFilters]

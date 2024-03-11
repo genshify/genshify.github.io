@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { objKeyMap } from "genshin-optimizer/util";
 import type { OptNode } from "./optimization";
 import type {

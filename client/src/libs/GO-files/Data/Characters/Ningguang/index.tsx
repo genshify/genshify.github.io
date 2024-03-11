@@ -88,7 +88,9 @@ const dmgFormulas = {
   plunging: plungingDmgNodes("atk", dm.plunging),
   skill: {
     screenHp: prod(
-      subscript(input.total.skillIndex, dm.skill.screenHp, { unit: "%" }),
+      subscript<number>(input.total.skillIndex, dm.skill.screenHp, {
+        unit: "%",
+      }),
       input.total.hp
     ),
     dmg: dmgNode("atk", dm.skill.skillDmg, "skill"),

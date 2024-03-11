@@ -31,7 +31,6 @@ import type { CharacterContextObj } from "../../../../contexts/CharacterContext"
 import { CharacterContext } from "../../../../contexts/CharacterContext";
 import type { dataContextObj } from "../../../../contexts/DataContext";
 import { DataContext } from "../../../../contexts/DataContext";
-import { SillyContext } from "../../../../contexts/SillyContext";
 import { getCharSheet } from "../../Data/Characters";
 import { uiInput as input } from "../../Formula";
 import useCharacterReducer from "../../ReactHooks/useCharacterReducer";
@@ -289,7 +288,6 @@ function Header({
   onClick?: (characterKey: CharacterKey) => void;
 }) {
   const { gender } = useDBMeta();
-  const { silly } = useContext(SillyContext);
   const characterSheet = getCharSheet(characterKey, gender);
 
   const actionWrapperFunc = useCallback(
@@ -331,7 +329,7 @@ function Header({
         <Box
           flexShrink={1}
           component="img"
-          src={iconAsset(characterKey, gender, silly)}
+          src={iconAsset(characterKey, gender)}
           sx={{ maxWidth: "40%" }}
           alignSelf="flex-end"
           display="flex"
