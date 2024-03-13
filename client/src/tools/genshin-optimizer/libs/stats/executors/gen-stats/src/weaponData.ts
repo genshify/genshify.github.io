@@ -1,10 +1,10 @@
-import { extrapolateFloat } from "@genshin-optimizer/common/pipeline";
+import { extrapolateFloat } from "../../../../pipeline";
 import type { WeaponKey } from "genshin-optimizer/consts";
 import type {
   StatKey,
   WeaponGrowCurveKey,
   WeaponTypeKey,
-} from "@genshin-optimizer/gi/dm";
+} from "genshin-optimizer/dm";
 import {
   equipAffixExcelConfigData,
   propTypeMap,
@@ -12,7 +12,7 @@ import {
   weaponIdMap,
   weaponMap,
   weaponPromoteExcelConfigData,
-} from "@genshin-optimizer/gi/dm";
+} from "genshin-optimizer/dm";
 import * as quantumCatalystData from "./QuantumCatalyst/data.json";
 
 type WeaponProp = {
