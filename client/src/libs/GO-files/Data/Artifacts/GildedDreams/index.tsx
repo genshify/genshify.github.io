@@ -62,7 +62,7 @@ const set4_atk_ = greaterEq(
     'on',
     prod(
       percent(0.14),
-      compareEq(overrideSameNum, undefined, autoSameNum, overrideSameNum)
+      compareEq(overrideSameNum, -1, autoSameNum, overrideSameNum)
     )
   )
 )
@@ -75,7 +75,7 @@ const set4_eleMas = greaterEq(
     'on',
     prod(
       50,
-      compareEq(overrideOtherNum, undefined, autoOtherNum, overrideOtherNum)
+      compareEq(overrideOtherNum, -1, autoOtherNum, overrideOtherNum)
     ),
     KeyMap.info('eleMas')
   )

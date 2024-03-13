@@ -1,11 +1,11 @@
-import { extrapolateFloat } from '@genshin-optimizer/common/pipeline'
-import { layeredAssignment } from '@genshin-optimizer/common/util'
-import type { NonTravelerCharacterKey } from '@genshin-optimizer/gi/consts'
+import { extrapolateFloat } from "@genshin-optimizer/common/pipeline";
+import { layeredAssignment } from "@genshin-optimizer/common/util";
+import type { NonTravelerCharacterKey } from "genshin-optimizer/consts";
 import type {
   AvatarSkillDepotExcelConfigData,
   CharacterId,
   ProudSkillExcelConfigData,
-} from '@genshin-optimizer/gi/dm'
+} from "@genshin-optimizer/gi/dm";
 import {
   avatarExcelConfigData,
   avatarSkillDepotExcelConfigData,
@@ -13,45 +13,45 @@ import {
   avatarTalentExcelConfigData,
   characterIdMap,
   proudSkillExcelConfigData,
-} from '@genshin-optimizer/gi/dm'
-import * as somniaData from './Somnia/skillParam.json'
+} from "@genshin-optimizer/gi/dm";
+import * as somniaData from "./Somnia/skillParam.json";
 
 type CharacterSkillParams = {
-  auto: number[][]
-  skill: number[][]
-  burst: number[][]
-  sprint?: number[][]
-  passive?: number[][]
-  passive1: number[][]
-  passive2: number[][]
-  passive3?: number[][] //Travelers don't have passive3s
-  constellation1: number[]
-  constellation2: number[]
-  constellation3: number[]
-  constellation4: number[]
-  constellation5: number[]
-  constellation6: number[]
-}
+  auto: number[][];
+  skill: number[][];
+  burst: number[][];
+  sprint?: number[][];
+  passive?: number[][];
+  passive1: number[][];
+  passive2: number[][];
+  passive3?: number[][]; //Travelers don't have passive3s
+  constellation1: number[];
+  constellation2: number[];
+  constellation3: number[];
+  constellation4: number[];
+  constellation5: number[];
+  constellation6: number[];
+};
 
 type SKillParamCharacterKey =
   | NonTravelerCharacterKey
-  | 'TravelerAnemoF'
-  | 'TravelerAnemoM'
-  | 'TravelerDendroF'
-  | 'TravelerDendroM'
-  | 'TravelerElectroF'
-  | 'TravelerElectroM'
-  | 'TravelerGeoF'
-  | 'TravelerGeoM'
-  | 'TravelerHydroF'
-  | 'TravelerHydroM'
+  | "TravelerAnemoF"
+  | "TravelerAnemoM"
+  | "TravelerDendroF"
+  | "TravelerDendroM"
+  | "TravelerElectroF"
+  | "TravelerElectroM"
+  | "TravelerGeoF"
+  | "TravelerGeoM"
+  | "TravelerHydroF"
+  | "TravelerHydroM";
 export type SkillParamData = Record<
   SKillParamCharacterKey,
   CharacterSkillParams
->
+>;
 
 export default function characterSkillParam() {
-  const characterSkillParamDump = {} as SkillParamData
+  const characterSkillParamDump = {} as SkillParamData;
   function genTalentHash(
     keys: string[],
     depot: AvatarSkillDepotExcelConfigData
@@ -61,78 +61,78 @@ export default function characterSkillParam() {
       skills: [normal, skill, sprint],
       talents,
       inherentProudSkillOpens: [passive1, passive2, passive3, , passive],
-    } = depot
+    } = depot;
 
     function parseSkillParams(
       keys: string[],
       skillArr: ProudSkillExcelConfigData[]
     ) {
-      const skillParamBase = skillArr.map((proud) => proud.paramList)
+      const skillParamBase = skillArr.map((proud) => proud.paramList);
 
       //need to transpose the skillParam
-      const skillParamUntrimmed: Array<Array<number>> = []
+      const skillParamUntrimmed: Array<Array<number>> = [];
       skillParamBase.forEach((arr, i) => {
         arr.forEach((value, j) => {
-          if (!skillParamUntrimmed[j]) skillParamUntrimmed[j] = []
+          if (!skillParamUntrimmed[j]) skillParamUntrimmed[j] = [];
           //The assumption is that any value >10 is a "flat" value that is not a percent.
-          skillParamUntrimmed[j][i] = extrapolateFloat(value)
-        })
-      })
+          skillParamUntrimmed[j][i] = extrapolateFloat(value);
+        });
+      });
       //filter out empty entries
       const skillParam = skillParamUntrimmed.filter(
         (arr) => !arr.every((i) => !i)
-      )
-      layeredAssignment(characterSkillParamDump, keys, skillParam)
+      );
+      layeredAssignment(characterSkillParamDump, keys, skillParam);
     }
     parseSkillParams(
-      [...keys, 'auto'],
+      [...keys, "auto"],
       proudSkillExcelConfigData[
         avatarSkillExcelConfigData[normal].proudSkillGroupId
       ]
-    )
+    );
 
     parseSkillParams(
-      [...keys, 'skill'],
+      [...keys, "skill"],
       proudSkillExcelConfigData[
         avatarSkillExcelConfigData[skill].proudSkillGroupId
       ]
-    )
+    );
     parseSkillParams(
-      [...keys, 'burst'],
+      [...keys, "burst"],
       proudSkillExcelConfigData[
         avatarSkillExcelConfigData[burst].proudSkillGroupId
       ]
-    )
+    );
 
     if (sprint)
       parseSkillParams(
-        [...keys, 'sprint'],
+        [...keys, "sprint"],
         proudSkillExcelConfigData[
           avatarSkillExcelConfigData[sprint].proudSkillGroupId
         ]
-      )
+      );
 
     passive1.proudSkillGroupId &&
       parseSkillParams(
-        [...keys, 'passive1'],
+        [...keys, "passive1"],
         proudSkillExcelConfigData[passive1.proudSkillGroupId]
-      )
+      );
     passive2.proudSkillGroupId &&
       parseSkillParams(
-        [...keys, 'passive2'],
+        [...keys, "passive2"],
         proudSkillExcelConfigData[passive2.proudSkillGroupId]
-      )
+      );
     if (passive3?.proudSkillGroupId)
       parseSkillParams(
-        [...keys, 'passive3'],
+        [...keys, "passive3"],
         proudSkillExcelConfigData[passive3.proudSkillGroupId]
-      )
+      );
     //seems to be only used by sangonomiyaKokomi
     if (passive?.proudSkillGroupId)
       parseSkillParams(
-        [...keys, 'passive'],
+        [...keys, "passive"],
         proudSkillExcelConfigData[passive.proudSkillGroupId]
-      )
+      );
 
     talents.forEach((skId, i) =>
       layeredAssignment(
@@ -142,43 +142,44 @@ export default function characterSkillParam() {
           .filter((i) => i)
           .map((value) => extrapolateFloat(value))
       )
-    )
+    );
   }
   Object.entries(avatarExcelConfigData).forEach(([ci, charData]) => {
-    const charid: CharacterId = ci as unknown as CharacterId
-    const { candSkillDepotIds, skillDepotId } = charData
+    const charid: CharacterId = ci as unknown as CharacterId;
+    const { candSkillDepotIds, skillDepotId } = charData;
 
     if (candSkillDepotIds.length) {
       //Traveler
-      const [_1, _2, hydro, anemo, _5, geo, electro, dendro] = candSkillDepotIds
-      const gender = characterIdMap[charid] === 'TravelerF' ? 'F' : 'M'
+      const [_1, _2, hydro, anemo, _5, geo, electro, dendro] =
+        candSkillDepotIds;
+      const gender = characterIdMap[charid] === "TravelerF" ? "F" : "M";
       genTalentHash(
-        ['TravelerAnemo' + gender],
+        ["TravelerAnemo" + gender],
         avatarSkillDepotExcelConfigData[anemo]
-      )
+      );
       genTalentHash(
-        ['TravelerGeo' + gender],
+        ["TravelerGeo" + gender],
         avatarSkillDepotExcelConfigData[geo]
-      )
+      );
       genTalentHash(
-        ['TravelerElectro' + gender],
+        ["TravelerElectro" + gender],
         avatarSkillDepotExcelConfigData[electro]
-      )
+      );
       genTalentHash(
-        ['TravelerDendro' + gender],
+        ["TravelerDendro" + gender],
         avatarSkillDepotExcelConfigData[dendro]
-      )
+      );
       genTalentHash(
-        ['TravelerHydro' + gender],
+        ["TravelerHydro" + gender],
         avatarSkillDepotExcelConfigData[hydro]
-      )
+      );
     } else {
       genTalentHash(
         [characterIdMap[charid]],
         avatarSkillDepotExcelConfigData[skillDepotId]
-      )
+      );
     }
-  })
-  characterSkillParamDump.Somnia = somniaData as CharacterSkillParams
-  return characterSkillParamDump
+  });
+  characterSkillParamDump.Somnia = somniaData as CharacterSkillParams;
+  return characterSkillParamDump;
 }

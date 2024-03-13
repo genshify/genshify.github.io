@@ -101,10 +101,10 @@ const nodeC5 = greaterEq(input.constellation, 5, 3);
 
 const skillDmgOneHit = dm.skill.dmgBase.map(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (dmg: any, i: string | number) => dmg + dm.skill.onHitDmgBonus[i]
+  (dmg: any, i: string | number) => dmg + dm.skill.onHitDmgBonus[i as number]
 );
 const skillDmgTwoHits = dm.skill.dmgBase.map(
-  (dmg: number, i: string | number) => dmg + 2 * dm.skill.onHitDmgBonus[i]
+  (dmg: number, i: string | number) => dmg + 2 * dm.skill.onHitDmgBonus[i as number]
 );
 
 const nodeBurstDmgRed_ = equal(
