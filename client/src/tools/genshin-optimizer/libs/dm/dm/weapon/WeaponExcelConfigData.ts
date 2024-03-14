@@ -1,5 +1,3 @@
-import { dumpFile, nameToKey } from "genshin-optimizer/pipeline";
-import { TextMapEN } from "../../TextMapUtil";
 import type { DWeaponTypeKey, WeaponId } from "../../mapping";
 import { weaponIdMap } from "../../mapping";
 import { readDMJSON } from "../../util";
@@ -65,14 +63,5 @@ const weaponExcelConfigData = Object.fromEntries(
     .map((data) => [data.id, data])
 ) as Record<WeaponId, WeaponExcelConfigData>;
 
-dumpFile(
-  `${__dirname}/WeaponExcelConfigData_idmap_gen.json`,
-  Object.fromEntries(
-    weaponExcelConfigDataSrc.map((data) => [
-      data.id,
-      nameToKey(TextMapEN[data.nameTextMapHash]),
-    ])
-  )
-);
 
 export { weaponExcelConfigData };

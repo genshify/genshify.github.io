@@ -1,6 +1,3 @@
-import { dumpFile, nameToKey } from "genshin-optimizer/pipeline";
-import { TextMapEN } from "../../TextMapUtil";
-import { PROJROOT_PATH } from "../../consts";
 import type { DArtifactSlotKey } from "../../mapping";
 import { readDMJSON } from "../../util";
 
@@ -47,15 +44,5 @@ const reliquaryExcelConfigDataSrc = JSON.parse(
 const reliquaryExcelConfigData = Object.fromEntries(
   reliquaryExcelConfigDataSrc.map((data) => [data.id, data])
 ) as Record<number, ReliquaryExcelConfigData>;
-
-dumpFile(
-  `${PROJROOT_PATH}/src/dm/artifact/ReliquaryExcelConfigData_idmap_gen.json`,
-  Object.fromEntries(
-    reliquaryExcelConfigDataSrc.map((data) => [
-      data.id,
-      [data.setId, nameToKey(TextMapEN[data.nameTextMapHash])],
-    ])
-  )
-);
 
 export { reliquaryExcelConfigData };

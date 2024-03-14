@@ -1,6 +1,3 @@
-import { dumpFile, nameToKey } from "genshin-optimizer/pipeline";
-import { TextMapEN } from "../../TextMapUtil";
-import { PROJROOT_PATH } from "../../consts";
 import type { CharacterId, DQualityKey, DWeaponTypeKey } from "../../mapping";
 import { characterIdMap } from "../../mapping";
 import { readDMJSON } from "../../util";
@@ -92,14 +89,5 @@ const avatarExcelConfigData = Object.fromEntries(
     .map((data) => [data.id, data])
 ) as Record<CharacterId, AvatarExcelConfigData>;
 
-dumpFile(
-  `${PROJROOT_PATH}/src/dm/character/AvatarExcelConfigData_idmap_gen.json`,
-  Object.fromEntries(
-    avatarExcelConfigDataSrc.map((data) => [
-      data.id,
-      nameToKey(TextMapEN[data.nameTextMapHash]),
-    ])
-  )
-);
 
 export { avatarExcelConfigData };

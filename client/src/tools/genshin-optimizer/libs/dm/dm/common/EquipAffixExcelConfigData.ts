@@ -1,6 +1,4 @@
-import { dumpFile, nameToKey } from "genshin-optimizer/pipeline";
 import { layeredAssignment } from "genshin-optimizer/util";
-import { TextMapEN } from "../../TextMapUtil";
 import type { PropTypeKey, WeaponId } from "../../mapping";
 import { readDMJSON } from "../../util";
 
@@ -52,14 +50,5 @@ equipAffixExcelConfigDataSrc.forEach((data) => {
   layeredAssignment(equipAffixExcelConfigData, [id, level], data);
 });
 
-dumpFile(
-  `${__dirname}/EquipAffixExcelConfigData_idmap_gen.json`,
-  Object.fromEntries(
-    equipAffixExcelConfigDataSrc.map((data) => [
-      data.id,
-      nameToKey(TextMapEN[data.nameTextMapHash]),
-    ])
-  )
-);
 
 export { equipAffixExcelConfigData };
