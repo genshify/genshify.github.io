@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { OptNode } from '../../../Formula/optimization'
 import { assertUnreachable, cartesian } from '../../../Util/Util'
 import type { ArtifactsBySlot, DynStat, MinMax } from '../../common'
@@ -13,7 +14,7 @@ function weightedSum(
   const result = { $c: 0 }
   for (const [weight, entry] of entries)
     for (const [k, v] of Object.entries(entry))
-      result[k] = (result[k] ?? 0) + weight * v
+      result[k as keyof typeof result] = (result[k as keyof typeof result] ?? 0) + weight * v
   return result
 }
 

@@ -27,7 +27,6 @@ import CardDark from "../../../../libs/GO-files/Components/Card/CardDark";
 import CardHeaderCustom from "../../../../libs/GO-files/Components/Card/CardHeaderCustom";
 import CardLight from "../../../../libs/GO-files/Components/Card/CardLight";
 import CloseButton from "../../../../libs/GO-files/Components/CloseButton";
-import { ColorText } from "genshin-optimizer/ui";
 import ImgIcon from "../../../../libs/GO-files/Components/Image/ImgIcon";
 import ModalWrapper from "../../../../libs/GO-files/Components/ModalWrapper";
 import { SqBadge } from "genshin-optimizer/ui";
@@ -142,7 +141,7 @@ function FormulaAccordian({ node }: { node: NodeDisplay }) {
     >
       <AccordionSummary expandIcon={<ExpandMore />}>
         <Typography>
-          <ColorText color={node.info.variant}>{node.info.name}</ColorText>{" "}
+          <p >{node.info.name}</p>{" "}
           <strong>{nodeVStr(node)}</strong>
         </Typography>
         {allAmpReactionKeys.includes(

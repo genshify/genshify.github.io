@@ -15,7 +15,6 @@ import { Trans, useTranslation } from "react-i18next";
 import CardDark from "../../../../libs/GO-files/Components/Card/CardDark";
 import CardLight from "../../../../libs/GO-files/Components/Card/CardLight";
 import CloseButton from "../../../../libs/GO-files/Components/CloseButton";
-import { ColorText } from "genshin-optimizer/ui";
 import {
   FieldDisplayList,
   NodeFieldDisplay,
@@ -201,9 +200,9 @@ function MainStatsCards() {
                     >
                       <span>
                         <b>Special:</b>{" "}
-                        <ColorText color={specialNode.info.variant}>
+                        <p>
                           {specialNode.info.icon} {specialNode.info.name}
-                        </ColorText>
+                        </p>
                       </span>
                       <span>{nodeVStr(specialNode)}</span>
                     </ListItem>

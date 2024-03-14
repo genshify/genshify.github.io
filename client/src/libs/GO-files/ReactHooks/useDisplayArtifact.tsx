@@ -8,7 +8,7 @@ export default function useDisplayArtifact() {
   );
   useEffect(
     () =>
-      database.displayArtifact.follow((r, disArt) =>
+      database.displayArtifact.follow((_r, disArt) =>
         setArtifactDisplayState(disArt)
       ),
     [database]

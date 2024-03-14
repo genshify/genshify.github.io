@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { deepClone } from 'genshin-optimizer/util'
 import type { CharacterKey } from 'genshin-optimizer/consts'
 import type { ICachedCharacter } from 'genshin-optimizer/db'
@@ -50,7 +51,7 @@ export default function useCharacterReducer(characterKey: CharacterKey | '') {
           case 'enemyOverride': {
             const enemyOverride = character.enemyOverride
             const { statKey, value } = action
-            if (enemyOverride[statKey] === value) break
+            if (enemyOverride[statKey as keyof typeof enemyOverride] === value) break
             database.chars.set(characterKey, {
               ...character,
               enemyOverride: { ...enemyOverride, [statKey]: value },
@@ -60,16 +61,16 @@ export default function useCharacterReducer(characterKey: CharacterKey | '') {
           case 'editStats': {
             const { statKey, value } = action
             const bonusStats = deepClone(character.bonusStats)
-            if (bonusStats[statKey] === value) break
-            if (!value) delete bonusStats[statKey]
-            else bonusStats[statKey] = value
+            if (bonusStats[statKey as keyof typeof bonusStats] === value) break
+            if (!value) delete bonusStats[statKey as keyof typeof bonusStats]
+            else bonusStats[statKey as keyof typeof bonusStats] = value
             database.chars.set(characterKey, { ...character, bonusStats })
             break
           }
           case 'resetStats': {
             const { statKey } = action
             const bonusStats = character.bonusStats
-            delete bonusStats[statKey]
+            delete bonusStats[statKey as keyof typeof bonusStats]
             database.chars.set(characterKey, { ...character, bonusStats })
             break
           }
