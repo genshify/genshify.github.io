@@ -92,14 +92,14 @@ export function migrateGOOD(good: IGOOD & IGO): IGOOD & IGO {
 
     const buildSettings = (good as any).buildSettings
     if (buildSettings)
-      good.buildSettings = buildSettings.map((b) => ({ ...b, id: b.key }))
+      good.buildSettings = buildSettings.map((b: { key: any }) => ({ ...b, id: b.key }))
   })
 
   // 8.28.0 - 9.5.2
   migrateVersion(22, () => {
     const buildSettings = (good as any).buildSettings
     if (buildSettings) {
-      good.buildSettings = buildSettings.map((b) => {
+      good.buildSettings = buildSettings.map((b: any) => {
         const statFilters = (b as any).statFilters
         const newStatFilters = Object.fromEntries(
           Object.entries(statFilters)
@@ -123,8 +123,8 @@ export function migrateGOOD(good: IGOOD & IGO): IGOOD & IGO {
   migrateVersion(23, () => {
     const buildSettings = (good as any).buildSettings
     if (buildSettings) {
-      good.buildSettings = buildSettings.map((b) => {
-        const allowLocations: LocationCharacterKey[] = b.allowLocations
+      good.buildSettings = buildSettings.map((b: { allowLocations?: ("Albedo" | "Alhaitham" | "Aloy" | "Amber" | "AratakiItto" | "Baizhu" | "Barbara" | "Beidou" | "Bennett" | "Candace" | "Charlotte" | "Chevreuse" | "Chongyun" | "Collei" | "Cyno" | "Dehya" | "Diluc" | "Diona" | "Dori" | "Eula" | "Faruzan" | "Fischl" | "Freminet" | "Furina" | "Gaming" | "Ganyu" | "Gorou" | "HuTao" | "Jean" | "KaedeharaKazuha" | "Kaeya" | "KamisatoAyaka" | "KamisatoAyato" | "Kaveh" | "Keqing" | "Kirara" | "Klee" | "KujouSara" | "KukiShinobu" | "Layla" | "Lisa" | "Lynette" | "Lyney" | "Mika" | "Mona" | "Nahida" | "Navia" | "Neuvillette" | "Nilou" | "Ningguang" | "Noelle" | "Qiqi" | "RaidenShogun" | "Razor" | "Rosaria" | "SangonomiyaKokomi" | "Sayu" | "Shenhe" | "ShikanoinHeizou" | "Somnia" | "Sucrose" | "Tartaglia" | "Thoma" | "Tighnari" | "Venti" | "Wanderer" | "Wriothesley" | "Xiangling" | "Xianyun" | "Xiao" | "Xingqiu" | "Xinyan" | "YaeMiko" | "Yanfei" | "Yaoyao" | "Yelan" | "Yoimiya" | "YunJin" | "Zhongli" | "Traveler")[] }) => {
+        const allowLocations = b.allowLocations
         if (allowLocations) {
           // Invert the list; should be all location keys that are not in allowLocations
           // We will remove extra keys later in validation code

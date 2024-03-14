@@ -56,7 +56,7 @@ export function getSubstatRolls(
   const lookupValue = artDisplayValue(substatValue, unit(substatKey));
   return (
     table[lookupValue as unknown as keyof typeof table]?.map((roll: any[]) =>
-      roll.map((i: string | number) => rollData[i])
+      roll.map((i: string | number) => rollData[i as any])
     ) ?? []
   );
 }

@@ -11,7 +11,7 @@ export function useDataManagerBase<
 
   useEffect(() => {
     setData(manager.get(key));
-    return manager.follow(key, (k, r, v) => {
+    return manager.follow(key, (_k, r, v) => {
       if (r === "update") setData(v);
       if (r === "remove") setData(undefined);
     });
