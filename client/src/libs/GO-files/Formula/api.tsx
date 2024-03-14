@@ -1,3 +1,5 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   crawlObject,
   layeredAssignment,
@@ -117,7 +119,7 @@ function dataObjForCharacter(char: ICachedCharacter, sheetData?: Data): Data {
         allElementWithPhyKeys.map((ele) => `${ele}_res_`),
         (ele) =>
           percent(
-            (char.enemyOverride[`${ele.slice(0, -5)}_enemyRes_`] ?? 10) / 100
+            (char.enemyOverride[`${ele.slice(0, -5)}_enemyRes_` as keyof typeof char.enemyOverride] ?? 10) / 100
           )
       ),
       level: constant(char.enemyOverride.enemyLevel ?? char.level),
@@ -328,6 +330,7 @@ function uiDataForTeam(
         { teamBuff: buff, activeCharKey: constant(activeCharKey) },
       ])
     )
+    /* @ts-expect-error */ 
     targetRef['target'] = targetRef
   })
   const origin = new UIData(undefined as any, undefined)
@@ -358,8 +361,7 @@ function mergeData(data: Data[]): Data {
         {}
       if (accu === undefined) {
         const errMsg = `Multiple entries when merging \`unique\` for key ${path}`
-        if (process.env.NODE_ENV === 'development') throw new Error(errMsg)
-        else console.error(errMsg)
+       console.error(errMsg)
 
         accu = type === 'number' ? 'max' : 'small'
       }

@@ -1,11 +1,11 @@
-import { extrapolateFloat } from "@genshin-optimizer/common/pipeline";
-import { layeredAssignment } from "@genshin-optimizer/common/util";
+import { extrapolateFloat } from "genshin-optimizer/pipeline";
+import { layeredAssignment } from "genshin-optimizer/util";
 import type { NonTravelerCharacterKey } from "genshin-optimizer/consts";
 import type {
   AvatarSkillDepotExcelConfigData,
   CharacterId,
   ProudSkillExcelConfigData,
-} from "@genshin-optimizer/gi/dm";
+} from "genshin-optimizer/dm";
 import {
   avatarExcelConfigData,
   avatarSkillDepotExcelConfigData,
@@ -13,7 +13,7 @@ import {
   avatarTalentExcelConfigData,
   characterIdMap,
   proudSkillExcelConfigData,
-} from "@genshin-optimizer/gi/dm";
+} from "genshin-optimizer/dm";
 import * as somniaData from "./Somnia/skillParam.json";
 
 type CharacterSkillParams = {
@@ -150,6 +150,7 @@ export default function characterSkillParam() {
 
     if (candSkillDepotIds.length) {
       //Traveler
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const [_1, _2, hydro, anemo, _5, geo, electro, dendro] =
         candSkillDepotIds;
       const gender = characterIdMap[charid] === "TravelerF" ? "F" : "M";

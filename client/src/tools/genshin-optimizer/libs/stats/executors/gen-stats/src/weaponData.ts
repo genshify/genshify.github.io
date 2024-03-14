@@ -1,4 +1,4 @@
-import { extrapolateFloat } from "../../../../pipeline";
+import { extrapolateFloat } from "genshin-optimizer/pipeline";
 import type { WeaponKey } from "genshin-optimizer/consts";
 import type {
   StatKey,

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Unit } from "genshin-optimizer/util";
 import {
   clampPercent,
@@ -40,7 +41,7 @@ export function getSubstatValuesPercent(
   substatKey: SubstatKey,
   rarity: ArtifactRarity
 ) {
-  return allStats.art.sub[rarity][substatKey].map((v) =>
+  return allStats.art.sub[rarity][substatKey].map((v: number) =>
     toPercent(v, substatKey)
   );
 }
@@ -54,8 +55,8 @@ export function getSubstatRolls(
   const table = allStats.art.subRoll[rarity][substatKey];
   const lookupValue = artDisplayValue(substatValue, unit(substatKey));
   return (
-    table[lookupValue as unknown as keyof typeof table]?.map((roll) =>
-      roll.map((i) => rollData[i])
+    table[lookupValue as unknown as keyof typeof table]?.map((roll: any[]) =>
+      roll.map((i: string | number) => rollData[i])
     ) ?? []
   );
 }
@@ -94,7 +95,7 @@ export function getSubstatValue(
         ? Math.max(...substats)
         : type === "min"
         ? Math.min(...substats)
-        : substats.reduce((a, b) => a + b, 0) / substats.length;
+        : substats.reduce((a: any, b: any) => a + b, 0) / substats.length;
     substatCache.set(cacheKey, value);
   }
   return percent ? toPercent(value, substatKey) : value;

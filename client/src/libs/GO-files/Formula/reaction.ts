@@ -66,7 +66,7 @@ const trans = {
           {
             hit: one,
             critHit: canCrit
-              ? sum(one, input.total[`${reaction}_critDMG_`])
+              ? sum(one, input.total[`${reaction}_critDMG_` as keyof typeof input.total])
               : one,
             avgHit: canCrit
               ? sum(
@@ -75,17 +75,17 @@ const trans = {
                     infoMut(
                       max(
                         min(
-                          input.total[`${reaction}_critRate_`],
+                          input.total[`${reaction}_critRate_` as keyof typeof input.total],
                           sum(one, one)
                         ),
                         naught
                       ),
                       {
-                        ...input.total[`${reaction}_critRate_`].info,
+                        ...input.total[`${reaction}_critRate_` as keyof typeof input.total].info,
                         pivot: true,
                       }
                     ),
-                    input.total[`${reaction}_critDMG_`]
+                    input.total[`${reaction}_critDMG_` as keyof typeof input.total]
                   )
                 )
               : one,

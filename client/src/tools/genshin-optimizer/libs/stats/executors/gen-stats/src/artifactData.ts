@@ -3,7 +3,7 @@ import {
   artifactIdMap,
   reliquaryCodexExcelConfigData,
   reliquarySetExcelConfigData,
-} from "@genshin-optimizer/gi/dm";
+} from "genshin-optimizer/dm";
 
 export type ArtifactDataGen = {
   setNum: number[];

@@ -13,6 +13,7 @@ export function zero_deriv(
   let ret = true
   forEachNodes(
     [f],
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     (_) => {},
     (f) => {
       const { operation } = f
@@ -61,7 +62,7 @@ export function ddx(
       return sum(...f.operands.map((fi) => ddx(fi, binding, x)))
     case 'mul': {
       const ops = f.operands.map((fi, i) =>
-        prod(ddx(fi, binding, x), ...f.operands.filter((v, ix) => ix !== i))
+        prod(ddx(fi, binding, x), ...f.operands.filter((_v, ix) => ix !== i))
       )
       return sum(...ops)
     }

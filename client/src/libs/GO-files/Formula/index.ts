@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   crawlObject,
   objKeyMap,
@@ -245,6 +247,7 @@ const inputBase = {
     { prefix: 'art', asConst },
     {
       ...objKeyMap(allArtModStats, (key) => allModStatNodes[key]),
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       ...objKeyMap(allArtifactSlotKeys, (_) => ({
         id: stringRead(),
         set: stringRead(),
@@ -338,7 +341,7 @@ const common: Data = {
       const operands: NumNode[] = []
 
       if (key.endsWith('_enemyRes_'))
-        operands.push(enemy[key.replace(/_enemyRes_$/, '_res_')])
+        operands.push(enemy[key.replace(/_enemyRes_$/, '_res_') as keyof typeof enemy])
 
       const list = [...operands, customBonus[key]].filter((x) => x)
       return list.length === 1 ? list[0] : sum(...list)
@@ -391,6 +394,7 @@ const common: Data = {
           operands.push(percent(1, { ...info, prefix: 'default' }))
           break
       }
+      /* @ts-expect-error */ 
       const list = [...operands, art[key], customBonus[key]].filter((x) => x)
       return list.length === 1 ? list[0] : sum(...list)
     }),

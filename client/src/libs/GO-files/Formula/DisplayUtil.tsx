@@ -73,9 +73,10 @@ export function getDisplayHeader(
     const talentKey = ["normal", "charged", "plunging"].includes(sectionKey)
       ? "auto"
       : sectionKey;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const talent = sheet?.getTalentOfKey(talentKey as any);
     if (!talent) return errHeader;
-    const actionText = talentMap[sectionKey];
+    const actionText = talentMap[sectionKey as keyof typeof talentMap];
     return {
       icon: talent.img,
       title: talent.name,

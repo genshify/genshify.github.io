@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   assertUnreachable,
   crawlObject,
@@ -360,8 +361,6 @@ export class UIData {
       case "min":
       case "max": {
         const identity = allOperations[operation]([]);
-        if (process.env.NODE_ENV !== "development")
-          operands = operands.filter((operand) => operand.value !== identity);
         if (!operands.length)
           return Object.values(info).some((x) => x)
             ? { ...this._constant(identity), info }
@@ -564,7 +563,7 @@ function createDisplay(node: ContextNodeDisplay<number | string | undefined>) {
    */
 
   const {
-    info: { name, prefix, source, variant, fixed, unit },
+    info: { name, prefix, source, fixed, unit },
     value,
     formula,
   } = node;
@@ -573,14 +572,14 @@ function createDisplay(node: ContextNodeDisplay<number | string | undefined>) {
     <ColorText color="info">{valueString(value, unit, fixed)}</ColorText>
   );
   if (name) {
-    const prefixDisplay = prefix && !source ? <>{subKeyMap[prefix]} </> : null;
+    const prefixDisplay = prefix && !source ? <>{subKeyMap[prefix as keyof typeof subKeyMap]} </> : null;
     const sourceDisplay = <SourceDisplay source={source} />;
     node.name = (
       <>
-        <ColorText color={variant}>
+        <p >
           {prefixDisplay}
           {name}
-        </ColorText>
+        </p>
         {sourceDisplay}
       </>
     );
